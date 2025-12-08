@@ -1,0 +1,1545 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Теория — EduSafe</title>
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --blue-100: #dbeafe;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f8fafc;
+      color: var(--gray-900);
+      line-height: 1.7;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--blue-900);
+    }
+
+    .logo i {
+      background: var(--blue-900);
+      color: var(--white);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Language Selector */
+    .lang-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-selector select {
+      padding: 0.5rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background: white;
+      font-weight: 500;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-900), #1e40af);
+      color: var(--white);
+      padding: 3rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 0.75rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto;
+      opacity: 0.95;
+    }
+
+    /* Content */
+    .content {
+      padding: 3rem 0;
+    }
+
+    .section {
+      margin-bottom: 3rem;
+    }
+
+    .section-title {
+      font-size: 1.875rem;
+      font-weight: 700;
+      color: var(--blue-900);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.5rem;
+      border-bottom: 2px solid var(--blue-100);
+    }
+
+    .law-ref {
+      background: var(--blue-100);
+      color: var(--blue-900);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+      margin-left: 0.5rem;
+    }
+
+    .definition {
+      background: var(--gray-50);
+      border-left: 4px solid var(--blue-700);
+      padding: 1.25rem;
+      margin: 1.5rem 0;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    .definition h4 {
+      font-weight: 700;
+      color: var(--gray-900);
+      margin-bottom: 0.5rem;
+    }
+
+    .article {
+      background: var(--white);
+      border: 1px solid #e5e7eb;
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-bottom: 1.5rem;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.03);
+    }
+
+    .article-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+    }
+
+    .article-title {
+      font-weight: 700;
+      font-size: 1.25rem;
+      color: var(--blue-900);
+    }
+
+    .article-ref {
+      background: var(--blue-700);
+      color: var(--white);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.875rem;
+      font-weight: 600;
+    }
+
+    .article p {
+      margin-bottom: 1rem;
+    }
+
+    .edu-note {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      padding: 1rem 1.25rem;
+      margin-top: 1rem;
+      border-radius: 0 0.5rem 0.5rem 0;
+    }
+
+    .edu-note h5 {
+      font-weight: 700;
+      color: #92400e;
+      margin-bottom: 0.5rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    /* Role Selector */
+    .role-selector {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      margin-bottom: 3rem;
+      text-align: center;
+    }
+
+    .role-selector h3 {
+      color: var(--blue-900);
+      margin-bottom: 1.5rem;
+    }
+
+    .role-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      flex-wrap: wrap;
+    }
+
+    .role-btn {
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      border: 2px solid var(--blue-700);
+      background: var(--white);
+      color: var(--blue-700);
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+
+    .role-btn.active, .role-btn:hover {
+      background: var(--blue-700);
+      color: var(--white);
+    }
+
+    /* Content sections - initially hidden */
+    .role-content {
+      display: none;
+    }
+
+    .role-content.active {
+      display: block;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray-900);
+      color: #9ca3af;
+      padding: 2rem 0;
+      text-align: center;
+      font-size: 0.875rem;
+    }
+
+    .footer-content {
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+    }
+
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.75rem; }
+      .section-title { font-size: 1.5rem; }
+      .nav { flex-direction: column; }
+      .role-buttons { flex-direction: column; }
+      .role-btn { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span>EduSafe</span>
+        </div>
+        <div class="nav">
+          <a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+          <a href="theory.html" class="active"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+          <a href="practice.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+          <a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+          <a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+          <div class="lang-selector">
+            <i class="fas fa-globe"></i>
+            <select id="languageSelect">
+              <option value="ru">Русский</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Теоретическая основа защиты персональных данных</h1>
+      <p>Закон Республики Беларусь № 99-З и разъяснения Национального центра защиты персональных данных — на понятном языке</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="content">
+    <div class="container">
+
+      <!-- Role Selector -->
+      <div class="role-selector">
+        <h3>Выберите свою роль в образовании</h3>
+        <div class="role-buttons">
+          <button class="role-btn active" data-role="student">Студент / Ученик</button>
+          <button class="role-btn" data-role="teacher">Учитель / Преподаватель</button>
+        </div>
+      </div>
+
+      <!-- Student Content -->
+      <div id="studentContent" class="role-content active">
+        <div class="section">
+          <h2 class="section-title">Что регулирует Закон № 99-З?<span class="law-ref">Гл. 1, ст. 2</span></h2>
+          <p>Закон защищает <strong>твои персональные данные</strong> от неправильного использования. Это касается информации, которая хранится в компьютерах (например, в электронном журнале) или в специальных списках, где можно тебя найти по фамилии.</p>
+          <div class="edu-note">
+            <h5><i class="fas fa-graduation-cap"></i> Для тебя как обучающегося</h5>
+            <p>Практически <strong>все данные о тебе в школе или вузе</strong> — это персональные данные и защищены законом. От фамилии в списке до оценки в дневнике.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Ключевые понятия<span class="law-ref">ст. 1</span></h2>
+          <div class="definition">
+            <h4>Твои персональные данные</h4>
+            <p>Это любая информация, по которой тебя можно узнать: ФИО, дата рождения, адрес, email, номер телефона, фото, оценки, результаты тестов, медицинские данные и т.д.</p>
+          </div>
+          <div class="definition">
+            <h4>Оператор</h4>
+            <p>Это твоя школа или вуз. Они обязаны защищать твои данные и соблюдать закон.</p>
+          </div>
+          <div class="definition">
+            <h4>Специальные персональные данные</h4>
+            <p>Это особо важная информация: например, о твоем здоровье, национальности, религии. Обработка таких данных требует особой осторожности.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Как обрабатываются твои данные?<span class="law-ref">ст. 4</span></h2>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Твое согласие — важно</div>
+              <span class="article-ref">ст. 4, п. 3</span>
+            </div>
+            <p>Обычно школа или вуз не имеют права использовать твои данные без твоего разрешения. Но есть исключения, например, для ведения учёта успеваемости.</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Цель должна быть ясной</div>
+              <span class="article-ref">ст. 4, п. 4</span>
+            </div>
+            <p>Организация должна чётко сказать, зачем она собирает твои данные. Нельзя собирать всё подряд "на всякий случай".</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Минимум данных</div>
+              <span class="article-ref">ст. 4, п. 5</span>
+            </div>
+            <p>Школа или вуз должны собирать только те данные, которые действительно нужны для учебы.</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Ты имеешь право знать</div>
+              <span class="article-ref">ст. 4, п. 6</span>
+            </div>
+            <p>Ты можешь спросить, какие данные о тебе есть в школе, кто их обрабатывает и зачем.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Когда согласие НЕ требуется?<span class="law-ref">ст. 6</span></h2>
+          <p>Школа или вуз могут обрабатывать твои данные без твоего отдельного согласия, если это:</p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.75rem; list-style: none;">
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>необходимо для учёбы</strong> (учёт посещаемости, выставление оценок);</li>
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>нужно для исполнения образовательного договора</strong> (например, при поступлении);</li>
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>требуется по закону</strong> (например, списки зачисленных).</li>
+          </ul>
+          <div class="edu-note">
+            <h5><i class="fas fa-info-circle"></i> Практическое значение</h5>
+            <p>Основные учебные процессы (журнал, дневник) не требуют твоего отдельного согласия, но школа всё равно должна соблюдать все правила безопасности и прозрачности. Если тебе кажется, что данные используются неправильно — ты можешь спросить или подать жалобу.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Твои права и обязанности школы/вуза<span class="law-ref">Гл. 3</span></h2>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Твои права</div>
+              <span class="article-ref">ст. 10–13</span>
+            </div>
+            <p>Ты можешь:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+              <li>отозвать своё согласие на обработку данных (если оно было дано);</li>
+              <li>узнать, какие данные о тебе хранятся;</li>
+              <li>попросить исправить неточную информацию;</li>
+              <li>попросить удалить или прекратить обработку своих данных (в определённых случаях).</li>
+            </ul>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Обязанности школы/вуза</div>
+              <span class="article-ref">ст. 16</span>
+            </div>
+            <p>Школа или вуз обязаны:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+              <li>рассказать тебе о твоих правах;</li>
+              <li>получить твоё согласие, если оно требуется;</li>
+              <li>защитить твои данные от утечек;</li>
+              <li>ответить на твой запрос о данных;</li>
+              <li>принять документ «Политика в отношении обработки персональных данных» и разместить его в открытом доступе.</li>
+            </ul>
+          </div>
+          <div class="edu-note">
+            <h5><i class="fas fa-file-alt"></i> Что ты можешь проверить</h5>
+            <p>Посмотри на официальный сайт своей школы или вуза. Там должна быть размещена <strong>Политика обработки персональных данных</strong> — это документ, где объясняется, как защищаются твои данные.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Teacher Content -->
+      <div id="teacherContent" class="role-content">
+        <div class="section">
+          <h2 class="section-title">Что регулирует Закон № 99-З?<span class="law-ref">Гл. 1, ст. 2</span></h2>
+          <p>Закон устанавливает правовые основы обработки персональных данных физических лиц и направлен на защиту прав и свобод человека при такой обработке.</p>
+          <p><strong>Важно:</strong> Закон применяется при обработке ПД:</p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.75rem;">
+            <li>с использованием средств автоматизации (электронные журналы, базы данных, Telegram-боты и т.п.);</li>
+            <li>без автоматизации, если обеспечивается поиск или доступ по критериям (карточки, списки, архивы).</li>
+          </ul>
+          <div class="edu-note">
+            <h5><i class="fas fa-graduation-cap"></i> Для вас как педагога</h5>
+            <p>Практически <strong>все образовательные процессы</strong> подпадают под действие Закона: от бумажного журнала с поиском по фамилии — до облачного портфолио в Moodle. Вы — часть системы оператора (учреждения образования).</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Ключевые понятия<span class="law-ref">ст. 1</span></h2>
+          <div class="definition">
+            <h4>Персональные данные</h4>
+            <p>Любая информация, относящаяся к идентифицированному физическому лицу или лицу, которое может быть идентифицировано (ФИО, дата рождения, email, фото, IP-адрес и др.).</p>
+          </div>
+          <div class="definition">
+            <h4>Оператор</h4>
+            <p>Организация или лицо, организующее и(или) осуществляющее обработку ПД. <strong>В школе/вузе — это само учреждение образования.</strong></p>
+          </div>
+          <div class="definition">
+            <h4>Субъект ПД</h4>
+            <p>Физическое лицо, в отношении которого осуществляется обработка — ученик, студент, педагог, родитель.</p>
+          </div>
+          <div class="definition">
+            <h4>Согласие субъекта ПД</h4>
+            <p>Свободное, однозначное, информированное выражение воли субъекта, разрешающее обработку его данных.</p>
+          </div>
+          <div class="definition">
+            <h4>Специальные ПД</h4>
+            <p>Данные о расовой/национальной принадлежности, политических взглядах, религии, здоровье, привлечении к ответственности, биометрические и генетические данные.</p>
+          </div>
+          <div class="edu-note">
+            <h5><i class="fas fa-exclamation-triangle"></i> Внимание в образовании</h5>
+            <p>Здоровье (группы здоровья в медосмотрах), национальность (в анкетах), фото лица — могут быть <strong>специальными ПД</strong>. Их обработка требует особой осторожности.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Общие требования к обработке ПД<span class="law-ref">ст. 4</span></h2>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Согласие субъекта — основа</div>
+              <span class="article-ref">ст. 4, п. 3</span>
+            </div>
+            <p>Обработка ПД осуществляется <strong>с согласия субъекта</strong>, за исключением случаев, прямо предусмотренных законом (например, при оформлении трудовых отношений).</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Целевая обработка</div>
+              <span class="article-ref">ст. 4, п. 4</span>
+            </div>
+            <p>Цели обработки должны быть <strong>конкретными, заранее заявленными</strong>. Нельзя собирать данные «на всякий случай» или использовать их не по назначению.</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Минимизация данных</div>
+              <span class="article-ref">ст. 4, п. 5</span>
+            </div>
+            <p>Содержание и объём ПД должны соответствовать целям обработки. <strong>Избыточные данные — нарушение.</strong></p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Прозрачность</div>
+              <span class="article-ref">ст. 4, п. 6</span>
+            </div>
+            <p>Субъект ПД имеет право знать: кто обрабатывает его данные, зачем, какие именно и кому они передаются.</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Ограничение срока хранения</div>
+              <span class="article-ref">ст. 4, п. 8</span>
+            </div>
+            <p>ПД хранятся <strong>не дольше, чем требуется для заявленных целей</strong>. Например, журналы успеваемости — в соответствии с архивными правилами (обычно 5 лет после выпуска).</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Когда согласие НЕ требуется?<span class="law-ref">ст. 6</span></h2>
+          <p>Согласие не нужно, если обработка ПД необходима для:</p>
+          <ul style="margin-left: 1.5rem; margin-top: 0.75rem; list-style: none;">
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>оформления трудовых отношений</strong> (в отношении педагогов);</li>
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>назначения пенсий, пособий</strong>;</li>
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>осуществления контроля</strong> (в т.ч. учебного процесса);</li>
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>исполнения договора</strong> (например, образовательного контракта);</li>
+            <li><i class="fas fa-check-circle" style="color: var(--blue-700); margin-right: 0.5rem;"></i> <strong>защиты жизненно важных интересов</strong> (например, при ЧС).</li>
+          </ul>
+          <div class="edu-note">
+            <h5><i class="fas fa-info-circle"></i> Практическое значение</h5>
+            <p>Многие процессы (учёт успеваемости, выдача дипломов) формально не требуют согласия — <strong>НО</strong> требуют соблюдения всех остальных принципов (прозрачность, минимизация, безопасность). На практике — <strong>рекомендуется получать согласие</strong> для снижения рисков.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Права субъекта ПД и обязанности оператора<span class="law-ref">Гл. 3</span></h2>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Права субъекта ПД</div>
+              <span class="article-ref">ст. 10–13</span>
+            </div>
+            <p>Субъект вправе:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+              <li>отозвать согласие в любое время;</li>
+              <li>требовать информацию о своих ПД;</li>
+              <li>требовать внесения изменений в неточные данные;</li>
+              <li>требовать прекращения обработки и удаления ПД.</li>
+            </ul>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Обязанности оператора</div>
+              <span class="article-ref">ст. 16</span>
+            </div>
+            <p>Оператор обязан:</p>
+            <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
+              <li>разъяснять права субъекта ПД;</li>
+              <li>получать согласие (если требуется);</li>
+              <li>обеспечивать защиту ПД;</li>
+              <li>предоставлять информацию по запросу;</li>
+              <li><strong>назначить ответственное лицо</strong> за внутренний контроль;</li>
+              <li><strong>принять документ «Политика в отношении обработки ПД»</strong> и разместить его в открытом доступе.</li>
+            </ul>
+          </div>
+          <div class="edu-note">
+            <h5><i class="fas fa-file-alt"></i> Для вашей школы/вуза</h5>
+            <p>Две <strong>обязательные меры</strong> (ст. 17, п. 3–4):<br>
+            1. Назначить ответственного по ПД;<br>
+            2. Принять и разместить в открытом доступе <strong>Политику обработки персональных данных</strong>.</p>
+          </div>
+        </div>
+
+        <div class="section">
+          <h2 class="section-title">Разъяснения Национального центра<span class="law-ref">Разъяснения от 16.07.2024</span></h2>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Создание личных кабинетов</div>
+              <span class="article-ref">Разъяснения, п. 7</span>
+            </div>
+            <p>Для обработки персональных данных при создании личного кабинета необходимо самостоятельное правовое основание, которым может выступать <strong>согласие субъекта персональных данных</strong> или договорные отношения (например, при регистрации учётной записи).</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Размещение списков обучающихся</div>
+              <span class="article-ref">Разъяснения, п. 2</span>
+            </div>
+            <p>Размещение списков зачисленных обучающихся на официальном сайте допускается без согласия на основании закона (абз. 20 ст. 6 Закона), так как это предусмотрено Кодексом об образовании.</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Размещение информации о педагогах</div>
+              <span class="article-ref">Разъяснения, п. 8</span>
+            </div>
+            <p>Размещение сведений о педагогических работниках (ФИО, должность, ученая степень и др.) на официальном сайте возможно на основании абз. 8 ст. 6 Закона (необходимость внешнего взаимодействия), без согласия работника.</p>
+          </div>
+          <div class="article">
+            <div class="article-header">
+              <div class="article-title">Журнал посетителей</div>
+              <span class="article-ref">Разъяснения, п. 12</span>
+            </div>
+            <p>При регистрации посетителей в журнале достаточно указать фамилию, имя, отчество. Фиксация серии и номера документа, удостоверяющего личность, является <strong>избыточной обработкой</strong> и нарушением.</p>
+          </div>
+        </div>
+      </div>
+
+      <!-- Documents -->
+      <div class="section" style="text-align: center; background: var(--gray-50); padding: 2rem; border-radius: 1rem;">
+        <h3 class="section-title" style="border: none; margin-bottom: 1.5rem;">Документы</h3>
+        <p style="font-size: 1.125rem; max-width: 800px; margin: 0 auto 1.5rem;">
+          Официальные документы, на основе которых составлена информация:
+        </p>
+        <ul style="list-style: none; padding: 0; margin: 0 auto; max-width: 600px;">
+          <li style="margin-bottom: 0.75rem;">
+            <a href="https://minfin.gov.by/upload/depcen/acts/zakon_070521_99z.pdf?ysclid=mhz54gktoq33628409" style="color: var(--blue-700); text-decoration: underline;">Закон Республики Беларусь от 7 мая 2021 г. №99-З «О защите персональных данных»</a>
+          </li>
+          <li>
+            <a href="https://view.officeapps.live.com/op/view.aspx?src=https%3A%2F%2Fcpd.by%2Fstorage%2F2024%2F07%2FRazjasnenija-o-primenenii-ZPD-v-dejatelnosti-USSO-i-UVO.docx&wdOrigin=BROWSELINK" style="color: var(--blue-700); text-decoration: underline;">Разъяснения о применении законодательства о персональных данных в деятельности учреждений среднего специального и высшего образования (Национальный центр защиты персональных данных, 16.07.2024 № 5-5/395)</a>
+          </li>
+        </ul>
+        <p style="color: var(--gray-600; margin-top: 1.5rem;">
+          <i class="fas fa-exclamation-circle"></i> Обратите внимание: Закон вступил в силу 7 ноября 2021 г. Все образовательные организации обязаны привести процессы в соответствие.
+        </p>
+        <a href="practice.html" class="btn" style="
+          display: inline-block;
+          background: var(--blue-700);
+          color: white;
+          font-weight: 600;
+          padding: 0.875rem 2rem;
+          border-radius: 0.75rem;
+          text-decoration: none;
+          margin-top: 1.5rem;
+        ">
+          <i class="fas fa-lightbulb"></i> <span>Перейти к практике</span>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span>EduSafe</span>
+        </div>
+        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
+        <!--  <p>В рамках республиканского проекта "100 идей для Беларуси"</p> -->
+      </div>
+      <div class="disclaimer">
+        Ресурс не использует cookies и не собирает персональные данные пользователей.<br>
+        Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const roleButtons = document.querySelectorAll('.role-btn');
+      const roleContents = document.querySelectorAll('.role-content');
+      const languageSelect = document.getElementById('languageSelect');
+
+      // Language translations
+      const translations = {
+        en: {
+          // Navigation
+          home: 'Home',
+          theory: 'Theory',
+          practice: 'Practice',
+          quiz: 'Quiz',
+          complaint: 'Complaint',
+          english: 'English',
+          russian: 'Русский',
+          
+          // Hero
+          heroTitle: 'Theoretical Foundation of Personal Data Protection',
+          heroSubtitle: 'Law of the Republic of Belarus No. 99-Z and clarifications by the National Center for Personal Data Protection — in plain language',
+          
+          // Role Selector
+          roleSelectorTitle: 'Select your role in education',
+          studentRole: 'Student',
+          teacherRole: 'Teacher',
+          
+          // Student Content
+          lawRegulatesStudent: 'What does Law No. 99-Z regulate?',
+          studentForYou: 'For you as a student',
+          keyConcepts: 'Key concepts',
+          yourPersonalData: 'Your personal data',
+          operator: 'Operator',
+          specialPersonalData: 'Special personal data',
+          howDataProcessed: 'How are your data processed?',
+          consentImportant: 'Your consent — is important',
+          purposeClear: 'Purpose must be clear',
+          minimumData: 'Minimum data',
+          rightToKnow: 'You have the right to know',
+          consentNotRequired: 'When consent is NOT required?',
+          necessaryForStudy: 'necessary for study',
+          neededForContract: 'needed to fulfill an educational contract',
+          requiredByLaw: 'required by law',
+          practicalSignificance: 'Practical significance',
+          yourRights: 'Your rights and school/university obligations',
+          yourRightsTitle: 'Your rights',
+          revokeConsent: 'revoke your consent for data processing (if given)',
+          findOutData: 'find out what data about you is stored',
+          requestCorrection: 'request correction of inaccurate information',
+          requestDeletion: 'request deletion or cessation of processing of your data (in certain cases)',
+          schoolObligations: 'School/University Obligations',
+          tellRights: 'tell you about your rights',
+          obtainConsent: 'obtain your consent if required',
+          protectData: 'protect your data from leaks',
+          respondRequest: 'respond to your data request',
+          adoptPolicy: 'adopt the document "Policy on Personal Data Processing" and make it publicly available',
+          whatYouCanCheck: 'What you can check',
+          checkPolicy: 'Look at the official website of your school or university. There should be a Personal Data Processing Policy document posted there explaining how your data is protected.',
+          
+          // Teacher Content
+          lawRegulatesTeacher: 'What does Law No. 99-Z regulate?',
+          forYouAsEducator: 'For you as an educator',
+          personalData: 'Personal data',
+          pdSubject: 'PD Subject',
+          consent: 'PD Subject\'s Consent',
+          specialPD: 'Special PD',
+          attentionInEducation: 'Attention in education',
+          generalRequirements: 'General requirements for PD processing',
+          consentBasis: 'Subject\'s consent — is the basis',
+          purposefulProcessing: 'Purposeful processing',
+          dataMinimization: 'Data minimization',
+          transparency: 'Transparency',
+          storageLimitation: 'Storage period limitation',
+          consentNotRequiredTeacher: 'When consent is NOT required?',
+          formalizingEmployment: 'formalizing employment relations',
+          appointingPensions: 'appointing pensions, allowances',
+          exercisingControl: 'exercising control',
+          fulfillingContract: 'fulfilling a contract',
+          protectingVital: 'protecting vital interests',
+          pdSubjectRights: 'PD Subject Rights and Operator Obligations',
+          pdSubjectRightsTitle: 'PD Subject Rights',
+          revokeConsentAnytime: 'revoke consent at any time',
+          requestInfo: 'request information about their PD',
+          requestCorrectionData: 'request correction of inaccurate data',
+          requestCessation: 'request cessation of processing and deletion of PD',
+          operatorObligations: 'Operator Obligations',
+          explainRights: 'explain PD subject rights',
+          ensureProtection: 'ensure PD protection',
+          provideInfo: 'provide information upon request',
+          appointResponsible: 'appoint a responsible person for internal control',
+          adoptPolicyRequired: 'adopt the document "Policy on PD Processing" and make it publicly available',
+          forYourSchool: 'For your school/university',
+          mandatoryMeasures: 'Two mandatory measures',
+          nationalCenterClarifications: 'National Center Clarifications',
+          creatingAccounts: 'Creating personal accounts',
+          postingLists: 'Posting student lists',
+          postingInfo: 'Posting information about educators',
+          visitorLog: 'Visitor log',
+          excessiveProcessing: 'excessive processing',
+          
+          // Documents
+          documentsTitle: 'Documents',
+          basedOnDocuments: 'Official documents on which the information is based:',
+          note: 'Note',
+          lawCameIntoForce: 'The law came into force on November 7, 2021. All educational institutions must bring processes into compliance.',
+          goToPractice: 'Go to Practice',
+          
+          // Footer
+          resourceInfo: 'Republican Information and Practical Resource for Teachers and Students',
+          copyright: '© 2025 Nevdakh Alexander, Belarusian State Economic University',
+          disclaimer: 'The resource does not use cookies and does not collect personal data from users. All materials are for informational and educational purposes and comply with current legislation of the Republic of Belarus.',
+          
+          // Student Content Paragraphs
+          studentLawProtects: 'The law protects your personal data from misuse. This includes information stored in computers (e.g., electronic journal) or in special lists where you can be found by surname.',
+          studentAllDataProtected: 'Practically all data about you in school or university — is personal data and protected by law. From your surname in a list to a grade in a diary.',
+          studentConsentNotRequired: 'School or university may process your data without your separate consent if it is:',
+          studentPracticalSignificance: 'Main educational processes (journal, diary) do not require your separate consent, but the school must still comply with all safety and transparency rules. If you think data is being used incorrectly — you can ask or file a complaint.',
+          studentCheckPolicy: 'Look at the official website of your school or university. There should be a Personal Data Processing Policy document posted there explaining how your data is protected.',
+          
+          // Teacher Content Paragraphs
+          teacherLawEstablishes: 'The law establishes the legal framework for processing personal data of individuals and aims to protect human rights and freedoms in such processing.',
+          teacherImportant: 'Important: The law applies to processing of PD:',
+          teacherAllProcesses: 'Practically all educational processes fall under the law: from a paper journal with search by surname — to cloud portfolios in Moodle. You — are part of the operator system (educational institution).',
+          teacherRightsAndObligations: 'Many processes (attendance tracking, diploma issuance) formally do not require consent — BUT require compliance with all other principles (transparency, minimization, security). In practice — it is recommended to obtain consent to reduce risks.',
+          teacherMandatoryMeasures: 'Two mandatory measures (Art. 17, para. 3–4): 1. Appoint a PD responsible person; 2. Adopt and make publicly available the Personal Data Processing Policy.',
+          
+          // Article references
+          articleRef43: 'Art. 4, para. 3',
+          articleRef44: 'Art. 4, para. 4',
+          articleRef45: 'Art. 4, para. 5',
+          articleRef46: 'Art. 4, para. 6',
+          articleRef48: 'Art. 4, para. 8',
+          articleRef1013: 'Art. 10–13',
+          articleRef16: 'Art. 16',
+          articleRef6: 'Art. 6',
+          articleRef1: 'Art. 1',
+          articleRef2: 'Ch. 1, Art. 2',
+          articleRef3: 'Ch. 3',
+          articleRef7: 'Ch. 7',
+          articleRef8: 'Ch. 8',
+          articleRef9: 'Ch. 9',
+          articleRef10: 'Ch. 10',
+          articleRef11: 'Ch. 11',
+          articleRef12: 'Ch. 12',
+          articleRef13: 'Ch. 13',
+          articleRef14: 'Ch. 14',
+          articleRef15: 'Ch. 15',
+          articleRef16Ch: 'Ch. 16',
+          articleRef17: 'Art. 17',
+          articleRef18: 'Art. 18',
+          articleRef19: 'Art. 19',
+          articleRef20: 'Art. 20',
+          articleRef21: 'Art. 21',
+          articleRef22: 'Art. 22',
+          articleRef23: 'Art. 23',
+          articleRef24: 'Art. 24',
+          articleRef25: 'Art. 25',
+          articleRef26: 'Art. 26',
+          articleRef27: 'Art. 27',
+          articleRef28: 'Art. 28',
+          articleRef29: 'Art. 29',
+          articleRef30: 'Art. 30',
+          articleRef31: 'Art. 31',
+          articleRef32: 'Art. 32',
+          articleRef33: 'Art. 33',
+          articleRef34: 'Art. 34',
+          articleRef35: 'Art. 35',
+          articleRef36: 'Art. 36',
+          articleRef37: 'Art. 37',
+          articleRef38: 'Art. 38',
+          articleRef39: 'Art. 39',
+          articleRef40: 'Art. 40',
+          articleRef41: 'Art. 41',
+          articleRef42: 'Art. 42',
+          articleRef43Ch: 'Art. 43',
+          articleRef44Ch: 'Art. 44',
+          articleRef45Ch: 'Art. 45',
+          articleRef46Ch: 'Art. 46',
+          articleRef47: 'Art. 47',
+          articleRef48Ch: 'Art. 48',
+          articleRef49: 'Art. 49',
+          articleRef50: 'Art. 50',
+          articleRef51: 'Art. 51',
+          articleRef52: 'Art. 52',
+          articleRef53: 'Art. 53',
+          articleRef54: 'Art. 54',
+          articleRef55: 'Art. 55',
+          articleRef56: 'Art. 56',
+          articleRef57: 'Art. 57',
+          articleRef58: 'Art. 58',
+          articleRef59: 'Art. 59',
+          articleRef60: 'Art. 60',
+          articleRef61: 'Art. 61',
+          articleRef62: 'Art. 62',
+          articleRef63: 'Art. 63',
+          articleRef64: 'Art. 64',
+          articleRef65: 'Art. 65',
+          articleRef66: 'Art. 66',
+          articleRef67: 'Art. 67',
+          articleRef68: 'Art. 68',
+          articleRef69: 'Art. 69',
+          articleRef70: 'Art. 70',
+          articleRef71: 'Art. 71',
+          articleRef72: 'Art. 72',
+          articleRef73: 'Art. 73',
+          articleRef74: 'Art. 74',
+          articleRef75: 'Art. 75',
+          articleRef76: 'Art. 76',
+          articleRef77: 'Art. 77',
+          articleRef78: 'Art. 78',
+          articleRef79: 'Art. 79',
+          articleRef80: 'Art. 80',
+          articleRef81: 'Art. 81',
+          articleRef82: 'Art. 82',
+          articleRef83: 'Art. 83',
+          articleRef84: 'Art. 84',
+          articleRef85: 'Art. 85',
+          articleRef86: 'Art. 86',
+          articleRef87: 'Art. 87',
+          articleRef88: 'Art. 88',
+          articleRef89: 'Art. 89',
+          articleRef90: 'Art. 90',
+          articleRef91: 'Art. 91',
+          articleRef92: 'Art. 92',
+          articleRef93: 'Art. 93',
+          articleRef94: 'Art. 94',
+          articleRef95: 'Art. 95',
+          articleRef96: 'Art. 96',
+          articleRef97: 'Art. 97',
+          articleRef98: 'Art. 98',
+          articleRef99: 'Art. 99',
+          articleRef100: 'Art. 100',
+          articleRef101: 'Art. 101',
+          articleRef102: 'Art. 102',
+          articleRef103: 'Art. 103',
+          articleRef104: 'Art. 104',
+          articleRef105: 'Art. 105',
+          articleRef106: 'Art. 106',
+          articleRef107: 'Art. 107',
+          articleRef108: 'Art. 108',
+          articleRef109: 'Art. 109',
+          articleRef110: 'Art. 110',
+          articleRef111: 'Art. 111',
+          articleRef112: 'Art. 112',
+          articleRef113: 'Art. 113',
+          articleRef114: 'Art. 114',
+          articleRef115: 'Art. 115',
+          articleRef116: 'Art. 116',
+          articleRef117: 'Art. 117',
+          articleRef118: 'Art. 118',
+          articleRef119: 'Art. 119',
+          articleRef120: 'Art. 120',
+          articleRef121: 'Art. 121',
+          articleRef122: 'Art. 122',
+          articleRef123: 'Art. 123',
+          articleRef124: 'Art. 124',
+          articleRef125: 'Art. 125',
+          articleRef126: 'Art. 126',
+          articleRef127: 'Art. 127',
+          articleRef128: 'Art. 128',
+          articleRef129: 'Art. 129',
+          articleRef130: 'Art. 130',
+          articleRef131: 'Art. 131',
+          articleRef132: 'Art. 132',
+          articleRef133: 'Art. 133',
+          articleRef134: 'Art. 134',
+          articleRef135: 'Art. 135',
+          articleRef136: 'Art. 136',
+          articleRef137: 'Art. 137',
+          articleRef138: 'Art. 138',
+          articleRef139: 'Art. 139',
+          articleRef140: 'Art. 140',
+          articleRef141: 'Art. 141',
+          articleRef142: 'Art. 142',
+          articleRef143: 'Art. 143',
+          articleRef144: 'Art. 144',
+          articleRef145: 'Art. 145',
+          articleRef146: 'Art. 146',
+          articleRef147: 'Art. 147',
+          articleRef148: 'Art. 148',
+          articleRef149: 'Art. 149',
+          articleRef150: 'Art. 150',
+          articleRef151: 'Art. 151',
+          articleRef152: 'Art. 152',
+          articleRef153: 'Art. 153',
+          articleRef154: 'Art. 154',
+          articleRef155: 'Art. 155',
+          articleRef156: 'Art. 156',
+          articleRef157: 'Art. 157',
+          articleRef158: 'Art. 158',
+          articleRef159: 'Art. 159',
+          articleRef160: 'Art. 160',
+          articleRef161: 'Art. 161',
+          articleRef162: 'Art. 162',
+          articleRef163: 'Art. 163',
+          articleRef164: 'Art. 164',
+          articleRef165: 'Art. 165',
+          articleRef166: 'Art. 166',
+          articleRef167: 'Art. 167',
+          articleRef168: 'Art. 168',
+          articleRef169: 'Art. 169',
+          articleRef170: 'Art. 170',
+          articleRef171: 'Art. 171',
+          articleRef172: 'Art. 172',
+          articleRef173: 'Art. 173',
+          articleRef174: 'Art. 174',
+          articleRef175: 'Art. 175',
+          articleRef176: 'Art. 176',
+          articleRef177: 'Art. 177',
+          articleRef178: 'Art. 178',
+          articleRef179: 'Art. 179',
+          articleRef180: 'Art. 180',
+          articleRef181: 'Art. 181',
+          articleRef182: 'Art. 182',
+          articleRef183: 'Art. 183',
+          articleRef184: 'Art. 184',
+          articleRef185: 'Art. 185',
+          articleRef186: 'Art. 186',
+          articleRef187: 'Art. 187',
+          articleRef188: 'Art. 188',
+          articleRef189: 'Art. 189',
+          articleRef190: 'Art. 190',
+          articleRef191: 'Art. 191',
+          articleRef192: 'Art. 192',
+          articleRef193: 'Art. 193',
+          articleRef194: 'Art. 194',
+          articleRef195: 'Art. 195',
+          articleRef196: 'Art. 196',
+          articleRef197: 'Art. 197',
+          articleRef198: 'Art. 198',
+          articleRef199: 'Art. 199',
+          articleRef200: 'Art. 200'
+        },
+        ru: {
+          // Navigation
+          home: 'Главная',
+          theory: 'Теория',
+          practice: 'Практика',
+          quiz: 'Викторина',
+          complaint: 'Жалоба',
+          english: 'English',
+          russian: 'Русский',
+          
+          // Hero
+          heroTitle: 'Теоретическая основа защиты персональных данных',
+          heroSubtitle: 'Закон Республики Беларусь № 99-З и разъяснения Национального центра защиты персональных данных — на понятном языке',
+          
+          // Role Selector
+          roleSelectorTitle: 'Выберите свою роль в образовании',
+          studentRole: 'Студент / Ученик',
+          teacherRole: 'Учитель / Преподаватель',
+          
+          // Student Content
+          lawRegulatesStudent: 'Что регулирует Закон № 99-З?',
+          studentForYou: 'Для вас как обучающегося',
+          keyConcepts: 'Ключевые понятия',
+          yourPersonalData: 'Ваши персональные данные',
+          operator: 'Оператор',
+          specialPersonalData: 'Специальные персональные данные',
+          howDataProcessed: 'Как обрабатываются ваши данные?',
+          consentImportant: 'Ваше согласие — важно',
+          purposeClear: 'Цель должна быть ясной',
+          minimumData: 'Минимум данных',
+          rightToKnow: 'Вы имеете право знать',
+          consentNotRequired: 'Когда согласие НЕ требуется?',
+          necessaryForStudy: 'необходимо для учёбы',
+          neededForContract: 'нужно для исполнения образовательного договора',
+          requiredByLaw: 'требуется по закону',
+          practicalSignificance: 'Практическое значение',
+          yourRights: 'Ваши права и обязанности школы/вуза',
+          yourRightsTitle: 'Ваши права',
+          revokeConsent: 'отозвать своё согласие на обработку данных (если оно было дано)',
+          findOutData: 'узнать, какие данные о вас хранятся',
+          requestCorrection: 'попросить исправить неточную информацию',
+          requestDeletion: 'попросить удалить или прекратить обработку своих данных (в определённых случаях)',
+          schoolObligations: 'Обязанности школы/вуза',
+          tellRights: 'рассказать вам о ваших правах',
+          obtainConsent: 'получить ваше согласие, если оно требуется',
+          protectData: 'защитить ваши данные от утечек',
+          respondRequest: 'ответить на ваш запрос о данных',
+          adoptPolicy: 'принять документ «Политика в отношении обработки персональных данных» и разместить его в открытом доступе',
+          whatYouCanCheck: 'Что вы можете проверить',
+          checkPolicy: 'Посмотрите на официальный сайт своей школы или вуза. Там должна быть размещена Политика обработки персональных данных — это документ, где объясняется, как защищаются ваши данные.',
+          
+          // Teacher Content
+          lawRegulatesTeacher: 'Что регулирует Закон № 99-З?',
+          forYouAsEducator: 'Для вас как педагога',
+          personalData: 'Персональные данные',
+          pdSubject: 'Субъект ПД',
+          consent: 'Согласие субъекта ПД',
+          specialPD: 'Специальные ПД',
+          attentionInEducation: 'Внимание в образовании',
+          generalRequirements: 'Общие требования к обработке ПД',
+          consentBasis: 'Согласие субъекта — основа',
+          purposefulProcessing: 'Целевая обработка',
+          dataMinimization: 'Минимизация данных',
+          transparency: 'Прозрачность',
+          storageLimitation: 'Ограничение срока хранения',
+          consentNotRequiredTeacher: 'Когда согласие НЕ требуется?',
+          formalizingEmployment: 'оформления трудовых отношений',
+          appointingPensions: 'назначения пенсий, пособий',
+          exercisingControl: 'осуществления контроля',
+          fulfillingContract: 'исполнения договора',
+          protectingVital: 'защиты жизненно важных интересов',
+          pdSubjectRights: 'Права субъекта ПД и обязанности оператора',
+          pdSubjectRightsTitle: 'Права субъекта ПД',
+          revokeConsentAnytime: 'отозвать согласие в любое время',
+          requestInfo: 'требовать информацию о своих ПД',
+          requestCorrectionData: 'требовать внесения изменений в неточные данные',
+          requestCessation: 'требовать прекращения обработки и удаления ПД',
+          operatorObligations: 'Обязанности оператора',
+          explainRights: 'разъяснять права субъекта ПД',
+          ensureProtection: 'обеспечивать защиту ПД',
+          provideInfo: 'предоставлять информацию по запросу',
+          appointResponsible: 'назначить ответственное лицо за внутренний контроль',
+          adoptPolicyRequired: 'принять документ «Политика в отношении обработки ПД» и разместить его в открытом доступе',
+          forYourSchool: 'Для вашей школы/вуза',
+          mandatoryMeasures: 'Две обязательные меры',
+          nationalCenterClarifications: 'Разъяснения Национального центра',
+          creatingAccounts: 'Создание личных кабинетов',
+          postingLists: 'Размещение списков обучающихся',
+          postingInfo: 'Размещение информации о педагогах',
+          visitorLog: 'Журнал посетителей',
+          excessiveProcessing: 'избыточной обработкой',
+          
+          // Documents
+          documentsTitle: 'Документы',
+          basedOnDocuments: 'Официальные документы, на основе которых составлена информация:',
+          note: 'Обратите внимание',
+          lawCameIntoForce: 'Закон вступил в силу 7 ноября 2021 г. Все образовательные организации обязаны привести процессы в соответствие.',
+          goToPractice: 'Перейти к практике',
+          
+          // Footer
+          resourceInfo: 'Республиканский информационно-практический ресурс для педагогов и студентов',
+          copyright: '© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»',
+          disclaimer: 'Ресурс не использует cookies и не собирает персональные данные пользователей. Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.',
+          
+          // Student Content Paragraphs
+          studentLawProtects: 'Закон защищает твои персональные данные от неправильного использования. Это касается информации, которая хранится в компьютерах (например, в электронном журнале) или в специальных списках, где можно тебя найти по фамилии.',
+          studentAllDataProtected: 'Практически все данные о тебе в школе или вузе — это персональные данные и защищены законом. От фамилии в списке до оценки в дневнике.',
+          studentConsentNotRequired: 'Школа или вуз могут обрабатывать твои данные без твоего отдельного согласия, если это:',
+          studentPracticalSignificance: 'Основные учебные процессы (журнал, дневник) не требуют твоего отдельного согласия, но школа всё равно должна соблюдать все правила безопасности и прозрачности. Если тебе кажется, что данные используются неправильно — ты можешь спросить или подать жалобу.',
+          studentCheckPolicy: 'Посмотри на официальный сайт своей школы или вуза. Там должна быть размещена Политика обработки персональных данных — это документ, где объясняется, как защищаются твои данные.',
+          
+          // Teacher Content Paragraphs
+          teacherLawEstablishes: 'Закон устанавливает правовые основы обработки персональных данных физических лиц и направлен на защиту прав и свобод человека при такой обработке.',
+          teacherImportant: 'Важно: Закон применяется при обработке ПД:',
+          teacherAllProcesses: 'Практически все образовательные процессы подпадают под действие Закона: от бумажного журнала с поиском по фамилии — до облачного портфолио в Moodle. Вы — часть системы оператора (учреждения образования).',
+          teacherRightsAndObligations: 'Многие процессы (учёт успеваемости, выдача дипломов) формально не требуют согласия — НО требуют соблюдения всех остальных принципов (прозрачность, минимизация, безопасность). На практике — рекомендуется получать согласие для снижения рисков.',
+          teacherMandatoryMeasures: 'Две обязательные меры (ст. 17, п. 3–4): 1. Назначить ответственного по ПД; 2. Принять и разместить в открытом доступе Политику обработки персональных данных.',
+          
+          // Article references
+          articleRef43: 'ст. 4, п. 3',
+          articleRef44: 'ст. 4, п. 4',
+          articleRef45: 'ст. 4, п. 5',
+          articleRef46: 'ст. 4, п. 6',
+          articleRef48: 'ст. 4, п. 8',
+          articleRef1013: 'ст. 10–13',
+          articleRef16: 'ст. 16',
+          articleRef6: 'ст. 6',
+          articleRef1: 'ст. 1',
+          articleRef2: 'Гл. 1, ст. 2',
+          articleRef3: 'Гл. 3',
+          articleRef7: 'Гл. 7',
+          articleRef8: 'Гл. 8',
+          articleRef9: 'Гл. 9',
+          articleRef10: 'Гл. 10',
+          articleRef11: 'Гл. 11',
+          articleRef12: 'Гл. 12',
+          articleRef13: 'Гл. 13',
+          articleRef14: 'Гл. 14',
+          articleRef15: 'Гл. 15',
+          articleRef16Ch: 'Гл. 16',
+          articleRef17: 'ст. 17',
+          articleRef18: 'ст. 18',
+          articleRef19: 'ст. 19',
+          articleRef20: 'ст. 20',
+          articleRef21: 'ст. 21',
+          articleRef22: 'ст. 22',
+          articleRef23: 'ст. 23',
+          articleRef24: 'ст. 24',
+          articleRef25: 'ст. 25',
+          articleRef26: 'ст. 26',
+          articleRef27: 'ст. 27',
+          articleRef28: 'ст. 28',
+          articleRef29: 'ст. 29',
+          articleRef30: 'ст. 30',
+          articleRef31: 'ст. 31',
+          articleRef32: 'ст. 32',
+          articleRef33: 'ст. 33',
+          articleRef34: 'ст. 34',
+          articleRef35: 'ст. 35',
+          articleRef36: 'ст. 36',
+          articleRef37: 'ст. 37',
+          articleRef38: 'ст. 38',
+          articleRef39: 'ст. 39',
+          articleRef40: 'ст. 40',
+          articleRef41: 'ст. 41',
+          articleRef42: 'ст. 42',
+          articleRef43Ch: 'ст. 43',
+          articleRef44Ch: 'ст. 44',
+          articleRef45Ch: 'ст. 45',
+          articleRef46Ch: 'ст. 46',
+          articleRef47: 'ст. 47',
+          articleRef48Ch: 'ст. 48',
+          articleRef49: 'ст. 49',
+          articleRef50: 'ст. 50',
+          articleRef51: 'ст. 51',
+          articleRef52: 'ст. 52',
+          articleRef53: 'ст. 53',
+          articleRef54: 'ст. 54',
+          articleRef55: 'ст. 55',
+          articleRef56: 'ст. 56',
+          articleRef57: 'ст. 57',
+          articleRef58: 'ст. 58',
+          articleRef59: 'ст. 59',
+          articleRef60: 'ст. 60',
+          articleRef61: 'ст. 61',
+          articleRef62: 'ст. 62',
+          articleRef63: 'ст. 63',
+          articleRef64: 'ст. 64',
+          articleRef65: 'ст. 65',
+          articleRef66: 'ст. 66',
+          articleRef67: 'ст. 67',
+          articleRef68: 'ст. 68',
+          articleRef69: 'ст. 69',
+          articleRef70: 'ст. 70',
+          articleRef71: 'ст. 71',
+          articleRef72: 'ст. 72',
+          articleRef73: 'ст. 73',
+          articleRef74: 'ст. 74',
+          articleRef75: 'ст. 75',
+          articleRef76: 'ст. 76',
+          articleRef77: 'ст. 77',
+          articleRef78: 'ст. 78',
+          articleRef79: 'ст. 79',
+          articleRef80: 'ст. 80',
+          articleRef81: 'ст. 81',
+          articleRef82: 'ст. 82',
+          articleRef83: 'ст. 83',
+          articleRef84: 'ст. 84',
+          articleRef85: 'ст. 85',
+          articleRef86: 'ст. 86',
+          articleRef87: 'ст. 87',
+          articleRef88: 'ст. 88',
+          articleRef89: 'ст. 89',
+          articleRef90: 'ст. 90',
+          articleRef91: 'ст. 91',
+          articleRef92: 'ст. 92',
+          articleRef93: 'ст. 93',
+          articleRef94: 'ст. 94',
+          articleRef95: 'ст. 95',
+          articleRef96: 'ст. 96',
+          articleRef97: 'ст. 97',
+          articleRef98: 'ст. 98',
+          articleRef99: 'ст. 99',
+          articleRef100: 'ст. 100',
+          articleRef101: 'ст. 101',
+          articleRef102: 'ст. 102',
+          articleRef103: 'ст. 103',
+          articleRef104: 'ст. 104',
+          articleRef105: 'ст. 105',
+          articleRef106: 'ст. 106',
+          articleRef107: 'ст. 107',
+          articleRef108: 'ст. 108',
+          articleRef109: 'ст. 109',
+          articleRef110: 'ст. 110',
+          articleRef111: 'ст. 111',
+          articleRef112: 'ст. 112',
+          articleRef113: 'ст. 113',
+          articleRef114: 'ст. 114',
+          articleRef115: 'ст. 115',
+          articleRef116: 'ст. 116',
+          articleRef117: 'ст. 117',
+          articleRef118: 'ст. 118',
+          articleRef119: 'ст. 119',
+          articleRef120: 'ст. 120',
+          articleRef121: 'ст. 121',
+          articleRef122: 'ст. 122',
+          articleRef123: 'ст. 123',
+          articleRef124: 'ст. 124',
+          articleRef125: 'ст. 125',
+          articleRef126: 'ст. 126',
+          articleRef127: 'ст. 127',
+          articleRef128: 'ст. 128',
+          articleRef129: 'ст. 129',
+          articleRef130: 'ст. 130',
+          articleRef131: 'ст. 131',
+          articleRef132: 'ст. 132',
+          articleRef133: 'ст. 133',
+          articleRef134: 'ст. 134',
+          articleRef135: 'ст. 135',
+          articleRef136: 'ст. 136',
+          articleRef137: 'ст. 137',
+          articleRef138: 'ст. 138',
+          articleRef139: 'ст. 139',
+          articleRef140: 'ст. 140',
+          articleRef141: 'ст. 141',
+          articleRef142: 'ст. 142',
+          articleRef143: 'ст. 143',
+          articleRef144: 'ст. 144',
+          articleRef145: 'ст. 145',
+          articleRef146: 'ст. 146',
+          articleRef147: 'ст. 147',
+          articleRef148: 'ст. 148',
+          articleRef149: 'ст. 149',
+          articleRef150: 'ст. 150',
+          articleRef151: 'ст. 151',
+          articleRef152: 'ст. 152',
+          articleRef153: 'ст. 153',
+          articleRef154: 'ст. 154',
+          articleRef155: 'ст. 155',
+          articleRef156: 'ст. 156',
+          articleRef157: 'ст. 157',
+          articleRef158: 'ст. 158',
+          articleRef159: 'ст. 159',
+          articleRef160: 'ст. 160',
+          articleRef161: 'ст. 161',
+          articleRef162: 'ст. 162',
+          articleRef163: 'ст. 163',
+          articleRef164: 'ст. 164',
+          articleRef165: 'ст. 165',
+          articleRef166: 'ст. 166',
+          articleRef167: 'ст. 167',
+          articleRef168: 'ст. 168',
+          articleRef169: 'ст. 169',
+          articleRef170: 'ст. 170',
+          articleRef171: 'ст. 171',
+          articleRef172: 'ст. 172',
+          articleRef173: 'ст. 173',
+          articleRef174: 'ст. 174',
+          articleRef175: 'ст. 175',
+          articleRef176: 'ст. 176',
+          articleRef177: 'ст. 177',
+          articleRef178: 'ст. 178',
+          articleRef179: 'ст. 179',
+          articleRef180: 'ст. 180',
+          articleRef181: 'ст. 181',
+          articleRef182: 'ст. 182',
+          articleRef183: 'ст. 183',
+          articleRef184: 'ст. 184',
+          articleRef185: 'ст. 185',
+          articleRef186: 'ст. 186',
+          articleRef187: 'ст. 187',
+          articleRef188: 'ст. 188',
+          articleRef189: 'ст. 189',
+          articleRef190: 'ст. 190',
+          articleRef191: 'ст. 191',
+          articleRef192: 'ст. 192',
+          articleRef193: 'ст. 193',
+          articleRef194: 'ст. 194',
+          articleRef195: 'ст. 195',
+          articleRef196: 'ст. 196',
+          articleRef197: 'ст. 197',
+          articleRef198: 'ст. 198',
+          articleRef199: 'ст. 199',
+          articleRef200: 'ст. 200'
+        }
+      };
+
+      function updateLanguage(lang) {
+        const t = translations[lang];
+        
+        // Update navigation
+        document.querySelectorAll('.nav a span')[0].textContent = t.home;
+        document.querySelectorAll('.nav a span')[1].textContent = t.theory;
+        document.querySelectorAll('.nav a span')[2].textContent = t.practice;
+        document.querySelectorAll('.nav a span')[3].textContent = t.quiz;
+        document.querySelectorAll('.nav a span')[4].textContent = t.complaint;
+        
+        // Update hero
+        document.querySelector('.hero h1').textContent = t.heroTitle;
+        document.querySelector('.hero p').textContent = t.heroSubtitle;
+        
+        // Update role selector
+        document.querySelector('.role-selector h3').textContent = t.roleSelectorTitle;
+        document.querySelectorAll('.role-btn')[0].textContent = t.studentRole;
+        document.querySelectorAll('.role-btn')[1].textContent = t.teacherRole;
+        
+        // Update student content
+        document.querySelectorAll('.section-title')[0].firstChild.textContent = t.lawRegulatesStudent;
+        document.querySelectorAll('.edu-note h5')[0].innerHTML = `${document.querySelectorAll('.edu-note h5')[0].querySelector('i').outerHTML} ${t.studentForYou}`;
+        document.querySelectorAll('.section-title')[1].firstChild.textContent = t.keyConcepts;
+        document.querySelectorAll('.definition h4')[0].textContent = t.yourPersonalData;
+        document.querySelectorAll('.definition h4')[1].textContent = t.operator;
+        document.querySelectorAll('.definition h4')[2].textContent = t.specialPersonalData;
+        document.querySelectorAll('.section-title')[2].firstChild.textContent = t.howDataProcessed;
+        document.querySelectorAll('.article-title')[0].textContent = t.consentImportant;
+        document.querySelectorAll('.article-title')[1].textContent = t.purposeClear;
+        document.querySelectorAll('.article-title')[2].textContent = t.minimumData;
+        document.querySelectorAll('.article-title')[3].textContent = t.rightToKnow;
+        document.querySelectorAll('.section-title')[3].firstChild.textContent = t.consentNotRequired;
+        
+        // Update paragraphs in student content
+        const studentParagraphs = document.querySelectorAll('#studentContent p');
+        if (studentParagraphs[0]) studentParagraphs[0].innerHTML = studentParagraphs[0].innerHTML.replace('Закон защищает <strong>твои персональные данные</strong> от неправильного использования. Это касается информации, которая хранится в компьютерах (например, в электронном журнале) или в специальных списках, где можно тебя найти по фамилии.', t.studentLawProtects);
+        if (studentParagraphs[1]) studentParagraphs[1].innerHTML = studentParagraphs[1].innerHTML.replace('Практически <strong>все данные о тебе в школе или вузе</strong> — это персональные данные и защищены законом. От фамилии в списке до оценки в дневнике.', t.studentAllDataProtected);
+        if (studentParagraphs[2]) studentParagraphs[2].textContent = t.studentConsentNotRequired;
+        if (studentParagraphs[5]) studentParagraphs[5].innerHTML = studentParagraphs[5].innerHTML.replace('Основные учебные процессы (журнал, дневник) не требуют твоего отдельного согласия, но школа всё равно должна соблюдать все правила безопасности и прозрачности. Если тебе кажется, что данные используются неправильно — ты можешь спросить или подать жалобу.', t.studentPracticalSignificance);
+        if (studentParagraphs[8]) studentParagraphs[8].textContent = t.studentCheckPolicy;
+        
+        // Update lists in student content
+        const ulLis = document.querySelectorAll('ul li');
+        if (ulLis[0]) ulLis[0].innerHTML = ulLis[0].innerHTML.replace('необходимо для учёбы', t.necessaryForStudy);
+        if (ulLis[1]) ulLis[1].innerHTML = ulLis[1].innerHTML.replace('нужно для исполнения образовательного договора', t.neededForContract);
+        if (ulLis[2]) ulLis[2].innerHTML = ulLis[2].innerHTML.replace('требуется по закону', t.requiredByLaw);
+        document.querySelectorAll('.edu-note h5')[1].innerHTML = `${document.querySelectorAll('.edu-note h5')[1].querySelector('i').outerHTML} ${t.practicalSignificance}`;
+        document.querySelectorAll('.section-title')[4].firstChild.textContent = t.yourRights;
+        document.querySelectorAll('.article-title')[4].textContent = t.yourRightsTitle;
+        const ul0Lis = document.querySelectorAll('ul')[0].querySelectorAll('li');
+        if (ul0Lis[0]) ul0Lis[0].textContent = t.revokeConsent;
+        if (ul0Lis[1]) ul0Lis[1].textContent = t.findOutData;
+        if (ul0Lis[2]) ul0Lis[2].textContent = t.requestCorrection;
+        if (ul0Lis[3]) ul0Lis[3].textContent = t.requestDeletion;
+        document.querySelectorAll('.article-title')[5].textContent = t.schoolObligations;
+        const ul1Lis = document.querySelectorAll('ul')[1].querySelectorAll('li');
+        if (ul1Lis[0]) ul1Lis[0].textContent = t.tellRights;
+        if (ul1Lis[1]) ul1Lis[1].textContent = t.obtainConsent;
+        if (ul1Lis[2]) ul1Lis[2].textContent = t.protectData;
+        if (ul1Lis[3]) ul1Lis[3].textContent = t.respondRequest;
+        if (ul1Lis[4]) ul1Lis[4].textContent = t.adoptPolicy;
+        document.querySelectorAll('.edu-note h5')[2].innerHTML = `${document.querySelectorAll('.edu-note h5')[2].querySelector('i').outerHTML} ${t.whatYouCanCheck}`;
+        
+        // Update teacher content
+        const sectionTitles = document.querySelectorAll('.section-title');
+        if (sectionTitles[5]) sectionTitles[5].firstChild.textContent = t.lawRegulatesTeacher;
+        const eduNotes = document.querySelectorAll('.edu-note h5');
+        if (eduNotes[3]) eduNotes[3].innerHTML = `${eduNotes[3].querySelector('i')?.outerHTML || ''} ${t.forYouAsEducator}`;
+        if (sectionTitles[6]) sectionTitles[6].firstChild.textContent = t.keyConcepts;
+        const definitions = document.querySelectorAll('.definition h4');
+        if (definitions[3]) definitions[3].textContent = t.personalData;
+        if (definitions[4]) definitions[4].textContent = t.operator;
+        if (definitions[5]) definitions[5].textContent = t.pdSubject;
+        if (definitions[6]) definitions[6].textContent = t.consent;
+        if (definitions[7]) definitions[7].textContent = t.specialPD;
+        if (eduNotes[4]) eduNotes[4].innerHTML = `${eduNotes[4].querySelector('i')?.outerHTML || ''} ${t.attentionInEducation}`;
+        if (sectionTitles[7]) sectionTitles[7].firstChild.textContent = t.generalRequirements;
+        const articleTitles = document.querySelectorAll('.article-title');
+        if (articleTitles[6]) articleTitles[6].textContent = t.consentBasis;
+        if (articleTitles[7]) articleTitles[7].textContent = t.purposefulProcessing;
+        if (articleTitles[8]) articleTitles[8].textContent = t.dataMinimization;
+        if (articleTitles[9]) articleTitles[9].textContent = t.transparency;
+        if (articleTitles[10]) articleTitles[10].textContent = t.storageLimitation;
+        if (sectionTitles[8]) sectionTitles[8].firstChild.textContent = t.consentNotRequiredTeacher;
+        
+        // Update paragraphs in teacher content
+        const teacherParagraphs = document.querySelectorAll('#teacherContent p');
+        if (teacherParagraphs[0]) teacherParagraphs[0].innerHTML = teacherParagraphs[0].innerHTML.replace('Закон устанавливает правовые основы обработки персональных данных физических лиц и направлен на защиту прав и свобод человека при такой обработке.', t.teacherLawEstablishes);
+        if (teacherParagraphs[1]) teacherParagraphs[1].innerHTML = teacherParagraphs[1].innerHTML.replace('<strong>Важно:</strong> Закон применяется при обработке ПД:', t.teacherImportant + ':');
+        if (teacherParagraphs[2]) teacherParagraphs[2].innerHTML = teacherParagraphs[2].innerHTML.replace('Практически <strong>все образовательные процессы</strong> подпадают под действие Закона: от бумажного журнала с поиском по фамилии — до облачного портфолио в Moodle. Вы — часть системы оператора (учреждения образования).', t.teacherAllProcesses);
+        if (teacherParagraphs[10]) teacherParagraphs[10].innerHTML = teacherParagraphs[10].innerHTML.replace('Многие процессы (учёт успеваемости, выдача дипломов) формально не требуют согласия — <strong>НО</strong> требуют соблюдения всех остальных принципов (прозрачность, минимизация, безопасность). На практике — <strong>рекомендуется получать согласие</strong> для снижения рисков.', t.teacherRightsAndObligations);
+        if (teacherParagraphs[13]) teacherParagraphs[13].innerHTML = t.teacherMandatoryMeasures;
+        
+        const ul2Lis = document.querySelectorAll('ul')[2]?.querySelectorAll('li');
+        if (ul2Lis && ul2Lis[0]) ul2Lis[0].innerHTML = ul2Lis[0].innerHTML?.replace('оформления трудовых отношений', t.formalizingEmployment);
+        if (ul2Lis && ul2Lis[1]) ul2Lis[1].innerHTML = ul2Lis[1].innerHTML?.replace('назначения пенсий, пособий', t.appointingPensions);
+        if (ul2Lis && ul2Lis[2]) ul2Lis[2].innerHTML = ul2Lis[2].innerHTML?.replace('осуществления контроля', t.exercisingControl);
+        if (ul2Lis && ul2Lis[3]) ul2Lis[3].innerHTML = ul2Lis[3].innerHTML?.replace('исполнения договора', t.fulfillingContract);
+        if (ul2Lis && ul2Lis[4]) ul2Lis[4].innerHTML = ul2Lis[4].innerHTML?.replace('защиты жизненно важных интересов', t.protectingVital);
+        if (eduNotes[5]) eduNotes[5].innerHTML = `${eduNotes[5].querySelector('i')?.outerHTML || ''} ${t.practicalSignificance}`;
+        if (sectionTitles[9]) sectionTitles[9].firstChild.textContent = t.pdSubjectRights;
+        if (articleTitles[11]) articleTitles[11].textContent = t.pdSubjectRightsTitle;
+        const ul3Lis = document.querySelectorAll('ul')[3]?.querySelectorAll('li');
+        if (ul3Lis && ul3Lis[0]) ul3Lis[0].textContent = t.revokeConsentAnytime;
+        if (ul3Lis && ul3Lis[1]) ul3Lis[1].textContent = t.requestInfo;
+        if (ul3Lis && ul3Lis[2]) ul3Lis[2].textContent = t.requestCorrectionData;
+        if (ul3Lis && ul3Lis[3]) ul3Lis[3].textContent = t.requestCessation;
+        if (articleTitles[12]) articleTitles[12].textContent = t.operatorObligations;
+        const ul4Lis = document.querySelectorAll('ul')[4]?.querySelectorAll('li');
+        if (ul4Lis && ul4Lis[0]) ul4Lis[0].textContent = t.explainRights;
+        if (ul4Lis && ul4Lis[1]) ul4Lis[1].textContent = t.obtainConsent;
+        if (ul4Lis && ul4Lis[2]) ul4Lis[2].textContent = t.ensureProtection;
+        if (ul4Lis && ul4Lis[3]) ul4Lis[3].textContent = t.provideInfo;
+        if (ul4Lis && ul4Lis[4]) ul4Lis[4].textContent = t.appointResponsible;
+        if (ul4Lis && ul4Lis[5]) ul4Lis[5].textContent = t.adoptPolicyRequired;
+        if (eduNotes[6]) eduNotes[6].innerHTML = `${eduNotes[6].querySelector('i')?.outerHTML || ''} ${t.forYourSchool}`;
+        const ps = document.querySelectorAll('p');
+        if (ps[4]) ps[4].textContent = t.mandatoryMeasures;
+        if (sectionTitles[10]) sectionTitles[10].firstChild.textContent = t.nationalCenterClarifications;
+        if (articleTitles[13]) articleTitles[13].textContent = t.creatingAccounts;
+        if (articleTitles[14]) articleTitles[14].textContent = t.postingLists;
+        if (articleTitles[15]) articleTitles[15].textContent = t.postingInfo;
+        if (articleTitles[16]) articleTitles[16].textContent = t.visitorLog;
+        if (ps[5]) ps[5].textContent = ps[5].textContent?.replace('избыточной обработкой', t.excessiveProcessing);
+        
+        // Update documents section
+        if (sectionTitles[11]) sectionTitles[11].textContent = t.documentsTitle;
+        if (ps[6]) ps[6].textContent = t.basedOnDocuments;
+        if (ps[7]) ps[7].innerHTML = ps[7].innerHTML?.replace('Обратите внимание', t.note);
+        if (ps[7]) ps[7].innerHTML = ps[7].innerHTML?.replace('Закон вступил в силу 7 ноября 2021 г. Все образовательные организации обязаны привести процессы в соответствие.', t.lawCameIntoForce);
+        document.querySelectorAll('.btn span')[1].textContent = t.goToPractice;
+        
+        // Update footer
+        const footerPs = document.querySelectorAll('footer p');
+        if (footerPs[0]) footerPs[0].textContent = t.resourceInfo;
+        if (footerPs[1]) footerPs[1].textContent = t.copyright;
+        document.querySelector('.disclaimer').textContent = t.disclaimer;
+        
+        // Update law references
+        const lawRefs = document.querySelectorAll('.law-ref');
+        if (lawRefs[0]) lawRefs[0].textContent = lawRefs[0].textContent.replace('Гл. 1, ст. 2', t.articleRef2);
+        if (lawRefs[1]) lawRefs[1].textContent = lawRefs[1].textContent.replace('ст. 1', t.articleRef1);
+        if (lawRefs[2]) lawRefs[2].textContent = lawRefs[2].textContent.replace('ст. 4', t.articleRef43);
+        if (lawRefs[3]) lawRefs[3].textContent = lawRefs[3].textContent.replace('ст. 4, п. 3', t.articleRef43);
+        if (lawRefs[4]) lawRefs[4].textContent = lawRefs[4].textContent.replace('ст. 4, п. 4', t.articleRef44);
+        if (lawRefs[5]) lawRefs[5].textContent = lawRefs[5].textContent.replace('ст. 4, п. 5', t.articleRef45);
+        if (lawRefs[6]) lawRefs[6].textContent = lawRefs[6].textContent.replace('ст. 4, п. 6', t.articleRef46);
+        if (lawRefs[7]) lawRefs[7].textContent = lawRefs[7].textContent.replace('ст. 6', t.articleRef6);
+        if (lawRefs[8]) lawRefs[8].textContent = lawRefs[8].textContent.replace('Гл. 3', t.articleRef3);
+        if (lawRefs[9]) lawRefs[9].textContent = lawRefs[9].textContent.replace('ст. 10–13', t.articleRef1013);
+        if (lawRefs[10]) lawRefs[10].textContent = lawRefs[10].textContent.replace('ст. 16', t.articleRef16);
+        if (lawRefs[11]) lawRefs[11].textContent = lawRefs[11].textContent.replace('ст. 4, п. 8', t.articleRef48);
+      }
+
+      roleButtons.forEach(button => {
+        button.addEventListener('click', function() {
+          const selectedRole = this.getAttribute('data-role');
+
+          // Update active button
+          roleButtons.forEach(btn => btn.classList.remove('active'));
+          this.classList.add('active');
+
+          // Show corresponding content
+          roleContents.forEach(content => {
+            content.classList.remove('active');
+            if (content.id === `${selectedRole}Content`) {
+              content.classList.add('active');
+            }
+          });
+        });
+      });
+
+      languageSelect.addEventListener('change', function() {
+        updateLanguage(this.value);
+      });
+    });
+  </script>
+</body>
+</html>
+

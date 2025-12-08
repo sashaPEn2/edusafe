@@ -1,0 +1,1157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitle">Теория — EduSafe</title>
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
+
+    ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --blue-100: #dbeafe;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --green-500: #10b981;
+      --green-100: #dcfce7;
+      --red-500: #ef4444;
+      --red-100: #fee2e2;
+      --yellow-500: #f59e0b;
+      --yellow-100: #fef3c7;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f8fafc;
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--blue-900);
+      z-index: 2;
+      text-decoration: none; 
+    }
+    
+    .logo:hover {
+        color: var(--blue-700);
+    }
+
+    .logo i {
+      background: var(--blue-900);
+      color: var(--white);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Desktop nav */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-selector, .role-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      /* Improvement styles for role selector */
+      padding: 0.5rem 0.75rem; 
+      background: var(--blue-100); /* Highlight background */
+      border-radius: 0.5rem;
+      border: 1px solid var(--blue-700); /* Highlight border */
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .role-selector label {
+        font-size: 0.9rem;
+        font-weight: 700; /* Bolder label */
+        color: var(--blue-900); /* Color label */
+        white-space: nowrap; /* Prevent label wrapping */
+    }
+
+    .lang-selector {
+        padding: 0.5rem 0; /* Reset padding for lang selector */
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+    
+    .lang-selector select, .role-selector select {
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.3rem;
+      border: 1px solid #d1d5db;
+      background-color: var(--white);
+      color: var(--gray-900);
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 101;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex-grow: 1; /* Allow nav to take remaining space */
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    .mobile-settings {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-100);
+    }
+    
+    /* Mobile Role Selector fix/highlighting */
+    .mobile-menu-content .role-selector {
+      padding: 0.75rem 1rem; /* Slightly larger padding for mobile */
+      width: 100%;
+      justify-content: space-between;
+    }
+    .mobile-menu-content .role-selector select {
+        min-width: 150px;
+    }
+    .mobile-menu-content .lang-selector {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .mobile-menu-content .lang-selector select {
+        min-width: 150px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-900), #1e40af);
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+
+    /* Sections */
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--blue-900);
+    }
+
+    /* Articles */
+    .articles-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+
+    .article-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border-left: 5px solid var(--blue-700);
+      transition: transform 0.3s ease;
+      height: 100%;
+    }
+
+    .article-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .article-card h3 {
+      font-size: 1.25rem;
+      color: var(--blue-900);
+      margin-bottom: 0.5rem;
+      font-weight: 700;
+    }
+
+    .article-card div p,
+    .article-card div ul {
+        margin-bottom: 1rem;
+        font-size: 1rem;
+    }
+    
+    .article-card div ul {
+        list-style: disc;
+        padding-left: 1.5rem;
+    }
+    
+    .article-card div p strong {
+        color: var(--blue-700);
+    }
+
+    /* Recommendations - Teacher */
+    .teacher-recs-box {
+      background: var(--green-100);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--green-500);
+    }
+
+    .teacher-recs-box h3 {
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .teacher-recs-box ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .teacher-recs-box li {
+      background: var(--white);
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--green-500);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    
+    /* Recommendations - Student */
+    .student-recs-box {
+      background: var(--yellow-100);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      border: 1px solid var(--yellow-500);
+    }
+
+    .student-recs-box h3 {
+      color: var(--gray-900);
+      margin-bottom: 1rem;
+      font-size: 1.5rem;
+      font-weight: 700;
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .student-recs-box ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .student-recs-box li {
+      background: var(--white);
+      padding: 1rem 1.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 0.75rem;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+      border-left: 4px solid var(--yellow-500);
+      font-weight: 500;
+      line-height: 1.4;
+    }
+
+
+    /* Documents */
+    .documents-section {
+      background: var(--gray-50);
+      padding: 2rem;
+      border-radius: 1rem;
+      margin-top: 3rem;
+      text-align: center;
+    }
+
+    .documents-section h3 {
+      color: var(--blue-900);
+      margin-bottom: 1rem;
+    }
+
+    .document-links a {
+      display: block;
+      background: var(--white);
+      border: 1px solid var(--gray-300);
+      padding: 1rem;
+      margin-bottom: 0.75rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      transition: all 0.2s ease;
+    }
+
+    .document-links a:hover {
+      background: var(--blue-100);
+      border-color: var(--blue-700);
+      color: var(--blue-900);
+    }
+
+    .document-links a i {
+      margin-right: 0.5rem;
+    }
+
+    .document-links small {
+      display: block;
+      color: var(--gray-600);
+      margin-top: 1rem;
+    }
+
+    /* CTA */
+    .cta-section {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-section p {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--blue-700);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.2);
+    }
+
+    .btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .nav-container {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        .nav {
+            justify-content: flex-end;
+        }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-container {
+        display: none;
+      }
+
+      .hero h1 { font-size: 1.75rem; }
+      .section { padding: 2rem 0; }
+      .section-title { font-size: 1.5rem; }
+      .article-card { padding: 1.5rem; }
+      .teacher-recs-box, .student-recs-box { padding: 1.5rem; }
+      
+      .mobile-menu-content .lang-selector,
+      .mobile-menu-content .role-selector {
+          width: 100%;
+      }
+      .mobile-menu-content .lang-selector select,
+      .mobile-menu-content .role-selector select {
+          width: 100%;
+      }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray-900);
+      color: #9ca3af;
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="logoText">EduSafe</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-container">
+          <div style="display: flex; gap: 1rem;">
+              <div class="role-selector">
+                <label for="roleSelector" id="roleLabel">Моя роль:</label>
+                <select id="roleSelector">
+                  <option value="teacher" id="roleTeacherOpt">Преподаватель</option>
+                  <option value="student" id="roleStudentOpt">Студент</option>
+                </select>
+              </div>
+              <div class="lang-selector">
+                <select id="languageSelector">
+                  <option value="ru">Русский</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+          </div>
+          <nav class="nav">
+            <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+            <a href="theory.html" class="active" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+            <a href="practice.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+            <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <div class="mobile-header">
+          <div class="logo" style="font-size: 1.25rem;">
+            <i class="fas fa-shield-alt"></i>
+            <span id="mobileLogoText">EduSafe</span>
+          </div>
+          <button class="close-btn" id="closeMenu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <nav class="mobile-nav">
+          <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+          <a href="theory.html" class="active" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+          <a href="practice.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+          <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+          <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+        </nav>
+        
+        <div class="mobile-settings">
+            <div class="role-selector">
+              <label for="mobileRoleSelector" id="mobileRoleLabel">Моя роль:</label>
+              <select id="mobileRoleSelector">
+                <option value="teacher" id="mobileRoleTeacherOpt">Преподаватель</option>
+                <option value="student" id="mobileRoleStudentOpt">Студент</option>
+              </select>
+            </div>
+            <div class="lang-selector">
+              <label for="mobileLanguageSelector" id="mobileLangLabel">Язык:</label>
+              <select id="mobileLanguageSelector">
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1 id="heroTitle">Законодательство Республики Беларусь о защите персональных данных</h1>
+      <p id="heroSubtitle">Системный подход и ответственность педагога</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" id="articlesTitle">Персональные данные в деятельности Учреждения Образования (УО)</h2>
+      
+      <div id="teacherContent" style="display: none;">
+          <div class="articles-grid">
+
+            <div class="article-card">
+              <h3 id="teacherArtT1Title">1. Понятие и сфера применения Закона</h3>
+              <div id="teacherArtT1Text">
+                <p><strong>Что такое персональные данные?</strong> Это любая информация, позволяющая прямо или косвенно идентифицировать физическое лицо (субъекта персональных данных) – ученика, студента, родителя или коллегу.</p><p>В контексте УО к персональным данным относятся ФИО, адрес, дата рождения, оценки, медицинские справки и, что важно, фото- и видеоизображения.</p><p><strong>Учреждение Образования (УО) является Оператором</strong>, то есть лицом, самостоятельно или совместно с другими организующим и осуществляющим обработку персональных данных. Это накладывает на УО, и, как следствие, на каждого сотрудника, юридическую ответственность за соблюдение Закона № 99-З.</p>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <h3 id="teacherArtT2Title">2. Основы обработки: Законность и согласие</h3>
+              <div id="teacherArtT2Text">
+                <p>Обработка персональных данных всегда должна иметь <strong>законное основание</strong>. В сфере образования таких оснований два:</p><ul><li><strong>Закон (без согласия):</strong> Обработка, необходимая для образовательного процесса (зачисление, ведение журнала, выставление оценок) – не требует согласия субъекта.</li><li><strong>Согласие:</strong> Обработка для целей, не связанных напрямую с образовательным процессом (например, публикация фото студента в социальных сетях, рассылка рекламных материалов от сторонних организаций) – требует добровольного, информированного и явного согласия, которое может быть отозвано.</li></ul><p><strong>Ключевой принцип: Целевое ограничение.</strong> Данные должны собираться и использоваться строго для заранее заявленной, законной цели. Нельзя использовать список email, собранный для рассылки расписания, для рассылки личных рекламных предложений.</p>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <h3 id="teacherArtT3Title">3. Практические шаги по обеспечению защиты персональных данных</h3>
+              <div id="teacherArtT3Text">
+                <p>Педагог является ключевым звеном в системе защиты персональных данных. Ваши действия должны основываться на принципе минимизации:</p><ul><li><strong>Безопасное хранение:</strong> Не храните списки учащихся, их телефоны или оценки на личных устройствах, сторонних (некорпоративных) облачных сервисах (Google Drive, Telegram, личная почта) или незащищенных носителях.</li><li><strong>Доступ:</strong> Предоставляйте доступ к персональным данным только тем, кому это необходимо для выполнения служебных обязанностей.</li><li><strong>Публикации:</strong> Всегда проверяйте наличие письменного согласия перед публикацией любых идентифицирующих данных (ФИО, фото) в открытом доступе, если это не предусмотрено должностной инструкцией (например, публикация ФИО преподавателя на официальном сайте УО).</li></ul>
+              </div>
+            </div>
+
+          </div>
+
+          <div class="teacher-recs-box">
+            <h3 id="teacherRecsTitle"><i class="fas fa-check-circle"></i> Рекомендации для педагогов</h3>
+            <ul>
+              <li id="teacherRec1">Не храните персональные данные учащихся на личных и сторонних облачных сервисах (Google Drive, Telegram, личные флешки).</li>
+              <li id="teacherRec2">Используйте персональные данные только для тех целей, которые предусмотрены Вашими должностными обязанностями (целевое ограничение).</li>
+              <li id="teacherRec3">Перед использованием стороннего сервиса для сбора данных (например, для опроса) убедитесь, что это разрешено регламентами УО и заключен договор поручения.</li>
+              <li id="teacherRec4">В случае утечки или неправомерного доступа к персональным данным немедленно сообщите об этом руководству учреждения.</li>
+            </ul>
+          </div>
+      </div>
+      
+      <div id="studentContent" style="display: none;">
+          <div class="articles-grid">
+
+            <div class="article-card">
+              <h3 id="studentArtS1Title">1. Что такое мои личные персональные данные?</h3>
+              <div id="studentArtS1Text">
+                  <p><strong>Персональные данные</strong> — это любая информация, которая помогает узнать, кто ты. Представь, что это твой цифровой паспорт.</p><ul><li>Очевидные персональные данные: Твои ФИО, адрес, номер телефона, дата рождения, паспортные данные.</li><li>Менее очевидные персональные данные: Твои оценки, номер студенческого билета, электронная почта, твоё фото или видео. Даже твой IP-адрес может быть персональными данными!</li></ul><p>Учреждение (Оператор) имеет право использовать только те данные, которые необходимы для твоей учебы (принцип соразмерности).</p>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <h3 id="studentArtS2Title">2. Когда нужно давать разрешение (Согласие)?</h3>
+              <div id="studentArtS2Text">
+                  <p>В учебном заведении твои персональные данные обрабатываются по двум причинам:</p><ul><li><strong>Учеба (без согласия):</strong> Для зачисления, составления расписания, сдачи экзаменов и ведения журнала твое согласие не нужно. Это предусмотрено договором на обучение и законодательством.</li><li><strong>«Неучебные» цели (с согласием):</strong> Если данные нужны для чего-то, что не является обязательным для учебы (например, для публикации твоего фото на сайте в рубрике «Лучший студент», или для рассылки информации о клубах), нужно твое добровольное согласие (с 14 лет).</li></ul><p><strong>Важно:</strong> Ты имеешь право отозвать свое согласие в любое время! Например, потребовать убрать свое фото с сайта, если передумал.</p>
+              </div>
+            </div>
+
+            <div class="article-card">
+              <h3 id="studentArtS3Title">3. Как я могу управлять своими данными?</h3>
+              <div id="studentArtS3Text">
+                  <p>Закон Республики Беларусь дает тебе много прав, чтобы защитить себя:</p><ul><li><strong>Право на информацию:</strong> Ты можешь узнать, кто, какие твои данные и зачем обрабатывает.</li><li><strong>Право на изменение:</strong> Если твои данные неверны (например, ошибка в адресе), ты можешь потребовать их исправить.</li><li><strong>Право на удаление:</strong> Если учреждение хранит данные, которые ему больше не нужны (истек срок хранения), ты можешь потребовать их удалить (это нужно делать письменно).</li></ul><p><strong>Твоя безопасность:</strong> Будь осторожен, делясь личными данными в сети. Используй разные пароли, не открывай подозрительные ссылки и не публикуй личные данные других людей без их разрешения.</p>
+              </div>
+            </div>
+          </div>
+          
+          <div class="student-recs-box">
+            <h3 id="studentRecsTitle"><i class="fas fa-user-shield"></i> Правила цифровой безопасности для студентов</h3>
+            <ul>
+              <li id="studentRec1">Используйте сложные и уникальные пароли. Никогда не сохраняйте личные данные (пароли, логины) на общедоступных компьютерах.</li>
+              <li id="studentRec2">Помни, что все, что ты публикуешь в интернете (фото, видео, личные мнения), может стать общедоступным. Не выкладывай личную информацию одногруппников без их разрешения.</li>
+              <li id="studentRec3">Не фотографируй преподавателей и других студентов без их разрешения. Не выкладывай в сеть записи лекций, если это не разрешено внутренними правилами.</li>
+              <li id="studentRec4">Не переходи по подозрительным ссылкам, которые приходят по почте или в мессенджерах. Это может привести к краже твоих личных данных (фишинг).</li>
+            </ul>
+          </div>
+      </div>
+      
+      <div class="documents-section">
+        <h3 id="docsTitle">Официальные документы</h3>
+        <p id="docsIntro">Для более детального изучения законодательства о персональных данных ознакомьтесь с официальными документами Национального центра защиты персональных данных (НЦЗПД) и Законом.</p>
+        <div class="document-links">
+          <a href="files/zakon_070521_99z (2).pdf" download id="doc1">
+            <i class="fas fa-file-pdf"></i> Закон Республики Беларусь от 07.05.2021 № 99-З «О защите персональных данных»
+          </a>
+          <a href="files/Razjasnenija-o-primenenii-ZPD-v-dejatelnosti-USO-i-UDO-21.11.2025.pdf" download id="doc2">
+            <i class="fas fa-file-pdf"></i> Разъяснения Национального центра защиты персональных данных о применении Закона о персональных данных в учреждениях образования от 21.11.2025  № 5-5/760
+          </a>
+           <a href="files/Razjasnenija-o-primenenii-ZPD-v-dejatelnosti-USSO-i-UVO (1).pdf" download id="doc3">
+            <i class="fas fa-file-pdf"></i> Разъяснения Национального центра защиты персональных данных о применении Закона о персональных данных в учреждениях образования от 16.07.2025  № 5-5/395 
+          </a>
+          <small id="docNote">(Файлы доступны для скачивания в формате PDF)</small>
+        </div>
+      </div>
+
+      <div class="cta-section">
+        <p id="toPracticeText">Переходите к практике, чтобы закрепить знания!</p>
+        <a href="practice.html" class="btn" id="btnToPractice">Перейти к практике</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="footerLogoText">EduSafe</span>
+        </div>
+        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p style="margin-top: 0.5rem;" id="footerCopyright">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
+      </div>
+      <div class="disclaimer">
+        <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
+        <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'ru'; 
+    let currentRole = 'teacher'; // Default role
+
+    // --- ПЕРЕВОДЫ ВСЕХ ЭЛЕМЕНТОВ ---
+    const translations = {
+      ru: {
+        // Shared
+        pageTitle: "Теория — EduSafe",
+        logoText: "EduSafe",
+        navHome: "Главная", navTheory: "Теория", navPractice: "Практика", navQuiz: "Викторина", navComplaint: "Жалоба",
+        roleLabel: "Моя роль:", 
+        roleTeacherOpt: "Преподаватель",
+        roleStudentOpt: "Студент",
+        langLabel: "Язык:",
+        docsTitle: "Официальные документы",
+        docsIntro: "Для более детального изучения законодательства о персональных данных ознакомьтесь с официальными документами Национального центра защиты персональных данных (НЦЗПД) и Законом.",
+        doc1: 'Закон Республики Беларусь от 07.05.2021 № 99-З «О защите персональных данных»',
+        doc2: 'Разъяснения Национального центра защиты персональных данных о применении Закона о персональных данных в учреждениях образования от 21.11.2025  № 5-5/760',
+        doc3: 'Разъяснения Национального центра защиты персональных данных о применении Закона о персональных данных в учреждениях образования от 16.07.2025  № 5-5/395',
+        docNote: "(Файлы доступны для скачивания в формате PDF)",
+        toPracticeText: "Переходите к практике, чтобы закрепить знания!",
+        btnToPractice: "Перейти к практике",
+        footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
+        footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»",
+        footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
+        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.",
+        
+        // Teacher Specific Content (Narrative)
+        teacher: {
+            heroTitle: "Законодательство Республики Беларусь о защите персональных данных",
+            heroSubtitle: "Системный подход и ответственность педагога",
+            articlesTitle: "Персональные данные в деятельности Учреждения Образования (УО)",
+
+            artT1Title: "1. Понятие и сфера применения Закона",
+            artT1Text: '<div><p><strong>Что такое персональные данные?</strong> Это любая информация, позволяющая прямо или косвенно идентифицировать физическое лицо (субъекта персональных данных) – ученика, студента, родителя или коллегу.</p><p>В контексте УО к персональным данным относятся ФИО, адрес, дата рождения, оценки, медицинские справки и, что важно, фото- и видеоизображения.</p><p><strong>Учреждение Образования (УО) является Оператором</strong>, то есть лицом, самостоятельно или совместно с другими организующим и осуществляющим обработку персональных данных. Это накладывает на УО, и, как следствие, на каждого сотрудника, юридическую ответственность за соблюдение Закона № 99-З.</p></div>',
+            
+            artT2Title: "2. Основы обработки: Законность и согласие",
+            artT2Text: '<div><p>Обработка персональных данных всегда должна иметь <strong>законное основание</strong>. В сфере образования таких оснований два:</p><ul><li><strong>Закон (без согласия):</strong> Обработка, необходимая для образовательного процесса (зачисление, ведение журнала, выставление оценок) – не требует согласия субъекта.</li><li><strong>Согласие:</strong> Обработка для целей, не связанных напрямую с образовательным процессом (например, публикация фото студента в социальных сетях, рассылка рекламных материалов от сторонних организаций) – требует добровольного, информированного и явного согласия, которое может быть отозвано.</li></ul><p><strong>Ключевой принцип: Целевое ограничение.</strong> Данные должны собираться и использоваться строго для заранее заявленной, законной цели. Нельзя использовать список email, собранный для рассылки расписания, для рассылки личных рекламных предложений.</p></div>',
+
+            artT3Title: "3. Практические шаги по обеспечению защиты персональных данных",
+            artT3Text: '<div><p>Педагог является ключевым звеном в системе защиты персональных данных. Ваши действия должны основываться на принципе минимизации:</p><ul><li><strong>Безопасное хранение:</strong> Не храните списки учащихся, их телефоны или оценки на личных устройствах, сторонних (некорпоративных) облачных сервисах (Google Drive, Telegram, личная почта) или незащищенных носителях.</li><li><strong>Доступ:</strong> Предоставляйте доступ к персональным данным только тем, кому это необходимо для выполнения служебных обязанностей.</li><li><strong>Публикации:</strong> Всегда проверяйте наличие письменного согласия перед публикацией любых идентифицирующих данных (ФИО, фото) в открытом доступе, если это не предусмотрено должностной инструкцией (например, публикация ФИО преподавателя на официальном сайте УО).</li></ul></div>',
+
+            recsTitle: `<i class="fas fa-check-circle"></i> Рекомендации для педагогов`,
+            rec1: "Не храните персональные данные учащихся на личных и сторонних облачных сервисах (Google Drive, Telegram, личные флешки).",
+            rec2: "Используйте персональные данные только для тех целей, которые предусмотрены Вашими должностными обязанностями (целевое ограничение).",
+            rec3: "Перед использованием стороннего сервиса для сбора данных (например, для опроса) убедитесь, что это разрешено регламентами УО и заключен договор поручения.",
+            rec4: "В случае утечки или неправомерного доступа к персональным данным немедленно сообщите об этом руководству учреждения.",
+        },
+        
+        // Student Specific Content (Narrative)
+        student: {
+            heroTitle: "Твои личные данные в университете/колледже",
+            heroSubtitle: "Понятие, права и безопасность в цифровом мире",
+            articlesTitle: "Что нужно знать о своих персональных данных", 
+
+            artS1Title: "1. Что такое мои личные персональные данные?",
+            artS1Text: '<div><p><strong>Персональные данные</strong> — это любая информация, которая помогает узнать, кто ты. Представь, что это твой цифровой паспорт.</p><ul><li>Очевидные персональные данные: Твои ФИО, адрес, номер телефона, дата рождения, паспортные данные.</li><li>Менее очевидные персональные данные: Твои оценки, номер студенческого билета, электронная почта, твоё фото или видео. Даже твой IP-адрес может быть персональными данными!</li></ul><p>Учреждение (Оператор) имеет право использовать только те данные, которые необходимы для твоей учебы (принцип соразмерности).</p></div>',
+
+            artS2Title: "2. Когда нужно давать разрешение (Согласие)?",
+            artS2Text: '<div><p>В учебном заведении твои персональные данные обрабатываются по двум причинам:</p><ul><li><strong>Учеба (без согласия):</strong> Для зачисления, составления расписания, сдачи экзаменов и ведения журнала твое согласие не нужно. Это предусмотрено договором на обучение и законодательством.</li><li><strong>«Неучебные» цели (с согласием):</strong> Если данные нужны для чего-то, что не является обязательным для учебы (например, для публикации твоего фото на сайте в рубрике «Лучший студент», или для рассылки информации о клубах), нужно твое добровольное согласие (с 14 лет).</li></ul><p><strong>Важно:</strong> Ты имеешь право отозвать свое согласие в любое время! Например, потребовать убрать свое фото с сайта, если передумал.</p></div>',
+
+            artS3Title: "3. Как я могу управлять своими данными?",
+            artS3Text: '<div><p>Закон Республики Беларусь дает тебе много прав, чтобы защитить себя:</p><ul><li><strong>Право на информацию:</strong> Ты можешь узнать, кто, какие твои данные и зачем обрабатывает.</li><li><strong>Право на изменение:</strong> Если твои данные неверны (например, ошибка в адресе), ты можешь потребовать их исправить.</li><li><strong>Право на удаление:</strong> Если учреждение хранит данные, которые ему больше не нужны (истек срок хранения), ты можешь потребовать их удалить (это нужно делать письменно).</li></ul><p><strong>Твоя безопасность:</strong> Будь осторожен, делясь личными данными в сети. Используй разные пароли, не открывай подозрительные ссылки и не публикуй личные данные других людей без их разрешения.</p></div>',
+            
+            recsTitle: `<i class="fas fa-user-shield"></i> Правила цифровой безопасности для студентов`,
+            // Важно: Здесь используется <strong>, поэтому updateText должен быть вызван с isHtml=true
+            rec1: "Используйте сложные и уникальные пароли. Никогда не сохраняйте личные данные (пароли, логины) на общедоступных компьютерах.",
+            rec2: "Помни, что все, что ты публикуешь в интернете (фото, видео, личные мнения), может стать общедоступным. Не выкладывай личную информацию одногруппников без их разрешения.",
+            rec3: "Не фотографируй преподавателей и других студентов без их разрешения. Не выкладывай в сеть записи лекций, если это не разрешено внутренними правилами.",
+            rec4: "Не переходи по подозрительным ссылкам, которые приходят по почте или в мессенджерах. Это может привести к краже твоих личных данных (фишинг).",
+        }
+      },
+      en: {
+        // Shared
+        pageTitle: "Theory — EduSafe",
+        logoText: "EduSafe",
+        navHome: "Home", navTheory: "Theory", navPractice: "Practice", navQuiz: "Quiz", navComplaint: "Complaint",
+        roleLabel: "My Role:", 
+        roleTeacherOpt: "Teacher",
+        roleStudentOpt: "Student",
+        langLabel: "Language:",
+        docsTitle: "Official Documents",
+        docsIntro: "For a more detailed study of personal data legislation, familiarize yourself with the official documents of the National Center for Personal Data Protection (NCPD) and the Law.",
+        doc1: 'Law of the Republic of Belarus No. 99-Z of 07.05.2021 "On Personal Data Protection"',
+        doc2: 'Clarifications of the National Center for Personal Data Protection on the application of the Law on Personal Data in Educational Institutions dated 11/21/2025 No. 5-5/760',
+        doc3: 'Clarifications of the National Center for Personal Data Protection on the application of the Law on Personal Data in Educational Institutions dated 07/16/2025 No. 5-5/395',
+        docNote: "(Files are available for download in PDF format)",
+        toPracticeText: "Move on to practice to reinforce your knowledge!",
+        btnToPractice: "Go to practice",
+        footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
+        footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
+        footerDisclaimer1: "The resource does not use cookies and does not collect personal data of users.",
+        footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus.",
+        
+        // Teacher Specific Content (Narrative)
+        teacher: {
+            heroTitle: "Legislation of the Republic of Belarus on Personal Data Protection",
+            heroSubtitle: "System Approach and Teacher Responsibility",
+            articlesTitle: "Personal Data in the Activities of an Educational Institution (EI)",
+
+            artT1Title: "1. Definition and Scope of the Law",
+            artT1Text: '<div><p><strong>What is Personal Data (PD)?</strong> This is any information that allows direct or indirect identification of an individual (PD subject) — a pupil, student, parent, or colleague.</p><p>In the context of an EI, PD includes full name, address, date of birth, grades, medical certificates, and, importantly, photo and video images.</p><p><strong>The Educational Institution (EI) is the Operator</strong>, meaning the entity that independently or jointly organizes and processes PD. This imposes legal responsibility on the EI, and consequently on every employee, for compliance with Law No. 99-Z.</p></div>',
+            
+            artT2Title: "2. Foundations of Processing: Lawfulness and Consent",
+            artT2Text: '<div><p>PD processing must always have a <strong>lawful basis</strong>. In the field of education, there are two such bases:</p><ul><li><strong>Law (without consent):</strong> Processing necessary for the educational process (enrollment, grade recording, issuing grades) – does not require the subject\'s consent.</li><li><strong>Consent:</strong> Processing for purposes not directly directly related to the educational process (e.g., publishing a student\'s photo on social media, sending promotional materials from third parties) – requires voluntary, informed, and explicit consent, which can be withdrawn.</li></ul><p><strong>Key Principle: Purpose Limitation.</strong> Data must be collected and used strictly for a previously declared, lawful purpose. You cannot use an email list collected for schedule distribution to send personal promotional offers.</p></div>',
+
+            artT3Title: "3. Practical Steps to Ensure PD Protection",
+            artT3Text: '<div><p>The teacher is a key link in the PD protection system. Your actions should be based on the principle of minimization:</p><ul><li><strong>Secure Storage:</strong> Do not store lists of students, their phones, or grades on personal devices, third-party (non-corporate) cloud services (Google Drive, Telegram, personal email), or unsecured media.</li><li><strong>Access:</strong> Provide access to PD only to those who need it to perform their official duties.</li><li><strong>Publications:</strong> Always check for written consent before publishing any identifying data (full name, photo) in open access, unless provided for by job description (e.g., publishing the full name of a teacher on the EI\'s official website).</li></ul></div>',
+
+            recsTitle: `<i class="fas fa-check-circle"></i> Recommendations for Teachers`,
+            rec1: "Do not store students' PD on personal and third-party cloud services (Google Drive, Telegram, personal flash drives).",
+            rec2: "Use PD only for the purposes provided for by your job duties (purpose limitation).",
+            rec3: "Before using a third-party service for data collection (e.g., for a survey), ensure it is permitted by the Institution's regulations and a processing commission agreement is concluded.",
+            rec4: "In case of a PD leak or unauthorized access, immediately inform the institution's management.",
+        },
+        
+        // Student Specific Content (Narrative)
+        student: {
+            heroTitle: "Your Personal Data in University/College",
+            heroSubtitle: "Definition, Rights, and Security in the Digital World",
+            articlesTitle: "What You Need to Know About Your Personal Data (PD)",
+
+            artS1Title: "1. What is my Personal Data?",
+            artS1Text: '<div><p><strong>Personal Data (PD)</strong> — is any information that helps to identify who you are. Imagine it as your digital passport.</p><ul><li>Obvious PD: Your full name, address, phone number, date of birth, passport details.</li><li>Less Obvious PD: Your grades, student ID number, email, your photo or video. Even your IP address can be PD!</li></ul><p>The institution (Operator) has the right to use only the data that is necessary for your studies (proportionality principle).</p></div>',
+
+            artS2Title: "2. When is my permission (Consent) needed?",
+            artS2Text: '<div><p>In an educational institution, your data is processed for two reasons:</p><ul><li><strong>Studies (without consent):</strong> For enrollment, scheduling, exams, and record keeping, your consent is not needed. This is provided for by the study contract and legislation.</li><li><strong>"Non-Study" Purposes (with consent):</strong> If the data is needed for something not mandatory for studies (e.g., publishing your photo on the website in the "Best Student" section, or sending promotional materials from third parties) – requires voluntary, informed, and explicit consent, which can be withdrawn.</li></ul><p><strong>Important:</strong> You have the right to withdraw your consent at any time! For example, demanding your photo be removed from the website if you change your mind.</p></div>',
+
+            artS3Title: "3. How can I manage my data?",
+            artS3Text: '<div><p>The Law of the Republic of Belarus gives you many rights to protect yourself:</p><ul><li><strong>Right to Information:</strong> You can find out who, what data, and why they are processing it.</li><li><strong>Right to Correction:</strong> If your data is incorrect (e.g., an address error), you can demand that it be corrected.</li><li><strong>Right to Deletion:</strong> If the institution stores data it no longer needs (retention period has expired), you can demand that it be deleted (this must be done in writing).</li></ul><p><strong>Your Safety:</strong> Be careful when sharing personal data online. Use different passwords, do not click on suspicious links, and do not publish other people\'s personal data without their permission.</p></div>',
+            
+            recsTitle: `<i class="fas fa-user-shield"></i> Digital Safety Rules for Students`,
+            rec1: "Use strong and unique passwords. Never save personal data (passwords, logins) on public computers.",
+            rec2: "Remember that everything you post online (photos, videos, personal opinions) can become public. Do not post personal information of classmates without their permission.",
+            rec3: "Do not photograph teachers or other students without their permission. Do not post recordings of lectures online unless permitted by internal rules.",
+            rec4: "Do not click on suspicious links received via email or messengers. This can lead to the theft of your personal data (phishing).",
+        }
+      }
+    };
+
+    // Helper function to update text content (handling inner HTML for rich text)
+    function updateText(selector, text, isHtml = true) {
+      const el = document.querySelector(selector);
+      // Check if element exists AND text is valid (not undefined/null)
+      if (el && text !== undefined && text !== null) { 
+          if (isHtml) {
+              el.innerHTML = text;
+          } else {
+              el.textContent = text;
+          }
+      } else if (el) {
+          // If the element exists but text is invalid/missing, set to empty string
+          // This prevents the 'undefined' string but should not happen with correct keys
+          el.textContent = ''; 
+          // console.warn(`Translation key for ${selector} is undefined or null.`);
+      }
+    }
+
+    // Function to update role-specific content
+    function updateRoleContent(t, roleCode) {
+        // t is the current language object (e.g., translations.ru)
+        const roleData = t[roleCode]; // roleData is the specific role content (e.g., translations.ru.teacher)
+        
+        // Hide all containers
+        document.getElementById('teacherContent').style.display = 'none';
+        document.getElementById('studentContent').style.display = 'none';
+        
+        // Show the correct container
+        const contentContainer = document.getElementById(roleCode + 'Content');
+        if (contentContainer) {
+            contentContainer.style.display = 'block';
+        }
+
+        // Update Hero (textContent)
+        updateText('#heroTitle', roleData.heroTitle, false);
+        updateText('#heroSubtitle', roleData.heroSubtitle, false);
+        
+        // Update Main Section Title (textContent)
+        updateText('#articlesTitle', roleData.articlesTitle, false);
+        
+        // Update Articles 
+        // FIX: Define two prefixes: one for the HTML ID selector (mixed case) and one for the translation lookup (lowercase).
+        const htmlIdPrefix = roleCode === 'teacher' ? 'ArtT' : 'ArtS'; // Matches HTML IDs: teacherArtT1Title
+        const translationKeyPrefix = roleCode === 'teacher' ? 'artT' : 'artS'; // Matches translation keys: artT1Title
+        const elementsToUpdate = [1, 2, 3];
+
+        elementsToUpdate.forEach(num => {
+            // Corrected Selector generation (Mixed case: ArtT/ArtS)
+            const titleId = `#${roleCode}${htmlIdPrefix}${num}Title`; 
+            const textId = `#${roleCode}${htmlIdPrefix}${num}Text`;
+            
+            // Translation key lookup (Lowercase: artT/artS)
+            const translationKeyTitle = translationKeyPrefix + num + 'Title';
+            const translationKeyText = translationKeyPrefix + num + 'Text';
+
+            // Titles (textContent)
+            updateText(titleId, roleData[translationKeyTitle], false); 
+            // Text Content (innerHTML)
+            updateText(textId, roleData[translationKeyText], true); 
+        });
+        
+        // Update Recommendations (innerHTML, as they contain <i> and <strong>)
+        updateText(`#${roleCode}RecsTitle`, roleData.recsTitle, true);
+        updateText(`#${roleCode}Rec1`, roleData.rec1, true);
+        updateText(`#${roleCode}Rec2`, roleData.rec2, true);
+        updateText(`#${roleCode}Rec3`, roleData.rec3, true);
+        updateText(`#${roleCode}Rec4`, roleData.rec4, true);
+
+        // Update CTA text (same for both roles)
+        updateText('#toPracticeText', t.toPracticeText, false);
+        updateText('#btnToPractice', t.btnToPractice, false);
+    }
+    
+    // Function to update all text based on language
+    function updateLanguage(langCode) {
+      const t = translations[langCode];
+      if (!t) return;
+      currentLang = langCode;
+      
+      // Update global static text elements (mostly textContent)
+      updateText('#pageTitle', t.pageTitle, false);
+      updateText('#logoText', t.logoText, false);
+      updateText('#mobileLogoText', t.logoText, false);
+      updateText('#footerLogoText', t.logoText, false);
+
+      // Navigation & Role/Lang Selectors
+      updateText('#navHome span', t.navHome, false);
+      updateText('#mobileNavHome span', t.navHome, false);
+      updateText('#navTheory span', t.navTheory, false);
+      updateText('#mobileNavTheory span', t.navTheory, false);
+      updateText('#navPractice span', t.navPractice, false);
+      updateText('#mobileNavPractice span', t.navPractice, false);
+      updateText('#navQuiz span', t.navQuiz, false);
+      updateText('#mobileNavQuiz span', t.navQuiz, false);
+      updateText('#navComplaint span', t.navComplaint, false);
+      updateText('#mobileNavComplaint span', t.navComplaint, false);
+      
+      // Role & Language Selectors Labels
+      updateText('#roleLabel', t.roleLabel, false);
+      updateText('#mobileRoleLabel', t.roleLabel, false);
+      updateText('#mobileLangLabel', t.langLabel, false); 
+      
+      updateText('#roleTeacherOpt', t.roleTeacherOpt, false);
+      updateText('#roleStudentOpt', t.roleStudentOpt, false);
+      updateText('#mobileRoleTeacherOpt', t.roleTeacherOpt, false);
+      updateText('#mobileRoleStudentOpt', t.roleStudentOpt, false);
+
+      // Documents (use innerHTML for links to preserve the <i> tag)
+      updateText('#docsTitle', t.docsTitle, false);
+      updateText('#docsIntro', t.docsIntro, false);
+      updateText('#doc1', `<i class="fas fa-file-pdf"></i> ${t.doc1}`, true);
+      updateText('#doc2', `<i class="fas fa-file-pdf"></i> ${t.doc2}`, true);
+      updateText('#doc3', `<i class="fas fa-file-pdf"></i> ${t.doc3}`, true);
+      updateText('#docNote', t.docNote, false);
+
+      // Footer
+      updateText('#footerDesc', t.footerDesc, false);
+      updateText('#footerCopyright', t.footerCopyright, false);
+      updateText('#footerDisclaimer1', t.footerDisclaimer1, false);
+      updateText('#footerDisclaimer2', t.footerDisclaimer2, false);
+
+      document.documentElement.lang = langCode;
+      
+      // After language update, update role-specific content
+      updateRole(currentRole); 
+      syncLanguageSelectors(langCode);
+    }
+    
+    // Function to switch and update role
+    function updateRole(roleCode) {
+        currentRole = roleCode;
+        localStorage.setItem('appRole', roleCode);
+        
+        const t = translations[currentLang];
+        if (!t) return;
+
+        updateRoleContent(t, roleCode);
+        syncRoleSelectors(roleCode);
+    }
+
+    // Sync language selectors
+    function syncLanguageSelectors(lang) {
+      const desktopSelector = document.getElementById('languageSelector');
+      const mobileSelector = document.getElementById('mobileLanguageSelector');
+      if (desktopSelector) desktopSelector.value = lang;
+      if (mobileSelector) mobileSelector.value = lang;
+    }
+    
+    // Sync role selectors
+    function syncRoleSelectors(role) {
+      const desktopSelector = document.getElementById('roleSelector');
+      const mobileSelector = document.getElementById('mobileRoleSelector');
+      if (desktopSelector) desktopSelector.value = role;
+      if (mobileSelector) mobileSelector.value = role;
+    }
+
+    // Language change handlers
+    document.getElementById('languageSelector').addEventListener('change', (e) => {
+      localStorage.setItem('appLang', e.target.value);
+      updateLanguage(e.target.value);
+    });
+
+    document.getElementById('mobileLanguageSelector').addEventListener('change', (e) => {
+      localStorage.setItem('appLang', e.target.value);
+      updateLanguage(e.target.value);
+    });
+    
+    // Role change handlers
+    document.getElementById('roleSelector').addEventListener('change', (e) => {
+      updateRole(e.target.value);
+    });
+    
+    document.getElementById('mobileRoleSelector').addEventListener('change', (e) => {
+      updateRole(e.target.value);
+      // closeMenuHandler(); // Optional: close menu after selection
+    });
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    // Close mobile menu when clicking on a nav link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
+    });
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Check for saved preferences or default to 'ru' and 'teacher'
+      const savedLang = localStorage.getItem('appLang') || 'ru';
+      const savedRole = localStorage.getItem('appRole') || 'teacher';
+      
+      // 2. Set current state
+      currentLang = savedLang;
+      currentRole = savedRole;
+
+      // 3. Update all UI
+      updateLanguage(currentLang);
+    });
+  </script>
+</body>
+</html>

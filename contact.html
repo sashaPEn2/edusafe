@@ -1,0 +1,802 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Подача жалобы — EduSafe</title>
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
+
+    ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --blue-100: #dbeafe;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom, #f8fafc, #eef2ff);
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--blue-900);
+      z-index: 2;
+    }
+
+    .logo i {
+      background: var(--blue-900);
+      color: var(--white);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Desktop nav */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-selector select {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background-color: var(--white);
+      color: var(--gray-900);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 101;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    .mobile-nav a i {
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-900), #1e40af);
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+
+    /* Sections */
+    .section {
+      padding: 3rem 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--blue-900);
+    }
+
+    /* Info Cards */
+    .info-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-bottom: 3rem;
+    }
+    .info-card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .info-card h3 {
+      color: var(--blue-700);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    .info-card ul {
+      padding-left: 1.5rem;
+    }
+    .info-card li {
+      margin-bottom: 0.5rem;
+    }
+
+    /* Form */
+    .form-container {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    }
+    .form-group {
+      margin-bottom: 1.5rem;
+    }
+    .form-group label {
+      display: block;
+      margin-bottom: 0.5rem;
+      font-weight: 500;
+      color: var(--gray-900);
+    }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%;
+      padding: 0.875rem;
+      border: 1px solid #d1d5db;
+      border-radius: 0.5rem;
+      font-family: inherit;
+      font-size: 1rem;
+      background: var(--gray-50);
+    }
+    .form-group textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--blue-700);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.2);
+    }
+    .btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+    }
+    .btn-full {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.125rem;
+      margin-top: 1rem;
+    }
+
+    /* Back btn */
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: none;
+      border: 2px solid var(--gray-600);
+      color: var(--gray-600);
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: all 0.2s;
+      text-decoration: none;
+      margin-bottom: 2rem;
+    }
+    .back-btn:hover {
+      background: var(--gray-600);
+      color: white;
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray-900);
+      color: #9ca3af;
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer-content { text-align: center; }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-logo i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+    }
+
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-container {
+        display: none;
+      }
+
+      .hero h1 { font-size: 1.75rem; }
+      .section { padding: 2rem 0; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="logoText">EduSafe</span>
+        </div>
+
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-container">
+          <div class="lang-selector">
+            <select id="languageSelector">
+              <option value="ru">Русский</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <nav class="nav">
+            <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+            <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+            <a href="practice.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+            <a href="contact.html" class="active" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <div class="mobile-header">
+          <div class="logo" style="font-size: 1.25rem;">
+            <i class="fas fa-shield-alt"></i>
+            <span id="mobileLogoText">EduSafe</span>
+          </div>
+          <button class="close-btn" id="closeMenu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="lang-selector" style="margin-bottom: 1.5rem;">
+          <select id="mobileLanguageSelector">
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <nav class="mobile-nav">
+          <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+          <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+          <a href="practice.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+          <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+          <a href="contact.html" class="active" id="mobileNavComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1 id="heroTitle">Подача жалобы в Национальный центр</h1>
+      <p id="heroSubtitle">Если нарушены Ваши права в сфере персональных данных</p>
+    </div>
+  </section>
+
+  <!-- Content -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" id="pageTitle">Подача жалобы в Национальный центр защиты персональных данных</h2>
+      
+      <div class="info-cards">
+        <div class="info-card">
+          <h3><i class="fas fa-info-circle"></i> <span id="card1Title">Куда подавать</span></h3>
+          <p id="card1Text1">Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:</p>
+          <p id="card1Text2"><strong>ул. К. Цеткин, 24-3, 220004, г. Минск</strong></p>
+          <p id="card1Text3">Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.</p>
+        </div>
+        <div class="info-card">
+          <h3><i class="fas fa-clipboard-list"></i> <span id="card2Title">Что указывать</span></h3>
+          <ul>
+            <li id="req1">ФИО, адрес, контактные данные заявителя</li>
+            <li id="req2">Наименование/ФИО лица, обрабатывающего персональные данные</li>
+            <li id="req3">Суть нарушения и требуемая защита</li>
+            <li id="req4">Дата и личная подпись (в бумажной версии)</li>
+          </ul>
+        </div>
+        <div class="info-card">
+          <h3><i class="fas fa-paperclip"></i> <span id="card3Title">Приложения</span></h3>
+          <ul>
+            <li id="att1">Документы, подтверждающие нарушение</li>
+            <li id="att2">Фотографии, скриншоты, переписки</li>
+            <li id="att3">Копии запросов и ответов</li>
+          </ul>
+          <p id="attNote">При подаче в электронном виде — должна быть ЭЦП.</p>
+        </div>
+      </div>
+      
+      <h3 class="section-title" style="font-size: 1.5rem;" id="formTitle">Форма для подачи вопросов по ресурсу</h3>
+      <div class="form-container">
+        <form id="resourceForm" method="POST" action="./thanks.html">
+          <input type="hidden" name="form-name" value="resourceForm">
+          <div class="form-group">
+            <label for="name" id="labelName">Имя</label>
+            <input type="text" id="name" name="username" required>
+          </div>
+          <div class="form-group">
+            <label for="email" id="labelEmail">Email (для обратной связи)</label>
+            <input type="email" id="email" name="email" required>
+          </div>
+          <div class="form-group">
+            <label for="questionType" id="labelType">Тип вопроса</label>
+            <select id="questionType" name="type" required>
+              <option value="" id="optSelect">Выберите тип</option>
+              <option value="technical" id="optTech">Технические проблемы</option>
+              <option value="content" id="optContent">Содержание ресурса</option>
+              <option value="policy" id="optPolicy">Вопросы по политике обработки данных</option>
+              <option value="other" id="optOther">Другое</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message" id="labelMessage">Ваш вопрос</label>
+            <textarea id="message" name="alltext" placeholder="Опишите ваш вопрос или проблему..." required></textarea>
+          </div>
+          <button type="submit" class="btn btn-full" id="submitBtn">Отправить вопрос</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="footerLogoText">EduSafe</span>
+        </div>
+        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p style="margin-top: 0.5rem;" id="footerCopyright">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
+      </div>
+      <div class="disclaimer">
+        <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
+        <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Translations
+    const translations = {
+      ru: {
+        logoText: "EduSafe",
+        navHome: "Главная",
+        navTheory: "Теория",
+        navPractice: "Практика",
+        navQuiz: "Викторина",
+        navComplaint: "Жалоба",
+        heroTitle: "Подача жалобы в Национальный центр",
+        heroSubtitle: "Если нарушены Ваши права в сфере персональных данных",
+        pageTitle: "Подача жалобы в Национальный центр защиты персональных данных",
+        card1Title: "Куда подавать",
+        card1Text1: "Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:",
+        card1Text2: "ул. К. Цеткин, 24-3, 220004, г. Минск",
+        card1Text3: "Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.",
+        card2Title: "Что указывать",
+        req1: "ФИО, адрес, контактные данные заявителя",
+        req2: "Наименование/ФИО лица, обрабатывающего персональные данные",
+        req3: "Суть нарушения и требуемая защита",
+        req4: "Дата и личная подпись (в бумажной версии)",
+        card3Title: "Приложения",
+        att1: "Документы, подтверждающие нарушение",
+        att2: "Фотографии, скриншоты, переписки",
+        att3: "Копии запросов и ответов",
+        attNote: "При подаче в электронном виде — должна быть ЭЦП.",
+        formTitle: "Форма для подачи вопросов по ресурсу",
+        labelName: "Имя",
+        labelEmail: "Email (для обратной связи)",
+        labelType: "Тип вопроса",
+        optSelect: "Выберите тип",
+        optTech: "Технические проблемы",
+        optContent: "Содержание ресурса",
+        optPolicy: "Вопросы по политике обработки данных",
+        optOther: "Другое",
+        labelMessage: "Ваш вопрос",
+        submitBtn: "Отправить вопрос",
+        footerLogoText: "EduSafe",
+        footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
+        footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»",
+        footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
+        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь."
+      },
+      en: {
+        logoText: "EduSafe",
+        navHome: "Home",
+        navTheory: "Theory",
+        navPractice: "Practice",
+        navQuiz: "Quiz",
+        navComplaint: "Complaint",
+        heroTitle: "Filing a Complaint with the National Center",
+        heroSubtitle: "If your rights in the field of personal data have been violated",
+        pageTitle: "Filing a Complaint with the National Center for Personal Data Protection",
+        card1Title: "Where to Submit",
+        card1Text1: "Written complaints are submitted in person (by courier) or sent by mail to:",
+        card1Text2: "24-3 K. Zetkin St., 220004, Minsk",
+        card1Text3: "Complaints are reviewed no later than one month from the day following their registration.",
+        card2Title: "What to Include",
+        req1: "Full name, address, and contact details of the applicant",
+        req2: "Name/full name of the person/entity processing personal data",
+        req3: "Description of the violation and requested remedy",
+        req4: "Date and personal signature (for paper submissions)",
+        card3Title: "Attachments",
+        att1: "Documents confirming the violation",
+        att2: "Photos, screenshots, correspondence",
+        att3: "Copies of requests and responses",
+        attNote: "For electronic submissions — a qualified electronic signature (QES) is required.",
+        formTitle: "Form for Questions About the Resource",
+        labelName: "Name",
+        labelEmail: "Email (for reply)",
+        labelType: "Question Type",
+        optSelect: "Select type",
+        optTech: "Technical issues",
+        optContent: "Resource content",
+        optPolicy: "Data processing policy questions",
+        optOther: "Other",
+        labelMessage: "Your question",
+        submitBtn: "Submit Question",
+        footerLogoText: "EduSafe",
+        footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
+        footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
+        footerDisclaimer1: "The resource does not use cookies and does not collect personal data of users.",
+        footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus."
+      }
+    };
+
+    // === SAFE UPDATE FUNCTION (prevents "Cannot set properties of null") ===
+    function safeSetText(selector, text) {
+      const el = document.querySelector(selector);
+      if (el) {
+        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
+          // For form labels / placeholders — skip (not needed here, but safe)
+        } else {
+          el.textContent = text;
+        }
+      }
+      // Else: silently ignore missing elements (e.g. hidden content)
+    }
+
+    function safeSetInnerHTML(selector, html) {
+      const el = document.querySelector(selector);
+      if (el) el.innerHTML = html;
+    }
+
+    // === Mobile Menu & Language Logic ===
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    // Sync language selectors
+    function syncLanguageSelectors(lang) {
+      document.getElementById('languageSelector').value = lang;
+      document.getElementById('mobileLanguageSelector').value = lang;
+    }
+
+    // Update language
+    function updateLanguage(langCode) {
+      const t = translations[langCode];
+      if (!t) return;
+
+      // Nav & Header
+      safeSetText('#logoText', t.logoText);
+      safeSetText('#mobileLogoText', t.logoText);
+      safeSetText('#footerLogoText', t.logoText);
+      
+      // Nav links (text inside <span>)
+      safeSetInnerHTML('#navHome span', t.navHome);
+      safeSetInnerHTML('#navTheory span', t.navTheory);
+      safeSetInnerHTML('#navPractice span', t.navPractice);
+      safeSetInnerHTML('#navQuiz span', t.navQuiz);
+      safeSetInnerHTML('#navComplaint span', t.navComplaint);
+      safeSetInnerHTML('#mobileNavHome span', t.navHome);
+      safeSetInnerHTML('#mobileNavTheory span', t.navTheory);
+      safeSetInnerHTML('#mobileNavPractice span', t.navPractice);
+      safeSetInnerHTML('#mobileNavQuiz span', t.navQuiz);
+      safeSetInnerHTML('#mobileNavComplaint span', t.navComplaint);
+
+      // Page content
+      safeSetText('#heroTitle', t.heroTitle);
+      safeSetText('#heroSubtitle', t.heroSubtitle);
+      safeSetText('#pageTitle', t.pageTitle);
+      safeSetText('#card1Title', t.card1Title);
+      safeSetText('#card1Text1', t.card1Text1);
+      safeSetText('#card1Text2', t.card1Text2);
+      safeSetText('#card1Text3', t.card1Text3);
+      safeSetText('#card2Title', t.card2Title);
+      safeSetText('#req1', t.req1);
+      safeSetText('#req2', t.req2);
+      safeSetText('#req3', t.req3);
+      safeSetText('#req4', t.req4);
+      safeSetText('#card3Title', t.card3Title);
+      safeSetText('#att1', t.att1);
+      safeSetText('#att2', t.att2);
+      safeSetText('#att3', t.att3);
+      safeSetText('#attNote', t.attNote);
+      safeSetText('#formTitle', t.formTitle);
+      safeSetText('#labelName', t.labelName);
+      safeSetText('#labelEmail', t.labelEmail);
+      safeSetText('#labelType', t.labelType);
+      safeSetText('#optSelect', t.optSelect);
+      safeSetText('#optTech', t.optTech);
+      safeSetText('#optContent', t.optContent);
+      safeSetText('#optPolicy', t.optPolicy);
+      safeSetText('#optOther', t.optOther);
+      safeSetText('#labelMessage', t.labelMessage);
+      safeSetText('#submitBtn', t.submitBtn);
+      safeSetText('#footerDesc', t.footerDesc);
+      safeSetText('#footerCopyright', t.footerCopyright);
+      safeSetText('#footerDisclaimer1', t.footerDisclaimer1);
+      safeSetText('#footerDisclaimer2', t.footerDisclaimer2);
+
+      // Update form placeholder (not translated, but safe)
+      const textarea = document.getElementById('message');
+      if (textarea) {
+        textarea.placeholder = langCode === 'ru' 
+          ? "Опишите ваш вопрос или проблему..." 
+          : "Describe your question or issue...";
+      }
+
+      document.documentElement.lang = langCode;
+      syncLanguageSelectors(langCode);
+    }
+
+    // Event listeners for language change
+    document.getElementById('languageSelector')?.addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+
+    document.getElementById('mobileLanguageSelector')?.addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+
+    // Close mobile menu on nav link click
+    document.querySelectorAll('.nav a, .mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
+    });
+
+    // Form submission (optional client-side feedback)
+    const form = document.getElementById('resourceForm');
+    if (form) {
+      form.addEventListener('submit', function(e) {
+        // Note: Netlify form handling works via `name` and `netlify` attr
+        // This is just client-side UX — no real submission here
+        // Uncomment if you want local feedback:
+        /*
+        e.preventDefault();
+        alert(lang === 'ru' 
+          ? 'Спасибо за ваш вопрос! Он будет рассмотрен в ближайшее время.' 
+          : 'Thank you for your question! It will be reviewed shortly.');
+        this.reset();
+        */
+      });
+    }
+
+    // Initialize
+    updateLanguage('ru');
+  </script>
+</body>
+</html>
+

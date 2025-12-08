@@ -1,0 +1,885 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitle">Случаи нарушений — EduSafe</title>
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --blue-100: #dbeafe;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+      --green-500: #10b981;
+      --red-500: #ef4444;
+      --red-100: #fee2e2;
+      --pink-600: #db2777; /* For violation emphasis */
+      --pink-100: #fbcfe8;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f8fafc;
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--blue-900);
+      z-index: 2;
+      text-decoration: none; 
+    }
+    
+    .logo:hover {
+        color: var(--blue-700);
+    }
+
+    /* Nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Desktop nav */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-selector, .role-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.5rem 0.75rem; 
+      background: var(--blue-100); 
+      border-radius: 0.5rem;
+      border: 1px solid var(--blue-700); 
+      box-shadow: 0 1px 3px rgba(0,0,0,0.05);
+    }
+    
+    .role-selector label {
+        font-size: 0.9rem;
+        font-weight: 700; 
+        color: var(--blue-900); 
+        white-space: nowrap; 
+    }
+
+    .lang-selector {
+        padding: 0.5rem 0; 
+        background: none;
+        border: none;
+        box-shadow: none;
+    }
+    
+    .lang-selector select, .role-selector select {
+      padding: 0.3rem 0.5rem;
+      border-radius: 0.3rem;
+      border: 1px solid #d1d5db;
+      background-color: var(--white);
+      color: var(--gray-900);
+      font-size: 0.9rem;
+      outline: none;
+      cursor: pointer;
+      min-width: 120px;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 101;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      flex-grow: 1; 
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    .mobile-settings {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        padding-top: 1rem;
+        border-top: 1px solid var(--gray-100);
+    }
+    
+    .mobile-menu-content .role-selector {
+      padding: 0.75rem 1rem; 
+      width: 100%;
+      justify-content: space-between;
+    }
+    .mobile-menu-content .role-selector select {
+        min-width: 150px;
+    }
+    .mobile-menu-content .lang-selector {
+        width: 100%;
+        justify-content: space-between;
+    }
+    .mobile-menu-content .lang-selector select {
+        min-width: 150px;
+    }
+
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--pink-600), var(--red-500));
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+
+    .hero p {
+      font-size: 1.125rem;
+      max-width: 800px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+
+    /* Sections */
+    .section {
+      padding: 3rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 2rem;
+      color: var(--pink-600);
+    }
+
+    /* Case Study Card */
+    .case-card {
+        background: var(--white);
+        border-radius: 1rem;
+        padding: 2.5rem;
+        box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+        border: 1px solid var(--red-100);
+        margin: 0 auto 3rem;
+        max-width: 850px;
+    }
+    
+    .case-card-header {
+        font-size: 1.75rem;
+        font-weight: 800;
+        color: var(--pink-600);
+        margin-bottom: 1.5rem;
+        padding-bottom: 1rem;
+        border-bottom: 3px solid var(--pink-100);
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+    }
+    
+    .case-card-header i {
+        font-size: 1.5rem;
+        color: var(--red-500);
+    }
+
+    .case-section {
+        margin-bottom: 2rem;
+        padding: 1.5rem;
+        border-radius: 0.75rem;
+        background: var(--gray-50);
+    }
+    
+    .case-section-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        color: var(--gray-900);
+        margin-bottom: 0.75rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .case-section-title i {
+        color: var(--red-500);
+    }
+
+    .case-issue-list {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    
+    .case-issue-list li {
+        margin-bottom: 0.5rem;
+        padding-left: 1.5rem;
+        position: relative;
+    }
+    
+    .case-issue-list li:before {
+        content: "\f05c"; /* times-circle */
+        font-family: 'Font Awesome 6 Free';
+        font-weight: 900;
+        color: var(--red-500);
+        position: absolute;
+        left: 0;
+        top: 0;
+    }
+    
+    .case-finding-box {
+        background: var(--red-100);
+        padding: 1.5rem;
+        border-left: 5px solid var(--red-500);
+        border-radius: 0.75rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .case-finding-box a {
+        color: var(--blue-700);
+        text-decoration: underline;
+    }
+    
+    .case-result-box {
+        background: var(--pink-100);
+        padding: 1.5rem;
+        border-left: 5px solid var(--pink-600);
+        border-radius: 0.75rem;
+        font-weight: 600;
+        color: var(--pink-600);
+    }
+
+    /* Reminder Block (for key takeaway) */
+    .reminder-block {
+        background: var(--blue-100);
+        border: 1px solid var(--blue-700);
+        border-radius: 1rem;
+        padding: 2rem;
+        margin-top: 3rem;
+        text-align: center;
+    }
+    
+    .reminder-block h3 {
+        font-size: 1.5rem;
+        color: var(--blue-900);
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.75rem;
+    }
+    
+    .reminder-block p {
+        font-size: 1.125rem;
+        font-weight: 500;
+        color: var(--gray-900);
+    }
+
+    /* CTA (from theory) */
+    .cta-section {
+      text-align: center;
+      margin-top: 3rem;
+    }
+
+    .cta-section p {
+      font-size: 1.25rem;
+      font-weight: 600;
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--blue-700);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.2);
+    }
+
+    .btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+    }
+
+    /* Responsive */
+    @media (max-width: 1024px) {
+        .nav-container {
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 1rem;
+        }
+        .nav {
+            justify-content: flex-end;
+        }
+    }
+    
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-container {
+        display: none;
+      }
+
+      .hero h1 { font-size: 1.75rem; }
+      .section { padding: 2rem 0; }
+      .section-title { font-size: 1.5rem; }
+      .case-card { padding: 1.5rem; }
+      .case-card-header { font-size: 1.5rem; }
+      .reminder-block { padding: 1.5rem; }
+      .reminder-block h3 { font-size: 1.25rem; }
+      .reminder-block p { font-size: 1rem; }
+    }
+
+    /* Footer */
+    footer {
+      background: var(--gray-900);
+      color: #9ca3af;
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+
+    .footer-content {
+      text-align: center;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="logoText">EduSafe</span>
+        </a>
+
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-container">
+              <div class="lang-selector">
+                <select id="languageSelector">
+                  <option value="ru">Русский</option>
+                  <option value="en">English</option>
+                </select>
+              </div>
+          </div>
+          <nav class="nav">
+            <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+            <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+            <a href="practice.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+            <a href="test.html" class="active" id="mobileNavanylyz"><i class="fa fa-search"></i> <span>Анализ</span></a>
+            <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <div class="mobile-header">
+          <div class="logo" style="font-size: 1.25rem;">
+            <i class="fas fa-shield-alt"></i>
+            <span id="mobileLogoText">EduSafe</span>
+          </div>
+          <button class="close-btn" id="closeMenu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        
+        <nav class="mobile-nav">
+          <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+          <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+          <a href="practice.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+          <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+          <a href="test.html" class="active" id="mobileNavanylyz"><i class="fa fa-search"></i> <span>Анализ</span></a>
+          <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+        </nav>
+        
+        <div class="mobile-settings">
+        
+            <div class="lang-selector">
+              <label for="mobileLanguageSelector" id="mobileLangLabel">Язык:</label>
+              <select id="mobileLanguageSelector">
+                <option value="ru">Русский</option>
+                <option value="en">English</option>
+              </select>
+            </div>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container">
+      <h1 id="heroTitle">Реальные случаи нарушений Закона о защите персональных данных</h1>
+      <p id="heroSubtitle">Из практики Национального центра защиты персональных данных</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" id="casesTitle">Анализ типовых нарушений в сфере образования</h2>
+      
+      <div class="case-card">
+        <h3 class="case-card-header" id="case1Title"><i class="fas fa-exclamation-circle"></i> Случай №1: Тестирование через Google Формы</h3>
+        
+        <div class="case-section">
+            <div class="case-section-title" id="case1SummaryTitle"><i class="fas fa-file-alt"></i> Суть жалобы:</div>
+            <p id="case1Summary">В Центр обратилась мама школьника: в учебном заведении психологическое тестирование проводили через Google Формы.</p>
+        </div>
+        
+        <div class="case-section">
+            <div class="case-section-title" id="case1IssueTitle"><i class="fas fa-user-times"></i> Что насторожило родителей:</div>
+            <ul class="case-issue-list">
+                <li id="case1Issue1">Регистрация в сервисе требовала от детей ввода большого количества персональных данных.</li>
+                <li id="case1Issue2">Тест содержал вопросы о семье, увлечениях, образе жизни и эмоциональном состоянии ребенка.</li>
+                <li id="case1Issue3">Никто не объяснил, куда уходят эти сведения и могут ли они попасть за границу.</li>
+            </ul>
+        </div>
+        
+        <div class="case-finding-box">
+            <div class="case-section-title" id="case1ViolationTitle"><i class="fas fa-gavel"></i> Установленное нарушение (НЦЗПД):</div>
+            <p id="case1ViolationText">Школа нарушила Закон (<a href="https://etalonline.by/document/?regnum=h12100099" target="_blank">Закон № 99-З</a>). Тестирование можно было провести иным способом, а использование зарубежного сервиса **не отвечает интересам и безопасности детей**.</p>
+        </div>
+        
+        <div class="case-result-box">
+            <div class="case-section-title" id="case1ResultTitle"><i class="fas fa-clipboard-check"></i> Результат:</div>
+            <p id="case1ResultText">По требованию Центра школа отказалась от Google Форм и удалила все собранные персональные данные. </p>
+        </div>
+        
+      </div>
+      
+      <div class="reminder-block">
+        <h3 id="reminderTitle"><i class="fas fa-globe"></i> Важное напоминание о зарубежных сервисах</h3>
+        <p id="reminderText">Популярные зарубежные сервисы (Google, Viber, Telegram, WhatsApp) хранят информацию по всему миру, включая страны, где уровень защиты персональных данных не гарантирован. </p>
+      </div>
+
+      <div class="cta-section">
+        <p id="toQuizText">Проверьте, насколько хорошо вы усвоили урок!</p>
+        <a href="quiz.html" class="btn" id="btnToQuiz">Перейти к викторине</a>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="footerLogoText">EduSafe</span>
+        </div>
+        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p style="margin-top: 0.5rem;" id="footerCopyright">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
+      </div>
+      <div class="disclaimer">
+        <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
+        <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    let currentLang = 'ru'; 
+    let currentRole = 'teacher'; // Default role (doesn't change content here, but needed for consistency)
+
+    // --- ПЕРЕВОДЫ ВСЕХ ЭЛЕМЕНТОВ ---
+    const translations = {
+      ru: {
+        // Shared
+        pageTitle: "Случаи нарушений — EduSafe",
+        logoText: "EduSafe",
+        navHome: "Главная", navTheory: "Теория", navPractice: "Практика", navQuiz: "Викторина", navComplaint: "Жалоба", navanylyz: "Анализ",
+        roleLabel: "Моя роль:", 
+        roleTeacherOpt: "Преподаватель",
+        roleStudentOpt: "Студент",
+        langLabel: "Язык:",
+        
+        heroTitle: "Реальные случаи нарушений Закона о ПД",
+        heroSubtitle: "Из практики Национального центра защиты персональных данных",
+        casesTitle: "Анализ типовых нарушений в сфере образования",
+        
+        // Case 1
+        case1Title: `<i class="fas fa-exclamation-circle"></i> Случай №1: Тестирование через Google Формы`,
+        case1SummaryTitle: `<i class="fas fa-file-alt"></i> Суть жалобы:`,
+        case1Summary: "В Центр обратилась мама школьника: в учебном заведении психологическое тестирование проводили через Google Формы.",
+        case1IssueTitle: `<i class="fas fa-user-times"></i> Что насторожило родителей:`,
+        case1Issue1: "Регистрация в сервисе требовала от детей ввода большого количества персональных данных.",
+        case1Issue2: "Тест содержал вопросы о семье, увлечениях, образе жизни и эмоциональном состоянии ребенка.",
+        case1Issue3: "Никто не объяснил, куда уходят эти сведения и могут ли они попасть за границу.",
+        case1ViolationTitle: `<i class="fas fa-gavel"></i> Установленное нарушение (НЦЗПД):`,
+        case1ViolationText: `Школа нарушила Закон (<a href="https://etalonline.by/document/?regnum=h12100099" target="_blank">Закон № 99-З</a>). Тестирование можно было провести иным способом, а использование зарубежного сервиса **не отвечает интересам и безопасности детей**.`,
+        case1ResultTitle: `<i class="fas fa-clipboard-check"></i> Результат:`,
+        case1ResultText: "По требованию Центра школа отказалась от Google Форм и удалила все собранные персональные данные.",
+        
+        // Reminder Block
+        reminderTitle: `<i class="fas fa-globe"></i> Важное напоминание о зарубежных сервисах`,
+        reminderText: "Популярные зарубежные сервисы (Google, Viber, Telegram, WhatsApp) хранят информацию по всему миру, включая страны, где уровень защиты персональных данных не гарантирован.",
+        
+        // CTA
+        toQuizText: "Проверьте, насколько хорошо вы усвоили урок!",
+        btnToQuiz: "Перейти к викторине",
+
+        // Footer
+        footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
+        footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»",
+        footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
+        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.",
+      },
+      en: {
+        // Shared
+        pageTitle: "Violation Cases — EduSafe",
+        logoText: "EduSafe",
+        navHome: "Home", navTheory: "Theory", navPractice: "Practice", navQuiz: "Quiz", navComplaint: "Complaint",
+        roleLabel: "My Role:", 
+        roleTeacherOpt: "Teacher",
+        roleStudentOpt: "Student",
+        langLabel: "Language:",
+        
+        heroTitle: "Real Cases of PD Law Violations",
+        heroSubtitle: "From the practice of the National Center for Personal Data Protection",
+        casesTitle: "Analysis of Typical Violations in the Education Sector",
+
+        // Case 1
+        case1Title: `<i class="fas fa-exclamation-circle"></i> Case No. 1: Testing via Google Forms`,
+        case1SummaryTitle: `<i class="fas fa-file-alt"></i> Complaint Summary:`,
+        case1Summary: "A schoolboy's mother contacted the Center: psychological testing was conducted in the educational institution using Google Forms.",
+        case1IssueTitle: `<i class="fas fa-user-times"></i> What alarmed the parents:`,
+        case1Issue1: "Registration in the service required children to enter a large amount of personal data.",
+        case1Issue2: "The test contained questions about the child's family, hobbies, lifestyle, and emotional state.",
+        case1Issue3: "No one explained where this information goes and whether it could be transferred abroad.",
+        case1ViolationTitle: `<i class="fas fa-gavel"></i> Established Violation (NCPD):`,
+        case1ViolationText: `The school violated the Law (<a href="https://etalonline.by/document/?regnum=h12100099" target="_blank">Law No. 99-Z</a>). The testing could have been conducted in another way, and the use of a foreign service **does not meet the interests and safety of children**.`,
+        case1ResultTitle: `<i class="fas fa-clipboard-check"></i> Result:`,
+        case1ResultText: "At the Center's request, the school ceased using Google Forms and deleted all collected personal data.",
+        
+        // Reminder Block
+        reminderTitle: `<i class="fas fa-globe"></i> Important Reminder about Foreign Services`,
+        reminderText: "Popular foreign services (Google, Viber, Telegram, WhatsApp) store information worldwide, including in countries where the level of personal data protection is not guaranteed.",
+        
+        // CTA
+        toQuizText: "Check how well you have learned the lesson!",
+        btnToQuiz: "Go to quiz",
+
+        // Footer
+        footerDesc: "Republican Information and Practical Resource for Teachers and Students",
+        footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
+        footerDisclaimer1: "The resource does not use cookies and does not collect personal data of users.",
+        footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus.",
+      }
+    };
+
+    // Helper function to update text content (handling inner HTML for rich text)
+    function updateText(selector, text, isHtml = true) {
+      const el = document.querySelector(selector);
+      if (el && text !== undefined && text !== null) { 
+          if (isHtml) {
+              el.innerHTML = text;
+          } else {
+              el.textContent = text;
+          }
+      } else if (el) {
+          el.textContent = ''; 
+      }
+    }
+
+    // Function to update all text based on language
+    function updateLanguage(langCode) {
+      const t = translations[langCode];
+      if (!t) return;
+      currentLang = langCode;
+      
+      // Update global static text elements (mostly textContent)
+      updateText('#pageTitle', t.pageTitle, false);
+      updateText('#logoText', t.logoText, false);
+      updateText('#mobileLogoText', t.logoText, false);
+      updateText('#footerLogoText', t.logoText, false);
+
+      // Navigation & Role/Lang Selectors
+      updateText('#navHome span', t.navHome, false);
+      updateText('#mobileNavHome span', t.navHome, false);
+      updateText('#navTheory span', t.navTheory, false);
+      updateText('#mobileNavTheory span', t.navTheory, false);
+      updateText('#navPractice span', t.navPractice, false);
+      updateText('#mobileNavPractice span', t.navPractice, false);
+      updateText('#navQuiz span', t.navQuiz, false);
+      updateText('#mobileNavQuiz span', t.navQuiz, false);
+      updateText('#navComplaint span', t.navComplaint, false);
+      updateText('#mobileNavComplaint span', t.navComplaint, false);
+      
+      // Role & Language Selectors Labels
+      updateText('#mobileLangLabel', t.langLabel, false); 
+
+
+      // Hero
+      updateText('#heroTitle', t.heroTitle, false);
+      updateText('#heroSubtitle', t.heroSubtitle, false);
+      updateText('#casesTitle', t.casesTitle, false);
+      
+      // Case 1 Content (using innerHTML for tags like <i> and <a>)
+      updateText('#case1Title', t.case1Title, true);
+      updateText('#case1SummaryTitle', t.case1SummaryTitle, true);
+      updateText('#case1Summary', t.case1Summary, false);
+      updateText('#case1IssueTitle', t.case1IssueTitle, true);
+      updateText('#case1Issue1', t.case1Issue1, false);
+      updateText('#case1Issue2', t.case1Issue2, false);
+      updateText('#case1Issue3', t.case1Issue3, false);
+      updateText('#case1ViolationTitle', t.case1ViolationTitle, true);
+      updateText('#case1ViolationText', t.case1ViolationText, true); // Contains <a> and <strong>
+      updateText('#case1ResultTitle', t.case1ResultTitle, true);
+      updateText('#case1ResultText', t.case1ResultText, false);
+
+      // Reminder Block
+      updateText('#reminderTitle', t.reminderTitle, true);
+      updateText('#reminderText', t.reminderText, false);
+      
+      // CTA
+      updateText('#toQuizText', t.toQuizText, false);
+      updateText('#btnToQuiz', t.btnToQuiz, false);
+
+      // Footer
+      updateText('#footerDesc', t.footerDesc, false);
+      updateText('#footerCopyright', t.footerCopyright, false);
+      updateText('#footerDisclaimer1', t.footerDisclaimer1, false);
+      updateText('#footerDisclaimer2', t.footerDisclaimer2, false);
+
+      document.documentElement.lang = langCode;
+      syncLanguageSelectors(langCode);
+    }
+    
+    // Sync language selectors
+    function syncLanguageSelectors(lang) {
+      const desktopSelector = document.getElementById('languageSelector');
+      const mobileSelector = document.getElementById('mobileLanguageSelector');
+      if (desktopSelector) desktopSelector.value = lang;
+      if (mobileSelector) mobileSelector.value = lang;
+    }
+
+    // Language change handlers
+    document.getElementById('languageSelector').addEventListener('change', (e) => {
+      localStorage.setItem('appLang', e.target.value);
+      updateLanguage(e.target.value);
+    });
+
+    document.getElementById('mobileLanguageSelector').addEventListener('change', (e) => {
+      localStorage.setItem('appLang', e.target.value);
+      updateLanguage(e.target.value);
+    });
+    
+    
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    // Close mobile menu when clicking on a nav link
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
+    });
+
+    // Initial load
+    document.addEventListener('DOMContentLoaded', () => {
+      // 1. Check for saved preferences or default to 'ru' and 'teacher'
+      const savedLang = localStorage.getItem('appLang') || 'ru';
+      
+      // 2. Set current state
+      currentLang = savedLang;
+
+      // 3. Update all UI
+      updateLanguage(currentLang);
+    });
+  </script>
+</body>
+</html>

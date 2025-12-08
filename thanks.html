@@ -1,0 +1,283 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
+
+    ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <title>Спасибо — EduSafe</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --blue-100: #dbeafe;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom, #f8fafc, #eef2ff);
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+    .container {
+      width: 100%;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--blue-900);
+    }
+    .logo i {
+      background: var(--blue-900);
+      color: var(--white);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: background 0.2s;
+    }
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+    /* Hero */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-900), #1e40af);
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+    .hero h1 {
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1rem;
+    }
+    .hero p {
+      font-size: 1.125rem;
+      max-width: 700px;
+      margin: 0 auto 2rem;
+      opacity: 0.95;
+    }
+    /* Sections */
+    .section {
+      padding: 3rem 0;
+    }
+    .section-title {
+      text-align: center;
+      font-size: 2rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--blue-900);
+    }
+    /* Message Box */
+    .message-box {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 3rem 2rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      margin: 2rem 0;
+    }
+    .message-icon {
+      font-size: 4rem;
+      color: var(--blue-700);
+      margin-bottom: 1.5rem;
+    }
+    .message-text {
+      font-size: 1.25rem;
+      margin-bottom: 1.5rem;
+    }
+    .message-details {
+      background: var(--blue-100);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin-top: 1.5rem;
+      text-align: left;
+    }
+    .message-details p {
+      margin-bottom: 0.75rem;
+    }
+    .btn {
+      display: inline-block;
+      background: var(--blue-700);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.2);
+    }
+    .btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+    }
+    .btn-full {
+      width: 100%;
+      padding: 1rem;
+      font-size: 1.125rem;
+      margin-top: 1rem;
+    }
+    /* Footer */
+    footer {
+      background: var(--gray-900);
+      color: #9ca3af;
+      padding: 3rem 0 1.5rem;
+      margin-top: 3rem;
+    }
+    .footer-content { text-align: center; }
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+    .footer-logo i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 1.5rem auto 0;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+    }
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 1.75rem; }
+      .section { padding: 2rem 0; }
+    }
+  </style>
+</head>
+<body>
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span>EduSafe</span>
+        </div>
+        <div class="nav">
+          <a href="index.html"><i class="fas fa-home"></i> Главная</a>
+          <a href="theory.html"><i class="fas fa-book-open"></i> Теория</a>
+          <a href="practice.html"><i class="fas fa-lightbulb"></i> Практика</a>
+          <a href="quiz.html"><i class="fas fa-graduation-cap"></i> Викторина</a>
+          <a href="contact.html"><i class="fas fa-exclamation-triangle"></i> Жалоба</a>
+        </div>
+      </div>
+    </div>
+  </header>
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1>Спасибо за ваше обращение</h1>
+      <p>Мы ценим ваше мнение</p>
+    </div>
+  </section>
+  <!-- Content -->
+  <section class="section">
+    <div class="container">
+      <div class="message-box">
+        <div class="message-icon">
+          <i class="fas fa-check-circle"></i>
+        </div>
+        <h2 class="section-title" style="border: none; text-align: center;">Спасибо!</h2>
+        <p class="message-text">
+          Ваша форма успешно отправлена.
+        </p>
+        <div class="message-details">
+          <p><strong>Ваше обращение зарегистрировано.</strong></p>
+          <p>Мы рассмотрим ваш вопрос и ответим на указанную почту <strong>в течение 5 рабочих дней</strong>.</p>
+          <p>Пожалуйста, проверьте папку "Спам", если не получите письмо.</p>
+        </div>
+        <a href="index.html" class="btn btn-full" style="margin-top: 2rem;">Вернуться на главную</a>
+      </div>
+    </div>
+  </section>
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span>EduSafe</span>
+        </div>
+        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
+        <!-- <p>В рамках республиканского проекта «100 идей для Беларуси»</p> -->
+      </div>
+      <div class="disclaimer">
+        Ресурс не использует cookies и не собирает персональные данные пользователей.<br>
+        Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.
+      </div>
+    </div>
+  </footer>
+</body>
+</html>
+

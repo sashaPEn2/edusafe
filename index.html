@@ -1,0 +1,804 @@
+<!DOCTYPE html>
+<html lang="ru" id="htmlRoot">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="yandex-verification" content="69abadfebc34ecd7" />
+  <meta name="yandex-verification" content="ef14218d41c903e8" />
+  <meta name="description" content="Интерактивный портал EduSafe: теория, практика и викторина по защите персональных данных студентов и учащихся.">
+  <meta name="keywords" content="цифровая безопасность, персональные данные, студенты, учащиеся, EduSafe, Беларусь">
+  <title>EduSafe — Республиканский ресурс по защите персональных данных в образовании</title>
+  <!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
+
+    ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
+  
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --blue-100: #dbeafe;
+      --gray-50: #f9fafb;
+      --gray-100: #f3f4f6;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: linear-gradient(to bottom, #f8fafc, #eef2ff);
+      color: var(--gray-900);
+      line-height: 1.6;
+    }
+
+    .container {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 0 1.5rem;
+    }
+
+    /* Header */
+    header {
+      background: var(--white);
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1rem 0;
+    }
+
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--blue-900);
+      z-index: 2;
+    }
+
+    .logo i {
+      background: var(--blue-900);
+      color: var(--white);
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    /* Nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Desktop nav */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-selector select {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background-color: var(--white);
+      color: var(--gray-900);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 101;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    .mobile-nav a i {
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    /* Sections (unchanged) */
+    .hero {
+      background: linear-gradient(135deg, var(--blue-900), #1e40af);
+      color: var(--white);
+      padding: 4rem 0;
+      text-align: center;
+    }
+
+    .hero h1 {
+      font-size: 2.5rem;
+      font-weight: 800;
+      max-width: 800px;
+      margin: 0 auto 1.5rem;
+      line-height: 1.3;
+    }
+
+    .hero p {
+      font-size: 1.25rem;
+      max-width: 700px;
+      margin: 0 auto 2.5rem;
+      opacity: 0.95;
+    }
+
+    .hero-note {
+      background: rgba(255,255,255,0.15);
+      display: inline-block;
+      padding: 0.5rem 1.5rem;
+      border-radius: 9999px;
+      font-size: 0.95rem;
+      margin-top: 1rem;
+    }
+
+    .section {
+      padding: 5rem 0;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 2.25rem;
+      font-weight: 800;
+      margin-bottom: 1.5rem;
+      color: var(--blue-900);
+    }
+
+    .section-subtitle {
+      text-align: center;
+      max-width: 700px;
+      margin: 0 auto 3rem;
+      font-size: 1.125rem;
+      color: var(--gray-600);
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+    }
+
+    .card {
+      background: var(--white);
+      border-radius: 1rem;
+      padding: 2.25rem;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      text-align: center;
+      transition: transform 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.08);
+    }
+
+    .card-icon {
+      width: 4.5rem;
+      height: 4.5rem;
+      background: var(--blue-100);
+      border-radius: 1.25rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 1.5rem;
+      color: var(--blue-700);
+      font-size: 1.75rem;
+    }
+
+    .card h3 {
+      font-size: 1.5rem;
+      margin-bottom: 1rem;
+      color: var(--gray-900);
+    }
+
+    .card p {
+      color: var(--gray-600);
+      margin-bottom: 1.5rem;
+    }
+
+    .btn {
+      display: inline-block;
+      background: var(--blue-700);
+      color: var(--white);
+      font-weight: 600;
+      padding: 0.875rem 2rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.2);
+    }
+
+    .btn:hover {
+      background: #1e40af;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+    }
+
+    .value-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 1.5rem;
+      margin-top: 2rem;
+    }
+
+    .value-item {
+      display: flex;
+      gap: 1rem;
+      align-items: flex-start;
+    }
+
+    .value-item i {
+      color: var(--blue-700);
+      font-size: 1.25rem;
+      margin-top: 0.25rem;
+    }
+
+    .cta {
+      background: linear-gradient(135deg, var(--blue-900), #1e40af);
+      color: var(--white);
+      text-align: center;
+      padding: 5rem 1.5rem;
+    }
+
+    footer {
+      background: var(--gray-900);
+      color: #9ca3af;
+      padding: 3rem 0 1.5rem;
+    }
+
+    .footer-content {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--white);
+      margin-bottom: 1rem;
+    }
+
+    .footer-logo i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .disclaimer {
+      font-size: 0.8rem;
+      max-width: 700px;
+      margin: 0 auto;
+      padding-top: 1.5rem;
+      border-top: 1px solid #374151;
+    }
+
+    /* Responsive */
+    @media (max-width: 768px) {
+      .nav-toggle {
+        display: block;
+      }
+
+      .nav-container {
+        display: none;
+      }
+
+      .hero h1 { font-size: 2rem; }
+      .section { padding: 3rem 0; }
+      .section-title { font-size: 1.75rem; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <div class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="logoText">EduSafe</span>
+        </div>
+
+        <button class="nav-toggle" id="navToggle">
+          <i class="fas fa-bars"></i>
+        </button>
+
+        <div class="nav-container">
+          <div class="lang-selector">
+            <select id="languageSelector">
+              <option value="ru">Русский</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+          <nav class="nav">
+            <a href="index.html" class="active" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+            <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+            <a href="practice.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+            <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+          </nav>
+        </div>
+      </div>
+    </div>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+      <div class="mobile-menu-content">
+        <div class="mobile-header">
+          <div class="logo" style="font-size: 1.25rem;">
+            <i class="fas fa-shield-alt"></i>
+            <span id="mobileLogoText">EduSafe</span>
+          </div>
+          <button class="close-btn" id="closeMenu">
+            <i class="fas fa-times"></i>
+          </button>
+        </div>
+        <div class="lang-selector" style="margin-bottom: 1.5rem;">
+          <select id="mobileLanguageSelector">
+            <option value="ru">Русский</option>
+            <option value="en">English</option>
+          </select>
+        </div>
+        <nav class="mobile-nav">
+          <a href="index.html" class="active" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+          <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+          <a href="practice.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+          <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+          <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <div class="container">
+      <h1 id="heroTitle">Республиканский ресурс по защите персональных данных в образовании</h1>
+      <p id="heroSubtitle">Единая платформа для педагогов и студентов Республики Беларусь — с актуальной правовой базой, практическими кейсами и инструментами цифровой ответственности.</p>
+      <div class="hero-note">
+        <i class="fas fa-info-circle"></i> <span id="heroNote">Соответствует Закону РБ № 99-З «О защите персональных данных»</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- What's Inside -->
+  <section class="section">
+    <div class="container">
+      <h2 class="section-title" id="whatsInsideTitle">Что вы найдёте на ресурсе</h2>
+      <p class="section-subtitle" id="whatsInsideSubtitle">Три взаимосвязанных модуля — от фундамента знаний до проверки компетенций</p>
+
+      <div class="cards">
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-book-open"></i>
+          </div>
+          <h3 id="card1Title">Теория</h3>
+          <p id="card1Text">Систематизированная правовая база: Закон № 99-З, типовые решения для сферы образования и разъяснения о применении законодательства о персональных данных от НАционального центра защиты персональных данных</p>
+          <a href="theory.html" class="btn" id="card1Btn">Перейти к теории</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-lightbulb"></i>
+          </div>
+          <h3 id="card2Title">Практика</h3>
+          <p id="card2Text">30 реальных ситуаций из жизни школ и вузов РБ: фотографии выпускников, Telegram-боты, рассылки, облачные журналы — с пошаговыми решениями и ссылками на закон.</p>
+          <a href="practice.html" class="btn" id="card2Btn">Перейти к практике</a>
+        </div>
+
+        <div class="card">
+          <div class="card-icon">
+            <i class="fas fa-graduation-cap"></i>
+          </div>
+          <h3 id="card3Title">Викторина</h3>
+          <p id="card3Text">Интерактивный тест по защите персональных данных. По результатам — рекомендации по изучению Закона.</p>
+          <a href="quiz.html" class="btn" id="card3Btn">Пройти викторину</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Value Proposition -->
+  <section class="section" style="background: var(--gray-50);">
+    <div class="container">
+      <div class="value-grid">
+        <div class="value-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong id="value1Title">Профилактика нарушений</strong> <span id="value1Text">— снижение риска административной ответственности по ст. 23.7 КоАП РБ.</span>
+          </div>
+        </div>
+        <div class="value-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong id="value2Title">Доверие к цифровым сервисам</strong> <span id="value2Text">— необходимое условие для внедрения онлайн-приёма, цифровых портфолио, ИИ-аналитики.</span>
+          </div>
+        </div>
+        <div class="value-item">
+          <i class="fas fa-check-circle"></i>
+          <div>
+            <strong id="value3Title">Формирование цифровой грамотности</strong> <span id="value3Text">— опыт для развития цифровой экономики Беларуси.</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta">
+    <div class="container">
+      <i class="fas fa-lock fa-3x" style="opacity: 0.7;"></i>
+      <h2 class="section-title" style="color: white; margin-top: 1.5rem;" id="ctaTitle">Готовы начать?</h2>
+      <p style="max-width: 600px; margin: 1.5rem auto 2.5rem; font-size: 1.125rem;" id="ctaSubtitle">
+        Выберите раздел и приступайте к обучению уже сегодня.
+      </p>
+      <div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1rem;">
+        <a href="theory.html" class="btn" style="background: white; color: var(--blue-900);" id="ctaBtn1">
+          <i class="fas fa-book-open"></i> <span id="ctaBtn1Text">Теория</span>
+        </a>
+        <a href="practice.html" class="btn" id="ctaBtn2">
+          <i class="fas fa-lightbulb"></i> <span id="ctaBtn2Text">Практика</span>
+        </a>
+        <a href="quiz.html" class="btn" style="background: #10b981;" id="ctaBtn3">
+          <i class="fas fa-graduation-cap"></i> <span id="ctaBtn3Text">Викторина</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer>
+    <div class="container">
+      <div class="footer-content">
+        <div class="footer-logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="footerLogoText">EduSafe</span>
+        </div>
+        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p style="margin-top: 0.5rem;" id="footerCopyright">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
+      </div>
+      <div class="disclaimer">
+        <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
+        <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Translations
+    const translations = {
+      ru: {
+        logoText: "EduSafe",
+        navHome: "Главная",
+        navTheory: "Теория",
+        navPractice: "Практика",
+        navQuiz: "Викторина",
+        navComplaint: "Жалоба",
+        heroTitle: "Республиканский ресурс по защите персональных данных в образовании",
+        heroSubtitle: "Единая платформа для педагогов и студентов Республики Беларусь — с актуальной правовой базой, практическими кейсами и инструментами цифровой ответственности.",
+        heroNote: "Соответствует Закону РБ № 99-З «О защите персональных данных»",
+        whatsInsideTitle: "Что вы найдёте на ресурсе",
+        whatsInsideSubtitle: "Три взаимосвязанных модуля — от фундамента знаний до проверки компетенций",
+        card1Title: "Теория",
+        card1Text: "Систематизированная правовая база: Закон № 99-З, типовые решения для сферы образования и разъяснения о применении законодательства о персональных данных от НАционального центра защиты персональных данных",
+        card1Btn: "Перейти к теории",
+        card2Title: "Практика",
+        card2Text: "30 реальных ситуаций из жизни школ и вузов РБ: фотографии выпускников, Telegram-боты, рассылки, облачные журналы — с пошаговыми решениями и ссылками на закон.",
+        card2Btn: "Перейти к практике",
+        card3Title: "Викторина",
+        card3Text: "Интерактивный тест по защите персональных данныъ. По результатам — рекомендации по изучению Закона.",
+        card3Btn: "Пройти викторину",
+        value1Title: "Профилактика нарушений",
+        value1Text: "— снижение риска административной ответственности по ст. 23.7 КоАП РБ.",
+        value2Title: "Доверие к цифровым сервисам",
+        value2Text: "— необходимое условие для внедрения онлайн-приёма, цифровых портфолио, ИИ-аналитики.",
+        value3Title: "Формирование цифровой грамотности",
+        value3Text: "— опыт для развития цифровой экономики Беларуси.",
+        ctaTitle: "Готовы начать?",
+        ctaSubtitle: "Выберите раздел и приступайте к обучению уже сегодня.",
+        ctaBtn1Text: "Теория",
+        ctaBtn2Text: "Практика",
+        ctaBtn3Text: "Викторина",
+        footerLogoText: "EduSafe",
+        footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
+        footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»",
+        footerDisclaimer1: "Ресурс не собирает персональные данные пользователей.",
+        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь."
+      },
+      en: {
+        logoText: "EduSafe",
+        navHome: "Home",
+        navTheory: "Theory",
+        navPractice: "Practice",
+        navQuiz: "Quiz",
+        navComplaint: "Complaint",
+        heroTitle: "Republican Resource on Personal Data Protection in Education",
+        heroSubtitle: "A unified platform for teachers and students of the Republic of Belarus — with up-to-date legal base, practical cases, and digital responsibility tools.",
+        heroNote: "Complies with the Law of the Republic of Belarus No. 99-Z 'On Personal Data Protection'",
+        whatsInsideTitle: "What you will find on the resource",
+        whatsInsideSubtitle: "Three interconnected modules — from the foundation of knowledge to competency assessment",
+        card1Title: "Theory",
+        card1Text: "Systematized legal base: Law No. 99-Z, typical solutions for the education sector, and clarifications on the application of personal data protection legislation from the National Center for Personal Data Protection",
+        card1Btn: "Go to Theory",
+        card2Title: "Practice",
+        card2Text: "30 real-life situations from schools and universities in the Republic of Belarus: graduate photos, Telegram bots, mailings, cloud journals — with step-by-step solutions and links to the law.",
+        card2Btn: "Go to Practice",
+        card3Title: "Quiz",
+        card3Text: "An interactive test on personal data protection. Upon completion — recommendations for studying the Law.",
+        card3Btn: "Take the Quiz",
+        value1Title: "Violation Prevention",
+        value1Text: "— reducing the risk of administrative liability under Article 23.7 of the Code of Administrative Offenses of the Republic of Belarus.",
+        value2Title: "Trust in Digital Services",
+        value2Text: "— a necessary condition for implementing online admission, digital portfolios, AI analytics.",
+        value3Title: "Digital Literacy Development",
+        value3Text: "— experience for the development of Belarus's digital economy.",
+        ctaTitle: "Ready to start?",
+        ctaSubtitle: "Choose a section and start learning today.",
+        ctaBtn1Text: "Theory",
+        ctaBtn2Text: "Practice",
+        ctaBtn3Text: "Quiz",
+        footerLogoText: "EduSafe",
+        footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
+        footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
+        footerDisclaimer1: "The resource does not collect personal data of users.",
+        footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus."
+      }
+    };
+
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    // Update text for both desktop and mobile
+    function updateText(selector, text) {
+      document.querySelectorAll(selector).forEach(el => {
+        el.textContent = text;
+      });
+    }
+
+    // Sync language selectors
+    function syncLanguageSelectors(lang) {
+      document.getElementById('languageSelector').value = lang;
+      document.getElementById('mobileLanguageSelector').value = lang;
+    }
+
+    function updateLanguage(langCode) {
+      const t = translations[langCode];
+      if (!t) return;
+
+      // Update all translatable elements
+      updateText('#logoText, #mobileLogoText, #footerLogoText', t.logoText);
+      updateText('#navHome span, #mobileNavHome span', t.navHome);
+      updateText('#navTheory span, #mobileNavTheory span', t.navTheory);
+      updateText('#navPractice span, #mobileNavPractice span', t.navPractice);
+      updateText('#navQuiz span, #mobileNavQuiz span', t.navQuiz);
+      updateText('#navComplaint span, #mobileNavComplaint span', t.navComplaint);
+
+      document.getElementById('heroTitle').textContent = t.heroTitle;
+      document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
+      document.getElementById('heroNote').textContent = t.heroNote;
+      document.getElementById('whatsInsideTitle').textContent = t.whatsInsideTitle;
+      document.getElementById('whatsInsideSubtitle').textContent = t.whatsInsideSubtitle;
+
+      document.getElementById('card1Title').textContent = t.card1Title;
+      document.getElementById('card1Text').textContent = t.card1Text;
+      document.getElementById('card1Btn').textContent = t.card1Btn;
+
+      document.getElementById('card2Title').textContent = t.card2Title;
+      document.getElementById('card2Text').textContent = t.card2Text;
+      document.getElementById('card2Btn').textContent = t.card2Btn;
+
+      document.getElementById('card3Title').textContent = t.card3Title;
+      document.getElementById('card3Text').textContent = t.card3Text;
+      document.getElementById('card3Btn').textContent = t.card3Btn;
+
+      document.getElementById('value1Title').textContent = t.value1Title;
+      document.getElementById('value1Text').textContent = t.value1Text;
+      document.getElementById('value2Title').textContent = t.value2Title;
+      document.getElementById('value2Text').textContent = t.value2Text;
+      document.getElementById('value3Title').textContent = t.value3Title;
+      document.getElementById('value3Text').textContent = t.value3Text;
+      document.getElementById('value4Title').textContent = t.value4Title;
+      document.getElementById('value4Text').textContent = t.value4Text;
+
+      document.getElementById('ctaTitle').textContent = t.ctaTitle;
+      document.getElementById('ctaSubtitle').textContent = t.ctaSubtitle;
+      document.getElementById('ctaBtn1Text').textContent = t.ctaBtn1Text;
+      document.getElementById('ctaBtn2Text').textContent = t.ctaBtn2Text;
+      document.getElementById('ctaBtn3Text').textContent = t.ctaBtn3Text;
+
+      document.getElementById('footerDesc').textContent = t.footerDesc;
+      document.getElementById('footerCopyright').textContent = t.footerCopyright;
+      document.getElementById('footerDisclaimer1').textContent = t.footerDisclaimer1;
+      document.getElementById('footerDisclaimer2').textContent = t.footerDisclaimer2;
+
+      document.documentElement.lang = langCode;
+      syncLanguageSelectors(langCode);
+    }
+
+    // Language change handlers
+    document.getElementById('languageSelector').addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+
+    document.getElementById('mobileLanguageSelector').addEventListener('change', (e) => {
+      updateLanguage(e.target.value);
+    });
+
+    // Close mobile menu on link click
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
+    });
+
+    // Initialize
+    updateLanguage('ru');
+  </script>
+</body>
+</html>
+

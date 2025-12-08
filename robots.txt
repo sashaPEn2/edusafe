@@ -1,0 +1,12 @@
+# Общие правила для всех поисковых систем
+User-agent: *
+Allow: /
+
+# Разрешение на индексацию основных разделов
+Allow: /theory/
+Allow: /practice/
+Allow: /quiz/
+Allow: /contact/
+
+# Указание карты сайта
+Sitemap: https://personaldatabelarus.online/sitemap.xml
