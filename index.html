@@ -21,7 +21,7 @@
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-<link rel="icon" href="./favicon.svg" type="image/svg+xml">    
+<link rel="icon" href="./favicon.svg" type="image/svg+xml">  
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <style>
     :root {
@@ -80,7 +80,28 @@
       color: var(--blue-900);
       z-index: 2;
     }
+.sdg-section { padding: 3rem 0; background: #fff; border-top: 1px solid var(--gray-100); text-align: center; }
+.sdg-container { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-top: 1.5rem; margin-bottom: 2rem; }
 
+.sdg-item { 
+  width: 90px; height: 90px; transition: all 0.3s ease; 
+  cursor: pointer; border-radius: 8px; border: 3px solid transparent; padding: 2px; 
+}
+.sdg-item:hover { transform: translateY(-5px); }
+.sdg-item.active { 
+  border-color: var(--blue-700); 
+  transform: scale(1.1); 
+  box-shadow: 0 4px 12px rgba(0,0,0,0.1); 
+}
+.sdg-item img { width: 100%; height: 100%; border-radius: 4px; object-fit: contain; }
+
+.sdg-description-box { 
+  max-width: 800px; margin: 0 auto; min-height: 80px; 
+  padding: 1.5rem; background: var(--gray-50); border-radius: 1rem; 
+  display: flex; align-items: center; justify-content: center; 
+  border: 1px dashed var(--blue-100); 
+}
+#sdgInfoText { font-size: 1.1rem; color: var(--gray-900); font-weight: 500; transition: opacity 0.3s ease; margin: 0; }
     .logo i {
       background: var(--blue-900);
       color: var(--white);
@@ -401,7 +422,25 @@
       color: var(--white);
       margin-bottom: 1rem;
     }
-
+ .footer-logo-bk {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--black);
+      margin-bottom: 1rem;
+    }
+    .footer-logo-bk i {
+      background: var(--blue-700);
+      width: 2.25rem;
+      height: 2.25rem;
+      border-radius: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
     .footer-logo i {
       background: var(--blue-700);
       width: 2.25rem;
@@ -593,7 +632,28 @@
       </div>
     </div>
   </section>
-
+<section class="sdg-section">
+  <div class="container">
+    <span class="sdg-title" id="sdgTitle">Мы поддерживаем Цели устойчивого развития ООН</span>
+    <div class="sdg-container">
+      <div class="logo">
+          <i class="fas fa-shield-alt"></i>
+          <span id="logoText">EduSafe</span>
+        </div>
+      <div class="sdg-item" onclick="showSdgInfo('sdg4', this)">
+        <img src="./4_quality_education.png" alt="ЦУР 4" id="imgSdg4">
+      </div>
+      <div class="sdg-item" onclick="showSdgInfo('sdg9', this)">
+        <img src="./9_industry_innovation_infrastructure.png" alt="ЦУР 9" id="imgSdg9">
+      </div>
+      <div class="sdg-item" onclick="showSdgInfo('sdg16', this)">
+        <img src="./16_peace_justice_strong_institutions.png" alt="ЦУР 16" id="imgSdg16">
+      </div>
+    <div class="sdg-description-box">
+      <p id="sdgInfoText">Нажмите на иконку цели, чтобы узнать, как наш ресурс способствует её достижению.</p>
+    </div>
+  </div>
+</section>
   <!-- Footer -->
   <footer>
     <div class="container">
@@ -646,18 +706,29 @@
         ctaSubtitle: "Выберите раздел и приступайте к обучению уже сегодня.",
         ctaBtn1Text: "Теория",
         ctaBtn2Text: "Практика",
+        sdgTitle: "Мы поддерживаем Цели устойчивого развития ООН",
+    sdgDefault: "Нажмите на иконку цели, чтобы узнать, как наш ресурс способствует её достижению.",
+    sdg4Info: "ЦУР 4 (Качественное образование): Мы обеспечиваем открытый доступ к знаниям о цифровой безопасности для всех участников образовательного процесса.",
+    sdg9Info: "ЦУР 9 (Инновации): Ресурс способствует безопасному внедрению ИТ-решений в образовании, минимизируя риски утечек данных.",
+    sdg16Info: "ЦУР 16 (Правосудие): Формирование правовой культуры и защита прав граждан в цифровой среде — основа сильных институтов.",
         ctaBtn3Text: "Викторина",
         footerLogoText: "EduSafe",
         footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
         footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»",
         footerDisclaimer1: "Ресурс не собирает персональные данные пользователей.",
-        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь."
+        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.",
+        sdgTitle: "Мы поддерживаем Цели устойчивого развития ООН"
       },
       en: {
         logoText: "EduSafe",
         navHome: "Home",
         navTheory: "Theory",
         navPractice: "Practice",
+        sdgTitle: "We support the UN Sustainable Development Goals",
+    sdgDefault: "Click on a goal icon to see how our resource contributes to its achievement.",
+    sdg4Info: "SDG 4 (Quality Education): We provide open access to digital security knowledge for all educational participants.",
+    sdg9Info: "SDG 9 (Innovation): The resource promotes safe IT integration in education by minimizing data risks.",
+    sdg16Info: "SDG 16 (Justice): Building legal culture and protecting rights in the digital world is key to strong institutions.",
         navQuiz: "Quiz",
         navComplaint: "Complaint",
         heroTitle: "Republican Resource on Personal Data Protection in Education",
@@ -685,6 +756,7 @@
         ctaBtn1Text: "Theory",
         ctaBtn2Text: "Practice",
         ctaBtn3Text: "Quiz",
+        sdgTitle: "We support the UN Sustainable Development Goals",
         footerLogoText: "EduSafe",
         footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
         footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
@@ -692,7 +764,7 @@
         footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus."
       }
     };
-
+let currentLang = 'ru';
     // Mobile menu toggle
     const navToggle = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -726,7 +798,23 @@
       document.getElementById('languageSelector').value = lang;
       document.getElementById('mobileLanguageSelector').value = lang;
     }
-
+ function showSdgInfo(goal, element) {
+  const infoText = document.getElementById('sdgInfoText');
+  const t = translations[currentLang];
+  
+  // Убираем подсветку у всех и добавляем нажатой
+  document.querySelectorAll('.sdg-item').forEach(el => el.classList.remove('active'));
+  element.classList.add('active');
+  
+  // Плавно меняем текст
+  infoText.style.opacity = 0;
+  setTimeout(() => {
+    if (goal === 'sdg4') infoText.textContent = t.sdg4Info;
+    else if (goal === 'sdg9') infoText.textContent = t.sdg9Info;
+    else if (goal === 'sdg16') infoText.textContent = t.sdg16Info;
+    infoText.style.opacity = 1;
+  }, 200);
+}
     function updateLanguage(langCode) {
       const t = translations[langCode];
       if (!t) return;
