@@ -604,7 +604,13 @@
 
         <div class="nav-container">
           <div style="display: flex; gap: 1rem;">
-              
+              <div class="role-selector">
+                <label for="roleSelector" id="roleLabel">Моя роль:</label>
+                <select id="roleSelector">
+                  <option value="teacher" id="roleTeacherOpt">Преподаватель</option>
+                  <option value="student" id="roleStudentOpt">Студент</option>
+                </select>
+              </div>
               <div class="lang-selector">
                 <select id="languageSelector">
                   <option value="ru">Русский</option>
