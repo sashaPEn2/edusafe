@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Блог EduSafe — Защита данных</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+
+  <style>
+    :root {
+      --blue-900: #1e3a8a;
+      --blue-700: #1d4ed8;
+      --gray-50: #f9fafb;
+      --gray-600: #4b5563;
+      --gray-900: #111827;
+      --white: #ffffff;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      background: var(--gray-50);
+      color: var(--gray-900);
+      line-height: 1.6;
+      margin: 0;
+    }
+
+    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Header */
+    header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
+    .header-content { display: flex; justify-content: space-between; align-items: center; }
+    .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.5rem; color: var(--blue-900); text-decoration: none; }
+    .logo i { background: var(--blue-900); color: var(--white); width: 2.2rem; height: 2.2rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+
+    /* Hero */
+    .blog-hero { background: linear-gradient(135deg, var(--blue-900), #1e40af); color: var(--white); padding: 4rem 0; text-align: center; margin-bottom: 3rem; }
+    
+    /* Posts */
+    .loading { text-align: center; padding: 2rem; color: var(--gray-600); }
+    .post-card { background: var(--white); border-radius: 1rem; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #f3f4f6; }
+    .post-meta { font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.5rem; display: flex; gap: 1rem; }
+    .post-title { color: var(--blue-900); font-size: 1.75rem; margin-bottom: 1rem; margin-top: 0; }
+    .post-content { font-size: 1.05rem; }
+    .post-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
+
+    /* Комментарии */
+    #disqus_thread { margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem; }
+  </style>
+</head>
+<body>
+
+  <header>
+    <div class="container">
+      <div class="header-content">
+        <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i><span>EduSafe</span></a>
+        <nav>
+          <a href="index.html" style="text-decoration: none; color: var(--gray-600);">На главную</a>
+          <a href="https://app.contentful.com/" target="_blank" style="margin-left:15px; text-decoration: none; color: var(--blue-700); font-size: 0.9em;">
+            <i class="fas fa-lock"></i> Вход для автора
+          </a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <section class="blog-hero">
+    <div class="container">
+      <h1>Блог EduSafe</h1>
+      <p>Статьи загружаются напрямую из защищенного облака</p>
+    </div>
+  </section>
+
+  <main class="container" id="blog-container">
+    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка статей...</div>
+  </main>
+
+  <div class="container" style="margin-bottom: 3rem;">
+     <div class="post-card">
+        <h3 style="color: var(--blue-900);">Обсуждение</h3>
+        <p style="font-size: 0.9rem; color: gray;">Выберите статью выше, чтобы читать полностью, или оставьте общий комментарий здесь.</p>
+        <div id="disqus_thread"></div>
+     </div>
+  </div>
+
+  <script>
+    // --- НАСТРОЙКИ ---
+    const SPACE_ID = 'r6g09taz57g1'; 
+    const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk'; 
+    // -----------------
+
+    const client = contentful.createClient({
+      space: SPACE_ID,
+      accessToken: ACCESS_TOKEN
+    });
+
+    const container = document.getElementById('blog-container');
+
+    // Функция получения данных
+    client.getEntries({
+      content_type: 'blogPost', // Это ID модели, которую мы создали в шаге 1
+      order: '-fields.date'     // Сортировка: новые сверху
+    })
+    .then((response) => {
+      if (response.items.length === 0) {
+        container.innerHTML = '<p class="loading">Статей пока нет.</p>';
+        return;
+      }
+
+      container.innerHTML = response.items.map(item => {
+        const title = item.fields.title;
+        // Превращаем Markdown текст в HTML (если в Contentful пишешь просто текст, тоже сработает)
+        const content = marked.parse(item.fields.content || '');
+        const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+        
+        return `
+          <article class="post-card">
+            <div class="post-meta">
+              <span><i class="far fa-calendar"></i> ${date}</span>
+            </div>
+            <h2 class="post-title">${title}</h2>
+            <div class="post-content">${content}</div>
+          </article>
+        `;
+      }).join('');
+    })
+    .catch((error) => {
+      console.error(error);
+      container.innerHTML = `<p class="loading" style="color:red">Ошибка загрузки: Проверьте API ключи в коде.<br><small>${error}</small></p>`;
+    });
+
+    // --- DISQUS КОММЕНТАРИИ ---
+    // (Для работы создай аккаунт на Disqus.com и замени 'edusafe-demo' на свой shortname)
+    var disqus_config = function () {
+      this.page.url = window.location.href;  
+      this.page.identifier = window.location.pathname; 
+    };
+    (function() { 
+      var d = document, s = d.createElement('script');
+      s.src = 'https://edusafe-test.disqus.com/embed.js'; // Можешь заменить на свой Disqus URL
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
+    })();
+  </script>
+
+</body>
+</html>
