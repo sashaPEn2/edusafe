@@ -7,7 +7,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-
+<script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@latest/dist/rich-text-html-renderer.browser.min.js"></script>
   <style>
     :root {
       --blue-900: #1e3a8a;
@@ -205,20 +205,30 @@
         const title = item.fields.title || 'Без названия';
         const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
         
-        // --- БЕЗОПАСНАЯ ОБРАБОТКА КОНТЕНТА ---
-        let contentHtml = '';
-        let rawContent = item.fields.content;
+       // --- УНИВЕРСАЛЬНАЯ ОБРАБОТКА КОНТЕНТА (Markdown + Rich Text) ---
+let contentHtml = '';
+let rawContent = item.fields.content;
 
-        if (typeof rawContent === 'string') {
-            contentHtml = marked.parse(rawContent);
-        } else {
-            contentHtml = '<p style="color:red;">Внимание: Вы используете формат Rich Text. Для корректного отображения переключите поле на "Long Text" в настройках Contentful или используйте специальный рендерер.</p>';
+if (typeof rawContent === 'string') {
+    // Если в настройках Contentful выбран "Long Text" (Markdown)
+    contentHtml = marked.parse(rawContent);
+} 
+else if (typeof rawContent === 'object' && rawContent !== null) {
+    // Если выбран "Rich Text"
+    // Используем глобальную функцию из подключенной библиотеки
+    const { documentToHtmlString } = contentfulRichTextHtmlRenderer;
+    
+    // Настройки для рендеринга (например, чтобы картинки внутри текста тоже отображались)
+    const options = {
+        renderNode: {
+            'embedded-asset-block': (node) => {
+                const { file, title } = node.data.target.fields;
+                return `<img src="https:${file.url}" alt="${title}" style="max-width:100%; border-radius:8px;" />`;
+            }
         }
-
-        let imageHtml = '';
-        if (item.fields.image && item.fields.image.fields && item.fields.image.fields.file) {
-            imageHtml = `<img src="https:${item.fields.image.fields.file.url}" alt="${title}" style="width:100%; max-height:500px; object-fit:cover;">`;
-        }
+    };
+    contentHtml = documentToHtmlString(rawContent, options);
+}
 
         appContainer.innerHTML = `
           <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к статьям</a>
