@@ -7,7 +7,11 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@latest/dist/rich-text-html-renderer.browser.min.js"></script>
+<script 
+  src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@15.12.1/dist/rich-text-html-renderer.browser.min.js" 
+  crossorigin="anonymous"
+  onerror="alert('Критическая ошибка: Браузер блокирует компоненты текста. Попробуйте отключить блокировщики рекламы.')">
+</script>
   <style>
     :root {
       --blue-900: #1e3a8a;
@@ -191,22 +195,38 @@
       .then((item) => {
         const title = item.fields.title || 'Без названия';
         const date = item.fields.date ? new Date(item.fields.date).toLocaleDateString('ru-RU') : '';
-        const rawContent = item.fields.content;
-        let contentHtml = '';
+        // --- УНИВЕРСАЛЬНЫЙ РЕНДЕРЕР КОНТЕНТА ---
+let contentHtml = '';
+const rawContent = item.fields.content;
 
-        if (typeof rawContent === 'string') {
-            contentHtml = marked.parse(rawContent);
-        } else if (rawContent && rawContent.nodeType === 'document') {
-            const { documentToHtmlString } = contentfulRichTextHtmlRenderer;
-            contentHtml = documentToHtmlString(rawContent, {
-                renderNode: {
-                    'embedded-asset-block': (node) => {
+if (typeof rawContent === 'string') {
+    contentHtml = marked.parse(rawContent);
+} else if (rawContent && rawContent.nodeType === 'document') {
+    // Пытаемся найти библиотеку в разных возможных местах
+    const renderer = window.contentfulRichTextHtmlRenderer || 
+                     (window.ContentfulRichTextHtmlRenderer ? window.ContentfulRichTextHtmlRenderer : null);
+
+    if (renderer && renderer.documentToHtmlString) {
+        contentHtml = renderer.documentToHtmlString(rawContent, {
+            renderNode: {
+                'embedded-asset-block': (node) => {
+                    if (node.data.target.fields) {
                         const { file, title } = node.data.target.fields;
                         return `<img src="https:${file.url}" alt="${title}" style="max-width:100%; border-radius:8px;" />`;
                     }
+                    return '';
                 }
-            });
-        }
+            }
+        });
+    } else {
+        // Если библиотека так и не загрузилась, выводим текст как есть (plain text)
+        console.error("Библиотека Rich Text не найдена в window");
+        contentHtml = "<div style='background:#fff3cd; padding:15px; border-radius:8px; border:1px solid #ffeeba;'>" +
+                      "<strong>Внимание:</strong> Содержимое отображено в упрощенном виде, так как ваш браузер заблокировал модуль оформления. " +
+                      "<br><br>" + 
+                      JSON.stringify(rawContent.content[0].content[0].value) + "</div>";
+    }
+}
 
         let imageHtml = '';
         if (item.fields.image && item.fields.image.fields && item.fields.image.fields.file) {
