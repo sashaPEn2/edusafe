@@ -115,14 +115,12 @@
     // --- ВАШИ КЛЮЧИ CONTENTFUL ---
     const SPACE_ID = 'r6g09taz57g1';
     const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
-    // -----------------------------
 
     const client = contentful.createClient({ space: SPACE_ID, accessToken: ACCESS_TOKEN });
     const appContainer = document.getElementById('app-container');
     const heroSection = document.getElementById('heroSection');
     const commentsSection = document.getElementById('comments-section');
 
-    // Функция инициализации
     function init() {
       const urlParams = new URLSearchParams(window.location.search);
       const postId = urlParams.get('id');
@@ -134,144 +132,116 @@
       }
     }
 
-   // 1. ЗАГРУЗКА СПИСКА (Лента с карточками)
     function loadPostList() {
       heroSection.style.display = 'block';
       commentsSection.style.display = 'none';
 
+      // ВНИМАНИЕ: проверьте, что blogPost совпадает с ID в Contentful
       client.getEntries({ content_type: 'blogPost', order: '-fields.date' })
       .then((response) => {
         if (!response.items.length) {
-          appContainer.innerHTML = '<p class="loading">Статей пока нет.</p>';
+          appContainer.innerHTML = '<p class="loading">Статей не найдено. Проверьте статус Published в Contentful.</p>';
           return;
         }
 
         let html = '<div class="posts-grid">';
-        
         response.items.forEach(item => {
           const title = item.fields.title || 'Без названия';
-          const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+          const date = item.fields.date ? new Date(item.fields.date).toLocaleDateString('ru-RU') : '';
           const id = item.sys.id;
           
-          // --- БЕЗОПАСНОЕ ПРЕВЬЮ ДЛЯ СПИСКА ---
-let rawContent = item.fields.content;
-let excerpt = '';
+          let excerpt = 'Нажмите, чтобы прочитать...';
+          const rawContent = item.fields.content;
+          
+          if (typeof rawContent === 'string') {
+              excerpt = rawContent.substring(0, 100) + '...';
+          } else if (rawContent && rawContent.nodeType === 'document') {
+              try { excerpt = rawContent.content[0].content[0].value.substring(0, 100) + '...'; } catch(e){}
+          }
 
-if (typeof rawContent === 'string') {
-    excerpt = rawContent.substring(0, 120) + '...';
-} 
-else if (typeof rawContent === 'object' && rawContent !== null) {
-    try {
-        // Пытаемся найти первый текстовый узел в структуре Rich Text
-        const firstParagraph = rawContent.content.find(node => node.nodeType === 'paragraph');
-        const text = firstParagraph.content[0].value;
-        excerpt = text.substring(0, 120) + '...';
-    } catch (e) {
-        excerpt = 'Нажмите, чтобы прочитать полностью...';
-    }
-}
-
-          // Картинка
           let imageUrl = 'https://via.placeholder.com/400x200?text=EduSafe';
           if (item.fields.image && item.fields.image.fields && item.fields.image.fields.file) {
-            imageUrl = 'https:' + item.fields.image.fields.file.url; // Добавляем https:
+            imageUrl = 'https:' + item.fields.image.fields.file.url;
           }
 
           html += `
             <div class="post-card" onclick="window.location.href='?id=${id}'">
-              <img src="${imageUrl}" alt="${title}" class="card-image">
+              <img src="${imageUrl}" class="card-image">
               <div class="card-content">
                 <div class="card-date">${date}</div>
                 <h3 class="card-title">${title}</h3>
                 <div class="card-excerpt">${excerpt}</div>
                 <span class="read-more">Читать далее &rarr;</span>
               </div>
-            </div>
-          `;
+            </div>`;
         });
-
         html += '</div>';
         appContainer.innerHTML = html;
       })
       .catch(err => {
-          console.error(err);
-          appContainer.innerHTML = '<p class="loading">Ошибка загрузки списка.</p>';
+        console.error("Ошибка списка:", err);
+        appContainer.innerHTML = `<p class="loading">Ошибка API: ${err.message}</p>`;
       });
     }
 
-    // 2. ЗАГРУЗКА ОДНОЙ СТАТЬИ
     function loadSinglePost(id) {
       heroSection.style.display = 'none';
       
       client.getEntry(id)
       .then((item) => {
         const title = item.fields.title || 'Без названия';
-        const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
-        
-       // --- УНИВЕРСАЛЬНАЯ ОБРАБОТКА КОНТЕНТА (Markdown + Rich Text) ---
-let contentHtml = '';
-let rawContent = item.fields.content;
+        const date = item.fields.date ? new Date(item.fields.date).toLocaleDateString('ru-RU') : '';
+        const rawContent = item.fields.content;
+        let contentHtml = '';
 
-if (typeof rawContent === 'string') {
-    // Если в настройках Contentful выбран "Long Text" (Markdown)
-    contentHtml = marked.parse(rawContent);
-} 
-else if (typeof rawContent === 'object' && rawContent !== null) {
-    // Если выбран "Rich Text"
-    // Используем глобальную функцию из подключенной библиотеки
-    const { documentToHtmlString } = contentfulRichTextHtmlRenderer;
-    
-    // Настройки для рендеринга (например, чтобы картинки внутри текста тоже отображались)
-    const options = {
-        renderNode: {
-            'embedded-asset-block': (node) => {
-                const { file, title } = node.data.target.fields;
-                return `<img src="https:${file.url}" alt="${title}" style="max-width:100%; border-radius:8px;" />`;
-            }
+        if (typeof rawContent === 'string') {
+            contentHtml = marked.parse(rawContent);
+        } else if (rawContent && rawContent.nodeType === 'document') {
+            const { documentToHtmlString } = contentfulRichTextHtmlRenderer;
+            contentHtml = documentToHtmlString(rawContent, {
+                renderNode: {
+                    'embedded-asset-block': (node) => {
+                        const { file, title } = node.data.target.fields;
+                        return `<img src="https:${file.url}" alt="${title}" style="max-width:100%; border-radius:8px;" />`;
+                    }
+                }
+            });
         }
-    };
-    contentHtml = documentToHtmlString(rawContent, options);
-}
+
+        let imageHtml = '';
+        if (item.fields.image && item.fields.image.fields && item.fields.image.fields.file) {
+            imageHtml = `<img src="https:${item.fields.image.fields.file.url}" style="width:100%; max-height:400px; object-fit:cover; border-radius:12px; margin-bottom:20px;">`;
+        }
 
         appContainer.innerHTML = `
-          <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к статьям</a>
+          <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад</a>
           <article class="single-post">
-            <div style="color:gray; margin-bottom:0.5rem;">${date}</div>
             <h1 class="article-title">${title}</h1>
+            <p style="color:gray;">${date}</p>
             ${imageHtml}
-            <div class="post-content" style="font-size:1.1rem; line-height:1.8;">
-              ${contentHtml}
-            </div>
-          </article>
-        `;
+            <div class="post-content">${contentHtml}</div>
+          </article>`;
 
         commentsSection.style.display = 'block';
         initDisqus(id);
       })
       .catch((err) => {
-        appContainer.innerHTML = `<p class="loading">Статья не найдена.</p>`;
+        console.error("Ошибка загрузки записи:", err);
+        appContainer.innerHTML = `<p class="loading">Статья с ID <b>${id}</b> не найдена или не опубликована.<br><br><a href="blog.html" class="btn">Вернуться к списку</a></p>`;
       });
     }
 
-    // DISQUS (Перезагрузка виджета для каждой статьи)
     function initDisqus(identifier) {
         if (window.DISQUS) {
-            window.DISQUS.reset({
-                reload: true,
-                config: function () {  
-                    this.page.identifier = identifier;  
-                    this.page.url = window.location.href;  
-                }
-            });
+            window.DISQUS.reset({ reload: true, config: function () { this.page.identifier = identifier; this.page.url = window.location.href; } });
         } else {
             var d = document, s = d.createElement('script');
-            s.src = 'https://edusafe-test.disqus.com/embed.js'; // ЗАМЕНИТЕ НА СВОЙ АДРЕС DISQUS
+            s.src = 'https://edusafe-test.disqus.com/embed.js'; // ЗАМЕНИТЕ НА СВОЙ DISQUS
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
         }
     }
 
-    // Запуск
     init();
   </script>
 
