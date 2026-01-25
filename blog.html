@@ -234,177 +234,201 @@
     </div>
   </main>
 
-  <script>
-    // --- ВАШИ КЛЮЧИ ---
+   <script>
+
+// --- ВАШИ КЛЮЧИ ---
     const SPACE_ID = 'r6g09taz57g1'; 
     const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
-    // ------------------
+    const client = contentful.createClient({ 
+        space: SPACE_ID, 
+        accessToken: ACCESS_TOKEN 
+    });
 
-    const client = contentful.createClient({ space: SPACE_ID, accessToken: ACCESS_TOKEN });
     const appContainer = document.getElementById('app-container');
     const heroSection = document.getElementById('heroSection');
     const commentsSection = document.getElementById('comments-section');
 
+    // Главная функция инициализации
     function init() {
-      const urlParams = new URLSearchParams(window.location.search);
-      const postId = urlParams.get('id');
-      if (postId) loadSinglePost(postId); else loadPostList();
+        const urlParams = new URLSearchParams(window.location.search);
+        const postId = urlParams.get('id');
+
+        if (postId) {
+            loadSinglePost(postId);
+        } else {
+            loadPostList();
+        }
     }
 
-    // 1. ЛЕНТА СТАТЕЙ (ПОСТЕРЫ ИЗ CONTENTFUL)
+    // 1. ЗАГРУЗКА ЛЕНТЫ СТАТЕЙ
     function loadPostList() {
-      heroSection.style.display = 'block';
-      commentsSection.style.display = 'none';
+        heroSection.style.display = 'block';
+        commentsSection.style.display = 'none';
 
-      client.getEntries({ content_type: 'blogPost', order: '-fields.date', include: 2 })
-      .then((response) => {
-        if (!response.items.length) {
-          appContainer.innerHTML = '<div class="loading">Нет доступных статей.</div>';
-          return;
-        }
+        client.getEntries({ 
+            content_type: 'blogPost', 
+            order: '-fields.date',
+            include: 2 // Важно для получения URL картинок
+        })
+        .then((response) => {
+            if (!response.items.length) {
+                appContainer.innerHTML = '<div class="loading">Статей пока нет. Опубликуйте их в Contentful!</div>';
+                return;
+            }
 
-        let html = '<div class="posts-grid">';
-        response.items.forEach(item => {
-          const f = item.fields;
-          const id = item.sys.id;
-          const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU') : '';
-          
-          // Текст для краткого описания
-          let excerpt = 'Нажмите, чтобы узнать больше...';
-          if (f.content && f.content.nodeType === 'document') {
-            try { 
-              const firstPara = f.content.content.find(n => n.nodeType === 'paragraph');
-              excerpt = firstPara.content[0].value.substring(0, 100) + '...'; 
-            } catch(e) {}
-          }
+            let html = '<div class="posts-grid">';
+            response.items.forEach(item => {
+                const f = item.fields;
+                const id = item.sys.id;
+                const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU') : '';
+                
+                // Извлекаем превью текста
+                let excerpt = 'Нажмите, чтобы прочитать...';
+                try {
+                    if (typeof f.content === 'string') {
+                        excerpt = f.content.substring(0, 100) + '...';
+                    } else {
+                        const firstPara = f.content.content.find(n => n.nodeType === 'paragraph');
+                        excerpt = firstPara.content[0].value.substring(0, 100) + '...';
+                    }
+                } catch(e) {}
 
-          // ПОСТЕР (Картинка из поля image)
-          let posterUrl = 'https://via.placeholder.com/600x400?text=EduSafe'; // Заглушка, если фото нет
-          if (f.image && f.image.fields && f.image.fields.file) {
-            posterUrl = 'https:' + f.image.fields.file.url;
-          }
-
-          html += `
-            <div class="post-card" onclick="window.location.href='?id=${id}'">
-              <div class="card-image-wrap">
-                <img src="${posterUrl}" class="card-image" alt="${f.title}">
-              </div>
-              <div class="card-content">
-                <div class="card-date"><i class="far fa-calendar"></i> ${date}</div>
-                <h3 class="card-title">${f.title || 'Без названия'}</h3>
-                <div class="card-excerpt">${excerpt}</div>
-                <span class="read-more">Читать статью <i class="fas fa-arrow-right"></i></span>
-              </div>
-            </div>`;
-        });
-        appContainer.innerHTML = html + '</div>';
-      })
-      .catch(err => appContainer.innerHTML = `<div class="error-box">Ошибка: ${err.message}</div>`);
-    }
-
-    // 2. СТРАНИЦА СТАТЬИ (ГЛАВНОЕ ФОТО ИЗ CONTENTFUL)
-    function loadSinglePost(id) {
-      heroSection.style.display = 'none';
-      
-      client.getEntry(id, { include: 2 })
-      .then((item) => {
-        const f = item.fields;
-        let contentHtml = '';
-
-        // Рендеринг Rich Text
-        if (f.content && f.content.nodeType === 'document') {
-          const renderer = window.contentfulRichTextHtmlRenderer || window['@contentful/rich-text-html-renderer'];
-          if (renderer) {
-            contentHtml = renderer.documentToHtmlString(f.content, {
-              renderNode: {
-                'embedded-asset-block': (node) => {
-                  const asset = node.data.target.fields;
-                  return asset ? `<img src="https:${asset.file.url}" class="rich-img" />` : '';
+                // Постер статьи
+                let imgUrl = 'https://via.placeholder.com/600x400?text=EduSafe'; 
+                if (f.image && f.image.fields && f.image.fields.file) {
+                    imgUrl = 'https:' + f.image.fields.file.url;
                 }
-              }
+
+                html += `
+                    <div class="post-card" onclick="window.location.href='?id=${id}'">
+                        <div class="card-image-wrap">
+                            <img src="${imgUrl}" class="card-image" alt="${f.title}">
+                        </div>
+                        <div class="card-content">
+                            <div class="card-date"><i class="far fa-calendar"></i> ${date}</div>
+                            <h3 class="card-title">${f.title || 'Без названия'}</h3>
+                            <div class="card-excerpt">${excerpt}</div>
+                            <span class="read-more">Читать далее <i class="fas fa-arrow-right"></i></span>
+                        </div>
+                    </div>`;
             });
-          } else {
-            // План Б (текст без библиотек)
-            // ПЛАН Б: Более умный ручной разбор, если библиотека заблокирована
-console.warn("Используется продвинутый ручной разбор RichText");
-contentHtml = rawContent.content.map(node => {
-  // Обработка текста с форматированием (bold, italic)
-  const renderInlines = (inlines) => {
-    return inlines.map(inline => {
-      let text = inline.value || '';
-      if (inline.marks) {
-        inline.marks.forEach(mark => {
-          if (mark.type === 'bold') text = `<strong>${text}</strong>`;
-          if (mark.type === 'italic') text = `<em>${text}</em>`;
+            appContainer.innerHTML = html + '</div>';
+        })
+        .catch(err => {
+            appContainer.innerHTML = `<div class="error-box">Ошибка загрузки: ${err.message}</div>`;
         });
-      }
-      return text;
-    }).join('');
-  };
-
-  if (node.nodeType === 'paragraph') {
-    return `<p>${renderInlines(node.content)}</p>`;
-  }
-  if (node.nodeType.startsWith('heading-')) {
-    const level = node.nodeType.split('-')[1];
-    return `<h${level}>${renderInlines(node.content)}</h${level}>`;
-  }
-  if (node.nodeType === 'embedded-asset-block' && node.data.target.fields) {
-    const asset = node.data.target.fields;
-    return `<img src="https:${asset.file.url}" alt="${asset.title}" class="rich-img" />`;
-  }
-  if (node.nodeType === 'ul-list') {
-    const items = node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('');
-    return `<ul>${items}</ul>`;
-  }
-  return '';
-}).join('');
-          }
-        }
-
-        // ГЛАВНЫЙ ПОСТЕР СТАТЬИ
-        let mainPosterHtml = '';
-        if (f.image && f.image.fields && f.image.fields.file) {
-          mainPosterHtml = `<img src="https:${f.image.fields.file.url}" class="post-main-poster" alt="${f.title}">`;
-        }
-
-        appContainer.innerHTML = `
-          <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к ленте</a>
-          <article class="single-post">
-            <h1 class="article-title">${f.title || 'Статья без названия'}</h1>
-            <p style="color:var(--gray-600);"><i class="far fa-clock"></i> ${new Date(f.date).toLocaleDateString('ru-RU')}</p>
-            ${mainPosterHtml}
-            <div class="post-content">${contentHtml}</div>
-          </article>`;
-
-        commentsSection.style.display = 'block';
-        initDisqus(id);
-      })
-      .catch(err => {
-          console.error(err);
-          appContainer.innerHTML = `<div class="error-box">Статья не найдена.</div>`;
-      });
     }
 
-   function initDisqus(id) {
-    if (window.DISQUS) {
-        window.DISQUS.reset({ 
-            reload: true, 
-            config: function () { 
-                this.page.identifier = id; 
-                this.page.url = window.location.href; 
-            } 
+    // 2. ЗАГРУЗКА И РЕНДЕРИНГ ОДНОЙ СТАТЬИ
+    function loadSinglePost(id) {
+        heroSection.style.display = 'none';
+        
+        client.getEntry(id, { include: 2 })
+        .then((item) => {
+            const f = item.fields;
+            const rawContent = f.content;
+            let contentHtml = '';
+
+            // Функция для обработки жирного/курсива в "Плане Б"
+            const renderInlines = (inlines) => {
+                return inlines.map(inline => {
+                    let text = inline.value || '';
+                    if (inline.marks) {
+                        inline.marks.forEach(mark => {
+                            if (mark.type === 'bold') text = `<strong>${text}</strong>`;
+                            if (mark.type === 'italic') text = `<em>${text}</em>`;
+                        });
+                    }
+                    return text;
+                }).join('');
+            };
+
+            // Рендеринг контента
+            if (typeof rawContent === 'string') {
+                contentHtml = marked.parse(rawContent);
+            } else if (rawContent && rawContent.nodeType === 'document') {
+                const renderer = window.contentfulRichTextHtmlRenderer || window['@contentful/rich-text-html-renderer'];
+                
+                if (renderer && renderer.documentToHtmlString) {
+                    // ОФИЦИАЛЬНЫЙ РЕНДЕРЕР
+                    contentHtml = renderer.documentToHtmlString(rawContent, {
+                        renderNode: {
+                            'embedded-asset-block': (node) => {
+                                const asset = node.data.target.fields;
+                                return asset ? `<img src="https:${asset.file.url}" alt="${asset.title}" class="rich-img" />` : '';
+                            }
+                        }
+                    });
+                } else {
+                    // УСИЛЕННЫЙ ПЛАН Б (если библиотека заблокирована)
+                    console.warn("Библиотека RichText заблокирована. Используется ручной парсинг.");
+                    contentHtml = rawContent.content.map(node => {
+                        if (node.nodeType === 'paragraph') {
+                            return `<p>${renderInlines(node.content)}</p>`;
+                        }
+                        if (node.nodeType.startsWith('heading-')) {
+                            const level = node.nodeType.split('-')[1];
+                            return `<h${level}>${renderInlines(node.content)}</h${level}>`;
+                        }
+                        if (node.nodeType === 'embedded-asset-block' && node.data.target.fields) {
+                            const asset = node.data.target.fields;
+                            return `<img src="https:${asset.file.url}" alt="${asset.title}" class="rich-img" />`;
+                        }
+                        if (node.nodeType === 'ul-list') {
+                            const items = node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('');
+                            return `<ul>${items}</ul>`;
+                        }
+                        return '';
+                    }).join('');
+                }
+            }
+
+            // Постер статьи
+            let mainImg = '';
+            if (f.image && f.image.fields && f.image.fields.file) {
+                mainImg = `<img src="https:${f.image.fields.file.url}" class="post-main-poster" alt="${f.title}">`;
+            }
+
+            appContainer.innerHTML = `
+                <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к списку</a>
+                <article class="single-post">
+                    <h1 class="article-title">${f.title}</h1>
+                    <div style="color:var(--gray-600); margin-bottom:20px;">
+                        <i class="far fa-calendar-alt"></i> ${new Date(f.date).toLocaleDateString('ru-RU')}
+                    </div>
+                    ${mainImg}
+                    <div class="post-content">${contentHtml}</div>
+                </article>`;
+
+            commentsSection.style.display = 'block';
+            initDisqus(id);
+        })
+        .catch(err => {
+            console.error(err);
+            appContainer.innerHTML = `<div class="error-box">Статья не найдена.</div>`;
         });
-    } else {
-        var d = document, s = d.createElement('script');
-        // ЗАМЕНИ 'ВАШ_SHORTNAME' НА ТО, ЧТО ПОЛУЧИЛ В ШАГЕ 1
-        s.src = 'https://edusafe-test.disqus.com/embed.js'; 
-        s.setAttribute('data-timestamp', +new Date());
-        (d.head || d.body).appendChild(s);
     }
-}
+
+    // 3. СИСТЕМА КОММЕНТАРИЕВ DISQUS
+    function initDisqus(id) {
+        if (window.DISQUS) {
+            window.DISQUS.reset({ 
+                reload: true, 
+                config: function () { 
+                    this.page.identifier = id; 
+                    this.page.url = window.location.href; 
+                } 
+            });
+        } else {
+            var d = document, s = d.createElement('script');
+            // ЗАМЕНИТЬ 'edusafe-test' на свой shortname из Disqus
+            s.src = 'https://edusafe-test.disqus.com/embed.js'; 
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    }
 
     window.onload = init;
-  </script>
+</script>
 </body>
 </html>
