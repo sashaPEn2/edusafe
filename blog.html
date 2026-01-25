@@ -154,7 +154,17 @@
       display: flex;
       gap: 1rem;
     }
+.post-content a {
+    color: var(--blue-700);
+    text-decoration: underline;
+    font-weight: 500;
+    transition: color 0.2s;
+}
 
+.post-content a:hover {
+    color: var(--blue-900);
+    text-decoration: none;
+}
     .nav a {
       text-decoration: none;
       color: var(--gray-600);
@@ -239,6 +249,7 @@
 // --- ВАШИ КЛЮЧИ ---
     const SPACE_ID = 'r6g09taz57g1'; 
     const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
+
     const client = contentful.createClient({ 
         space: SPACE_ID, 
         accessToken: ACCESS_TOKEN 
@@ -248,19 +259,13 @@
     const heroSection = document.getElementById('heroSection');
     const commentsSection = document.getElementById('comments-section');
 
-    // Главная функция инициализации
     function init() {
         const urlParams = new URLSearchParams(window.location.search);
         const postId = urlParams.get('id');
-
-        if (postId) {
-            loadSinglePost(postId);
-        } else {
-            loadPostList();
-        }
+        if (postId) loadSinglePost(postId); else loadPostList();
     }
 
-    // 1. ЗАГРУЗКА ЛЕНТЫ СТАТЕЙ
+    // 1. ЗАГРУЗКА СПИСКА СТАТЕЙ
     function loadPostList() {
         heroSection.style.display = 'block';
         commentsSection.style.display = 'none';
@@ -268,11 +273,11 @@
         client.getEntries({ 
             content_type: 'blogPost', 
             order: '-fields.date',
-            include: 2 // Важно для получения URL картинок
+            include: 2 
         })
         .then((response) => {
             if (!response.items.length) {
-                appContainer.innerHTML = '<div class="loading">Статей пока нет. Опубликуйте их в Contentful!</div>';
+                appContainer.innerHTML = '<div class="loading">Статей пока нет.</div>';
                 return;
             }
 
@@ -282,18 +287,12 @@
                 const id = item.sys.id;
                 const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU') : '';
                 
-                // Извлекаем превью текста
                 let excerpt = 'Нажмите, чтобы прочитать...';
                 try {
-                    if (typeof f.content === 'string') {
-                        excerpt = f.content.substring(0, 100) + '...';
-                    } else {
-                        const firstPara = f.content.content.find(n => n.nodeType === 'paragraph');
-                        excerpt = firstPara.content[0].value.substring(0, 100) + '...';
-                    }
+                    const firstPara = f.content.content.find(n => n.nodeType === 'paragraph');
+                    excerpt = firstPara.content[0].value.substring(0, 100) + '...';
                 } catch(e) {}
 
-                // Постер статьи
                 let imgUrl = 'https://via.placeholder.com/600x400?text=EduSafe'; 
                 if (f.image && f.image.fields && f.image.fields.file) {
                     imgUrl = 'https:' + f.image.fields.file.url;
@@ -315,7 +314,7 @@
             appContainer.innerHTML = html + '</div>';
         })
         .catch(err => {
-            appContainer.innerHTML = `<div class="error-box">Ошибка загрузки: ${err.message}</div>`;
+            appContainer.innerHTML = `<div class="error-box">Ошибка загрузки списка: ${err.message}</div>`;
         });
     }
 
@@ -329,30 +328,39 @@
             const rawContent = f.content;
             let contentHtml = '';
 
-            // Функция для обработки жирного/курсива в "Плане Б"
+            // --- ВСПОМОГАТЕЛЬНАЯ ФУНКЦИЯ ДЛЯ ТЕКСТА (ЖИРНЫЙ, КУРСИВ, ССЫЛКИ) ---
             const renderInlines = (inlines) => {
+                if (!inlines) return '';
                 return inlines.map(inline => {
-                    let text = inline.value || '';
-                    if (inline.marks) {
-                        inline.marks.forEach(mark => {
-                            if (mark.type === 'bold') text = `<strong>${text}</strong>`;
-                            if (mark.type === 'italic') text = `<em>${text}</em>`;
-                        });
+                    if (inline.nodeType === 'text') {
+                        let text = inline.value || '';
+                        if (inline.marks) {
+                            inline.marks.forEach(mark => {
+                                if (mark.type === 'bold') text = `<strong>${text}</strong>`;
+                                if (mark.type === 'italic') text = `<em>${text}</em>`;
+                            });
+                        }
+                        return text;
                     }
-                    return text;
+                    if (inline.nodeType === 'hyperlink') {
+                        const url = inline.data.uri;
+                        return `<a href="${url}" target="_blank" rel="noopener noreferrer">${renderInlines(inline.content)}</a>`;
+                    }
+                    return '';
                 }).join('');
             };
 
-            // Рендеринг контента
-            if (typeof rawContent === 'string') {
-                contentHtml = marked.parse(rawContent);
-            } else if (rawContent && rawContent.nodeType === 'document') {
+            // --- ОСНОВНОЙ РЕНДЕРИНГ ---
+            if (rawContent && rawContent.nodeType === 'document') {
                 const renderer = window.contentfulRichTextHtmlRenderer || window['@contentful/rich-text-html-renderer'];
                 
                 if (renderer && renderer.documentToHtmlString) {
-                    // ОФИЦИАЛЬНЫЙ РЕНДЕРЕР
+                    // ВАРИАНТ А: Официальная библиотека
                     contentHtml = renderer.documentToHtmlString(rawContent, {
                         renderNode: {
+                            'hyperlink': (node) => {
+                                return `<a href="${node.data.uri}" target="_blank" rel="noopener noreferrer">${renderInlines(node.content)}</a>`;
+                            },
                             'embedded-asset-block': (node) => {
                                 const asset = node.data.target.fields;
                                 return asset ? `<img src="https:${asset.file.url}" alt="${asset.title}" class="rich-img" />` : '';
@@ -360,12 +368,10 @@
                         }
                     });
                 } else {
-                    // УСИЛЕННЫЙ ПЛАН Б (если библиотека заблокирована)
-                    console.warn("Библиотека RichText заблокирована. Используется ручной парсинг.");
+                    // ВАРИАНТ Б: Продвинутый ручной разбор
+                    console.warn("Используется ручной разбор контента");
                     contentHtml = rawContent.content.map(node => {
-                        if (node.nodeType === 'paragraph') {
-                            return `<p>${renderInlines(node.content)}</p>`;
-                        }
+                        if (node.nodeType === 'paragraph') return `<p>${renderInlines(node.content)}</p>`;
                         if (node.nodeType.startsWith('heading-')) {
                             const level = node.nodeType.split('-')[1];
                             return `<h${level}>${renderInlines(node.content)}</h${level}>`;
@@ -383,18 +389,14 @@
                 }
             }
 
-            // Постер статьи
-            let mainImg = '';
-            if (f.image && f.image.fields && f.image.fields.file) {
-                mainImg = `<img src="https:${f.image.fields.file.url}" class="post-main-poster" alt="${f.title}">`;
-            }
+            let mainImg = f.image ? `<img src="https:${f.image.fields.file.url}" class="post-main-poster" alt="${f.title}">` : '';
 
             appContainer.innerHTML = `
                 <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к списку</a>
                 <article class="single-post">
-                    <h1 class="article-title">${f.title}</h1>
+                    <h1 class="article-title">${f.title || 'Без названия'}</h1>
                     <div style="color:var(--gray-600); margin-bottom:20px;">
-                        <i class="far fa-calendar-alt"></i> ${new Date(f.date).toLocaleDateString('ru-RU')}
+                        <i class="far fa-calendar-alt"></i> ${f.date ? new Date(f.date).toLocaleDateString('ru-RU') : ''}
                     </div>
                     ${mainImg}
                     <div class="post-content">${contentHtml}</div>
@@ -404,12 +406,12 @@
             initDisqus(id);
         })
         .catch(err => {
-            console.error(err);
-            appContainer.innerHTML = `<div class="error-box">Статья не найдена.</div>`;
+            console.error("Ошибка API:", err);
+            appContainer.innerHTML = `<div class="error-box">Статья не найдена. Убедитесь, что она опубликована.</div>`;
         });
     }
 
-    // 3. СИСТЕМА КОММЕНТАРИЕВ DISQUS
+    // 3. КОММЕНТАРИИ DISQUS
     function initDisqus(id) {
         if (window.DISQUS) {
             window.DISQUS.reset({ 
@@ -421,7 +423,7 @@
             });
         } else {
             var d = document, s = d.createElement('script');
-            // ЗАМЕНИТЬ 'edusafe-test' на свой shortname из Disqus
+            // ЗАМЕНИТЕ 'edusafe-test' на ваш Shortname из Disqus
             s.src = 'https://edusafe-test.disqus.com/embed.js'; 
             s.setAttribute('data-timestamp', +new Date());
             (d.head || d.body).appendChild(s);
