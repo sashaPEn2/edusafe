@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Блог EduSafe — Защита данных</title>
+  <title>Блог EduSafe</title>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
   <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
@@ -13,7 +13,7 @@
       --blue-900: #1e3a8a;
       --blue-700: #1d4ed8;
       --gray-50: #f9fafb;
-      --gray-600: #4b5563;
+      --gray-100: #f3f4f6;
       --gray-900: #111827;
       --white: #ffffff;
     }
@@ -22,31 +22,63 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
       background: var(--gray-50);
       color: var(--gray-900);
-      line-height: 1.6;
       margin: 0;
+      line-height: 1.6;
     }
 
-    .container { max-width: 900px; margin: 0 auto; padding: 0 1.5rem; }
+    .container { max-width: 1000px; margin: 0 auto; padding: 0 1.5rem; }
 
-    /* Header */
+    /* Шапка */
     header { background: var(--white); box-shadow: 0 2px 10px rgba(0,0,0,0.05); padding: 1rem 0; position: sticky; top: 0; z-index: 100; }
     .header-content { display: flex; justify-content: space-between; align-items: center; }
     .logo { display: flex; align-items: center; gap: 0.75rem; font-weight: 700; font-size: 1.5rem; color: var(--blue-900); text-decoration: none; }
     .logo i { background: var(--blue-900); color: var(--white); width: 2.2rem; height: 2.2rem; border-radius: 0.5rem; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
 
-    /* Hero */
-    .blog-hero { background: linear-gradient(135deg, var(--blue-900), #1e40af); color: var(--white); padding: 4rem 0; text-align: center; margin-bottom: 3rem; }
+    /* Герой-блок */
+    .blog-hero { background: linear-gradient(135deg, var(--blue-900), #1e40af); color: var(--white); padding: 3rem 0; text-align: center; margin-bottom: 2rem; }
     
-    /* Posts */
-    .loading { text-align: center; padding: 2rem; color: var(--gray-600); }
-    .post-card { background: var(--white); border-radius: 1rem; padding: 2rem; margin-bottom: 3rem; box-shadow: 0 4px 6px rgba(0,0,0,0.02); border: 1px solid #f3f4f6; }
-    .post-meta { font-size: 0.875rem; color: var(--gray-600); margin-bottom: 0.5rem; display: flex; gap: 1rem; }
-    .post-title { color: var(--blue-900); font-size: 1.75rem; margin-bottom: 1rem; margin-top: 0; }
-    .post-content { font-size: 1.05rem; }
-    .post-content img { max-width: 100%; border-radius: 0.5rem; margin: 1rem 0; }
+    /* СЕТКА ПОСТОВ (GRID) */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 2rem;
+    }
 
-    /* Комментарии */
-    #disqus_thread { margin-top: 2rem; border-top: 1px solid #eee; padding-top: 1rem; }
+    .post-card {
+      background: var(--white);
+      border-radius: 1rem;
+      overflow: hidden;
+      box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+      transition: transform 0.2s;
+      cursor: pointer;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .post-card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+
+    .card-image {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      background: var(--gray-100);
+    }
+
+    .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
+    .card-date { font-size: 0.8rem; color: #6b7280; margin-bottom: 0.5rem; }
+    .card-title { font-size: 1.25rem; margin: 0 0 0.75rem 0; color: var(--blue-900); line-height: 1.3; }
+    .card-excerpt { font-size: 0.95rem; color: #4b5563; margin-bottom: 1.5rem; flex-grow: 1; }
+    .read-more { color: var(--blue-700); font-weight: 600; text-decoration: none; margin-top: auto; }
+
+    /* ПОЛНАЯ СТАТЬЯ */
+    .single-post { background: var(--white); padding: 2.5rem; border-radius: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.05); }
+    .single-post img { max-width: 100%; border-radius: 0.5rem; margin: 1.5rem 0; }
+    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gray-600); text-decoration: none; margin-bottom: 1.5rem; font-weight: 500; }
+    .back-btn:hover { color: var(--blue-700); }
+    .article-title { font-size: 2.5rem; color: var(--blue-900); margin-bottom: 0.5rem; line-height: 1.2; }
+    
+    .loading { text-align: center; padding: 3rem; color: var(--gray-600); font-size: 1.2rem; }
   </style>
 </head>
 <body>
@@ -56,110 +88,162 @@
       <div class="header-content">
         <a href="index.html" class="logo"><i class="fas fa-shield-alt"></i><span>EduSafe</span></a>
         <nav>
-          <a href="index.html" style="text-decoration: none; color: var(--gray-600);">На главную</a>
-          <a href="https://app.contentful.com/" target="_blank" style="margin-left:15px; text-decoration: none; color: var(--blue-700); font-size: 0.9em;">
-            <i class="fas fa-lock"></i> Вход для автора
-          </a>
+          <a href="blog.html" style="text-decoration: none; color: var(--blue-900); font-weight: 600;">Блог</a>
         </nav>
       </div>
     </div>
   </header>
 
-  <section class="blog-hero">
+  <section class="blog-hero" id="heroSection">
     <div class="container">
       <h1>Блог EduSafe</h1>
-      <p>Статьи загружаются напрямую из защищенного облака</p>
+      <p>Новости и советы по цифровой безопасности</p>
     </div>
   </section>
 
-  <main class="container" id="blog-container">
-    <div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка статей...</div>
+  <main class="container" style="padding-bottom: 4rem;">
+    <div id="app-container">
+      <div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка...</div>
+    </div>
+    
+    <div id="comments-section" style="display: none; margin-top: 3rem;">
+        <div id="disqus_thread"></div>
+    </div>
   </main>
 
-  <div class="container" style="margin-bottom: 3rem;">
-     <div class="post-card">
-        <h3 style="color: var(--blue-900);">Обсуждение</h3>
-        <p style="font-size: 0.9rem; color: gray;">Выберите статью выше, чтобы читать полностью, или оставьте общий комментарий здесь.</p>
-        <div id="disqus_thread"></div>
-     </div>
-  </div>
-
   <script>
-    // --- НАСТРОЙКИ ---
-    const SPACE_ID = 'r6g09taz57g1'; 
-    const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk'; 
-    // -----------------
+    // --- ВАШИ КЛЮЧИ CONTENTFUL ---
+    const SPACE_ID = 'r6g09taz57g1';
+    const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
+    // -----------------------------
 
-    const client = contentful.createClient({
-      space: SPACE_ID,
-      accessToken: ACCESS_TOKEN
-    });
+    const client = contentful.createClient({ space: SPACE_ID, accessToken: ACCESS_TOKEN });
+    const appContainer = document.getElementById('app-container');
+    const heroSection = document.getElementById('heroSection');
+    const commentsSection = document.getElementById('comments-section');
 
-    const container = document.getElementById('blog-container');
+    // Функция инициализации
+    function init() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const postId = urlParams.get('id');
 
-    // Функция получения данных
-    client.getEntries({
-      content_type: 'blogPost', // Это ID модели, которую мы создали в шаге 1
-      order: '-fields.date'     // Сортировка: новые сверху
-    })
-    .then((response) => {
-      if (response.items.length === 0) {
-        container.innerHTML = '<p class="loading">Статей пока нет.</p>';
-        return;
+      if (postId) {
+        loadSinglePost(postId);
+      } else {
+        loadPostList();
       }
-
-      container.innerHTML = response.items.map(item => {
-        const title = item.fields.title;
-        // Превращаем Markdown текст в HTML (если в Contentful пишешь просто текст, тоже сработает)
-// Стало (безопасный вариант):
-let rawContent = item.fields.content;
-let content = '';
-
-// Проверяем, является ли контент строкой (Markdown)
-if (typeof rawContent === 'string') {
-    content = marked.parse(rawContent);
-} 
-// Если это Rich Text (объект), то пока просто выведем заглушку или сырой текст
-else if (typeof rawContent === 'object' && rawContent !== null) {
-    console.warn('Внимание: используется Rich Text вместо Long Text. Библиотека marked не сработает.');
-    // Попытка достать текст из первого параграфа (если структура простая)
-    try {
-        content = rawContent.content[0].content[0].value; 
-    } catch(e) {
-        content = 'Формат контента не поддерживается. Пожалуйста, используйте "Long Text" в Contentful.';
     }
-} else {
-    content = '';
-}        const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+
+    // 1. ЗАГРУЗКА СПИСКА (Лента с карточками)
+    function loadPostList() {
+      heroSection.style.display = 'block';
+      commentsSection.style.display = 'none'; // Скрываем комменты в ленте
+
+      client.getEntries({ content_type: 'blogPost', order: '-fields.date' })
+      .then((response) => {
+        if (!response.items.length) {
+          appContainer.innerHTML = '<p class="loading">Статей пока нет.</p>';
+          return;
+        }
+
+        let html = '<div class="posts-grid">';
         
-        return `
-          <article class="post-card">
-            <div class="post-meta">
-              <span><i class="far fa-calendar"></i> ${date}</span>
+        response.items.forEach(item => {
+          const title = item.fields.title;
+          // Обрезаем текст для превью (первые 120 символов)
+          let excerpt = item.fields.content ? item.fields.content.substring(0, 120) + '...' : '';
+          const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+          const id = item.sys.id;
+          
+          // Проверяем, есть ли картинка
+          let imageUrl = 'https://via.placeholder.com/400x200?text=EduSafe'; // Заглушка
+          if (item.fields.image && item.fields.image.fields.file) {
+            imageUrl = item.fields.image.fields.file.url;
+          }
+
+          html += `
+            <div class="post-card" onclick="window.location.href='?id=${id}'">
+              <img src="${imageUrl}" alt="${title}" class="card-image">
+              <div class="card-content">
+                <div class="card-date">${date}</div>
+                <h3 class="card-title">${title}</h3>
+                <div class="card-excerpt">${excerpt}</div>
+                <span class="read-more">Читать далее &rarr;</span>
+              </div>
             </div>
-            <h2 class="post-title">${title}</h2>
-            <div class="post-content">${content}</div>
+          `;
+        });
+
+        html += '</div>';
+        appContainer.innerHTML = html;
+      })
+      .catch(err => console.error(err));
+    }
+
+    // 2. ЗАГРУЗКА ОДНОЙ СТАТЬИ (Автоматическая страница)
+    function loadSinglePost(id) {
+      heroSection.style.display = 'none'; // Скрываем большой синий заголовок блога
+      
+      client.getEntry(id)
+      .then((item) => {
+        const title = item.fields.title;
+        // Обработка контента (Markdown или Текст)
+        let contentHtml = '';
+        if(typeof item.fields.content === 'string') {
+             contentHtml = marked.parse(item.fields.content);
+        } else {
+             contentHtml = '<p>Формат контента не поддерживается (используйте Long Text).</p>';
+        }
+        
+        const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+
+        // Картинка внутри статьи (большая)
+        let imageHtml = '';
+        if (item.fields.image && item.fields.image.fields.file) {
+            imageHtml = `<img src="${item.fields.image.fields.file.url}" alt="${title}" style="width:100%; max-height:500px; object-fit:cover;">`;
+        }
+
+        appContainer.innerHTML = `
+          <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к статьям</a>
+          <article class="single-post">
+            <div style="color:gray; margin-bottom:0.5rem;">${date}</div>
+            <h1 class="article-title">${title}</h1>
+            ${imageHtml}
+            <div class="post-content" style="font-size:1.1rem; line-height:1.8;">
+              ${contentHtml}
+            </div>
           </article>
         `;
-      }).join('');
-    })
-    .catch((error) => {
-      console.error(error);
-      container.innerHTML = `<p class="loading" style="color:red">Ошибка загрузки: Проверьте API ключи в коде.<br><small>${error}</small></p>`;
-    });
 
-    // --- DISQUS КОММЕНТАРИИ ---
-    // (Для работы создай аккаунт на Disqus.com и замени 'edusafe-demo' на свой shortname)
-    var disqus_config = function () {
-      this.page.url = window.location.href;  
-      this.page.identifier = window.location.pathname; 
-    };
-    (function() { 
-      var d = document, s = d.createElement('script');
-      s.src = 'https://edusafe-test.disqus.com/embed.js'; // Можешь заменить на свой Disqus URL
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    })();
+        // Включаем комментарии
+        commentsSection.style.display = 'block';
+        initDisqus(id);
+      })
+      .catch((err) => {
+        appContainer.innerHTML = `<p class="loading">Ошибка: Статья не найдена.<br><a href="blog.html">Вернуться назад</a></p>`;
+      });
+    }
+
+    // DISQUS (Перезагрузка виджета для каждой статьи)
+    function initDisqus(identifier) {
+        if (window.DISQUS) {
+            window.DISQUS.reset({
+                reload: true,
+                config: function () {  
+                    this.page.identifier = identifier;  
+                    this.page.url = window.location.href;  
+                }
+            });
+        } else {
+            var d = document, s = d.createElement('script');
+            s.src = 'https://edusafe-test.disqus.com/embed.js'; // ЗАМЕНИТЕ НА СВОЙ АДРЕС DISQUS
+            s.setAttribute('data-timestamp', +new Date());
+            (d.head || d.body).appendChild(s);
+        }
+    }
+
+    // Запуск
+    init();
   </script>
 
 </body>
