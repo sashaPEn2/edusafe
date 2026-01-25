@@ -153,20 +153,23 @@
           const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
           const id = item.sys.id;
           
-          // --- БЕЗОПАСНОЕ ПОЛУЧЕНИЕ ПРЕВЬЮ ---
-          let rawContent = item.fields.content;
-          let excerpt = '';
+          // --- БЕЗОПАСНОЕ ПРЕВЬЮ ДЛЯ СПИСКА ---
+let rawContent = item.fields.content;
+let excerpt = '';
 
-          if (typeof rawContent === 'string') {
-              excerpt = rawContent.substring(0, 120) + '...';
-          } else if (typeof rawContent === 'object' && rawContent !== null) {
-              // Если это Rich Text, пытаемся достать текст из первого абзаца
-              try {
-                  excerpt = rawContent.content[0].content[0].value.substring(0, 120) + '...';
-              } catch (e) {
-                  excerpt = 'Нажмите, чтобы прочитать...';
-              }
-          }
+if (typeof rawContent === 'string') {
+    excerpt = rawContent.substring(0, 120) + '...';
+} 
+else if (typeof rawContent === 'object' && rawContent !== null) {
+    try {
+        // Пытаемся найти первый текстовый узел в структуре Rich Text
+        const firstParagraph = rawContent.content.find(node => node.nodeType === 'paragraph');
+        const text = firstParagraph.content[0].value;
+        excerpt = text.substring(0, 120) + '...';
+    } catch (e) {
+        excerpt = 'Нажмите, чтобы прочитать полностью...';
+    }
+}
 
           // Картинка
           let imageUrl = 'https://via.placeholder.com/400x200?text=EduSafe';
