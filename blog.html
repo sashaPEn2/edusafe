@@ -227,16 +227,23 @@
       });
     }
 
-    function initDisqus(id) {
-        if (window.DISQUS) {
-            window.DISQUS.reset({ reload: true, config: function () { this.page.identifier = id; this.page.url = window.location.href; } });
-        } else {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://edusafe-test.disqus.com/embed.js'; 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
-        }
+   function initDisqus(id) {
+    if (window.DISQUS) {
+        window.DISQUS.reset({ 
+            reload: true, 
+            config: function () { 
+                this.page.identifier = id; 
+                this.page.url = window.location.href; 
+            } 
+        });
+    } else {
+        var d = document, s = d.createElement('script');
+        // ЗАМЕНИ 'ВАШ_SHORTNAME' НА ТО, ЧТО ПОЛУЧИЛ В ШАГЕ 1
+        s.src = 'https://edusafe-test.disqus.com/embed.js'; 
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
     }
+}
 
     window.onload = init;
   </script>
