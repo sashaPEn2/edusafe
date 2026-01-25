@@ -199,9 +199,7 @@
           <span id="logoText">EduSafe</span>
         </div>
 
-        <button class="nav-toggle" id="navToggle">
-          <i class="fas fa-bars"></i>
-        </button>
+      
 
         <div class="nav-container">
          
@@ -327,7 +325,40 @@
             });
           } else {
             // План Б (текст без библиотек)
-            contentHtml = f.content.content.map(n => n.nodeType === 'paragraph' ? `<p>${n.content[0].value}</p>` : '').join('');
+            // ПЛАН Б: Более умный ручной разбор, если библиотека заблокирована
+console.warn("Используется продвинутый ручной разбор RichText");
+contentHtml = rawContent.content.map(node => {
+  // Обработка текста с форматированием (bold, italic)
+  const renderInlines = (inlines) => {
+    return inlines.map(inline => {
+      let text = inline.value || '';
+      if (inline.marks) {
+        inline.marks.forEach(mark => {
+          if (mark.type === 'bold') text = `<strong>${text}</strong>`;
+          if (mark.type === 'italic') text = `<em>${text}</em>`;
+        });
+      }
+      return text;
+    }).join('');
+  };
+
+  if (node.nodeType === 'paragraph') {
+    return `<p>${renderInlines(node.content)}</p>`;
+  }
+  if (node.nodeType.startsWith('heading-')) {
+    const level = node.nodeType.split('-')[1];
+    return `<h${level}>${renderInlines(node.content)}</h${level}>`;
+  }
+  if (node.nodeType === 'embedded-asset-block' && node.data.target.fields) {
+    const asset = node.data.target.fields;
+    return `<img src="https:${asset.file.url}" alt="${asset.title}" class="rich-img" />`;
+  }
+  if (node.nodeType === 'ul-list') {
+    const items = node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('');
+    return `<ul>${items}</ul>`;
+  }
+  return '';
+}).join('');
           }
         }
 
