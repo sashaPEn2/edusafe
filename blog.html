@@ -111,8 +111,26 @@
       container.innerHTML = response.items.map(item => {
         const title = item.fields.title;
         // Превращаем Markdown текст в HTML (если в Contentful пишешь просто текст, тоже сработает)
-        const content = marked.parse(item.fields.content || '');
-        const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+// Стало (безопасный вариант):
+let rawContent = item.fields.content;
+let content = '';
+
+// Проверяем, является ли контент строкой (Markdown)
+if (typeof rawContent === 'string') {
+    content = marked.parse(rawContent);
+} 
+// Если это Rich Text (объект), то пока просто выведем заглушку или сырой текст
+else if (typeof rawContent === 'object' && rawContent !== null) {
+    console.warn('Внимание: используется Rich Text вместо Long Text. Библиотека marked не сработает.');
+    // Попытка достать текст из первого параграфа (если структура простая)
+    try {
+        content = rawContent.content[0].content[0].value; 
+    } catch(e) {
+        content = 'Формат контента не поддерживается. Пожалуйста, используйте "Long Text" в Contentful.';
+    }
+} else {
+    content = '';
+}        const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
         
         return `
           <article class="post-card">
