@@ -134,10 +134,10 @@
       }
     }
 
-    // 1. ЗАГРУЗКА СПИСКА (Лента с карточками)
+   // 1. ЗАГРУЗКА СПИСКА (Лента с карточками)
     function loadPostList() {
       heroSection.style.display = 'block';
-      commentsSection.style.display = 'none'; // Скрываем комменты в ленте
+      commentsSection.style.display = 'none';
 
       client.getEntries({ content_type: 'blogPost', order: '-fields.date' })
       .then((response) => {
@@ -149,16 +149,29 @@
         let html = '<div class="posts-grid">';
         
         response.items.forEach(item => {
-          const title = item.fields.title;
-          // Обрезаем текст для превью (первые 120 символов)
-          let excerpt = item.fields.content ? item.fields.content.substring(0, 120) + '...' : '';
+          const title = item.fields.title || 'Без названия';
           const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
           const id = item.sys.id;
           
-          // Проверяем, есть ли картинка
-          let imageUrl = 'https://via.placeholder.com/400x200?text=EduSafe'; // Заглушка
-          if (item.fields.image && item.fields.image.fields.file) {
-            imageUrl = item.fields.image.fields.file.url;
+          // --- БЕЗОПАСНОЕ ПОЛУЧЕНИЕ ПРЕВЬЮ ---
+          let rawContent = item.fields.content;
+          let excerpt = '';
+
+          if (typeof rawContent === 'string') {
+              excerpt = rawContent.substring(0, 120) + '...';
+          } else if (typeof rawContent === 'object' && rawContent !== null) {
+              // Если это Rich Text, пытаемся достать текст из первого абзаца
+              try {
+                  excerpt = rawContent.content[0].content[0].value.substring(0, 120) + '...';
+              } catch (e) {
+                  excerpt = 'Нажмите, чтобы прочитать...';
+              }
+          }
+
+          // Картинка
+          let imageUrl = 'https://via.placeholder.com/400x200?text=EduSafe';
+          if (item.fields.image && item.fields.image.fields && item.fields.image.fields.file) {
+            imageUrl = 'https:' + item.fields.image.fields.file.url; // Добавляем https:
           }
 
           html += `
@@ -177,30 +190,34 @@
         html += '</div>';
         appContainer.innerHTML = html;
       })
-      .catch(err => console.error(err));
+      .catch(err => {
+          console.error(err);
+          appContainer.innerHTML = '<p class="loading">Ошибка загрузки списка.</p>';
+      });
     }
 
-    // 2. ЗАГРУЗКА ОДНОЙ СТАТЬИ (Автоматическая страница)
+    // 2. ЗАГРУЗКА ОДНОЙ СТАТЬИ
     function loadSinglePost(id) {
-      heroSection.style.display = 'none'; // Скрываем большой синий заголовок блога
+      heroSection.style.display = 'none';
       
       client.getEntry(id)
       .then((item) => {
-        const title = item.fields.title;
-        // Обработка контента (Markdown или Текст)
-        let contentHtml = '';
-        if(typeof item.fields.content === 'string') {
-             contentHtml = marked.parse(item.fields.content);
-        } else {
-             contentHtml = '<p>Формат контента не поддерживается (используйте Long Text).</p>';
-        }
-        
+        const title = item.fields.title || 'Без названия';
         const date = new Date(item.fields.date).toLocaleDateString('ru-RU');
+        
+        // --- БЕЗОПАСНАЯ ОБРАБОТКА КОНТЕНТА ---
+        let contentHtml = '';
+        let rawContent = item.fields.content;
 
-        // Картинка внутри статьи (большая)
+        if (typeof rawContent === 'string') {
+            contentHtml = marked.parse(rawContent);
+        } else {
+            contentHtml = '<p style="color:red;">Внимание: Вы используете формат Rich Text. Для корректного отображения переключите поле на "Long Text" в настройках Contentful или используйте специальный рендерер.</p>';
+        }
+
         let imageHtml = '';
-        if (item.fields.image && item.fields.image.fields.file) {
-            imageHtml = `<img src="${item.fields.image.fields.file.url}" alt="${title}" style="width:100%; max-height:500px; object-fit:cover;">`;
+        if (item.fields.image && item.fields.image.fields && item.fields.image.fields.file) {
+            imageHtml = `<img src="https:${item.fields.image.fields.file.url}" alt="${title}" style="width:100%; max-height:500px; object-fit:cover;">`;
         }
 
         appContainer.innerHTML = `
@@ -215,12 +232,11 @@
           </article>
         `;
 
-        // Включаем комментарии
         commentsSection.style.display = 'block';
         initDisqus(id);
       })
       .catch((err) => {
-        appContainer.innerHTML = `<p class="loading">Ошибка: Статья не найдена.<br><a href="blog.html">Вернуться назад</a></p>`;
+        appContainer.innerHTML = `<p class="loading">Статья не найдена.</p>`;
       });
     }
 
