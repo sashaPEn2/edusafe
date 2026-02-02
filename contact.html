@@ -409,6 +409,12 @@
       .hero h1 { font-size: 1.75rem; }
       .section { padding: 2rem 0; }
     }
+
+    @media (min-width: 1024px) {
+      .info-cards {
+        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+      }
+    }
   </style>
 </head>
 <body>
@@ -509,7 +515,12 @@
             <li id="att2">Фотографии, скриншоты, переписки</li>
             <li id="att3">Копии запросов и ответов</li>
           </ul>
-          <p id="attNote">При подаче в электронном виде — должна быть ЭЦП.</p>
+        </div>
+        <div class="info-card">
+          <h3><i class="fas fa-globe"></i> <span id="card4Title">Онлайн подача</span></h3>
+          <p id="card4Text1">Вы можете подать жалобу или предложение онлайн через платформу <a href="https://обращения.бел" target="_blank">обращения.бел</a>.</p>
+          <p id="card4Text2">Выберите "Национальный центр защиты персональных данных" в качестве получателя.</p>
+          <a href="https://обращения.бел" target="_blank" class="btn" id="card4Btn">Перейти на сайт</a>
         </div>
       </div>
       
@@ -590,6 +601,10 @@
         att2: "Фотографии, скриншоты, переписки",
         att3: "Копии запросов и ответов",
         attNote: "При подаче в электронном виде — должна быть ЭЦП.",
+        card4Title: "Онлайн подача",
+        card4Text1: "Вы можете подать жалобу или предложение онлайн через платформу <a href=\"https://obrashchenie.bel\" target=\"_blank\">обращения.бел</a>.",
+        card4Text2: "Выберите \"Национальный центр защиты персональных данных\" в качестве получателя.",
+        card4Btn: "Перейти на сайт",
         formTitle: "Форма для подачи вопросов по ресурсу",
         labelName: "Имя",
         labelEmail: "Email (для обратной связи)",
@@ -631,6 +646,10 @@
         att2: "Photos, screenshots, correspondence",
         att3: "Copies of requests and responses",
         attNote: "For electronic submissions — a qualified electronic signature (QES) is required.",
+        card4Title: "Online Submission",
+        card4Text1: "You can submit a complaint or proposal online through the <a href=\"https://obrashchenie.bel\" target=\"_blank\">obrashchenie.bel</a> platform.",
+        card4Text2: "Select \"National Center for Personal Data Protection\" as the recipient.",
+        card4Btn: "Go to website",
         formTitle: "Form for Questions About the Resource",
         labelName: "Name",
         labelEmail: "Email (for reply)",
@@ -735,6 +754,10 @@
       safeSetText('#att2', t.att2);
       safeSetText('#att3', t.att3);
       safeSetText('#attNote', t.attNote);
+      safeSetText('#card4Title', t.card4Title);
+      safeSetInnerHTML('#card4Text1', t.card4Text1);
+      safeSetText('#card4Text2', t.card4Text2);
+      safeSetText('#card4Btn', t.card4Btn);
       safeSetText('#formTitle', t.formTitle);
       safeSetText('#labelName', t.labelName);
       safeSetText('#labelEmail', t.labelEmail);
