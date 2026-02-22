@@ -462,7 +462,7 @@
           </div>
           <div>
             <h3 id="roleTeacherTitle" data-lang-key="roleTeacherTitle">ППС</h3>
-            <p id="roleTeacherDesc">9 подробных сценариев для профессорско-преподавательского состава УВО и УССО по обработке и защите персональных данных студентов</p>
+            <p id="roleTeacherDesc">5 подробных сценариев для профессорско-преподавательского состава УВО и УССО по обработке и защите персональных данных студентов</p>
           </div>
         </button>
         <button class="tab-btn" data-role="student">
@@ -543,15 +543,15 @@
         navAbout: "О нас",
         practiceTitle: "Практические сценарии защиты персональных данных",
         practiceSubtitle: "Проверьте себя: как действовать в реальных ситуациях, чтобы не нарушить закон",
-        roleTeacherTitle: "Учителя",
-        roleTeacherDesc: "9 подробных сценариев для педагогов по обработке и защите персональных данных обучающихся",
-        roleStudentTitle: "Учащиеся",
+        roleTeacherTitle: "ППС",
+        roleTeacherDesc: "5 подробных сценариев для профессорско-преподавательского состава УВО и УССО по обработке и защите персональных данных студентов",
+        roleStudentTitle: "Студенты",
         roleStudentDesc: "4 подробных сценариев для учащихся по защите своих персональных данных",
-        roleDirectorTitle: "Операторы и руководители УОСО",
-        roleDirectorDesc: "5 подробных сценариев для операторов и руководителей УОСО по защите персональных данных сотрудников и учащихся учреждения образования",
+        roleDirectorTitle: "Операторы и руководители УВО и УССО",
+        roleDirectorDesc: "5 подробных сценариев для операторов и руководителей УВО и УССО по защите персональных данных сотрудников и учащихся учреждения образования",
         teacherHeader: "Сценарии для учителей",
         studentHeader: "Сценарии для учащихся",
-        directorHeader: "Сценарии для операторов УОСО",
+        directorHeader: "Сценарии для операторов и руководителей УССО/УВО",
         scenarioTitle: "Ситуация",
         solutionTitle: "Решение",
         lawTitle: "Правовое основание",
@@ -572,8 +572,8 @@
         practiceTitle: "Practical Scenarios for Personal Data Protection",
         practiceSubtitle: "Test yourself: how to act in real-life situations to comply with the law",
         roleTeacherTitle: "Teachers",
-        roleTeacherDesc: "9 detailed scenarios for educators on processing and protecting student personal data",
-        roleDirectorTitle: "Operators and managers of schools",
+        roleTeacherDesc: "5 detailed scenarios for the teaching staff of university and the USSO on the processing and protection of students' personal data",
+        roleDirectorTitle: "Operators and managers of universities",
         roleDirectorDesc: "5 detailed scenarios for operators and managers of educational institutions to protect the personal data of employees and students",
         roleStudentTitle: "Students",
         roleStudentDesc: "4 detailed scenarios for pupils on protecting their personal data",
@@ -673,16 +673,16 @@
 const directorScenarios = [
       {
         scenario: {
-          ru: "При входе в здание учреждения образования (школы, колледжа или вуза) охранник или сторож требует документ, удостоверяющий личность, для внесения данных посетителя в специальный журнал регистрации",
-          en: "At the entrance to the building of an educational institution (school, college or university), a security guard or watchman requires an identity document to enter the visitor's data in a special registration log."
+          ru: "Приемная комиссия УВО/УССО подготовила партию рекламных буклетов для раздачи в школах на профориентационных встречах. Дизайнер выбрал из архива вуза отличную фотографию с недавнего конкурса «Студент года» и поместил на обложку крупный портрет победительницы (студентки 3 курса), а также добавил фотографию профессора, ведущего лекцию. Согласие у них не запрашивали, так как фото были сделаны на территории университета.",
+          en: "The admission committee of the Higher School of Economics/USSO has prepared a batch of advertising booklets for distribution in schools at career guidance meetings. The designer selected an excellent photo from the university's archive from the recent Student of the Year contest and placed a large portrait of the winner (a 3rd-year student) on the cover, as well as a photo of the professor leading the lecture. They were not asked for consent, as the photos were taken on the university grounds."
         },
         solution: {
-          ru: "Работник охраны имеет право потребовать документ (паспорт) для идентификации личности и записи в журнал фамилии, собственного имени и отчества (при наличии), а также цели посещения. Фиксация в журнале серии и номера документа, удостоверяющего личность ЗАПРЕЩЕНА. Это признано избыточной обработкой персональных данных.",
-          en: "The security officer has the right to request a document (passport) for identification and entry in the journal of the surname, first name and patronymic (if any), as well as the purpose of the visit. It is PROHIBITED to record the series and number of the identity document in the journal. This is recognized as excessive processing of personal data."
+          ru: "Использование фотографий, на которых сделан явный акцент на конкретных людях, без их ведома — это нарушение. Любая информация, позволяющая идентифицировать человека (в том числе через его физическую идентичность на фото), является персональными данными. Раздача буклетов абитуриентам означает передачу информации неопределенному кругу лиц, что по закону трактуется как распространение персональных данных. Перед тем как отправлять макет в типографию, оператор (сотрудник УВО/УССО) обязан получить письменное или электронное согласие от студентки и профессора на использование их изображений в рекламных целях.",
+          en: "Using photos that explicitly focus on specific people without their knowledge is a violation. Any information that allows you to identify a person (including through his physical identity in the photo) is personal data. The distribution of booklets to applicants means the transfer of information to an indefinite circle of people, which, according to the law, is interpreted as the dissemination of personal data. Before sending the layout to the printing house, the operator (an employee of the Higher Educational Institution/USSO) must obtain written or electronic consent from the student and professor to use their images for advertising purposes."
         },
         law: {
-          ru: "Абзац 7 ст.83 Кодекса об образовании. Пункт 8 правил безопастности орагнизации образовательного процесса, организации воспитательного процесса при реализации образовательных программ общего среднего образования. (Утверждены постановлением Министерства образования Республики Беларусь от 03.08.2022 г. №227)",
-          en: "Paragraph 7 of Article 83 of the Education Code. Paragraph 8 of the rules of safety and organization of the educational process, the organization of the educational process in the implementation of educational programs of general secondary education. (Approved by Resolution No. 227 of the Ministry of Education of the Republic of Belarus dated 08/03/2022)"
+          ru: "Статья 1 Закона Республики Беларусь (абзацы 9 и 17) определяет, что информация, относящаяся к идентифицированному лицу, является персональными данными. Статья 1 Закона (абзац 11) определяет распространение как действия, направленные на ознакомление с данными неопределенного круга лиц. Пункт 3 статьи 4 Закона устанавливает, что такое распространение данных должно осуществляться исключительно с согласия субъекта персональных данных.",
+          en: "Article 1 of the Law of the Republic of Belarus (paragraphs 9 and 17) defines that information related to an identified person is personal data. Article 1 of the Law (paragraph 11) defines dissemination as actions aimed at familiarizing an unspecified group of people with the data. Paragraph 3 of Article 4 of the Law establishes that such data dissemination must be carried out exclusively with the consent of the personal data subject."
         }
       },
       {
