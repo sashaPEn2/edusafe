@@ -600,36 +600,8 @@
     const teacherScenarios = [
       {
         scenario: {
-          ru: "Вы хотите опубликовать на веб-сайте школы фотографии лучших учеников класса и их достижения. Достаточно ли для этого устного согласия учеников?",
-          en: "You want to publish photos of the best students in your class and their achievements on the school's information board. Is verbal consent from the students sufficient for this?"
-        },
-        solution: {
-          ru: "Для размещения индивидуальных портретных фотографий требуется обязательное письменное согласие родителей (законных представителей) несовершеннолетних или совершеннолетних учащихся. Согласие должно конкретно указывать цели и сроки публикации.",
-          en: "For individual portrait photographs, written consent from parents (legal guardians) of minors or from the adult students themselves is mandatory. The consent must specify the exact purposes of publication and timeframes."
-        },
-        law: {
-          ru: "Статья 5 Закона №99-З «О защите персональных данных» (письменная форма согласия); Разъяснения НЦЗПД (21.11.2025), п. 4.1.3.",
-          en: "Article 5 of the Law №99-Z on Personal Data Protection (written consent form); NCPDP Clarifications (21.11.2025), item 4.1.3."
-        }
-      },
-      {
-        scenario: {
-          ru: "Отец ученика, который не является его законным представителем (родители в разводе, и отец лишен прав), устно запрашивает у вас информацию об успеваемости и поведении сына. Ваши действия?",
-          en: "The student's father, who is not their legal representative (parents are divorced, and the father is stripped of rights), verbally requests information on his son's academic performance and behavior. What are your actions?"
-        },
-        solution: {
-          ru: "Вы не вправе предоставлять персональные данные (сведения об успеваемости, поведении) третьим лицам, не являющимся законными представителями, без письменного согласия субъекта ПД (ученика) или его законного представителя.",
-          en: "You are not allowed to provide personal data (academic performance, behavior records) to third parties who are not legal representatives without the written consent of the data subject (student) or their legal representative."
-        },
-        law: {
-          ru: "Cтатья 11 Закона (Предоставление персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4. (Предоставление персональных данных обучающихся, их законных представителей третьим лицам).",
-          en: "Article 11 of the Law (Provision of personal data); NCPDP Clarifications (21.11.2025), item 4.4. (Provision of personal data of students, their legal representatives to third parties)."
-        }
-      },
-      {
-        scenario: {
-          ru: "Вас просят передать списки студентов, включая их ФИО и группу, в стороннюю организацию (например, спортивную секцию или поликлинику) для организации их внеучебной деятельности. Какое правовое основание нужно?",
-          en: "You are asked to transfer lists of students, including their full name and group, to a third-party organization (e.g., a sports club or polyclinic) for the purpose of organizing extracurricular activities. What legal basis is required?"
+          ru: "Вас просят передать списки студентов, включая их ФИО и группу, в стороннюю организацию для последующего трудосустройства данных студентов. Какое правовое основание нужно?",
+          en: "You are asked to transfer the student lists, including their full name and group, to a third-party organization for the subsequent employment of these students. What legal basis is needed?"
         },
         solution: {
           ru: "Для этой цели необходимо получить письменное согласие каждого совершеннолетнего студента (или законного представителя несовершеннолетнего). Это не является обязанностью УО, предусмотренной законодательством.",
@@ -642,69 +614,12 @@
       },
       {
         scenario: {
-          ru: "Вы организуете загородную поездку и запрашиваете у студентов сведения о состоянии их здоровья (аллергии, хронические заболевания). К какому виду персональных данных они относятся и что необходимо для их обработки?",
-          en: "You are organizing a field trip and request information from students about their health (allergies, chronic diseases). What kind of personal data is this and what is required for its processing?"
-        },
-        solution: {
-          ru: "Сведения о здоровье относятся к специальным персональным данным. Их обработка допускается только на основании письменного согласия субъекта ПД, если это не предусмотрено законодательными актами в целях обеспечения безопасности.",
-          en: "Health information is classified as special personal data. Its processing is permitted only with the written consent of the data subject, unless provided for by legislative acts for safety purposes."
-        },
-        law: {
-          ru: "Статья 8 Закона (Специальные персональные данные).",
-          en: "Article 8 of the Law (Special personal data)."
-        }
-      },
-      {
-        scenario: {
-          ru: "Для общения с родителями учеников вашего класса вы создали чат в популярном зарубежном мессенджере (например, Telegram, WhatsApp). Должны ли вы получить письменное согласие родителей?",
-          en: "To communicate with the parents of your students, you created a chat in a popular foreign messenger (e.g., Telegram, WhatsApp). Do you need to get written parental consent?"
-        },
-        solution: {
-          ru: "Использование мессенджеров для размещения сообщений, носящих информационно-справочный характер (например, информирование об изменениях в расписании занятий, о предстоящих мероприятиях, домашнем задании, родительских собрания и т.п.), не противоречит требованиям Закона",
-          en: "The use of messengers to post messages of an informational and reference nature (for example, informing about changes in the schedule of classes, upcoming events, homework, parent meetings, etc.) does not contradict the requirements of the Law."
-        },
-        law: {
-          ru: "Статья 9 Закона (Трансграничная передача персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 6.2.",
-          en: "Article 9 of the Law (Cross-border transfer of personal data); NPDPС Clarifications (21.11.2025), item 6.2."
-        }
-      },
-      // New 10 Scenarios for Teacher
-      {
-        scenario: {
-          ru: "У вас есть новый преподаватель. Директор просит разместить его ФИО, должность и служебный телефон на сайте УВО для контактов со студентами, но преподаватель отказывается давать согласие на обработку персональных данных. Ваши действия?",
-          en: "You have a new teacher. The director asks you to post their full name, position, and work phone number on the university's website for student contact, but the teacher refuses to give consent for personal data processing. What are your actions?"
-        },
-        solution: {
-          ru: "Разместите ФИО, должность и служебный телефон без согласия, так как это необходимо для выполнения его трудовой функции, предусматривающей внешнее взаимодействие. Фотографию и сведения о квалификации без согласия размещать нельзя.",
-          en: "Post the full name, position, and work phone number without consent, as this is necessary for the performance of their employment function, which involves external interaction. You cannot post a photograph or qualification details without consent."
-        },
-        law: {
-          ru: "Абзац восьмой статьи 6 Закона (обработка персональных данных, когда это прямо предусмотрено законодательными актами); Разъяснения НЦЗПД (16.07.2024), п. 8",
-          en: "Article 6, paragraph eight of the Law (processing persoanl data when explicitly provided by legislative acts); NPDPС Clarifications (16.07.2024), item 8"
-        }
-      },
-      {
-        scenario: {
-          ru: "К вам обратился представитель компании-работодателя с устным запросом предоставить список студентов выпускного курса с их контактными данными для прямого приглашения на работу. Ваши действия?",
-          en: "A company recruiter approaches you with a verbal request to provide a list of final-year students with their contact details for direct job invitations. What are your actions?"
-        },
-        solution: {
-          ru: "Вы можете предоставить характеристики или информацию о выпускниках только по письменному запросу и только в случаях, прямо предусмотренных законодательством (например, для трудоустройства по распределению). Предоставление контактных данных для 'прямого приглашения' требует согласия субъекта.",
-          en: "You can provide characteristics or information about graduates only upon written request and only in cases explicitly provided for by law (e.g., for employment under assignment). Providing contact details for a 'direct invitation' requires the data subject's consent."
-        },
-        law: {
-          ru: "Абзац двадцатый статьи 6 Закона (выполнение обязанностей, предусмотренных законодательными актами); Разъяснения НЦЗПД (16.07.2024), п. 7.2.",
-          en: "Article 6, paragraph twenty of the Law (performance of duties provided for by legislative acts); NPDPС Clarifications (16.07.2024), item 7.2."
-        }
-      },
-      {
-        scenario: {
           ru: "Вы являетесь ответственным за установку системы видеонаблюдения в коридорах учебного корпуса. Какие основные шаги вы должны предпринять, чтобы соблюсти требования законодательства о защите персональных данных?",
           en: "You are responsible for installing a CCTV system in the corridors of the academic building. What main steps must you take to comply with personal data legislation requirements?"
         },
         solution: {
-          ru: "Установить информационные таблички (пиктограммы) в зоне видимости, информирующие о видеонаблюдении. Утвердить Политику видеонаблюдения и обеспечить к ней неограниченный доступ.",
-          en: "Install visible information signs (pictograms) informing about the video surveillance. Approve a Video Surveillance Policy and ensure unlimited access to it."
+          ru: "Установить информационные таблички (пиктограммы) в зоне видимости, информирующие о видеонаблюдении. Утвердить Политику видеонаблюдения и обеспечить к ней неограниченный доступ. Необходимо также учитывать, что система видеонаблюдения подлежит аттестации (в рамках соблюдения меры по технической и криптографической защите); к видеозаписям с камер видеонаблюдения должен быть установлен порядок доступа; организация обязана назначить лицо, ответственное за осуществление внутреннего контроля за обработкой ПД. ",
+          en: "Install information signs (pictographs) in the visible area informing about video surveillance. Approve the Video Surveillance Policy and provide unlimited access to it. It should also be taken into account that the video surveillance system is subject to certification (as part of compliance with technical and cryptographic protection measures); access procedures should be established to video recordings from video surveillance cameras; the organization must appoint a person responsible for internal control over PD processing."
         },
         law: {
           ru: "Пункт 3 статьи 17 Закона (Информирование о видеонаблюдении); Разъяснения НЦЗПД (21.11.2025), п. 5.",
@@ -713,68 +628,12 @@
       },
       {
         scenario: {
-          ru: "УВО организует программу международного обмена. Для оформления виз и участия требуется передать ФИО, дату рождения и паспортные данные студента в иностранный вуз. Достаточно ли договора со студентом?",
-          en: "The university organizes an international exchange program. To process visas and participation, the student's full name, date of birth, and passport details must be transferred to a foreign university. Is a contract with the student sufficient?"
-        },
-        solution: {
-          ru: "Да, договор, заключенный с субъектом персональных данных, может служить правовым основанием для трансграничной передачи, если он явно предусматривает такую передачу данных для выполнения своих условий.",
-          en: "Yes, a contract concluded with the data subject can serve as a legal basis for cross-border transfer if it explicitly provides for such data transfer to fulfill its terms."
-        },
-        law: {
-          ru: "Абзац пятнадцатый статьи 6 Закона (Договорные отношения); Разъяснения НЦЗПД (16.07.2024), п. 5.",
-          en: "Article 6, paragraph fifteen of the Law (Contractual relations); NPDPС Clarifications (16.07.2024), item 5."
-        }
-      },
-      {
-        scenario: {
-          ru: "У вас хранится классный журнал (УОСО). Срок обучения по программе уже закончился. Как долго вы обязаны хранить этот документ и содержащиеся в нем персональные данные?",
-          en: "You are storing a class register (school). The study program term has ended. How long are you obligated to store this document and the personal data contained within it?"
-        },
-        solution: {
-          ru: "Классный журнал (УОСО) должен храниться в течение 5 лет, согласно перечню типовых документов. Обработка (хранение) осуществляется на основании законодательного акта (абзац двадцатый статьи 6 Закона).",
-          en: "The class register (school) must be stored for 5 years, according to the list of standard documents. Processing (storage) is carried out on the basis of a legislative act (Article 6, paragraph twenty of the Law)."
-        },
-        law: {
-          ru: "Абзац двадцатый статьи 6 Закона (обязанности, предусмотренные законодательством); Разъяснения НЦЗПД (21.11.2025), п. 2.7.",
-          en: "Article 6, paragraph twenty of the Law (duties provided for by legislation); NPDPС Clarifications (21.11.2025), item 2.7."
-        }
-      },
-      {
-        scenario: {
-          ru: "Администрация УОСО просит вас собрать фотографии учеников для изготовления билетов учащегося. Требуется ли согласие родителей?",
-          en: "School administration asks you to collect student photos for the production of student passes/IDs. Is parental consent required?"
-        },
-        solution: {
-          ru: "Нет. Изготовление и выдача билета учащегося осуществляется на основании абзаца двадцатого статьи 6 Закона (выполнение обязанностей, предусмотренных законодательными актами) и не требует согласия.",
-          en: "No. The production and issuance of a student ID is carried out based on Article 6, paragraph twenty of the Law (performance of duties provided for by legislative acts) and does not require consent."
-        },
-        law: {
-          ru: "Абзац двадцатый статьи 6 Закона; Разъяснения НЦЗПД (21.11.2025), п. 4.7. (страница 5)",
-          en: "Article 6, paragraph twenty of the Law; NPDPС Clarifications (21.11.2025), item 4.7. (page 5)"
-        }
-      },
-      {
-        scenario: {
-          ru: "Абитуриент хочет подать документы без создания личного кабинета на сайте, считая регистрацию неудобной. Вы, как представитель приемной комиссии, обязаны требовать регистрацию?",
-          en: "An applicant wants to submit documents without creating a personal account on the website, finding registration inconvenient. Are you, as a representative of the admissions committee, obliged to require registration?"
-        },
-        solution: {
-          ru: "Нет. Подача документов через личный кабинет не является обязательной. Требование об обязательной подаче только через личный кабинет незаконно, а обработка ПД для поступления и так основана на законе и не требует согласия.",
-          en: "No. Submitting documents through a personal account is not mandatory. The requirement for mandatory submission only through a personal account is illegal, and PD processing for admission is already based on law and does not require consent."
-        },
-        law: {
-          ru: "Разъяснения НЦЗПД (16.07.2024), п. 1 (указывает, что получение согласия избыточно); Кодекс об образовании.",
-          en: "NPDPС Clarifications (16.07.2024), item 1 (indicates that obtaining consent is excessive); Code of Education."
-        }
-      },
-      {
-        scenario: {
           ru: "Вы проводите анонимный опрос среди учеников о буллинге. Вам нужно получить согласие на обработку их мнений?",
           en: "You are conducting an anonymous survey among students about bullying. Do you need to obtain consent for processing their opinions?"
         },
         solution: {
-          ru: "Нет, если опрос является полностью анонимным и не предполагает сбор данных, позволяющих идентифицировать ученика (например, ФИО, класс). Если данные обезличены, они не являются персональными.",
-          en: "No, if the survey is completely anonymous and does not involve collecting data that allows the student to be identified (e.g., full name, class). If the data is anonymized, it is not personal data."
+          ru: "Нет, если опрос является полностью анонимным и не предполагает сбор данных, позволяющих идентифицировать ученика (например, ФИО, класс). Если данные обезличены, они не являются персональными. Но, если опрос содержит вопросы, которые могут иденцифицировать ученика – вы обязаны получить согласие.",
+          en: "No, if the survey is completely anonymous and does not involve collecting data to identify the student (for example, full name, class). If the data is anonymized, it is not considered personal. However, if the survey contains questions that may identify the student, you must obtain consent."
         },
         law: {
           ru: "Статья 1 Закона (Обезличивание персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.11.",
@@ -783,30 +642,30 @@
       },
       {
         scenario: {
-          ru: "Вам нужно передать ФИО и сведения о выплате материальной помощи к учебному году в бухгалтерию для осуществления расчета. Нужен ли дополнительный бланк согласия?",
-          en: "You need to transfer the full name and information about the payment of financial aid for the academic year to the accounting department for calculation. Is an additional consent form required?"
+          ru: "Преподаватель, назначенный куратором первого курса, при составлении карты персонифицированного учета (часть журнала куратора) просит студентов заполнить подробную анкету. Чтобы «лучше понимать социальный статус семей», куратор включает в анкету графы: «Место работы отца/матери», «Занимаемая должность» и «Примерный доход семьи».",
+          en: "The teacher appointed by the curator of the first year, when compiling a personalized accounting card (part of the curator's journal), asks students to fill out a detailed questionnaire. In order to «better understand the social status of families,» the curator includes the following columns in the questionnaire: «Father's/mother's place of work,» «Position held,» and «Approximate family income.»"
         },
         solution: {
-          ru: "Нет. Обработка (передача) данных для цели получения материальной помощи осуществляется в рамках выполнения обязанностей, предусмотренных законодательством (по заявительному принципу), и не требует согласия.",
-          en: "No. The processing (transfer) of data for the purpose of receiving financial aid is carried out within the framework of fulfilling duties provided for by law (on an application basis) and does not require consent."
+          ru: "Куратор обязан убрать из анкеты и журнала вопросы о месте работы, должностях и доходах родителей. Эти сведения официально признаны избыточными для целей идеологической и воспитательной работы. Для связи с семьей по вопросам обучения или поведения студента допустимо собирать только ФИО родителей, адрес их проживания и контактный номер телефона. Если такие данные уже были собраны, их следует удалить (уничтожить), чтобы не нарушать закон о защите персональных данных.",
+          en: "The supervisor must remove questions about the parents' place of work, positions, and income from the questionnaire and journal. This information is officially recognized as redundant for the purposes of ideological and educational work. To contact the family about the student's education or behavior, it is permissible to collect only the full name of the parents, their residential address and contact phone number. If such data has already been collected, it should be deleted (destroyed) so as not to violate the law on personal data protection."
         },
         law: {
-          ru: "Абзац двадцатый статьи 6 Закона; Разъяснения НЦЗПД (21.11.2025), п. 4.2.",
-          en: "Article 6, paragraph twenty of the Law; NPDPС Clarifications (21.11.2025), item 4.2."
+          ru: "Статья 4 Закона требует, чтобы объем обрабатываемых данных соответствовал заявленным целям. Сбор лишней информации (о карьере родителей) нарушает этот принцип. Инструктивно-методическое письмо Министерства образования РБ (от 29.11.2012) регулирует работу кураторов и ведение журналов. Позиция Национального центра защиты персональных данных Республики Беларусь: информация о профессиональном статусе родителей не оказывает влияния на воспитательный процесс в вузе.",
+          en: "Article 4 of the Law requires that the volume of processed data correspond to the stated purposes. Collecting unnecessary information (about the career of parents) violates this principle. The instructional and methodological letter of the Ministry of Education of the Republic of Belarus (dated 11/29/2012) regulates the work of curators and the maintenance of journals. The position of the National Personal Data Protection Center of the Republic of Belarus is that information about the professional status of parents does not affect the educational process at the university."
         }
       },
       {
         scenario: {
-          ru: "Вы как оператор планируете обработку специальных персональных данных (например, о состоянии здоровья). Какие дополнительные меры вы обязаны принять?",
-          en: "As an operator, you plan to process special personal data (e.g., about health status). What additional measures are you obligated to take?"
+          ru: "Деканат факультета решает публично поздравить именинников месяца. Для этого на информационной доске деканата, на стенде в учебном корпусе или в общем чате мессенджера (Viber, Telegram) вывешивается список с именами студентов или коллег и датами их рождения.",
+          en: "The Dean of the faculty decides to publicly congratulate the birthday boys of the month. To do this, a list with the names of students or colleagues and their dates of birth is posted on the dean's office's information board, on a stand in the academic building, or in a shared messenger chat (Viber, Telegram)."
         },
         solution: {
-          ru: "Обработка специальных персональных данных допускается только при условии принятия комплекса мер, направленных на предупреждение рисков, которые могут возникнуть при обработке таких персональных данных для прав и свобод субъектов.",
-          en: "The processing of special personal data is permitted only on the condition of taking a set of measures aimed at preventing risks that may arise during the processing of such personal data to the rights and freedoms of data subjects."
+          ru: "Публикация ФИО и даты рождения — это обработка персональных данных. В отличие от ведения учебного журнала, поздравление «с днем рождения» не является обязательным элементом образовательного процесса. Поэтому для этого всегда требуется предварительное согласие человека. Нельзя просто взять данные из личных дел студентов в деканате и вывесить их на стенд. Нужно сначала спросить каждого: «Согласны ли вы, чтобы мы публично вас поздравляли?» и/или получить согласие на обработку и использование персональных данных для данной цели.",
+          en: "The publication of full name and date of birth is the processing of personal data. Unlike keeping an educational journal, the «happy birthday» greeting is not an obligatory element of the educational process. Therefore, it always requires a person's prior consent. You can't just take data from students' personal files at the dean's office and post it on the stand. You must first ask everyone: «Do you agree that we publicly congratulate you?»  and/or get consent to the processing and use of personal data for this purpose."
         },
         law: {
-          ru: "Пункт 3 статьи 8 Закона (Обработка специальных персональных данных).",
-          en: "Article 8, paragraph 3 of the Law (Processing of special personal data)."
+          ru: "Статья 1 Закона классифицирует распространение имен и дат рождения как обработку персональных данных. Статья 5 Закона устанавливает, что в случаях, не предусмотренных законом (а поздравления законом не прописаны), обработка допускается только на основании свободного и однозначного согласия субъекта.",
+          en: "Article 1 of the Law classifies the dissemination of names and dates of birth as personal data processing. Article 5 of the Law establishes that in cases not provided for by law (and congratulations are not prescribed by law), processing is allowed only on the basis of the free and unambiguous consent of the subject."
         }
       }
     ];
