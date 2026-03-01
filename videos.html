@@ -370,9 +370,19 @@
     .video-embed {
       position: relative;
       width: 100%;
-      padding-top: 56.25%; /* 16:9 */
-      background: linear-gradient(135deg, #1e3a8a15, #1d4ed820);
+      background: #0f172a;
       overflow: hidden;
+      line-height: 0;
+    }
+
+    /* Тег <video> — заполняет карточку, не запускается сам */
+    .video-embed video {
+      width: 100%;
+      height: auto;
+      display: block;
+      max-height: 240px;
+      object-fit: cover;
+      background: #0f172a;
     }
 
     .video-embed iframe {
@@ -384,9 +394,8 @@
 
     /* Placeholder when no video yet */
     .video-placeholder {
-      position: absolute;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
+      width: 100%;
+      height: 180px;
       display: flex;
       flex-direction: column;
       align-items: center;
@@ -615,54 +624,104 @@
 
           <!-- Видео 1 -->
           <div class="video-card">
-            <div class="video-embed">
-              <!-- Замените src на ссылку вида https://www.youtube.com/embed/VIDEO_ID -->
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>1-4 классы</span>
-              </div>
-             <iframe src="./videos-pd/Твои_Секреты,_Твои_Правила!.mp4"></iframe>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/uoso_student_1.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учащиеся · УОСО</span>
-              <p class="video-title">Твои секреты, Твои правила! 1-4 классы</p>
+              <p class="video-title">Что такое персональные данные?</p>
               <p class="video-desc">Простое объяснение понятия персональных данных: что к ним относится, почему они важны и как их защитить в повседневной жизни.</p>
             </div>
           </div>
 
           <!-- Видео 2 -->
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>5-8 классы</span>
-              </div>
-               <iframe src="./videos-pd/Ваши_данные__просто_о_важном.mp4"></iframe>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учащиеся · УОСО</span>
-              <p class="video-title">Ваши данные - просто о важном. 5-8 классы</p>
-              <p class="video-desc">Что необходимо хранить и держать в тайне, а также какие права вы имеете, когда ваши личные данные находятся в руках других людей</p>
+              <p class="video-title">Безопасность в социальных сетях</p>
+              <p class="video-desc">Как не раскрывать лишнего в интернете: настройки приватности, публикация фотографий и личной информации.</p>
             </div>
           </div>
 
           <!-- Видео 3 -->
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>9-11 классы</span>
-              </div>
-              <video src="./videos-pd/Твои_данные,_твои_правила.mp4" style="object-position: 0%s;"></video>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учащиеся · УОСО</span>
-              <p class="video-title">Твои данные - твои правила. 9-11 классы</p>
-              <p class="video-desc">Что необходимо знать, когда вы регистрируетесь в иностранных сервисах. Что такое трансграничная передача данных</p>
+              <p class="video-title">Фишинг и мошенничество онлайн</p>
+              <p class="video-desc">Как распознать попытки мошенников собрать ваши данные и что делать, если вы стали жертвой фишинга.</p>
             </div>
           </div>
 
-          
+          <!-- Видео 4 -->
+          <div class="video-card">
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
+            </div>
+            <div class="video-info">
+              <span class="video-badge">Учащиеся · УОСО</span>
+              <p class="video-title">Пароли и двухфакторная аутентификация</p>
+              <p class="video-desc">Правила создания надёжных паролей и включение дополнительной защиты аккаунтов.</p>
+            </div>
+          </div>
+
+          <!-- Видео 5 -->
+          <div class="video-card">
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
+            </div>
+            <div class="video-info">
+              <span class="video-badge">Учащиеся · УОСО</span>
+              <p class="video-title">Мои права в цифровом мире</p>
+              <p class="video-desc">Закон РБ № 99-З простым языком: право на доступ, право на исправление и удаление данных.</p>
+            </div>
+          </div>
+
         </div>
       </div>
     </section>
@@ -677,11 +736,16 @@
         <div class="video-grid">
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 1 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учителя · УОСО</span>
@@ -691,11 +755,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 2 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учителя · УОСО</span>
@@ -705,11 +774,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 3 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учителя · УОСО</span>
@@ -719,11 +793,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 4 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учителя · УОСО</span>
@@ -733,11 +812,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 5 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Учителя · УОСО</span>
@@ -762,11 +846,16 @@
         <div class="video-grid">
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 1 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Студенты · УВО/УССО</span>
@@ -776,11 +865,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 2 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Студенты · УВО/УССО</span>
@@ -790,11 +884,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 3 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Студенты · УВО/УССО</span>
@@ -804,11 +903,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 4 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Студенты · УВО/УССО</span>
@@ -818,11 +922,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 5 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">Студенты · УВО/УССО</span>
@@ -845,11 +954,16 @@
         <div class="video-grid">
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 1 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">ППС · УВО/УССО</span>
@@ -859,11 +973,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 2 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">ППС · УВО/УССО</span>
@@ -873,11 +992,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 3 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">ППС · УВО/УССО</span>
@@ -887,11 +1011,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 4 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">ППС · УВО/УССО</span>
@@ -901,11 +1030,16 @@
           </div>
 
           <div class="video-card">
-            <div class="video-embed">
-              <div class="video-placeholder">
-                <i class="fas fa-play-circle"></i>
-                <span>Видео 5 — добавьте ссылку</span>
-              </div>
+                        <div class="video-embed">
+              <!--
+                Вставьте путь к вашему видеофайлу в атрибут src.
+                Пример: src="videos/video.mp4"
+                poster — необязательная картинка-превью (jpg/png).
+              -->
+              <video controls preload="none" poster="">
+                <source src="" type="video/mp4">
+                Ваш браузер не поддерживает тег video.
+              </video>
             </div>
             <div class="video-info">
               <span class="video-badge">ППС · УВО/УССО</span>
