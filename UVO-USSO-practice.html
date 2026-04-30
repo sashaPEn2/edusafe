@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>УВО/УССО практика — EduSafe</title>
-  <link rel="icon" type="image/x-icon" href="favcion.ico">
-  <!-- Yandex.Metrika counter -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>УВО/УССО практика — EduSafe</title>
+<link href="favcion.ico" rel="icon" type="image/x-icon"/>
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -16,10 +17,10 @@
 
     ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <!-- Yandex.Metrika counter -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -30,9 +31,9 @@
 
     ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-  <style>
+<style>
     :root {
       --blue-900: #1e3a8a;
       --blue-700: #1d4ed8;
@@ -110,7 +111,23 @@
       font-size: 1.5rem;
       color: var(--gray-900);
       cursor: pointer;
-      z-index: 2;
+      z-index: 998;
+      padding: 0.5rem;
+      width: 2.5rem;
+      height: 2.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, transform 0.2s;
+    }
+
+    .nav-toggle:hover {
+      color: var(--blue-900);
+      transform: scale(1.1);
+    }
+
+    .nav-toggle:active {
+      transform: scale(0.95);
     }
 
     /* Desktop nav */
@@ -118,6 +135,19 @@
       display: flex;
       align-items: center;
       gap: 1.5rem;
+    }
+
+    /* IMPORTANT: Hide nav-container completely on mobile - it's replaced by mobile-menu */
+    @media (max-width: 900px) {
+      .nav-container {
+        display: none !important;
+        visibility: hidden !important;
+        position: absolute;
+        left: -9999px;
+        width: 0 !important;
+        height: 0 !important;
+        pointer-events: none !important;
+      }
     }
 
     nav ul {
@@ -155,43 +185,16 @@
       font-weight: 600;
     }
 
-    /* Mobile Nav */
+    /* Mobile Nav - only show nav-toggle button, menu is handled by mobile-menu */
     @media (max-width: 900px) {
       .nav-toggle {
-        display: block;
+        display: flex;
       }
       .nav-container {
-        display: none;
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background: var(--white);
-        flex-direction: column;
-        justify-content: center;
-        align-items: center;
-        gap: 3rem;
-        z-index: 1;
-        opacity: 0;
-        transform: translateY(-100%);
-        transition: opacity 0.3s ease, transform 0.3s ease;
-      }
-
-      .nav-container.open {
-        display: flex;
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      .nav-container nav ul {
-        flex-direction: column;
-        gap: 2rem;
-      }
-
-      .nav-container nav a {
-        font-size: 1.5rem;
-        color: var(--gray-900);
+        display: none !important;
+        visibility: hidden !important;
+        position: absolute;
+        left: -9999px;
       }
     }
 
@@ -270,9 +273,58 @@
       color: var(--blue-100);
     }
 
-    @media (max-width: 768px) {
+    /* Responsive tab buttons */
+    @media (max-width: 1024px) {
       .tab-btn {
+        flex: 1 1 280px;
+        max-width: 48%;
+      }
+
+      .tab-btn h3 {
+        font-size: 1.1rem;
+      }
+
+      .tab-btn p {
+        font-size: 0.8rem;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .tab-controls {
+        gap: 1rem;
+      }
+
+      .tab-btn {
+        flex: 1 1 100%;
         max-width: 100%;
+        padding: 0.75rem 1rem;
+      }
+
+      .tab-btn h3 {
+        font-size: 1rem;
+      }
+
+      .tab-btn p {
+        display: none;
+      }
+
+      .tab-btn .role-icon {
+        font-size: 1.3rem;
+      }
+    }
+
+    @media (max-width: 480px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+
+      .subtitle {
+        font-size: 1rem;
+      }
+
+      .tab-btn {
+        padding: 0.6rem 0.8rem;
+        font-size: 0.9rem;
       }
     }
 
@@ -306,7 +358,73 @@
       color: var(--blue-700);
     }
 
-    .controls-group {
+    /* Abbreviations block */
+    .abbreviations-block {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 100%);
+      border: 1px solid #bae6fd;
+      border-left: 4px solid var(--blue-700);
+      border-radius: 0.75rem;
+      padding: 1.5rem;
+      margin: 2rem 0;
+      color: var(--gray-700);
+    }
+
+    .abbreviations-block h3 {
+      color: var(--blue-900);
+      font-size: 1.1rem;
+      margin-top: 0;
+      margin-bottom: 1.25rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .abbreviations-block h3::before {
+      content: "📋";
+      font-size: 1.3rem;
+    }
+
+    .abbreviations-block ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.75rem;
+    }
+
+    .abbreviations-block li {
+      padding: 0.5rem 0;
+      line-height: 1.6;
+      font-size: 0.95rem;
+    }
+
+    .abbreviations-block li::before {
+      content: "▸ ";
+      color: var(--blue-700);
+      font-weight: bold;
+      margin-right: 0.5rem;
+    }
+
+    @media (max-width: 768px) {
+      .abbreviations-block {
+        padding: 1rem;
+      }
+
+      .abbreviations-block h3 {
+        font-size: 1rem;
+        margin-bottom: 1rem;
+      }
+
+      .abbreviations-block ul {
+        grid-template-columns: 1fr;
+        gap: 0.5rem;
+      }
+
+      .abbreviations-block li {
+        font-size: 0.9rem;
+      }
+    }.controls-group {
       display: flex;
       gap: 0.75rem;
       flex-wrap: wrap;
@@ -383,15 +501,25 @@
     }
 
     .scenario-card .scenario-content {
-      display: none;
+      display: grid;
+      grid-template-rows: 0fr;
       overflow: hidden;
-      margin-top: 1rem;
-      padding-top: 1rem;
-      border-top: 1px solid var(--gray-100);
+      transition: grid-template-rows 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+                  padding-top 0.4s ease,
+                  border-top-color 0.4s ease;
+      padding-top: 0;
+      border-top: 1px solid transparent;
+    }
+
+    .scenario-card .scenario-content > .scenario-content-inner {
+      min-height: 0;
+      overflow: hidden;
     }
 
     .scenario-content.show {
-      display: block;
+      grid-template-rows: 1fr;
+      padding-top: 1rem;
+      border-top-color: var(--gray-100);
     }
 
     .scenario-content h4 {
@@ -419,121 +547,516 @@
       color: var(--gray-900);
       border: 1px solid var(--blue-700);
     }
-  </style>
-</head>
+
+    /* НЦЗПД notice block */
+    .ncdp-notice {
+      display: flex;
+      align-items: flex-start;
+      gap: 0.6rem;
+      background: #fff7ed;
+      border: 1px solid #fb923c;
+      border-left: 4px solid #f97316;
+      border-radius: 0.5rem;
+      padding: 0.8rem 1rem;
+      margin-top: 0.25rem;
+      font-size: 0.9rem;
+      color: #7c2d12;
+      line-height: 1.5;
+    }
+
+    .ncdp-notice i {
+      color: #f97316;
+      flex-shrink: 0;
+      margin-top: 0.15rem;
+      font-size: 1rem;
+    }
+
+    .ncdp-notice a {
+      color: #c2410c;
+      font-weight: 600;
+      text-decoration: underline;
+    }
+
+    .ncdp-notice a:hover {
+      color: #7c2d12;
+    }
+
+    /* Scenario header banner */
+    .ncdp-banner {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+      background: linear-gradient(135deg, #fff7ed 0%, #ffedd5 100%);
+      border: 1px solid #fdba74;
+      border-left: 5px solid #f97316;
+      border-radius: 0.75rem;
+      padding: 1rem 1.5rem;
+      margin-bottom: 2rem;
+      font-size: 0.95rem;
+      color: #7c2d12;
+      line-height: 1.6;
+    }
+
+    .ncdp-banner i {
+      font-size: 2rem;
+      color: #f97316;
+      flex-shrink: 0;
+    }
+
+    .ncdp-banner strong {
+      display: block;
+      font-size: 1rem;
+      margin-bottom: 0.25rem;
+      color: #9a3412;
+    }
+
+    .ncdp-banner a {
+      color: #c2410c;
+      font-weight: 700;
+      text-decoration: underline;
+    }
+
+    .ncdp-banner a:hover {
+      color: #7c2d12;
+    }
+
+    /* Modal Styles */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      left: 0;
+      top: 0;
+      width: 100%;
+      height: 100%;
+      overflow: auto;
+      background-color: rgba(0, 0, 0, 0.5);
+      animation: fadeIn 0.3s ease;
+    }
+
+    .modal.show {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    .modal-content {
+      background-color: var(--white);
+      padding: 0;
+      border-radius: 1rem;
+      width: 90%;
+      max-width: 800px;
+      max-height: 90vh;
+      overflow-y: auto;
+      box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+      animation: slideIn 0.3s ease;
+    }
+
+    @keyframes slideIn {
+      from {
+        transform: translateY(-50px);
+        opacity: 0;
+      }
+      to {
+        transform: translateY(0);
+        opacity: 1;
+      }
+    }
+
+    .modal-header {
+      background: linear-gradient(135deg, var(--blue-900) 0%, var(--blue-700) 100%);
+      color: var(--white);
+      padding: 1.5rem;
+      border-radius: 1rem 1rem 0 0;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h2 {
+      margin: 0;
+      font-size: 1.5rem;
+      flex: 1;
+    }
+
+    .modal-close {
+      background: none;
+      border: none;
+      color: var(--white);
+      font-size: 1.5rem;
+      cursor: pointer;
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.2s;
+    }
+
+    .modal-close:hover {
+      transform: scale(1.2);
+    }
+
+    .modal-body {
+      padding: 2rem;
+    }
+
+    .modal-section {
+      margin-bottom: 2rem;
+    }
+
+    .modal-section:last-child {
+      margin-bottom: 0;
+    }
+
+    .modal-section h4 {
+      font-size: 1.1rem;
+      color: var(--blue-900);
+      font-weight: 700;
+      margin-bottom: 1rem;
+      border-bottom: 2px solid var(--blue-100);
+      padding-bottom: 0.5rem;
+    }
+
+    .modal-section p {
+      color: var(--gray-600);
+      line-height: 1.7;
+      margin: 0;
+    }
+
+    .law-link {
+      color: var(--blue-700);
+      text-decoration: underline;
+      font-weight: 500;
+      transition: color 0.2s;
+    }
+
+    .law-link:hover {
+      color: var(--blue-900);
+      text-decoration-thickness: 2px;
+    }
+
+
+    .scenario-modal-btn {
+      background: var(--blue-700);
+      color: var(--white);
+      border: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.5rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+      width: 100%;
+      font-size: 1rem;
+    }
+
+    .scenario-modal-btn:hover {
+      background: var(--blue-900);
+      transform: translateY(-2px);
+    }
+
+    @media (max-width: 768px) {
+      .modal-content {
+        width: 95%;
+        max-height: 95vh;
+      }
+
+      .modal-body {
+        padding: 1.5rem;
+      }
+
+      .modal-header h2 {
+        font-size: 1.2rem;
+      }
+    }
+  
+    /* Responsive styles are defined in media queries above */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      right: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.5);
+      backdrop-filter: blur(3px);
+      z-index: 999;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+      display: flex;
+      justify-content: flex-end;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 25px rgba(0,0,0,0.15);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      overflow-y: auto;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 2px solid var(--gray-100);
+    }
+
+    .mobile-header .logo {
+      font-weight: 700;
+      color: var(--blue-900);
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      padding: 0;
+      width: 2rem;
+      height: 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s;
+    }
+
+    .close-btn:hover {
+      color: var(--blue-900);
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+      transform: translateX(-5px);
+    }
+
+    .mobile-nav a i {
+      width: 1.5rem;
+      text-align: center;
+      font-size: 1.1rem;
+    }
+
+    .mobile-nav a span {
+      flex: 1;
+    }
+
+
+</style>
+</link></head>
 <body>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-shield-alt"></i>
-          EduSafe
-        </a>
-        <button class="nav-toggle" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="nav-container">
-          <nav>
-            <ul>
-              <li><a href="index.html" data-lang-key="navHome">Главная</a></li>
-              <li><a href="theory.html" data-lang-key="navLaws">Теория</a></li>
-              <li><a href="choice-sp.html" class="active" data-lang-key="navPractice">Практика</a></li>
-              <li><a href="contact.html" data-lang-key="navAbout">Жалоба</a></li>
-            </ul>
-          </nav>
-          <div class="lang-switcher">
-            <button data-lang="ru" class="active">RU</button>
-            <button data-lang="en">EN</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
+ <!-- Header -->
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="nav-toggle" id="navToggle">
+<i class="fas fa-bars"></i>
+</button>
+<div class="nav-container">
+<div class="lang-selector">
+<select id="languageSelector">
+<option value="ru">Русский</option>
+<option value="en">English</option>
+</select>
+</div>
+<nav class="nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-content">
+<div class="mobile-header">
+<div class="logo" style="font-size: 1.25rem;">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="close-btn" id="closeMenu">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<nav class="mobile-nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+<div style="margin-top: 1.5rem; padding-top: 1rem; border-top: 1px solid var(--gray-200);">
+  <label style="display: block; font-weight: 600; color: var(--gray-900); margin-bottom: 0.5rem;">Язык:</label>
+  <select id="mobileLangSelector" style="width: 100%; padding: 0.75rem; border: 1px solid var(--gray-300); border-radius: 0.5rem; background: var(--white); color: var(--gray-900); font-size: 1rem;">
+    <option value="ru">Русский</option>
+    <option value="en">English</option>
+  </select>
+</div>
+</div>
+</div>
+</header>
+<main>
+<div class="container">
+<h1 data-lang-key="practiceTitle">Практические сценарии защиты персональных данных</h1>
+<p class="subtitle" data-lang-key="practiceSubtitle">Проверьте себя: как действовать в реальных ситуациях, чтобы не нарушить закон</p>
 
-  <main>
-    <div class="container">
-      <h1 data-lang-key="practiceTitle">Практические сценарии защиты персональных данных</h1>
-      <p class="subtitle" data-lang-key="practiceSubtitle">Проверьте себя: как действовать в реальных ситуациях, чтобы не нарушить закон</p>
+<!-- Abbreviations Block -->
+<div class="abbreviations-block" id="abbreviationsBlock">
+  <h3 data-lang-key="abbreviationsTitle">Расшифровка основных аббревиатур</h3>
+  <ul>
+    <li data-lang-key="abbr_uvo">УВО — Учреждение высшего образования</li>
+    <li data-lang-key="abbr_usso">УССО — Учреждение среднего специального образования</li>
+    <li data-lang-key="abbr_pd">ПД — Персональные данные</li>
+    <li data-lang-key="abbr_nczpd">НЦЗПД — Национальный центр защиты персональных данных</li>
+    <li data-lang-key="abbr_pps">ППС — Профессорско-преподавательский состав</li>
+    <li data-lang-key="abbr_uo">УО — Учреждение образования</li>
+    <li data-lang-key="abbr_fio">ФИО — Фамилия, имя, отчество</li>
+  </ul>
+</div>
 
-      <div class="tab-controls">
-        <button class="tab-btn active" data-role="teacher">
-          <div class="role-icon">
-            <i class="fas fa-chalkboard-teacher"></i>
-          </div>
-          <div>
-            <h3 id="roleTeacherTitle" data-lang-key="roleTeacherTitle">ППС</h3>
-            <p id="roleTeacherDesc">5 подробных сценариев для профессорско-преподавательского состава УВО и УССО по обработке и защите персональных данных студентов</p>
-          </div>
-        </button>
-        <button class="tab-btn" data-role="student">
-          <div class="role-icon">
-            <i class="fas fa-user-graduate"></i>
-          </div>
-          <div>
-            <h3 id="roleStudentTitle" data-lang-key="roleStudentTitle">Студенты</h3>
-            <p id="roleStudentDesc">4 сценариев для студентов УВО и УССО по защите своих персональных данных</p>
-          </div>
-        </button>
-         <button class="tab-btn" data-role="director">
-          <div class="role-icon">
-            <i class="fas fa-file-text"></i>
-          </div>
-          <div>
-            <h3 id="roleDirectorTitle" data-lang-key="roleDirectorTitle">Операторы и руководители УВО и УССО (в разработке)</h3>
-            <p id="roleDirectorDesc">5 подробных сценариев для операторов и руководителей УВО и УССО по защите персональных данных сотрудников и учащихся учреждения образования</p>
-          </div>
-        </button>
-      </div>
-
-      <div class="tab-content active" id="teacherContent">
-        <div class="content-header">
-          <h2 data-lang-key="teacherHeader">Сценарии для ППС</h2>
-          <div class="controls-group">
-            <button class="control-btn" id="expandAllTeacher" data-lang-key="expandAll">Развернуть все</button>
-            <button class="control-btn" id="collapseAllTeacher" data-lang-key="collapseAll">Свернуть все</button>
-          </div>
-        </div>
-        <div class="scenarios-grid" id="teacherScenariosGrid">
-          </div>
-      </div>
-
-    <div class="tab-content" id="directorContent">
-        <div class="content-header">
-          <h2 data-lang-key="directorHeader">Сценарии для руководителей УВО и УССО</h2>
-          <div class="controls-group">
-            <button class="control-btn" id="expandAllDirector" data-lang-key="expandAll">Развернуть все</button>
-            <button class="control-btn" id="collapseAllDirector" data-lang-key="collapseAll">Свернуть все</button>
-          </div>
-        </div>
-        <div class="scenarios-grid" id="directorScenariosGrid">
-          </div>
-      </div>
-
-      <div class="tab-content" id="studentContent">
-        <div class="content-header">
-          <h2 data-lang-key="studentHeader">Сценарии для студентов</h2>
-          <div class="controls-group">
-            <button class="control-btn" id="expandAllStudent" data-lang-key="expandAll">Развернуть все</button>
-            <button class="control-btn" id="collapseAllStudent" data-lang-key="collapseAll">Свернуть все</button>
-          </div>
-        </div>
-        <div class="scenarios-grid" id="studentScenariosGrid">
-          </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div style="padding: 2rem 0; text-align: center; font-size: 0.85rem; color: var(--gray-600); border-top: 1px solid var(--gray-200); margin-top: 3rem;">
-        <p data-lang-key="footerDisclaimer1">© 2026 EduSafe. Республиканский информационно-практический ресурс для педагогов и студентов.</p>
-                <p data-lang-key="footerDisclaimer2">Все права защищены. Проект разработан для повышения осведомленности пользователей.</p>
-        <p data-lang-key="footerDisclaimer3">Все материалы носят информационно-образовательный характер и соответствуют действующему законодательству Республики Беларусь.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+<!-- НЦЗПД Banner -->
+<div class="ncdp-banner" id="ncdpBanner">
+  <i class="fas fa-exclamation-triangle"></i>
+  <div>
+    <strong id="ncdpBannerTitle">Нарушение персональных данных?</strong>
+    <span id="ncdpBannerText">Если вы столкнулись с нарушением в сфере персональных данных, вы вправе обратиться в <strong>Национальный центр защиты персональных данных (НЦЗПД)</strong> — уполномоченный государственный орган по контролю и надзору в данной сфере. Сайт: <a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a></span>
+  </div>
+</div>
+<div class="tab-controls">
+<button class="tab-btn active" data-role="teacher">
+<div class="role-icon">
+<i class="fas fa-chalkboard-teacher"></i>
+</div>
+<div>
+<h3 data-lang-key="roleTeacherTitle" id="roleTeacherTitle">ППС</h3>
+<p id="roleTeacherDesc">5 подробных сценариев для профессорско-преподавательского состава УВО и УССО по обработке и защите персональных данных студентов</p>
+</div>
+</button>
+<button class="tab-btn" data-role="student">
+<div class="role-icon">
+<i class="fas fa-user-graduate"></i>
+</div>
+<div>
+<h3 data-lang-key="roleStudentTitle" id="roleStudentTitle">Студенты</h3>
+<p id="roleStudentDesc">10 сценариев для студентов УВО и УССО по защите своих персональных данных</p>
+</div>
+</button>
+<button class="tab-btn" data-role="director">
+<div class="role-icon">
+<i class="fas fa-file-text"></i>
+</div>
+<div>
+<h3 data-lang-key="roleDirectorTitle" id="roleDirectorTitle">Операторы и руководители УВО и УССО (в разработке)</h3>
+<p id="roleDirectorDesc">5 подробных сценариев для операторов и руководителей УВО и УССО по защите персональных данных сотрудников и учащихся учреждения образования</p>
+</div>
+</button>
+</div>
+<div class="tab-content active" id="teacherContent">
+<div class="content-header">
+<h2 data-lang-key="teacherHeader">Сценарии для ППС</h2>
+<div class="controls-group">
+<button class="control-btn" data-lang-key="expandAll" id="expandAllTeacher">Развернуть все</button>
+<button class="control-btn" data-lang-key="collapseAll" id="collapseAllTeacher">Свернуть все</button>
+</div>
+</div>
+<div class="scenarios-grid" id="teacherScenariosGrid">
+</div>
+</div>
+<div class="tab-content" id="directorContent">
+<div class="content-header">
+<h2 data-lang-key="directorHeader">Сценарии для руководителей УВО и УССО</h2>
+<div class="controls-group">
+<button class="control-btn" data-lang-key="expandAll" id="expandAllDirector">Развернуть все</button>
+<button class="control-btn" data-lang-key="collapseAll" id="collapseAllDirector">Свернуть все</button>
+</div>
+</div>
+<div class="scenarios-grid" id="directorScenariosGrid">
+</div>
+</div>
+<div class="tab-content" id="studentContent">
+<div class="content-header">
+<h2 data-lang-key="studentHeader">Сценарии для студентов</h2>
+<div class="controls-group">
+<button class="control-btn" data-lang-key="expandAll" id="expandAllStudent">Развернуть все</button>
+<button class="control-btn" data-lang-key="collapseAll" id="collapseAllStudent">Свернуть все</button>
+</div>
+</div>
+<div class="scenarios-grid" id="studentScenariosGrid">
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="container">
+<div style="padding: 2rem 0; text-align: center; font-size: 0.85rem; color: var(--gray-600); border-top: 1px solid var(--gray-200); margin-top: 3rem;">
+<p data-lang-key="footerDisclaimer1">© 2026 EduSafe. Республиканский информационно-практический ресурс для педагогов и студентов.</p>
+<p data-lang-key="footerDisclaimer2">Все права защищены. Проект разработан для повышения осведомленности пользователей.</p>
+<p data-lang-key="footerDisclaimer3">Все материалы носят информационно-образовательный характер и соответствуют действующему законодательству Республики Беларусь.</p>
+</div>
+</div>
+</footer>
+<script>
     // Translations
     const translations = {
       ru: {
@@ -562,7 +1085,19 @@
         expandLaws: "Показать законы",
         footerDisclaimer1: "© 2026 EduSafe. Все права защищены.",
         footerDisclaimer2: "Все права защищены. Проект разработан для повышения осведомленности пользователей.",
-        footerDisclaimer3: "Все материалы носят информационно-образовательный характер и соответствуют действующему законодательству Республики Беларусь."
+        footerDisclaimer3: "Все материалы носят информационно-образовательный характер и соответствуют действующему законодательству Республики Беларусь.",
+        ncdpNotice: 'В случае нарушений в сфере персональных данных обращайтесь в <strong>Национальный центр защиты персональных данных (НЦЗПД)</strong>: <a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a>',
+        ncdpBannerTitle: "Нарушение персональных данных?",
+        ncdpBannerText: 'Если вы столкнулись с нарушением в сфере персональных данных, вы вправе обратиться в <strong>Национальный центр защиты персональных данных (НЦЗПД)</strong> — уполномоченный государственный орган по контролю и надзору в данной сфере. Сайт: <a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a>',
+        abbreviationsTitle: "Расшифровка основных аббревиатур",
+        abbr_uvo: "УВО — Учреждение высшего образования",
+        abbr_usso: "УССО — Учреждение среднего специального образования",
+        abbr_pd: "ПД — Персональные данные",
+        abbr_nczpd: "НЦЗПД — Национальный центр защиты персональных данных",
+        abbr_pps: "ППС — Профессорско-преподавательский состав",
+        abbr_uo: "УО — Учреждение образования",
+        abbr_fio: "ФИО — Фамилия, имя, отчество",
+        abbr_pd_short: "ПД — Персональные данные"
     },
       en: {
         navHome: "Home",
@@ -589,8 +1124,19 @@
         expandLaws: "Show Laws",
         footerDisclaimer1: "© 2026 EduSafe. All rights reserved. The project is designed to raise user awareness.",
         footerDisclaimer2: "All rights reserved. The project is designed to raise user awareness",
-        footerDisclaimer3: "All materials are informational and educational in nature and comply with the current legislation of the Republic of Belarus"
-
+        footerDisclaimer3: "All materials are informational and educational in nature and comply with the current legislation of the Republic of Belarus",
+        ncdpNotice: 'In case of personal data violations, please contact the <strong>National Centre for Personal Data Protection (NCPDP)</strong>: <a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a>',
+        ncdpBannerTitle: "Personal data violation?",
+        ncdpBannerText: 'If you encounter a violation in the area of personal data, you have the right to contact the <strong>National Centre for Personal Data Protection (NCPDP)</strong> — the authorised state body for control and supervision in this area. Website: <a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a>',
+        abbreviationsTitle: "Abbreviations Reference",
+        abbr_uvo: "HEI — Higher Education Institution",
+        abbr_usso: "SSEO — Secondary Special Education Organization",
+        abbr_pd: "PD — Personal Data",
+        abbr_nczpd: "NCPDP — National Centre for Personal Data Protection",
+        abbr_pps: "ACP — Academic and Professorial Personnel",
+        abbr_uo: "EI — Educational Institution",
+        abbr_fio: "FN — Full Name",
+        abbr_pd_short: "PD — Personal Data"
       }
     };
 
@@ -761,61 +1307,167 @@ const directorScenarios = [
     const studentScenarios = [
       {
         scenario: {
-          ru: "В учебном классе вашего УОСО установлена система постоянного видеонаблюдения. Вы считаете это чрезмерным вмешательством в частную жизнь и хотите оспорить ее установку. Каковы ваши шансы?",
-          en: "A permanent CCTV system is installed in your classroom. You consider this an excessive intrusion into private life and want to challenge its installation. What are your chances?"
+          ru: "Вас зачислили в УВО. На официальном сайте университета опубликован список зачисленных, в котором напротив вашей фамилии стоит пометка «льгота — ребёнок-инвалид». Вы считаете, что это чрезмерное раскрытие информации. Правы ли вы?",
+          en: "You have been enrolled at a higher education institution. The university's official website published a list of enrolled students, with a note next to your name: 'benefit — disabled child'. You believe this is excessive disclosure. Are you right?"
         },
         solution: {
-          ru: "Если видеонаблюдение установлено не для обеспечения охраны или пропускного режима, оператор должен доказать, что заявленной цели (например, контроль за обучением) невозможно достичь иными способами, предусматривающими меньшее вмешательство в частную жизнь. Вы можете обратиться к руководству УО с требованием разъяснить цель.",
-          en: "If CCTV is not installed for security or access control, the operator must prove that the stated goal (e.g., monitoring learning) cannot be achieved by other methods involving less intrusion into private life. You can contact the school management demanding clarification of the purpose."
+          ru: "Да, вы правы. УВО вправе публиковать список зачисленных на основании п. 3 ст. 55 Кодекса об образовании и абз. 20 ст. 6 Закона о защите персональных данных, но объём сведений ограничен: ФИО, набранный балл и сам факт наличия льготы (без её детализации). Указывать конкретный вид льготы (инвалидность, сиротство и пр.) недопустимо. Достаточно пометки «льгота» без пояснений.",
+          en: "Yes, you are right. The higher education institution may publish the enrollment list based on Article 55(3) of the Education Code and Article 6(20) of the Personal Data Protection Law, but the scope of information is limited: full name, score, and the mere fact of a benefit (without specifying its nature). Indicating the specific type of benefit (disability, orphan status, etc.) is impermissible. A note 'benefit' without further details is sufficient."
         },
         law: {
-          ru: "Пункт 2 статьи 4 Закона (Соразмерность обработки); Разъяснения НЦЗПД (21.11.2025), п. 5.1.",
-          en: "Article 4, paragraph 2 of the Law (Proportionality of processing); NPDPС Clarifications (21.11.2025), item 5.1."
+          ru: "Пункт 3 ст. 55 Кодекса об образовании; абз. 20 ст. 6 Закона о защите персональных данных; Разъяснения НЦЗПД от 25.04.2026, п. 1.",
+          en: "Article 55(3) of the Education Code; Article 6(20) of the Personal Data Protection Law; NPDPC Clarifications of 25.04.2026, item 1."
         }
       },
       {
         scenario: {
-          ru: "В вашем УОСО проводится вакцинация. Медсестра просит классного руководителя передать список учеников (ФИО, класс) в поликлинику для организации процесса. Вы не хотите, чтобы ваши данные передавались. Можете ли вы отказать?",
-          en: "Vaccination is being carried out at your USO. The nurse asks the class teacher to transfer a list of students (full name, class) to the polyclinic to organize the process. You do not want your data to be transferred. Can you refuse?"
+          ru: "Вас включили в состав студенческого совета УВО. Университет разместил на своём сайте ваши ФИО, фотографию и должность в совете. Вас никто не спрашивал. Законно ли это?",
+          en: "You have been included in the student council of your higher education institution. The university posted your full name, photo, and position on its website without asking you. Is this lawful?"
         },
         solution: {
-          ru: "Да. Передача данных для целей, не связанных с выполнением обязанностей, предусмотренных законодательством, требует вашего письменного согласия или согласия вашего законного представителя.",
-          en: "Yes. The transfer of data for purposes not related to the fulfillment of duties provided for by law requires your written consent or the consent of your legal representative."
+          ru: "Это зависит от устава УВО. Если устав прямо предусматривает размещение сведений о руководящем составе студенческого совета на сайте — правовым основанием служит абз. 20 ст. 6 Закона, и согласия не требуется. Если такого положения в уставе нет — УВО обязано было получить ваше согласие до публикации. Вы вправе ознакомиться с уставом и, если основание отсутствует, потребовать удаления данных.",
+          en: "This depends on the institution's charter. If the charter explicitly provides for publishing information about the student council leadership on the website, Article 6(20) of the Law applies and no consent is needed. If no such provision exists, the institution was required to obtain your consent before publishing. You have the right to review the charter and, if the legal basis is absent, demand removal of your data."
         },
         law: {
-          ru: "Пункт 1 статьи 5 Закона (Согласие субъекта персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4.",
-          en: "Article 5, paragraph 1 of the Law (Consent of the data subject); NPDPС Clarifications (21.11.2025), item 4.4."
+          ru: "Пункт 8 ст. 24 Кодекса об образовании; абз. 20 ст. 6 Закона о защите персональных данных; Разъяснения НЦЗПД от 25.04.2026, п. 2.",
+          en: "Article 24(8) of the Education Code; Article 6(20) of the Personal Data Protection Law; NPDPC Clarifications of 25.04.2026, item 2."
         }
       },
       {
         scenario: {
-          ru: "Ваш классный руководитель сфотографировал вас на уроке и хочет опубликовать фото в школьной группе в социальной сети (ВКонтакте) в целях новостного контента. Вы — несовершеннолетний. Кто должен дать согласие?",
-          en: "Your class teacher photographed you during a lesson and wants to publish the photo in the school's social media group (VKontakte) for news content purposes. You are a minor. Who must give consent?"
+          ru: "Вы участвовали в университетской олимпиаде по учебным предметам и заняли призовое место. УВО опубликовало на своём сайте ваши ФИО, номер класса школы, предмет и информацию о полученном дипломе. Вы не давали согласия. Нарушены ли ваши права?",
+          en: "You participated in a university subject olympiad and won a prize. The institution published your full name, school class number, subject, and diploma information on its website. You did not give consent. Have your rights been violated?"
         },
         solution: {
-          ru: "Согласие должен дать ваш законный представитель (родитель/опекун), так как вы несовершеннолетний (до 16 лет), и публикация фотографии для новостного контента не входит в список обязательных действий по закону.",
-          en: "Consent must be given by your legal representative (parent/guardian), as you are a minor (under 16), and the publication of the photo for news content is not on the list of legally mandatory actions."
+          ru: "Нет, права не нарушены. Пункт 33 Положения о порядке проведения университетских олимпиад прямо предусматривает размещение результатов на официальном сайте УВО. Это является правовым основанием по абз. 20 ст. 6 Закона — согласие не требуется. Вместе с тем УВО должно само определить разумный срок хранения этих данных на сайте (например, один месяц после подведения итогов) и своевременно удалить их.",
+          en: "No, your rights have not been violated. Clause 33 of the University Olympiad Regulations explicitly requires publishing results on the institution's official website. This is a lawful basis under Article 6(20) of the Law — no consent is required. However, the institution must set a reasonable retention period for this data (e.g., one month after the results) and remove it in a timely manner."
         },
         law: {
-          ru: "Статьи 5 Закона (Согласие несовершеннолетнего); Разъяснения НЦЗПД (21.11.2025), п. 4.1.3.",
-          en: "Article 5 of the Law (Consent of a minor); NPDPС Clarifications (21.11.2025), item 4.1.3."
+          ru: "Пункт 33 Положения о порядке проведения университетских олимпиад (пост. Минобразования № 264 от 12.08.2022); абз. 20 ст. 6 Закона о защите персональных данных; Разъяснения НЦЗПД от 25.04.2026, п. 10.",
+          en: "Clause 33 of the University Olympiad Regulations (Ministry of Education Resolution No. 264 of 12.08.2022); Article 6(20) of the Personal Data Protection Law; NPDPC Clarifications of 25.04.2026, item 10."
         }
       },
       {
         scenario: {
-          ru: "Ваш брат хочет получить справку о вашем обучении, но он не является вашим законным представителем. Имеет ли право УОСО выдать ему справку, содержащую ваши ФИО?",
-          en: "Your brother wants to obtain a certificate about your education, but he is not your legal representative. Does the USO have the right to issue him a certificate containing your full name?"
+          ru: "Сторонняя организация прислала в ваш университет письмо с благодарностью в ваш адрес за участие в волонтёрском мероприятии. УВО разместило сканкопию этого письма (с вашими ФИО, курсом, факультетом и характеристикой) на сайте в разделе новостей. Вас не спрашивали. Как вы должны поступить?",
+          en: "A third-party organisation sent your university a letter of gratitude addressed to you for participating in a volunteer event. The institution published a scanned copy of this letter (with your full name, year, faculty, and description) on its website under news. You were not asked. What should you do?"
         },
         solution: {
-          ru: "Нет. УОСО не может предоставлять персональные данные обучающихся (даже ближайшим родственникам) третьим лицам, не являющимся законными представителями, без письменного согласия субъекта данных или его законного представителя.",
-          en: "No. The USO cannot provide students' personal data (even to immediate relatives) to third parties who are not legal representatives, without the written consent of the data subject or their legal representative."
+          ru: "Публикация благодарственных писем с персональными данными конкретных студентов — в том числе в рамках новостного контента — допустима только с согласия самого студента (ст. 5 Закона). Закон не наделяет УВО полномочием распространять такие сведения без согласия. Вы вправе обратиться в администрацию университета с требованием удалить публикацию, а в случае отказа — в Национальный центр защиты персональных данных.",
+          en: "Publishing letters of gratitude containing personal data of specific students — including as news content — is only permissible with the student's consent (Article 5 of the Law). The Law does not grant the institution authority to disseminate such information without consent. You have the right to request the university remove the publication, and if refused, to file a complaint with the National Personal Data Protection Centre."
         },
         law: {
-          ru: "Cтатьи 11 Закона (Предоставление персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4.",
-          en: "Article 11 of the Law (Provision of personal data); NPDPС Clarifications (21.11.2025), item 4.4."
+          ru: "Статья 5 Закона о защите персональных данных (согласие); Разъяснения НЦЗПД от 25.04.2026, п. 6.",
+          en: "Article 5 of the Personal Data Protection Law (consent); NPDPC Clarifications of 25.04.2026, item 6."
+        }
+      },
+      {
+        scenario: {
+          ru: "Вы обучаетесь по обмену в зарубежном университете. Ваш родной УВО хочет разместить на сайте информацию о вашей стажировке: ФИО, факультет, зарубежный университет и семестр обучения. Обязательно ли ваше согласие?",
+          en: "You are studying at a foreign university on an exchange programme. Your home institution wants to publish information about your internship on its website: full name, faculty, foreign university, and semester. Is your consent required?"
+        },
+        solution: {
+          ru: "Да, ваше согласие обязательно. Законодательство не наделяет УВО полномочием публиковать сведения об участии студентов в зарубежных стажировках и программах обмена без их согласия. Для такой публикации необходимо согласие, оформленное в соответствии со ст. 5 Закона. При этом УВО также обязано оценивать необходимость и соразмерность такого размещения в каждом конкретном случае.",
+          en: "Yes, your consent is mandatory. The legislation does not authorise higher education institutions to publish information about students' participation in foreign internships or exchange programmes without consent. Publication requires consent obtained in accordance with Article 5 of the Law. The institution is also required to assess the necessity and proportionality of such publication in each individual case."
+        },
+        law: {
+          ru: "Статья 5 Закона о защите персональных данных; пп. 4 и 8 ст. 4 Закона (соразмерность обработки); Разъяснения НЦЗПД от 25.04.2026, п. 6.",
+          en: "Article 5 of the Personal Data Protection Law; Article 4(4) and (8) (proportionality of processing); NPDPC Clarifications of 25.04.2026, item 6."
+        }
+      },
+      {
+        scenario: {
+          ru: "На сайте вашего УВО в разделе «Практика» опубликован приказ с именами всех студентов группы, указанием мест прохождения практики и закреплённых руководителей. Вы узнали об этом случайно. Законно ли это?",
+          en: "Your institution published an order on its website listing all students in your group, their internship locations, and assigned supervisors. You found out by chance. Is this lawful?"
+        },
+        solution: {
+          ru: "Нет, это нарушение. Кодекс об образовании, Положение об УВО и Положение о практике студентов не предоставляют УВО полномочий публиковать списки студентов с указанием мест практики в интернете. Более того, цель информирования о практике может быть достигнута иными способами — например, через старост или преподавателей-кураторов, — без размещения данных в открытом доступе. Публикация таких приказов на сайте является избыточной обработкой персональных данных. Вы вправе потребовать удаления этих сведений.",
+          en: "No, this is a violation. The Education Code, the Higher Education Institution Regulations, and the Student Internship Regulations do not grant institutions the authority to publish student internship lists online. Furthermore, the purpose of informing students about internships can be achieved by other means — such as through group representatives or supervising lecturers — without public disclosure. Publishing such orders online constitutes excessive processing of personal data. You have the right to demand their removal."
+        },
+        law: {
+          ru: "Пункт 19 Положения о практике студентов (пост. Совмина № 860 от 03.06.2010); пп. 4, 5 ст. 4 Закона (минимизация и соразмерность обработки); Разъяснения НЦЗПД от 25.04.2026, п. 9.",
+          en: "Clause 19 of the Student Internship Regulations (Council of Ministers Resolution No. 860 of 03.06.2010); Article 4(4),(5) of the Law (minimisation and proportionality); NPDPC Clarifications of 25.04.2026, item 9."
+        }
+      },
+      {
+        scenario: {
+          ru: "Вы — студент-первокурсник из другого города. УВО опубликовало на сайте список студентов, заселённых в общежитие, с указанием ваших ФИО, курса и группы. Вы не давали согласия. Нарушило ли УВО ваши права?",
+          en: "You are a first-year student from another city. Your institution published a dormitory move-in list on its website with your full name, year, and group. You did not give consent. Did the institution violate your rights?"
+        },
+        solution: {
+          ru: "Нет, права не нарушены. Публикация списков заселённых в общежитие правомерна на основании абз. 20 ст. 6 Закона и п. 1 ст. 44 Кодекса об образовании без вашего согласия. Размещение таких списков в интернете признаётся оптимальным способом информирования студентов, особенно иногородних. Вместе с тем УВО обязано удалить этот список в разумные сроки после завершения процесса заселения — примерно в течение двух–трёх недель.",
+          en: "No, your rights have not been violated. Publishing dormitory move-in lists is lawful under Article 6(20) of the Law and Article 44(1) of the Education Code without your consent. Online publication is recognised as the optimal method of informing students, especially those from other cities. However, the institution is required to remove this list within a reasonable time after the move-in process is complete — approximately two to three weeks."
+        },
+        law: {
+          ru: "Пункт 1 ст. 44 Кодекса об образовании; абз. 20 ст. 6 Закона о защите персональных данных; пп. 4 и 8 ст. 4 Закона (удаление по достижении цели); Разъяснения НЦЗПД от 25.04.2026, п. 11.",
+          en: "Article 44(1) of the Education Code; Article 6(20) of the Personal Data Protection Law; Article 4(4),(8) (removal upon achieving the purpose); NPDPC Clarifications of 25.04.2026, item 11."
+        }
+      },
+      {
+        scenario: {
+          ru: "Вы — иностранный студент. Администрация УВО просит вас написать отзыв об учёбе и подписать согласие на его публикацию на сайте с вашими ФИО, фотографией, страной происхождения и периодом обучения. Обязаны ли вы соглашаться?",
+          en: "You are an international student. The institution's administration asks you to write a review about your studies and sign consent for its publication on the website with your full name, photo, country of origin, and study period. Are you obliged to agree?"
+        },
+        solution: {
+          ru: "Нет, вы не обязаны. Публикация отзывов иностранных студентов с персональными данными возможна исключительно на основании вашего добровольного согласия по ст. 5 Закона. Обязанность Министерства образования собирать отзывы не является основанием для их размещения на сайте УВО. Вы вправе отказать, и это не должно влечь никаких негативных последствий для вашего обучения.",
+          en: "No, you are not obliged. Publishing international student reviews with personal data is only permissible based on your voluntary consent under Article 5 of the Law. The Ministry of Education's obligation to collect reviews does not constitute a legal basis for publishing them on the institution's website. You have the right to refuse, and this must not entail any negative consequences for your studies."
+        },
+        law: {
+          ru: "Статья 5 Закона о защите персональных данных (добровольность согласия); Разъяснения НЦЗПД от 25.04.2026, п. 7.",
+          en: "Article 5 of the Personal Data Protection Law (voluntary consent); NPDPC Clarifications of 25.04.2026, item 7."
+        }
+      },
+      {
+        scenario: {
+          ru: "Вы участвовали в университетском конкурсе «Лучший выпускник». На сайте УВО опубликованы ваши ФИО, фотографии с конкурсных испытаний и сведения о занятом месте. Согласие у вас не спрашивали. Правомерно ли это?",
+          en: "You participated in the university competition 'Best Graduate'. The institution published your full name, photos from the competition, and your ranking on its website. You were not asked for consent. Is this lawful?"
+        },
+        solution: {
+          ru: "Это зависит от правил конкурса. Если правила проведения конкурса прямо предусматривают публикацию сведений об участниках и результатах в общедоступных источниках (в том числе на сайте УВО) — согласие не требуется, правовое основание — абз. 15 ст. 6 Закона (договор с субъектом персональных данных). Если такого положения в правилах нет — публикация допустима только с вашего согласия по ст. 5 Закона. Уточните условия конкурса, которые вы принимали при подаче заявки.",
+          en: "This depends on the competition rules. If the competition rules explicitly provide for publishing participant information and results in public sources (including the institution's website), no consent is required — the legal basis is Article 6(15) of the Law (contract with the data subject). If no such provision exists in the rules, publication is only permissible with your consent under Article 5 of the Law. Check the competition terms you accepted when submitting your application."
+        },
+        law: {
+          ru: "Абзац 15 ст. 6 Закона (договор с субъектом ПД); ст. 5 Закона (согласие); Разъяснения НЦЗПД от 25.04.2026, п. 5.",
+          en: "Article 6(15) of the Law (contract with the data subject); Article 5 of the Law (consent); NPDPC Clarifications of 25.04.2026, item 5."
+        }
+      },
+      {
+        scenario: {
+          ru: "Несколько лет назад вы окончили УВО. Теперь университет разместил на своём сайте страницу «Знаменитые выпускники» с вашей биографией, фотографией и местом работы — без вашего ведома. Что вы можете сделать?",
+          en: "You graduated from a higher education institution several years ago. The university has now published a 'Notable Alumni' page with your biography, photo, and workplace — without your knowledge. What can you do?"
+        },
+        solution: {
+          ru: "Ваши действия зависят от того, публиковалась ли эта информация о вас ранее на законных основаниях (например, в СМИ, на сайте государственного органа). Если да — УВО вправе использовать её без согласия на основании абз. 19 ст. 6 Закона (обработка ранее распространённых ПД). Если нет — публикация незаконна и требовала вашего предварительного согласия по ст. 5 Закона. В любом случае вы вправе потребовать прекратить обработку: после вашего заявления УВО обязано удалить данные.",
+          en: "Your course of action depends on whether this information about you was previously published on lawful grounds (e.g., in media, on a public authority's website). If so, the institution may use it without consent under Article 6(19) of the Law (processing of previously disseminated personal data). If not, the publication was unlawful and required your prior consent under Article 5 of the Law. In any case, you have the right to demand that processing cease: upon your request, the institution is obliged to remove the data."
+        },
+        law: {
+          ru: "Абзац 19 ст. 6 Закона (обработка ранее распространённых ПД); ст. 5 Закона (согласие); Разъяснения НЦЗПД от 25.04.2026, п. 4.",
+          en: "Article 6(19) of the Law (processing of previously disseminated personal data); Article 5 of the Law (consent); NPDPC Clarifications of 25.04.2026, item 4."
         }
       }
     ];
+
+    // Function to parse and linkify laws
+    function formatLawText(lawText) {
+      // Dictionary of common laws and their URLs
+      const lawLinks = {
+        'Закон о защите персональных данных': 'https://cpd.by/en/docs/normative-legal-base/',
+        'Кодекс об образовании': 'https://cpd.by/en/docs/normative-legal-base/',
+        'Разъяснения НЦЗПД': 'https://cpd.by/en/docs/methodical-materials/',
+        'Инструктивно-методическое письмо Министерства образования РБ': 'https://cpd.by/en/docs/methodical-materials/',
+        'Положение о порядке проведения университетских олимпиад': 'https://cpd.by/en/docs/normative-legal-base/',
+      };
+
+      let formattedText = lawText;
+      
+      // Replace common legal references with links
+      for (const [law, url] of Object.entries(lawLinks)) {
+        const regex = new RegExp(`(${law})`, 'g');
+        formattedText = formattedText.replace(regex, `<a href="${url}" target="_blank" rel="noopener" class="law-link">$1</a>`);
+      }
+
+      return formattedText;
+    }
 
     // Function to generate scenario cards
     function generateScenarios(scenarios, containerId) {
@@ -833,44 +1485,63 @@ const directorScenarios = [
         scenarioHeader.textContent = `${index + 1}. ${s.scenario[currentLang]}`;
         card.appendChild(scenarioHeader);
 
-        const scenarioContent = document.createElement('div');
-        scenarioContent.className = 'scenario-content';
-
-        // Solution
-        const solutionTitle = document.createElement('h4');
-        solutionTitle.textContent = translations[currentLang].solutionTitle;
-        scenarioContent.appendChild(solutionTitle);
-
-        const solutionBody = document.createElement('div');
-        solutionBody.className = 'scenario-solution';
-        solutionBody.textContent = s.solution[currentLang];
-        scenarioContent.appendChild(solutionBody);
-
-        // Law
-        const lawTitle = document.createElement('h4');
-        lawTitle.textContent = translations[currentLang].lawTitle;
-        scenarioContent.appendChild(lawTitle);
-
-        const lawBody = document.createElement('div');
-        lawBody.className = 'scenario-law';
-        lawBody.textContent = s.law[currentLang];
-        scenarioContent.appendChild(lawBody);
-
-        card.appendChild(scenarioContent);
-
-        const toggleBtn = document.createElement('button');
-        toggleBtn.className = 'scenario-toggle';
-        toggleBtn.innerHTML = `
-          <span data-lang-key="toggleDetails">${translations[currentLang].toggleDetails}</span>
-          <i class="fas fa-chevron-down"></i>
+        const modalId = `modal-${containerId}-${index}`;
+        
+        // Create modal with safe translation access
+        const modal = document.createElement('div');
+        modal.id = modalId;
+        modal.className = 'modal';
+        
+        const solutionTitle = (translations[currentLang] && translations[currentLang].solutionTitle) || 'Решение';
+        const lawTitle = (translations[currentLang] && translations[currentLang].lawTitle) || 'Законодательная база';
+        const ncdpNotice = (translations[currentLang] && translations[currentLang].ncdpNotice) || 'В случае нарушений в сфере персональных данных обращайтесь в Национальный центр защиты персональных данных (НЦЗПД): <a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a>';
+        
+        // Format the law text with links
+        const formattedLawText = formatLawText(s.law[currentLang]);
+        
+        modal.innerHTML = `
+          <div class="modal-content">
+            <div class="modal-header">
+              <h2>${index + 1}. ${s.scenario[currentLang]}</h2>
+              <button class="modal-close" onclick="document.getElementById('${modalId}').classList.remove('show')">&times;</button>
+            </div>
+            <div class="modal-body">
+              <div class="modal-section">
+                <h4>${solutionTitle}</h4>
+                <p>${s.solution[currentLang]}</p>
+              </div>
+              <div class="modal-section">
+                <h4>${lawTitle}</h4>
+                <p>${formattedLawText}</p>
+              </div>
+              <div class="modal-section">
+                <div class="ncdp-notice">
+                  <i class="fas fa-exclamation-circle"></i>
+                  <span class="ncdp-notice-text">${ncdpNotice}</span>
+                </div>
+              </div>
+            </div>
+          </div>
         `;
+        document.body.appendChild(modal);
 
-        toggleBtn.addEventListener('click', () => {
-          scenarioContent.classList.toggle('show');
-          toggleBtn.querySelector('i').style.transform = scenarioContent.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
+        // Close modal when clicking outside
+        modal.addEventListener('click', (e) => {
+          if (e.target === modal) {
+            modal.classList.remove('show');
+          }
         });
 
-        card.appendChild(toggleBtn);
+        // Open button
+        const openBtn = document.createElement('button');
+        openBtn.className = 'scenario-modal-btn';
+        const toggleText = (translations[currentLang] && translations[currentLang].toggleDetails) || 'Посмотреть решение';
+        openBtn.textContent = toggleText;
+        openBtn.addEventListener('click', () => {
+          modal.classList.add('show');
+        });
+
+        card.appendChild(openBtn);
         container.appendChild(card);
       });
     }
@@ -889,6 +1560,17 @@ const directorScenarios = [
       document.getElementById('roleStudentDesc').textContent = translations[lang].roleStudentDesc;
       document.getElementById('roleDirectorDesc').textContent = translations[lang].roleDirectorDesc;
 
+      // НЦЗПД banner
+      if (document.getElementById('ncdpBannerTitle')) {
+        document.getElementById('ncdpBannerTitle').textContent = translations[lang].ncdpBannerTitle;
+        document.getElementById('ncdpBannerText').innerHTML = translations[lang].ncdpBannerText;
+      }
+
+      // Remove all modals before re-rendering
+      document.querySelectorAll('.modal').forEach(modal => {
+        modal.remove();
+      });
+
       // Re-render scenarios with new language
       if (document.getElementById('teacherContent').classList.contains('active')) {
         generateScenarios(teacherScenarios, 'teacherScenariosGrid');
@@ -903,6 +1585,12 @@ const directorScenarios = [
 
     // Event listeners
     document.addEventListener('DOMContentLoaded', () => {
+      // Initialize language selectors to current language
+      const desktopLangSelector = document.getElementById('languageSelector');
+      const mobileLangSelector = document.getElementById('mobileLangSelector');
+      if (desktopLangSelector) desktopLangSelector.value = currentLang;
+      if (mobileLangSelector) mobileLangSelector.value = currentLang;
+
       // Initial render for active tab
       generateScenarios(teacherScenarios, 'teacherScenariosGrid');
       generateScenarios(studentScenarios, 'studentScenariosGrid'); // Render both initially to avoid delay, then hide/show
@@ -923,69 +1611,82 @@ const directorScenarios = [
         });
       });
 
-      // Language switching
-      document.querySelectorAll('.lang-switcher button').forEach(btn => {
-        btn.addEventListener('click', () => {
-          document.querySelectorAll('.lang-switcher button').forEach(b => b.classList.remove('active'));
-          btn.classList.add('active');
-          currentLang = btn.getAttribute('data-lang');
+      // Language switching - handle both desktop and mobile selectors
+      function changeLang(lang) {
+        if (lang === 'en') {
+          alert('English version available on the main page');
+          // Reset selector to Russian
+          if (desktopLangSelector) desktopLangSelector.value = 'ru';
+          if (mobileLangSelector) mobileLangSelector.value = 'ru';
+        } else {
+          currentLang = lang;
           applyTranslations(currentLang);
-        });
-      });
-
-      // Mobile nav toggle
-      const navToggle = document.querySelector('.nav-toggle');
-      const navContainer = document.querySelector('.nav-container');
-
-      navToggle.addEventListener('click', () => {
-        navContainer.classList.toggle('open');
-        navToggle.querySelector('i').className = navContainer.classList.contains('open') ? 'fas fa-times' : 'fas fa-bars';
-      });
-
-      // Controls (Expand/Collapse)
-      const controls = [
-        {btn: 'expandAllTeacher', selector: '#teacherScenariosGrid .scenario-content', act: 'add'},
-        {btn: 'collapseAllTeacher', selector: '#teacherScenariosGrid .scenario-content', act: 'remove'},
-        {btn: 'expandSolutionsTeacher', selector: '#teacherScenariosGrid .scenario-solution', act: 'add'},
-        {btn: 'expandLawsTeacher', selector: '#teacherScenariosGrid .scenario-law', act: 'add'},
-        {btn: 'expandAllStudent', selector: '#studentScenariosGrid .scenario-content', act: 'add'},
-        {btn: 'collapseAllStudent', selector: '#studentScenariosGrid .scenario-content', act: 'remove'},
-        {btn: 'expandSolutionsStudent', selector: '#studentScenariosGrid .scenario-solution', act: 'add'},
-        {btn: 'expandLawsStudent', selector: '#studentScenariosGrid .scenario-law', act: 'add'},
-        {btn: 'expandAllDirector', selector: '#directorScenariosGrid .scenario-content', act: 'add'},
-        {btn: 'collapseAllDdirector', selector: '#directorScenariosGrid .scenario-content', act: 'remove'},
-        {btn: 'expandSolutionsDirector', selector: '#directorScenariosGrid .scenario-solution', act: 'add'},
-        {btn: 'expandLawsDirector', selector: '#directorScenariosGrid .scenario-law', act: 'add'}
-      ];
-
-      controls.forEach(cfg => {
-        const btn = document.getElementById(cfg.btn);
-        if (btn) {
-          btn.addEventListener('click', () => {
-            document.querySelectorAll(cfg.selector).forEach(el => {
-              el.classList[cfg.act]('show');
-              // Update toggle button icon
-              const card = el.closest('.scenario-card');
-              if (card) {
-                const toggle = card.querySelector('.scenario-toggle i');
-                if (toggle) {
-                  toggle.style.transform = el.classList.contains('show') ? 'rotate(180deg)' : 'rotate(0deg)';
-                }
-              }
-            });
-            // Also apply to parent content to show/hide Law/Solution sections
-            if (cfg.selector.includes('.scenario-solution') || cfg.selector.includes('.scenario-law')) {
-                document.querySelectorAll(cfg.selector).forEach(el => {
-                    const content = el.closest('.scenario-content');
-                    if (content && content.classList.contains('show')) {
-                        // If we are showing a specific part, we need to ensure the parent is visible
-                        // The parent visibility is controlled by expandAll/collapseAll, so we don't need to change it here
-                    }
-                });
-            }
-          });
+          // Sync both selectors
+          if (desktopLangSelector) desktopLangSelector.value = lang;
+          if (mobileLangSelector) mobileLangSelector.value = lang;
         }
+      }
+
+      // Desktop language selector
+      if (desktopLangSelector) {
+        desktopLangSelector.addEventListener('change', (e) => {
+          changeLang(e.target.value);
+        });
+      }
+
+      // Mobile language selector
+      if (mobileLangSelector) {
+        mobileLangSelector.addEventListener('change', (e) => {
+          changeLang(e.target.value);
+        });
+      }
+
+      // Controls (Expand/Collapse) - Removed as modals don't need expand/collapse
+      // The modal buttons now handle showing the details
+    });
+  </script>
+
+<script>
+    // Mobile menu toggle
+    document.addEventListener('DOMContentLoaded', function() {
+      const navToggle = document.getElementById('navToggle');
+      const mobileMenu = document.getElementById('mobileMenu');
+      const closeMenu = document.getElementById('closeMenu');
+
+      if (!navToggle || !mobileMenu || !closeMenu) {
+        console.warn('Mobile menu elements not found');
+        return;
+      }
+
+      function openMenu() {
+        mobileMenu.classList.add('active');
+        document.body.style.overflow = 'hidden';
+      }
+
+      function closeMenuHandler() {
+        mobileMenu.classList.remove('active');
+        document.body.style.overflow = '';
+      }
+
+      navToggle.addEventListener('click', openMenu);
+      closeMenu.addEventListener('click', closeMenuHandler);
+      
+      mobileMenu.addEventListener('click', (e) => {
+        if (e.target === mobileMenu) closeMenuHandler();
       });
+
+      // Close menu when clicking on a link
+      document.querySelectorAll('.mobile-nav a').forEach(link => {
+        link.addEventListener('click', closeMenuHandler);
+      });
+
+      // Prevent click propagation on menu content
+      const mobileMenuContent = document.querySelector('.mobile-menu-content');
+      if (mobileMenuContent) {
+        mobileMenuContent.addEventListener('click', (e) => {
+          e.stopPropagation();
+        });
+      }
     });
   </script>
 </body>

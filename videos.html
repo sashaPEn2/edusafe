@@ -1,14 +1,15 @@
 <!DOCTYPE html>
-<html lang="ru" id="htmlRoot">
+
+<html id="htmlRoot" lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Видеоматериалы по защите персональных данных для учащихся, студентов, педагогов и ППС — EduSafe.">
-  <meta name="keywords" content="видео, персональные данные, защита данных, студенты, учащиеся, педагоги, ППС, EduSafe, Беларусь">
-  <title>EduSafe — Видеоматериалы по защите персональных данных</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="Видеоматериалы по защите персональных данных для учащихся, студентов, педагогов и ППС — EduSafe." name="description"/>
+<meta content="видео, персональные данные, защита данных, студенты, учащиеся, педагоги, ППС, EduSafe, Беларусь" name="keywords"/>
+<title>EduSafe — Видеоматериалы по защите персональных данных</title>
+<link href="./favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
     :root {
       --blue-900: #1e3a8a;
       --blue-700: #1d4ed8;
@@ -502,483 +503,441 @@
       .audience-tab { padding: 0.75rem 1.25rem; font-size: 0.9rem; }
     }
   </style>
-</head>
+</link></head>
 <body>
-
-  <!-- Header -->
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-shield-alt"></i>
-          <span>EduSafe</span>
-        </a>
-
-        <button class="nav-toggle" id="navToggle">
-          <i class="fas fa-bars"></i>
-        </button>
-
-        <div class="nav-container">
-          <div class="lang-selector">
-            <select id="languageSelector">
-              <option value="ru">Русский</option>
-              <option value="en">English</option>
-            </select>
-          </div>
-          <nav class="nav">
-            <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
-            <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-            <a href="practice.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-            <a href="videos.html" class="active" id="navVideos"><i class="fas fa-play-circle"></i> <span>Видео</span></a>
-            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-            <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-          </nav>
-        </div>
+<!-- Header -->
+ <!-- Header -->
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="nav-toggle" id="navToggle">
+<i class="fas fa-bars"></i>
+</button>
+<div class="nav-container">
+<div class="lang-selector">
+<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
+<option value="ru">Русский</option>
+<option value="en">English</option>
+</select>
+</div>
+<nav class="nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a class="active" href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-content">
+<div class="mobile-header">
+<div class="logo" style="font-size: 1.25rem;">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="close-btn" id="closeMenu">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<nav class="mobile-nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a class="active" href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</header>
+<!-- Hero -->
+<section class="hero">
+<div class="container">
+<h1>Видеоматериалы по защите персональных данных</h1>
+<p>Подборка обучающих видео для каждой категории участников образовательного процесса — выберите свою аудиторию и начните просмотр.</p>
+<div class="hero-note">
+<i class="fas fa-play-circle"></i> Видеоматериалы соответствуют Закону РБ № 99-З «О защите персональных данных»
       </div>
-    </div>
-
-    <!-- Mobile Menu -->
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="mobile-menu-content">
-        <div class="mobile-header">
-          <div class="logo" style="font-size: 1.25rem;">
-            <i class="fas fa-shield-alt"></i>
-            <span>EduSafe</span>
-          </div>
-          <button class="close-btn" id="closeMenu">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="lang-selector" style="margin-bottom: 1.5rem;">
-          <select id="mobileLanguageSelector">
-            <option value="ru">Русский</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-        <nav class="mobile-nav">
-          <a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-          <a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-          <a href="practice.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-          <a href="videos.html" class="active"><i class="fas fa-play-circle"></i> <span>Видео</span></a>
-          <a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-          <a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <!-- Hero -->
-  <section class="hero">
-    <div class="container">
-      <h1>Видеоматериалы по защите персональных данных</h1>
-      <p>Подборка обучающих видео для каждой категории участников образовательного процесса — выберите свою аудиторию и начните просмотр.</p>
-      <div class="hero-note">
-        <i class="fas fa-play-circle"></i> Видеоматериалы соответствуют Закону РБ № 99-З «О защите персональных данных»
-      </div>
-    </div>
-  </section>
-
-  <!-- Audience Selector -->
-  <section class="audience-section">
-    <div class="container">
-      <p class="audience-title"><i class="fas fa-users" style="margin-right:0.5rem; color:var(--blue-700);"></i>Выберите свою аудиторию</p>
-      <div class="audience-tabs">
-        <button class="audience-tab active" onclick="showAudience('uoso')" id="tabUoso">
-          <i class="fas fa-school"></i> УОСО <small style="font-weight:400; opacity:0.8;">(школы)</small>
+</div>
+</section>
+<!-- Audience Selector -->
+<section class="audience-section">
+<div class="container">
+<p class="audience-title"><i class="fas fa-users" style="margin-right:0.5rem; color:var(--blue-700);"></i>Выберите свою аудиторию</p>
+<div class="audience-tabs">
+<button class="audience-tab active" id="tabUoso" onclick="showAudience('uoso')">
+<i class="fas fa-school"></i> УОСО <small style="font-weight:400; opacity:0.8;">(школы)</small>
+</button>
+<button class="audience-tab" id="tabUvosso" onclick="showAudience('uvosso')">
+<i class="fas fa-university"></i> УВО / УССО <small style="font-weight:400; opacity:0.8;">(вузы и колледжи)</small>
+</button>
+</div>
+<!-- Sub-tabs -->
+<div class="sub-audience-bar" id="subBarUoso">
+<button class="sub-tab active" id="subUosoStudent" onclick="showSub('uoso', 'student')">
+<i class="fas fa-user-graduate"></i> Учащиеся
         </button>
-        <button class="audience-tab" onclick="showAudience('uvosso')" id="tabUvosso">
-          <i class="fas fa-university"></i> УВО / УССО <small style="font-weight:400; opacity:0.8;">(вузы и колледжи)</small>
+<button class="sub-tab" id="subUosoTeacher" onclick="showSub('uoso', 'teacher')">
+<i class="fas fa-chalkboard-teacher"></i> Учителя
         </button>
-      </div>
-
-      <!-- Sub-tabs -->
-      <div class="sub-audience-bar" id="subBarUoso">
-        <button class="sub-tab active" onclick="showSub('uoso', 'student')" id="subUosoStudent">
-          <i class="fas fa-user-graduate"></i> Учащиеся
+</div>
+<div class="sub-audience-bar" id="subBarUvosso" style="display:none;">
+<button class="sub-tab active" id="subUvossoStudent" onclick="showSub('uvosso', 'student')">
+<i class="fas fa-user-graduate"></i> Студенты
         </button>
-        <button class="sub-tab" onclick="showSub('uoso', 'teacher')" id="subUosoTeacher">
-          <i class="fas fa-chalkboard-teacher"></i> Учителя
+<button class="sub-tab" id="subUvossoPps" onclick="showSub('uvosso', 'pps')">
+<i class="fas fa-chalkboard-teacher"></i> ППС
         </button>
-      </div>
-
-      <div class="sub-audience-bar" id="subBarUvosso" style="display:none;">
-        <button class="sub-tab active" onclick="showSub('uvosso', 'student')" id="subUvossoStudent">
-          <i class="fas fa-user-graduate"></i> Студенты
-        </button>
-        <button class="sub-tab" onclick="showSub('uvosso', 'pps')" id="subUvossoPps">
-          <i class="fas fa-chalkboard-teacher"></i> ППС
-        </button>
-      </div>
-    </div>
-  </section>
-
-  <!-- ==================== UOSO ==================== -->
-
-  <!-- УОСО — Учащиеся -->
-  <div class="audience-panel active" id="panel-uoso-student">
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--blue-700); margin-right:0.5rem;"></i>Учащиеся (УОСО)</h2>
-        <p class="section-subtitle">Видеоматериалы о цифровой безопасности и персональных данных для школьников</p>
-        <div class="video-grid">
-
-          <!-- Видео 1 -->
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+</div>
+</section>
+<!-- ==================== UOSO ==================== -->
+<!-- УОСО — Учащиеся -->
+<div class="audience-panel active" id="panel-uoso-student">
+<section class="section">
+<div class="container">
+<h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--blue-700); margin-right:0.5rem;"></i>Учащиеся (УОСО)</h2>
+<p class="section-subtitle">Видеоматериалы о цифровой безопасности и персональных данных для школьников</p>
+<div class="video-grid">
+<!-- Видео 1 -->
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/uoso_student_1.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none">
-                <source src="./videos-pd/Твои_Секреты,_Твои_Правила!.mp4" type="video/mp4">
+<video controls="" preload="none">
+<source src="./videos-pd/Твои_Секреты,_Твои_Правила!.mp4" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Учащиеся · УОСО</span>
-              <p class="video-title">Твои секреты - твои правила. 1-4 классы</p>
-              <p class="video-desc">Простое объяснение понятия персональных данных: что к ним относится, почему они важны и как их защитить в повседневной жизни.</p>
-            </div>
-          </div>
-
-          <!-- Видео 2 -->
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Учащиеся · УОСО</span>
+<p class="video-title">Твои секреты - твои правила. 1-4 классы</p>
+<p class="video-desc">Простое объяснение понятия персональных данных: что к ним относится, почему они важны и как их защитить в повседневной жизни.</p>
+</div>
+</div>
+<!-- Видео 2 -->
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none">
-                <source src="./videos-pd/Ваши_данные__просто_о_важном.mp4" type="video/mp4">
+<video controls="" preload="none">
+<source src="./videos-pd/Ваши_данные__просто_о_важном.mp4" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Учащиеся · УОСО</span>
-              <p class="video-title">Ваши данные - просто о важном. 5-8 классы</p>
-              <p class="video-desc">Что необходимо хранить и держать в тайне, и какие права вы имеете, когда ваши личные данные находятся в руках других людей</p>
-            </div>
-          </div>
-
-          <!-- Видео 3 -->
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Учащиеся · УОСО</span>
+<p class="video-title">Ваши данные - просто о важном. 5-8 классы</p>
+<p class="video-desc">Что необходимо хранить и держать в тайне, и какие права вы имеете, когда ваши личные данные находятся в руках других людей</p>
+</div>
+</div>
+<!-- Видео 3 -->
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="./videos-pd/Твои_данные,_твои_правила.mp4" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="./videos-pd/Твои_данные,_твои_правила.mp4" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Учащиеся · УОСО</span>
-              <p class="video-title">Твои данные - твои правила. 9-11 классы</p>
-              <p class="video-desc">Что необходимо знать, когда вы регистрируетесь в иностранных сервисах. Что такое трансграничная передача данных.</p>
-            </div>
-          </div>
-
-          
-
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- УОСО — Учителя -->
-  <div class="audience-panel" id="panel-uoso-teacher">
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--blue-700); margin-right:0.5rem;"></i>Учителя (УОСО)</h2>
-        <p class="section-subtitle">Методические видео по обработке персональных данных учащихся в учреждениях общего среднего образования</p>
-        <div class="video-grid">
-
-          
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Учащиеся · УОСО</span>
+<p class="video-title">Твои данные - твои правила. 9-11 классы</p>
+<p class="video-desc">Что необходимо знать, когда вы регистрируетесь в иностранных сервисах. Что такое трансграничная передача данных.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- УОСО — Учителя -->
+<div class="audience-panel" id="panel-uoso-teacher">
+<section class="section">
+<div class="container">
+<h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--blue-700); margin-right:0.5rem;"></i>Учителя (УОСО)</h2>
+<p class="section-subtitle">Методические видео по обработке персональных данных учащихся в учреждениях общего среднего образования</p>
+<div class="video-grid">
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="./videos-pd/Данные_учащихся__Руководство.mp4" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="./videos-pd/Данные_учащихся__Руководство.mp4" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Учителя · УОСО</span>
-              <p class="video-title">Данные учащихся. Руководство</p>
-              <p class="video-desc">/</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Учителя · УОСО</span>
+<p class="video-title">Данные учащихся. Руководство</p>
+<p class="video-desc">/</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Учителя · УОСО</span>
-              <p class="video-title">Правовые основы обработки данных в школе</p>
-              <p class="video-desc">Обзор Закона № 99-З: что педагог обязан знать, какие данные учащихся можно обрабатывать и на каком основании.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- ==================== UVO/USSO ==================== -->
-
-  <!-- УВО/УССО — Студенты -->
-  <div class="audience-panel" id="panel-uvosso-student">
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--blue-700); margin-right:0.5rem;"></i>Студенты (УВО / УССО)</h2>
-        <p class="section-subtitle">Видеоматериалы по цифровой безопасности и защите персональных данных для студентов вузов и ссузов</p>
-        <div class="video-grid">
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Учителя · УОСО</span>
+<p class="video-title">Правовые основы обработки данных в школе</p>
+<p class="video-desc">Обзор Закона № 99-З: что педагог обязан знать, какие данные учащихся можно обрабатывать и на каком основании.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- ==================== UVO/USSO ==================== -->
+<!-- УВО/УССО — Студенты -->
+<div class="audience-panel" id="panel-uvosso-student">
+<section class="section">
+<div class="container">
+<h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--blue-700); margin-right:0.5rem;"></i>Студенты (УВО / УССО)</h2>
+<p class="section-subtitle">Видеоматериалы по цифровой безопасности и защите персональных данных для студентов вузов и ссузов</p>
+<div class="video-grid">
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Студенты · УВО/УССО</span>
-              <p class="video-title">Персональные данные в студенческой жизни</p>
-              <p class="video-desc">Где и как университет обрабатывает ваши данные: личное дело, портфолио, зачётная книжка — права студента.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Студенты · УВО/УССО</span>
+<p class="video-title">Персональные данные в студенческой жизни</p>
+<p class="video-desc">Где и как университет обрабатывает ваши данные: личное дело, портфолио, зачётная книжка — права студента.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Студенты · УВО/УССО</span>
-              <p class="video-title">Онлайн-обучение и защита данных</p>
-              <p class="video-desc">Безопасность при дистанционном обучении: Moodle, Zoom, Teams — что собирают платформы и как минимизировать риски.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Студенты · УВО/УССО</span>
+<p class="video-title">Онлайн-обучение и защита данных</p>
+<p class="video-desc">Безопасность при дистанционном обучении: Moodle, Zoom, Teams — что собирают платформы и как минимизировать риски.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Студенты · УВО/УССО</span>
-              <p class="video-title">Цифровой след и репутация</p>
-              <p class="video-desc">Как информация в интернете влияет на карьеру: управление цифровым следом и профессиональный профиль онлайн.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Студенты · УВО/УССО</span>
+<p class="video-title">Цифровой след и репутация</p>
+<p class="video-desc">Как информация в интернете влияет на карьеру: управление цифровым следом и профессиональный профиль онлайн.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Студенты · УВО/УССО</span>
-              <p class="video-title">Согласие на обработку данных: читаем внимательно</p>
-              <p class="video-desc">Как правильно читать политику конфиденциальности и что означает подписание согласия на обработку персональных данных.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Студенты · УВО/УССО</span>
+<p class="video-title">Согласие на обработку данных: читаем внимательно</p>
+<p class="video-desc">Как правильно читать политику конфиденциальности и что означает подписание согласия на обработку персональных данных.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">Студенты · УВО/УССО</span>
-              <p class="video-title">Как подать жалобу на нарушение прав</p>
-              <p class="video-desc">Национальный центр защиты персональных данных: куда обращаться, как составить жалобу и каковы сроки рассмотрения.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- УВО/УССО — ППС -->
-  <div class="audience-panel" id="panel-uvosso-pps">
-    <section class="section">
-      <div class="container">
-        <h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--blue-700); margin-right:0.5rem;"></i>ППС (УВО / УССО)</h2>
-        <p class="section-subtitle">Видеоматериалы для профессорско-преподавательского состава: правовые основы, практика и ответственность</p>
-        <div class="video-grid">
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">Студенты · УВО/УССО</span>
+<p class="video-title">Как подать жалобу на нарушение прав</p>
+<p class="video-desc">Национальный центр защиты персональных данных: куда обращаться, как составить жалобу и каковы сроки рассмотрения.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- УВО/УССО — ППС -->
+<div class="audience-panel" id="panel-uvosso-pps">
+<section class="section">
+<div class="container">
+<h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--blue-700); margin-right:0.5rem;"></i>ППС (УВО / УССО)</h2>
+<p class="section-subtitle">Видеоматериалы для профессорско-преподавательского состава: правовые основы, практика и ответственность</p>
+<div class="video-grid">
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">ППС · УВО/УССО</span>
-              <p class="video-title">Закон № 99-З для преподавателя: ключевые нормы</p>
-              <p class="video-desc">Обязанности оператора персональных данных в вузе, перечень допустимых оснований для обработки данных студентов.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">ППС · УВО/УССО</span>
+<p class="video-title">Закон № 99-З для преподавателя: ключевые нормы</p>
+<p class="video-desc">Обязанности оператора персональных данных в вузе, перечень допустимых оснований для обработки данных студентов.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">ППС · УВО/УССО</span>
-              <p class="video-title">Научные исследования и персональные данные</p>
-              <p class="video-desc">Как проводить научные исследования с соблюдением требований о защите данных: анонимизация, псевдонимизация, хранение.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">ППС · УВО/УССО</span>
+<p class="video-title">Научные исследования и персональные данные</p>
+<p class="video-desc">Как проводить научные исследования с соблюдением требований о защите данных: анонимизация, псевдонимизация, хранение.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">ППС · УВО/УССО</span>
-              <p class="video-title">Системы управления обучением (LMS)</p>
-              <p class="video-desc">Moodle, Canvas и корпоративные LMS: настройка прав доступа, хранение данных студентов и журналов активности.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">ППС · УВО/УССО</span>
+<p class="video-title">Системы управления обучением (LMS)</p>
+<p class="video-desc">Moodle, Canvas и корпоративные LMS: настройка прав доступа, хранение данных студентов и журналов активности.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">ППС · УВО/УССО</span>
-              <p class="video-title">Публикации и конференции: данные участников</p>
-              <p class="video-desc">Правила работы с персональными данными при организации конференций, публикации тезисов и сборников трудов.</p>
-            </div>
-          </div>
-
-          <div class="video-card">
-                        <div class="video-embed">
-              <!--
+</div>
+<div class="video-info">
+<span class="video-badge">ППС · УВО/УССО</span>
+<p class="video-title">Публикации и конференции: данные участников</p>
+<p class="video-desc">Правила работы с персональными данными при организации конференций, публикации тезисов и сборников трудов.</p>
+</div>
+</div>
+<div class="video-card">
+<div class="video-embed">
+<!--
                 Вставьте путь к вашему видеофайлу в атрибут src.
                 Пример: src="videos/video.mp4"
                 poster — необязательная картинка-превью (jpg/png).
               -->
-              <video controls preload="none" poster="">
-                <source src="" type="video/mp4">
+<video controls="" poster="" preload="none">
+<source src="" type="video/mp4"/>
                 Ваш браузер не поддерживает тег video.
               </video>
-            </div>
-            <div class="video-info">
-              <span class="video-badge">ППС · УВО/УССО</span>
-              <p class="video-title">Инциденты с данными: алгоритм действий</p>
-              <p class="video-desc">Что делать при утечке или неправомерном доступе к персональным данным студентов: уведомление, расследование, документирование.</p>
-            </div>
-          </div>
-
-        </div>
-      </div>
-    </section>
-  </div>
-
-  <!-- Footer -->
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <i class="fas fa-shield-alt"></i>
+</div>
+<div class="video-info">
+<span class="video-badge">ППС · УВО/УССО</span>
+<p class="video-title">Инциденты с данными: алгоритм действий</p>
+<p class="video-desc">Что делать при утечке или неправомерном доступе к персональным данным студентов: уведомление, расследование, документирование.</p>
+</div>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Footer -->
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<i class="fas fa-shield-alt"></i>
           EduSafe
         </div>
-        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
-        <p style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</p>
-      </div>
-      <div class="disclaimer">
-        <span>Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
-        <span>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+<p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+<p style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</p>
+</div>
+<div class="disclaimer">
+<span>Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br/>
+<span>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+</div>
+</div>
+</footer>
+<script>
     // Mobile menu
     const navToggle = document.getElementById('navToggle');
     const mobileMenu = document.getElementById('mobileMenu');
@@ -1040,6 +999,33 @@
         document.getElementById('subUvossoPps').classList.toggle('active', sub === 'pps');
       }
     }
+  </script>
+
+<script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
+    });
   </script>
 </body>
 </html>

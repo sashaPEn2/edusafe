@@ -1,11 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>УОСО практика — EduSafe</title>
-  <link rel="icon" type="image/x-icon" href="favcion.ico">
-  <!-- Yandex.Metrika counter -->
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>УОСО практика — EduSafe</title>
+<link href="favcion.ico" rel="icon" type="image/x-icon"/>
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -16,10 +17,10 @@
 
     ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <!-- Yandex.Metrika counter -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -30,9 +31,9 @@
 
     ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
 </script>
-<noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;"/></div></noscript>
 <!-- /Yandex.Metrika counter -->
-  <style>
+<style>
     :root {
       --blue-900: #1e3a8a;
       --blue-700: #1d4ed8;
@@ -419,121 +420,289 @@
       color: var(--gray-900);
       border: 1px solid var(--blue-700);
     }
-  </style>
-</head>
+  
+    /* Nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Desktop nav */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-selector select {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background-color: var(--white);
+      color: var(--gray-900);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 101;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    .mobile-nav a i {
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { display: none; }
+      .nav-toggle { display: block; }
+    }
+</style>
+</link></head>
 <body>
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-shield-alt"></i>
-          EduSafe
-        </a>
-        <button class="nav-toggle" aria-label="Toggle navigation">
-          <i class="fas fa-bars"></i>
-        </button>
-        <div class="nav-container">
-          <nav>
-            <ul>
-              <li><a href="index.html" data-lang-key="navHome">Главная</a></li>
-              <li><a href="theory.html" data-lang-key="navLaws">Теория</a></li>
-              <li><a href="choice-sp.html" class="active" data-lang-key="navPractice">Практика</a></li>
-              <li><a href="contact.html" data-lang-key="navAbout">Жалоба</a></li>
-            </ul>
-          </nav>
-          <div class="lang-switcher">
-            <button data-lang="ru" class="active">RU</button>
-            <button data-lang="en">EN</button>
-          </div>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="container">
-      <h1 data-lang-key="practiceTitle">Практические сценарии защиты персональных данных</h1>
-      <p class="subtitle" data-lang-key="practiceSubtitle">Проверьте себя: как действовать в реальных ситуациях, чтобы не нарушить закон</p>
-
-      <div class="tab-controls">
-        <button class="tab-btn active" data-role="teacher">
-          <div class="role-icon">
-            <i class="fas fa-chalkboard-teacher"></i>
-          </div>
-          <div>
-            <h3 id="roleTeacherTitle" data-lang-key="roleTeacherTitle">Учителя</h3>
-            <p id="roleTeacherDesc">9 подробных сценариев для педагогов по обработке и защите персональных данных обучающихся</p>
-          </div>
-        </button>
-        <button class="tab-btn" data-role="student">
-          <div class="role-icon">
-            <i class="fas fa-user-graduate"></i>
-          </div>
-          <div>
-            <h3 id="roleStudentTitle" data-lang-key="roleStudentTitle">Учащиеся</h3>
-            <p id="roleStudentDesc">4 подробных сценариев для учащихся УСО по защите своих персональных данных</p>
-          </div>
-        </button>
-         <button class="tab-btn" data-role="director">
-          <div class="role-icon">
-            <i class="fas fa-file-text"></i>
-          </div>
-          <div>
-            <h3 id="roleDirectorTitle" data-lang-key="roleDirectorTitle">Операторы и руководители УОСО (в разработке)</h3>
-            <p id="roleDirectorDesc">5 подробных сценариев для операторов и руководителей УОСО по защите персональных данных сотрудников и учащихся учреждения образования</p>
-          </div>
-        </button>
-      </div>
-
-      <div class="tab-content active" id="teacherContent">
-        <div class="content-header">
-          <h2 data-lang-key="teacherHeader">Сценарии для учителей</h2>
-          <div class="controls-group">
-            <button class="control-btn" id="expandAllTeacher" data-lang-key="expandAll">Развернуть все</button>
-            <button class="control-btn" id="collapseAllTeacher" data-lang-key="collapseAll">Свернуть все</button>
-          </div>
-        </div>
-        <div class="scenarios-grid" id="teacherScenariosGrid">
-          </div>
-      </div>
-
-    <div class="tab-content" id="directorContent">
-        <div class="content-header">
-          <h2 data-lang-key="directorHeader">Сценарии для руководителей УОСО</h2>
-          <div class="controls-group">
-            <button class="control-btn" id="expandAllDirector" data-lang-key="expandAll">Развернуть все</button>
-            <button class="control-btn" id="collapseAllDirector" data-lang-key="collapseAll">Свернуть все</button>
-          </div>
-        </div>
-        <div class="scenarios-grid" id="directorScenariosGrid">
-          </div>
-      </div>
-
-      <div class="tab-content" id="studentContent">
-        <div class="content-header">
-          <h2 data-lang-key="studentHeader">Сценарии для учащихся</h2>
-          <div class="controls-group">
-            <button class="control-btn" id="expandAllStudent" data-lang-key="expandAll">Развернуть все</button>
-            <button class="control-btn" id="collapseAllStudent" data-lang-key="collapseAll">Свернуть все</button>
-          </div>
-        </div>
-        <div class="scenarios-grid" id="studentScenariosGrid">
-          </div>
-      </div>
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div style="padding: 2rem 0; text-align: center; font-size: 0.85rem; color: var(--gray-600); border-top: 1px solid var(--gray-200); margin-top: 3rem;">
-        <p data-lang-key="footerDisclaimer1">© 2026 EduSafe. Республиканский информационно-практический ресурс для педагогов и студентов.</p>
-                <p data-lang-key="footerDisclaimer2">Все права защищены. Проект разработан для повышения осведомленности пользователей.</p>
-        <p data-lang-key="footerDisclaimer3">Все материалы носят информационно-образовательный характер и соответствуют действующему законодательству Республики Беларусь.</p>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+ <!-- Header -->
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="nav-toggle" id="navToggle">
+<i class="fas fa-bars"></i>
+</button>
+<div class="nav-container">
+<div class="lang-selector">
+<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
+<option value="ru">Русский</option>
+<option value="en">English</option>
+</select>
+</div>
+<nav class="nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-content">
+<div class="mobile-header">
+<div class="logo" style="font-size: 1.25rem;">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="close-btn" id="closeMenu">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<nav class="mobile-nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</header>
+<main>
+<div class="container">
+<h1 data-lang-key="practiceTitle">Практические сценарии защиты персональных данных</h1>
+<p class="subtitle" data-lang-key="practiceSubtitle">Проверьте себя: как действовать в реальных ситуациях, чтобы не нарушить закон</p>
+<div class="tab-controls">
+<button class="tab-btn active" data-role="teacher">
+<div class="role-icon">
+<i class="fas fa-chalkboard-teacher"></i>
+</div>
+<div>
+<h3 data-lang-key="roleTeacherTitle" id="roleTeacherTitle">Учителя</h3>
+<p id="roleTeacherDesc">9 подробных сценариев для педагогов по обработке и защите персональных данных обучающихся</p>
+</div>
+</button>
+<button class="tab-btn" data-role="student">
+<div class="role-icon">
+<i class="fas fa-user-graduate"></i>
+</div>
+<div>
+<h3 data-lang-key="roleStudentTitle" id="roleStudentTitle">Учащиеся</h3>
+<p id="roleStudentDesc">4 подробных сценариев для учащихся УСО по защите своих персональных данных</p>
+</div>
+</button>
+<button class="tab-btn" data-role="director">
+<div class="role-icon">
+<i class="fas fa-file-text"></i>
+</div>
+<div>
+<h3 data-lang-key="roleDirectorTitle" id="roleDirectorTitle">Операторы и руководители УОСО (в разработке)</h3>
+<p id="roleDirectorDesc">5 подробных сценариев для операторов и руководителей УОСО по защите персональных данных сотрудников и учащихся учреждения образования</p>
+</div>
+</button>
+</div>
+<div class="tab-content active" id="teacherContent">
+<div class="content-header">
+<h2 data-lang-key="teacherHeader">Сценарии для учителей</h2>
+<div class="controls-group">
+<button class="control-btn" data-lang-key="expandAll" id="expandAllTeacher">Развернуть все</button>
+<button class="control-btn" data-lang-key="collapseAll" id="collapseAllTeacher">Свернуть все</button>
+</div>
+</div>
+<div class="scenarios-grid" id="teacherScenariosGrid">
+</div>
+</div>
+<div class="tab-content" id="directorContent">
+<div class="content-header">
+<h2 data-lang-key="directorHeader">Сценарии для руководителей УОСО</h2>
+<div class="controls-group">
+<button class="control-btn" data-lang-key="expandAll" id="expandAllDirector">Развернуть все</button>
+<button class="control-btn" data-lang-key="collapseAll" id="collapseAllDirector">Свернуть все</button>
+</div>
+</div>
+<div class="scenarios-grid" id="directorScenariosGrid">
+</div>
+</div>
+<div class="tab-content" id="studentContent">
+<div class="content-header">
+<h2 data-lang-key="studentHeader">Сценарии для учащихся</h2>
+<div class="controls-group">
+<button class="control-btn" data-lang-key="expandAll" id="expandAllStudent">Развернуть все</button>
+<button class="control-btn" data-lang-key="collapseAll" id="collapseAllStudent">Свернуть все</button>
+</div>
+</div>
+<div class="scenarios-grid" id="studentScenariosGrid">
+</div>
+</div>
+</div>
+</main>
+<footer>
+<div class="container">
+<div style="padding: 2rem 0; text-align: center; font-size: 0.85rem; color: var(--gray-600); border-top: 1px solid var(--gray-200); margin-top: 3rem;">
+<p data-lang-key="footerDisclaimer1">© 2026 EduSafe. Республиканский информационно-практический ресурс для педагогов и студентов.</p>
+<p data-lang-key="footerDisclaimer2">Все права защищены. Проект разработан для повышения осведомленности пользователей.</p>
+<p data-lang-key="footerDisclaimer3">Все материалы носят информационно-образовательный характер и соответствуют действующему законодательству Республики Беларусь.</p>
+</div>
+</div>
+</footer>
+<script>
     // Translations
     const translations = {
       ru: {
@@ -1028,6 +1197,33 @@ const directorScenarios = [
           });
         }
       });
+    });
+  </script>
+
+<script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
     });
   </script>
 </body>

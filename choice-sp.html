@@ -1,12 +1,12 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Практика — EduSafe</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
-  
-  <script type="text/javascript">
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Практика — EduSafe</title>
+<link href="./favicon.svg" rel="icon" type="image/svg+xml"/>
+<script type="text/javascript">
     (function(m,e,t,r,i,k,a){
         m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
         m[i].l=1*new Date();
@@ -15,11 +15,9 @@
     })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
     ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
   </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
-  <style>
+<noscript><div><img alt="" src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;"/></div></noscript>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<style>
     :root {
       --blue-900: #1e3a8a;
       --blue-700: #1d4ed8;
@@ -125,111 +123,101 @@
       h1 { font-size: 2rem; }
     }
   </style>
-</head>
+</link></head>
 <body>
-
-  <header>
-    <div class="container">
-      <div class="header-content">
-        <a href="index.html" class="logo">
-          <i class="fas fa-shield-alt"></i>
-          <span id="logoText">EduSafe</span>
-        </a>
-
-        <button class="nav-toggle" id="navToggle">
-          <i class="fas fa-bars"></i>
-        </button>
-
-        <div class="nav-container">
-          <div class="lang-selector">
-            <select id="languageSelector">
-              <option value="ru">Русский</option>
-              <option value="en">English</option>
-            </select>
-          </div>
-          <nav class="nav">
-            <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
-            <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-            <a href="choice-sp.html" class="active" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-            <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-          </nav>
-        </div>
-      </div>
-    </div>
-
-    <div class="mobile-menu" id="mobileMenu">
-      <div class="mobile-menu-content">
-        <div class="mobile-header">
-          <div class="logo" style="font-size: 1.25rem;">
-            <i class="fas fa-shield-alt"></i>
-            <span id="mobileLogoText">EduSafe</span>
-          </div>
-          <button class="close-btn" id="closeMenu">
-            <i class="fas fa-times"></i>
-          </button>
-        </div>
-        <div class="lang-selector" style="margin-bottom: 1.5rem;">
-          <select id="mobileLanguageSelector">
-            <option value="ru">Русский</option>
-            <option value="en">English</option>
-          </select>
-        </div>
-        <nav class="mobile-nav">
-          <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
-          <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-          <a href="choice-sp.html" class="active" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-          <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-          <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
-  <main>
-    <div class="container">
-      <h1 id="pTitle">Практика</h1>
-      <p class="subtitle" id="pSub">Выберите уровень образования, чтобы увидеть сценарии</p>
-
-      <div class="tab-controls">
-        <button class="tab-btn" onclick="window.location.href='./USO-practice.html'">
-          <i class="fas fa-school"></i>
-          <div>
-            <h3 id="usoTitle">УОСО</h3>
-            <p id="usoDesc">Школы, гимназии, лицеи</p>
-          </div>
-        </button>
-        <button class="tab-btn" onclick="window.location.href='./UVO-USSO-practice.html'">
-          <i class="fas fa-university"></i>
-          <div>
-            <h3 id="uvoTitle">УВО / УССО</h3>
-            <p id="uvoDesc">Вузы и колледжи</p>
-          </div>
-        </button>
-      </div>
-
-
-    </div>
-  </main>
-
-  <footer>
-    <div class="container">
-      <div class="footer-content">
-        <div class="footer-logo">
-          <i class="fas fa-shield-alt"></i>
-          <span id="footerLogoText">EduSafe</span>
-        </div>
-        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
-        <p style="margin-top: 0.5rem;" id="footerCopyright">© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</p>
-      </div>
-      <div class="disclaimer">
-        <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
-        <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь. Ресурс разработан с использованием рекомендаций Национального центра защиты персональных данных</span>
-      </div>
-    </div>
-  </footer>
-
-  <script>
+ <!-- Header -->
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="nav-toggle" id="navToggle">
+<i class="fas fa-bars"></i>
+</button>
+<div class="nav-container">
+<div class="lang-selector">
+<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
+<option value="ru">Русский</option>
+<option value="en">English</option>
+</select>
+</div>
+<nav class="nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a class="active" href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-content">
+<div class="mobile-header">
+<div class="logo" style="font-size: 1.25rem;">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="close-btn" id="closeMenu">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<nav class="mobile-nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a class="active" href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</header>
+<main>
+<div class="container">
+<h1 id="pTitle">Практика</h1>
+<p class="subtitle" id="pSub">Выберите уровень образования, чтобы увидеть сценарии</p>
+<div class="tab-controls">
+<button class="tab-btn" onclick="window.location.href='./USO-practice.html'">
+<i class="fas fa-school"></i>
+<div>
+<h3 id="usoTitle">УОСО</h3>
+<p id="usoDesc">Школы, гимназии, лицеи</p>
+</div>
+</button>
+<button class="tab-btn" onclick="window.location.href='./UVO-USSO-practice.html'">
+<i class="fas fa-university"></i>
+<div>
+<h3 id="uvoTitle">УВО / УССО</h3>
+<p id="uvoDesc">Вузы и колледжи</p>
+</div>
+</button>
+</div>
+</div>
+</main>
+<footer>
+<div class="container">
+<div class="footer-content">
+<div class="footer-logo">
+<i class="fas fa-shield-alt"></i>
+<span id="footerLogoText">EduSafe</span>
+</div>
+<p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+<p id="footerCopyright" style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</p>
+</div>
+<div class="disclaimer">
+<span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br/>
+<span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь. Ресурс разработан с использованием рекомендаций Национального центра защиты персональных данных</span>
+</div>
+</div>
+</footer>
+<script>
     const translations = {
       ru: {
         // Nav & Footer (From Index)

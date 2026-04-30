@@ -1,18 +1,16 @@
 <!DOCTYPE html>
+
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Блог EduSafe — Информационная безопасность</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">  
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  
-  <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.browser.min.js"></script>
-
-  <style>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Блог EduSafe — Информационная безопасность</title>
+<link href="./favicon.svg" rel="icon" type="image/svg+xml"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.browser.min.js"></script>
+<style>
     :root {
       --blue-900: #1e3a8a;
       --blue-700: #1d4ed8;
@@ -213,53 +211,226 @@
       .single-post { padding: 1.5rem; }
       .card-image-wrap { height: 180px; }
     }
-  </style>
-</head>
+  
+    /* Nav toggle (mobile) */
+    .nav-toggle {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+      z-index: 2;
+    }
+
+    /* Desktop nav */
+    .nav-container {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lang-selector {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .lang-selector select {
+      padding: 0.5rem 0.75rem;
+      border-radius: 0.5rem;
+      border: 1px solid #d1d5db;
+      background-color: var(--white);
+      color: var(--gray-900);
+      font-size: 0.9rem;
+      outline: none;
+    }
+
+    .nav {
+      display: flex;
+      gap: 1rem;
+    }
+
+    .nav a {
+      text-decoration: none;
+      color: var(--gray-600);
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border-radius: 0.5rem;
+      transition: all 0.2s ease;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .nav a:hover,
+    .nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    /* Mobile menu */
+    .mobile-menu {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0,0,0,0.4);
+      backdrop-filter: blur(2px);
+      z-index: 101;
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    .mobile-menu.active {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .mobile-menu-content {
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 85%;
+      max-width: 320px;
+      height: 100%;
+      background: var(--white);
+      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
+      border-radius: 0 0 0 1.5rem;
+      padding: 1.5rem;
+      transform: translateX(100%);
+      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+
+    .mobile-menu.active .mobile-menu-content {
+      transform: translateX(0);
+    }
+
+    .mobile-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1rem;
+      border-bottom: 1px solid var(--gray-100);
+    }
+
+    .close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--gray-900);
+      cursor: pointer;
+    }
+
+    .mobile-nav {
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .mobile-nav a {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 0.875rem 1rem;
+      border-radius: 0.75rem;
+      text-decoration: none;
+      color: var(--gray-900);
+      font-weight: 500;
+      background: var(--gray-50);
+      transition: all 0.2s ease;
+    }
+
+    .mobile-nav a:hover,
+    .mobile-nav a.active {
+      background: var(--blue-100);
+      color: var(--blue-900);
+    }
+
+    .mobile-nav a i {
+      width: 1.5rem;
+      text-align: center;
+    }
+
+    @media (max-width: 768px) {
+      .nav-container { display: none; }
+      .nav-toggle { display: block; }
+    }
+</style>
+</link></head>
 <body>
-
-  <header>
-   <div class="container">
-      <div class="header-content">
-        <div class="logo">
-          <i class="fas fa-shield-alt"></i>
-          <span id="logoText">EduSafe</span>
-        </div>
-
-      
-
-        <div class="nav-container">
-         
-          <nav class="nav">
-            <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
-            <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-            <a href="practice.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-            <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-            <a href="blog.html" class="active" id="navBlog"><i class="fas fa-pen"></i> <span>Блог</span></a>
-            <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-          </nav>
-        </div>
-      </div>
-    </div>
-  </header>
-
-  <section class="blog-hero" id="heroSection">
-    <div class="container">
-      <h1>Блог EduSafe</h1>
-      <p>Актуальные новости и советы по безопасности</p>
-    </div>
-  </section>
-
-  <main class="container" style="padding-bottom: 5rem;">
-    <div id="app-container">
-      <div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка контента...</div>
-    </div>
-    
-    <div id="comments-section" style="display: none; margin-top: 4rem;">
-        <h3 style="color: var(--blue-900); margin-bottom: 1.5rem;">Комментарии</h3>
-        <div id="disqus_thread"></div>
-    </div>
-  </main>
-
+ <!-- Header -->
+<header>
+<div class="container">
+<div class="header-content">
+<div class="logo">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="nav-toggle" id="navToggle">
+<i class="fas fa-bars"></i>
+</button>
+<div class="nav-container">
+<div class="lang-selector">
+<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
+<option value="ru">Русский</option>
+<option value="en">English</option>
+</select>
+</div>
+<nav class="nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a class="active" href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</div>
+<!-- Mobile Menu -->
+<div class="mobile-menu" id="mobileMenu">
+<div class="mobile-menu-content">
+<div class="mobile-header">
+<div class="logo" style="font-size: 1.25rem;">
+<i class="fas fa-shield-alt"></i>
+<span>EduSafe</span>
+</div>
+<button class="close-btn" id="closeMenu">
+<i class="fas fa-times"></i>
+</button>
+</div>
+<nav class="mobile-nav">
+<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
+<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
+<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+<a class="active" href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
+<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
+</nav>
+</div>
+</div>
+</header>
+<section class="blog-hero" id="heroSection">
+<div class="container">
+<h1>Блог EduSafe</h1>
+<p>Актуальные новости и советы по безопасности</p>
+</div>
+</section>
+<main class="container" style="padding-bottom: 5rem;">
+<div id="app-container">
+<div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка контента...</div>
+</div>
+<div id="comments-section" style="display: none; margin-top: 4rem;">
+<h3 style="color: var(--blue-900); margin-bottom: 1.5rem;">Комментарии</h3>
+<div id="disqus_thread"></div>
+</div>
+</main>
 <script>
     // --- НАСТРОЙКИ CONTENTFUL ---
 const SPACE_ID = 'r6g09taz57g1'; 
@@ -396,5 +567,32 @@ const SPACE_ID = 'r6g09taz57g1';
     }
     window.onload = init;
 </script>
+
+<script>
+    // Mobile menu toggle
+    const navToggle = document.getElementById('navToggle');
+    const mobileMenu = document.getElementById('mobileMenu');
+    const closeMenu = document.getElementById('closeMenu');
+
+    function openMenu() {
+      mobileMenu.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeMenuHandler() {
+      mobileMenu.classList.remove('active');
+      document.body.style.overflow = '';
+    }
+
+    navToggle.addEventListener('click', openMenu);
+    closeMenu.addEventListener('click', closeMenuHandler);
+    mobileMenu.addEventListener('click', (e) => {
+      if (e.target === mobileMenu) closeMenuHandler();
+    });
+
+    document.querySelectorAll('.mobile-nav a').forEach(link => {
+      link.addEventListener('click', closeMenuHandler);
+    });
+  </script>
 </body>
 </html>
