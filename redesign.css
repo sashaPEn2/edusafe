@@ -1,0 +1,110 @@
+:root {
+  --bg: #f3f4f6;
+  --surface: #ffffff;
+  --surface-muted: #f8fafc;
+  --border: #d1d5db;
+  --text: #111827;
+  --text-muted: #4b5563;
+  --primary: #1f2937;
+  --primary-strong: #0f172a;
+  --accent: #374151;
+  --radius: 10px;
+  --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+}
+
+* { box-sizing: border-box; }
+html, body { min-height: 100%; }
+
+body {
+  margin: 0;
+  font-family: "Inter", "Segoe UI", Roboto, Arial, sans-serif !important;
+  color: var(--text) !important;
+  background: linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%) !important;
+  letter-spacing: 0.01em;
+}
+
+header {
+  background: rgba(255, 255, 255, 0.96) !important;
+  border-bottom: 1px solid var(--border) !important;
+  box-shadow: 0 4px 20px rgba(15, 23, 42, 0.06);
+  backdrop-filter: blur(4px);
+}
+
+.container, .content, .main { max-width: 1160px !important; }
+
+section, main > section, .card, .block, .quiz-container, .theory-card, .video-card, form, .article, .post, .info-box {
+  background: var(--surface) !important;
+  border: 1px solid var(--border) !important;
+  border-radius: var(--radius) !important;
+  box-shadow: var(--shadow) !important;
+}
+
+h1, h2, h3 {
+  color: var(--primary-strong) !important;
+  letter-spacing: -0.01em;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: clamp(2rem, 4.2vw, 3rem) !important;
+  line-height: 1.15;
+}
+
+p, li, span, label { color: var(--text-muted); }
+
+a, .nav a {
+  color: var(--primary) !important;
+  font-weight: 600;
+}
+
+.nav a {
+  border: 1px solid transparent;
+}
+
+.nav a:hover,
+.nav a.active {
+  background: #f3f4f6 !important;
+  border-color: var(--border) !important;
+  color: var(--primary-strong) !important;
+}
+
+button, .btn, .button, input[type='submit'] {
+  background: linear-gradient(180deg, #374151 0%, #1f2937 100%) !important;
+  color: #ffffff !important;
+  border: 1px solid #111827 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 8px 18px rgba(17, 24, 39, 0.22) !important;
+}
+
+button:hover, .btn:hover, .button:hover, input[type='submit']:hover {
+  filter: brightness(1.05);
+}
+
+input, textarea, select {
+  background: #ffffff !important;
+  border: 1px solid var(--border) !important;
+  border-radius: 8px !important;
+  color: var(--text) !important;
+}
+
+.hero, .banner, .intro {
+  background: linear-gradient(130deg, #1f2937 0%, #111827 100%) !important;
+  color: #f9fafb !important;
+  border-radius: 14px !important;
+  border: 1px solid #0b1220 !important;
+}
+
+.hero h1, .hero h2, .hero p, .banner h1, .banner p, .intro h1, .intro p {
+  color: #f9fafb !important;
+}
+
+footer {
+  background: #111827 !important;
+  color: #d1d5db !important;
+  border-top: 1px solid #1f2937;
+}
+
+img {
+  border-radius: 8px;
+  border: 1px solid rgba(148, 163, 184, 0.35);
+}
