@@ -1139,37 +1139,7 @@ const directorScenarios = [
     });
   }
 
-  function applyTranslations(lang) {
-    const t = translations[lang];
-    document.getElementById('heroBadge').textContent = t.heroBadge;
-    document.getElementById('heroTitle').innerHTML = t.heroTitle;
-    document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
-    document.getElementById('abbreviationsTitle').textContent = t.abbreviationsTitle;
-    document.getElementById('abbr_uoso_text').textContent = t.abbr_uoso;
-    document.getElementById('abbr_pd_text').textContent = t.abbr_pd;
-    document.getElementById('abbr_nczpd_text').textContent = t.abbr_nczpd;
-    document.getElementById('abbr_uo_text').textContent = t.abbr_uo;
-    document.getElementById('abbr_fio_text').textContent = t.abbr_fio;
-    document.getElementById('abbr_pdo_text').textContent = t.abbr_pdo;
-    document.getElementById('abbr_koaprb_text').textContent = t.abbr_koaprb;
-    document.getElementById('ncdpBannerTitle').textContent = t.ncdpBannerTitle;
-    document.getElementById('ncdpBannerText').innerHTML = t.ncdpBannerText;
-    document.getElementById('roleTeacherTitle').textContent = t.roleTeacherTitle;
-    document.getElementById('roleTeacherDesc').textContent = t.roleTeacherDesc;
-    document.getElementById('roleStudentTitle').textContent = t.roleStudentTitle;
-    document.getElementById('roleStudentDesc').textContent = t.roleStudentDesc;
-    document.getElementById('roleDirectorTitle').textContent = t.roleDirectorTitle;
-    document.getElementById('roleDirectorDesc').textContent = t.roleDirectorDesc;
-    document.getElementById('teacherHeader').textContent = t.teacherHeader;
-    document.getElementById('studentHeader').textContent = t.studentHeader;
-    document.getElementById('directorHeader').textContent = t.directorHeader;
-
-    document.querySelectorAll('.modal').forEach(m => m.remove());
-    generateScenarios(teacherScenarios, 'teacherScenariosGrid', 'teacher');
-    generateScenarios(studentScenarios, 'studentScenariosGrid', 'student');
-    generateScenarios(directorScenarios, 'directorScenariosGrid', 'director');
-  }
-
+  
   /* ─── TABS ─────────────────────────────── */
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {

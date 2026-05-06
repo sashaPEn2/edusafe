@@ -868,16 +868,6 @@
     });
   });
 
-  /* ─── LANG ─────────────────────────────── */
-  function changeLang(lang) {
-    currentLang = lang;
-    applyTranslations(lang);
-    document.getElementById('languageSelector').value = lang;
-    document.getElementById('mobileLanguageSelector').value = lang;
-    document.documentElement.lang = lang;
-  }
-  document.getElementById('languageSelector').addEventListener('change', e => changeLang(e.target.value));
-  document.getElementById('mobileLanguageSelector').addEventListener('change', e => changeLang(e.target.value));
 
   /* ─── DRAWER ───────────────────────────── */
   const overlay = document.getElementById('drawerOverlay');
