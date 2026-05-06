@@ -1625,69 +1625,7 @@
     try { localStorage.setItem('theoryRole', role); } catch(e){}
   }
 
-  // ─── TRANSLATIONS ────────────────────────────────────
-  const t = {
-    ru: {
-      pageTitle: 'Теория — EduSafe',
-      logoText: 'EduSafe',
-      heroBadge: 'Теория · Закон РБ № 99-З',
-      heroTitle: 'Защита персональных данных в <span>образовании</span>',
-      heroSubtitle: 'Правовая база, принципы и практические шаги — адаптированный контент для каждой роли в образовательном процессе.',
-      heroNote: 'Соответствует Закону РБ № 99-З «О защите персональных данных»',
-      roleChooserTag: 'Выберите вашу роль',
-      roleChooserTitle: 'Кто вы в образовательном процессе?',
-      roleChooserSub: 'Выберите свой статус — и мы покажем материал, написанный именно для вас',
-      roleCardTitle_teacher: 'Учитель', roleCardDesc_teacher: 'Педагог общеобразовательной школы',
-      roleCardTitle_professor: 'Преподаватель вуза', roleCardDesc_professor: 'Сотрудник университета или колледжа',
-      roleCardTitle_pupil: 'Школьник', roleCardDesc_pupil: 'Учащийся общеобразовательной школы',
-      roleCardTitle_student: 'Студент', roleCardDesc_student: 'Студент вуза или ссуза',
-      docsTitle: 'Официальные документы',
-      docsIntro: 'Для углублённого изучения ознакомьтесь с официальными документами Национального центра защиты персональных данных и Законом.',
-      doc1: 'Закон Республики Беларусь № 99-З от 07.05.2021 «О защите персональных данных»',
-      doc2: 'Разъяснения НЦЗПД о применении Закона в учреждениях образования от 21.11.2025 № 5-5/760',
-      doc3: 'Разъяснения НЦЗПД о применении Закона в учреждениях образования от 16.07.2025 № 5-5/395',
-      docNote: '(Файлы доступны для скачивания в формате PDF)',
-      ctaTitle: 'Готовы применить знания на практике?',
-      ctaSubtitle: 'Переходите к практическим кейсам или проверьте знания в интерактивной викторине.',
-      ctaBtn1: 'Перейти к практике', ctaBtn2: 'Пройти викторину', ctaBtn3: 'На главную',
-      footerDesc: 'Республиканский информационно-практический ресурс для педагогов и студентов',
-      footerCopyright: '© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»',
-      footerDisclaimer1: 'Ресурс не использует cookies и не собирает персональные данные пользователей.',
-      footerDisclaimer2: 'Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.',
-      navHome: 'Главная', navTheory: 'Теория', navPractice: 'Практика',
-      navVideo: 'Видео', navQuiz: 'Викторина', navBlog: 'Блог', navComplaint: 'Жалоба',
-    },
-    en: {
-      pageTitle: 'Theory — EduSafe',
-      logoText: 'EduSafe',
-      heroBadge: 'Theory · Law No. 99-Z',
-      heroTitle: 'Personal Data Protection in <span>Education</span>',
-      heroSubtitle: 'Legal framework, principles and practical steps — content tailored to each role in the educational process.',
-      heroNote: 'Complies with Law No. 99-Z "On Personal Data Protection"',
-      roleChooserTag: 'Choose your role',
-      roleChooserTitle: 'Who are you in the educational process?',
-      roleChooserSub: 'Select your status — and we will show you content written specifically for you',
-      roleCardTitle_teacher: 'Teacher', roleCardDesc_teacher: 'General education school teacher',
-      roleCardTitle_professor: 'University Lecturer', roleCardDesc_professor: 'University or college staff',
-      roleCardTitle_pupil: 'Schoolchild', roleCardDesc_pupil: 'General education school student',
-      roleCardTitle_student: 'Student', roleCardDesc_student: 'University or college student',
-      docsTitle: 'Official Documents',
-      docsIntro: 'For in-depth study, review the official documents of the National Center for Personal Data Protection and the Law.',
-      doc1: 'Law of the Republic of Belarus No. 99-Z of 07.05.2021 "On Personal Data Protection"',
-      doc2: 'NCPD clarifications on the application of the Law in educational institutions dated 11/21/2025 No. 5-5/760',
-      doc3: 'NCPD clarifications on the application of the Law in educational institutions dated 07/16/2025 No. 5-5/395',
-      docNote: '(Files available for download in PDF format)',
-      ctaTitle: 'Ready to apply your knowledge in practice?',
-      ctaSubtitle: 'Move on to practical cases or test your knowledge in the interactive quiz.',
-      ctaBtn1: 'Go to Practice', ctaBtn2: 'Take the Quiz', ctaBtn3: 'Home',
-      footerDesc: 'Republican Informational-Practical Resource for Teachers and Students',
-      footerCopyright: '© 2025 Nevdakh Alexander, Belarusian State Economic University',
-      footerDisclaimer1: 'The resource does not use cookies and does not collect personal data of users.',
-      footerDisclaimer2: 'All materials are for informational and educational purposes and comply with current legislation of the Republic of Belarus.',
-      navHome: 'Home', navTheory: 'Theory', navPractice: 'Practice',
-      navVideo: 'Video', navQuiz: 'Quiz', navBlog: 'Blog', navComplaint: 'Complaint',
-    }
-  };
+  
 
   function setEl(id, val, isHtml) {
     const el = document.getElementById(id);

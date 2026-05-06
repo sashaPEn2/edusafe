@@ -1215,75 +1215,7 @@
 </footer>
 
 <script>
-  // ── TRANSLATIONS ──────────────────────────────────────
-  const translations = {
-    ru: {
-      heroBadge: "Республика Беларусь · Закон № 99-З",
-      logoText: "EduSafe",
-      navHome: "Главная", navTheory: "Теория", navPractice: "Практика",
-      navVideo: "Видео", navQuiz: "Викторина", navBlog: "Блог", navComplaint: "Жалоба",
-      heroTitle: 'Республиканский ресурс по <span>защите персональных данных</span> в образовании',
-      heroSubtitle: "Единая платформа для педагогов и студентов Республики Беларусь — с актуальной правовой базой, практическими кейсами и инструментами цифровой ответственности.",
-      heroNote: "Соответствует Закону РБ № 99-З «О защите персональных данных»",
-      whatsInsideTitle: "Что вы найдёте на ресурсе",
-      whatsInsideSubtitle: "Три взаимосвязанных модуля — от фундамента знаний до проверки компетенций",
-      card1Title: "Теория", card1Text: "Систематизированная правовая база: Закон № 99-З, типовые решения для сферы образования и разъяснения о применении законодательства о персональных данных.", card1Btn: "Перейти к теории",
-      card2Title: "Практика", card2Text: "30 реальных ситуаций из жизни школ и вузов РБ: фотографии выпускников, Telegram-боты, рассылки, облачные журналы — с пошаговыми решениями и ссылками на закон.", card2Btn: "Перейти к практике",
-      card3Title: "Викторина", card3Text: "Интерактивный тест по защите персональных данных. По результатам — персональные рекомендации по изучению Закона.", card3Btn: "Пройти викторину",
-      value1Title: "Профилактика нарушений", value1Text: "— снижение риска административной ответственности по ст. 23.7 КоАП РБ.",
-      value2Title: "Доверие к цифровым сервисам", value2Text: "— необходимое условие для внедрения онлайн-приёма, цифровых портфолио, ИИ-аналитики.",
-      value3Title: "Цифровая грамотность", value3Text: "— опыт и навыки для развития цифровой экономики Беларуси.",
-      ctaTitle: "Готовы начать?", ctaSubtitle: "Выберите раздел и приступайте к обучению уже сегодня.",
-      ctaBtn1Text: "Теория", ctaBtn2Text: "Практика", ctaBtn3Text: "Викторина",
-      sdgTitle: "Мы поддерживаем Цели устойчивого развития ООН",
-      sdgDefault: "Нажмите на иконку цели, чтобы узнать, как наш ресурс способствует её достижению.",
-      sdg4Info: "ЦУР 4 (Качественное образование): Мы обеспечиваем открытый доступ к знаниям о цифровой безопасности для всех участников образовательного процесса.",
-      sdg9Info: "ЦУР 9 (Инновации): Ресурс способствует безопасному внедрению ИТ-решений в образовании, минимизируя риски утечек данных.",
-      sdg16Info: "ЦУР 16 (Правосудие): Формирование правовой культуры и защита прав граждан в цифровой среде — основа сильных институтов.",
-      cpdLabel: "Информационная поддержка",
-      cpdTitle: "Национальный центр защиты персональных данных Республики Беларусь",
-      cpdText: "Настоящий ресурс создан при информационной поддержке Национального центра защиты персональных данных Республики Беларусь — уполномоченного государственного органа, осуществляющего контроль в сфере защиты персональных данных. Материалы ресурса соответствуют официальным разъяснениям и рекомендациям Центра.",
-      cpdLink: "Перейти на сайт cpd.by",
-      footerLogoText: "EduSafe",
-      footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
-      footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»",
-      footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
-      footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь."
-    },
-    en: {
-      heroBadge: "Republic of Belarus · Law No. 99-Z",
-      logoText: "EduSafe",
-      navHome: "Home", navTheory: "Theory", navPractice: "Practice",
-      navVideo: "Video", navQuiz: "Quiz", navBlog: "Blog", navComplaint: "Complaint",
-      heroTitle: 'Republican Resource on <span>Personal Data Protection</span> in Education',
-      heroSubtitle: "A unified platform for teachers and students of the Republic of Belarus — with an up-to-date legal base, practical cases, and digital responsibility tools.",
-      heroNote: "Complies with Law No. 99-Z 'On Personal Data Protection'",
-      whatsInsideTitle: "What you will find on the resource",
-      whatsInsideSubtitle: "Three interconnected modules — from the foundation of knowledge to competency assessment",
-      card1Title: "Theory", card1Text: "Systematized legal base: Law No. 99-Z, typical solutions for the education sector, and clarifications on the application of personal data protection legislation.", card1Btn: "Go to Theory",
-      card2Title: "Practice", card2Text: "30 real-life situations from schools and universities: graduate photos, Telegram bots, mailings, cloud journals — with step-by-step solutions and links to the law.", card2Btn: "Go to Practice",
-      card3Title: "Quiz", card3Text: "An interactive test on personal data protection. Upon completion — personal recommendations for studying the Law.", card3Btn: "Take the Quiz",
-      value1Title: "Violation Prevention", value1Text: "— reducing the risk of administrative liability under Article 23.7 of the Code of Administrative Offenses.",
-      value2Title: "Trust in Digital Services", value2Text: "— a necessary condition for implementing online admission, digital portfolios, AI analytics.",
-      value3Title: "Digital Literacy", value3Text: "— experience and skills for the development of Belarus's digital economy.",
-      ctaTitle: "Ready to start?", ctaSubtitle: "Choose a section and start learning today.",
-      ctaBtn1Text: "Theory", ctaBtn2Text: "Practice", ctaBtn3Text: "Quiz",
-      sdgTitle: "We support the UN Sustainable Development Goals",
-      sdgDefault: "Click on a goal icon to see how our resource contributes to its achievement.",
-      sdg4Info: "SDG 4 (Quality Education): We provide open access to digital security knowledge for all educational participants.",
-      sdg9Info: "SDG 9 (Innovation): The resource promotes safe IT integration in education by minimizing data risks.",
-      sdg16Info: "SDG 16 (Justice): Building legal culture and protecting rights in the digital world is key to strong institutions.",
-      cpdLabel: "Information Support",
-      cpdTitle: "National Center for Personal Data Protection of the Republic of Belarus",
-      cpdText: "This resource was created with the informational support of the National Center for Personal Data Protection of the Republic of Belarus — the authorized state body exercising control in the field of personal data protection. All materials comply with the official guidelines and recommendations of the Center.",
-      cpdLink: "Visit cpd.by",
-      footerLogoText: "EduSafe",
-      footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
-      footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
-      footerDisclaimer1: "The resource does not use cookies and does not collect personal data of users.",
-      footerDisclaimer2: "All materials are for informational and educational purposes and comply with current legislation of the Republic of Belarus."
-    }
-  };
+ 
 
   let currentLang = 'ru';
 
