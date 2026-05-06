@@ -112,13 +112,7 @@
     .header-right {
       display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
     }
-    .lang-select {
-      padding: 0.4rem 0.7rem; border: 1px solid var(--border);
-      border-radius: var(--radius-sm); background: var(--surface);
-      color: var(--ink); font-size: 0.85rem;
-      font-family: 'Golos Text', sans-serif;
-      cursor: pointer; outline: none;
-    }
+
     .burger {
       display: none; background: none; border: none;
       color: var(--ink); font-size: 1.4rem; cursor: pointer;
@@ -599,10 +593,6 @@
         <a href="contact.html"><i class="fas fa-exclamation-triangle"></i> Жалоба</a>
       </nav>
       <div class="header-right">
-        <select class="lang-select" id="languageSelector">
-          <option value="ru">Русский</option>
-          <option value="en">English</option>
-        </select>
         <button class="burger" id="navToggle"><i class="fas fa-bars"></i></button>
       </div>
     </div>
@@ -629,10 +619,6 @@
       <a href="contact.html"><i class="fas fa-exclamation-triangle"></i> Жалоба</a>
     </nav>
     <div class="drawer-lang">
-     <!-- <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
-        <option value="ru">Русский</option>
-        <option value="en">English</option>
-      </select> -->
     </div>
   </div>
 </div>
@@ -787,207 +773,170 @@
 <script>
 
 
-  let currentLang = 'ru';
+  const T = {
+    solutionTitle: 'Решение',
+    lawTitle: 'Правовое основание',
+    ncdpNotice: 'Сценарии основаны на официальных разъяснениях <a href="https://cpd.by" target="_blank" rel="noopener" class="ncdp-link">НЦЗПД</a> и нормах законодательства Республики Беларусь.',
+    toggleDetails: 'Посмотреть решение'
+  };
 
   const teacherScenarios = [
       {
         scenario: {
-          ru: "Вы хотите опубликовать на веб-сайте школы фотографии лучших учеников класса и их достижения. Достаточно ли для этого устного согласия учеников?",
-          en: "You want to publish photos of the best students in your class and their achievements on the school's information board. Is verbal consent from the students sufficient for this?"
+          ru: "Вы хотите опубликовать на веб-сайте школы фотографии лучших учеников класса и их достижения. Достаточно ли для этого устного согласия учеников?"
         },
         solution: {
-          ru: "Для размещения фотографий, на которых делается акцент на конкретных учениках требуется обязательное письменное согласие родителей (законных представителей) несовершеннолетних или совершеннолетних учащихся. Информация о достижениях конкретных учеников должна обрабатываться на основании согласия. Согласие должно конкретно указывать цели и сроки публикации.",
-          en: "To post photos that focus on specific students, it is mandatory to obtain written consent from the parents (legal representatives) of minors or adult students. Information about the achievements of specific students must be processed based on consent. The consent must clearly specify the purpose and timing of the publication."
+          ru: "Для размещения фотографий, на которых делается акцент на конкретных учениках требуется обязательное письменное согласие родителей (законных представителей) несовершеннолетних или совершеннолетних учащихся. Информация о достижениях конкретных учеников должна обрабатываться на основании согласия. Согласие должно конкретно указывать цели и сроки публикации."
         },
         law: {
-          ru: "Статья 5 Закона №99-З «О защите персональных данных» (письменная форма согласия); Разъяснения НЦЗПД (21.11.2025), п. 4.1.3.",
-          en: "Article 5 of the Law №99-Z on Personal Data Protection (written consent form); NPDPC Clarifications (21.11.2025), item 4.1.3."
+          ru: "Статья 5 Закона №99-З «О защите персональных данных» (письменная форма согласия); Разъяснения НЦЗПД (21.11.2025), п. 4.1.3."
         }
       },
       {
         scenario: {
-          ru: "Отец ученика, который не является его законным представителем (родители в разводе, и отец лишен прав), устно запрашивает у вас информацию об успеваемости и поведении сына. Ваши действия?",
-          en: "The student's father, who is not their legal representative (parents are divorced, and the father is stripped of rights), verbally requests information on his son's academic performance and behavior. What are your actions?"
+          ru: "Отец ученика, который не является его законным представителем (родители в разводе, и отец лишен прав), устно запрашивает у вас информацию об успеваемости и поведении сына. Ваши действия?"
         },
         solution: {
-          ru: "Вы не вправе предоставлять персональные данные (сведения об успеваемости, поведении) третьим лицам, не являющимся законными представителями, без письменного согласия субъекта персональных данных (ученика, достигшего 16 лет) или его законного представителя.",
-          en: "You may not provide personal data (information about academic performance and behavior) to third parties who are not legal representatives without the written consent of the subject of personal data (a student who has reached the age of 16) or their legal representative."
+          ru: "Вы не вправе предоставлять персональные данные (сведения об успеваемости, поведении) третьим лицам, не являющимся законными представителями, без письменного согласия субъекта персональных данных (ученика, достигшего 16 лет) или его законного представителя."
         },
         law: {
-          ru: "Cтатья 11 Закона (Предоставление персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4. (Предоставление персональных данных обучающихся, их законных представителей третьим лицам).",
-          en: "Article 11 of the Law (Provision of personal data); NPDPC Clarifications (21.11.2025), item 4.4. (Provision of personal data of students, their legal representatives to third parties)."
+          ru: "Cтатья 11 Закона (Предоставление персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4. (Предоставление персональных данных обучающихся, их законных представителей третьим лицам)."
         }
       },
       {
         scenario: {
-          ru: "Для общения с родителями учеников вашего класса вы создали чат в популярном зарубежном мессенджере (например, Telegram, WhatsApp). Должны ли вы получить письменное согласие родителей?",
-          en: "To communicate with the parents of your students, you created a chat in a popular foreign messenger (e.g., Telegram, WhatsApp). Do you need to get written parental consent?"
+          ru: "Для общения с родителями учеников вашего класса вы создали чат в популярном зарубежном мессенджере (например, Telegram, WhatsApp). Должны ли вы получить письменное согласие родителей?"
         },
         solution: {
-          ru: "Использование мессенджеров для размещения сообщений, носящих информационно-справочный характер (например, информирование об изменениях в расписании занятий, о предстоящих мероприятиях, домашнем задании, родительских собрания и т.п.), не противоречит требованиям Закона",
-          en: "The use of messengers to post messages of an informational and reference nature (for example, informing about changes in the schedule of classes, upcoming events, homework, parent meetings, etc.) does not contradict the requirements of the Law."
+          ru: "Использование мессенджеров для размещения сообщений, носящих информационно-справочный характер (например, информирование об изменениях в расписании занятий, о предстоящих мероприятиях, домашнем задании, родительских собрания и т.п.), не противоречит требованиям Закона"
         },
         law: {
-          ru: "Статья 9 Закона (Трансграничная передача персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 6.2.",
-          en: "Article 9 of the Law (Cross-border transfer of personal data); NPDPС Clarifications (21.11.2025), item 6.2."
+          ru: "Статья 9 Закона (Трансграничная передача персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 6.2."
         }
       },
       // New 10 Scenarios for Teacher
       {
         scenario: {
-          ru: "У вас есть новый учитель. Директор просит разместить его ФИО, должность и телефон на сайте УСО для контактов с учащимися, но учитель отказывается давать согласие на обработку персональных данных. Ваши действия?",
-          en: "You have a new teacher. The principal asks you to post his name, position, and phone number on the school's website for students to contact him, but the teacher refuses to give his consent to the processing of personal data. What should you do?"
+          ru: "У вас есть новый учитель. Директор просит разместить его ФИО, должность и телефон на сайте УСО для контактов с учащимися, но учитель отказывается давать согласие на обработку персональных данных. Ваши действия?"
         },
         solution: {
-          ru: "Разместите ФИО, должность и служебный телефон без согласия, так как это необходимо для выполнения его трудовой функции, предусматривающей внешнее взаимодействие. Фотографию и сведения о квалификации без согласия можно публиковать в соответствии с Кодексом об образовании (см. правовое основание). Разъясните учителю об этом.",
-          en: "Provide the teacher's full name, position, and work phone number without consent, as this is necessary for the teacher's work function, which involves external interactions. You can publish the teacher's photo and qualifications without consent in accordance with the Education Code (see legal basis). Explain this to the teacher."
+          ru: "Разместите ФИО, должность и служебный телефон без согласия, так как это необходимо для выполнения его трудовой функции, предусматривающей внешнее взаимодействие. Фотографию и сведения о квалификации без согласия можно публиковать в соответствии с Кодексом об образовании (см. правовое основание). Разъясните учителю об этом."
         },
         law: {
-          ru: "Абзац восьмой статьи 6 Закона (обработка персональных данных, когда это прямо предусмотрено законодательными актами); Разъяснения НЦЗПД (16.07.2024), п. 8 Кодекс об образовании. подпункт 2.2 пункта 2 ст. 19",
-          en: "Paragraph eight of Article 6 of the Law (processing of personal data when it is expressly provided for by legislative acts); Explanations of the National Data Protection Center (16.07.2024), paragraph 8 of the Education Code. subparagraph 2.2 of paragraph 2 of Article 19"
+          ru: "Абзац восьмой статьи 6 Закона (обработка персональных данных, когда это прямо предусмотрено законодательными актами); Разъяснения НЦЗПД (16.07.2024), п. 8 Кодекс об образовании. подпункт 2.2 пункта 2 ст. 19"
         }
       },
       {
         scenario: {
-          ru: "У вас хранится классный журнал (УОСО). Срок обучения по программе уже закончился. Как долго вы обязаны хранить этот документ и содержащиеся в нем персональные данные?",
-          en: "You are storing a class register (school). The study program term has ended. How long are you obligated to store this document and the personal data contained within it?"
+          ru: "У вас хранится классный журнал (УОСО). Срок обучения по программе уже закончился. Как долго вы обязаны хранить этот документ и содержащиеся в нем персональные данные?"
         },
         solution: {
-          ru: "Классный журнал (УОСО) должен храниться в течение 5 лет, согласно перечню типовых документов. Обработка (хранение) осуществляется на основании законодательного акта (абзац двадцатый статьи 6 Закона).",
-          en: "The class register (school) must be stored for 5 years, according to the list of standard documents. Processing (storage) is carried out on the basis of a legislative act (Article 6, paragraph twenty of the Law)."
+          ru: "Классный журнал (УОСО) должен храниться в течение 5 лет, согласно перечню типовых документов. Обработка (хранение) осуществляется на основании законодательного акта (абзац двадцатый статьи 6 Закона)."
         },
         law: {
-          ru: "Абзац двадцатый статьи 6 Закона (обязанности, предусмотренные законодательством); Разъяснения НЦЗПД (21.11.2025), п. 2.7.",
-          en: "Article 6, paragraph twenty of the Law (duties provided for by legislation); NPDPС Clarifications (21.11.2025), item 2.7."
+          ru: "Абзац двадцатый статьи 6 Закона (обязанности, предусмотренные законодательством); Разъяснения НЦЗПД (21.11.2025), п. 2.7."
         }
       },
       {
         scenario: {
-          ru: "Администрация УОСО просит вас собрать фотографии учеников для изготовления билетов учащегося. Требуется ли согласие родителей?",
-          en: "School administration asks you to collect student photos for the production of student passes/IDs. Is parental consent required?"
+          ru: "Администрация УОСО просит вас собрать фотографии учеников для изготовления билетов учащегося. Требуется ли согласие родителей?"
         },
         solution: {
-          ru: "Нет. Изготовление и выдача билета учащегося осуществляется на основании абзаца двадцатого статьи 6 Закона (выполнение обязанностей, предусмотренных законодательными актами) и не требует согласия.",
-          en: "No. The production and issuance of a student ID is carried out based on Article 6, paragraph twenty of the Law (performance of duties provided for by legislative acts) and does not require consent."
+          ru: "Нет. Изготовление и выдача билета учащегося осуществляется на основании абзаца двадцатого статьи 6 Закона (выполнение обязанностей, предусмотренных законодательными актами) и не требует согласия."
         },
         law: {
-          ru: "Абзац двадцатый статьи 6 Закона; Разъяснения НЦЗПД (21.11.2025), п. 4.7. (страница 5)",
-          en: "Article 6, paragraph twenty of the Law; NPDPС Clarifications (21.11.2025), item 4.7. (page 5)"
+          ru: "Абзац двадцатый статьи 6 Закона; Разъяснения НЦЗПД (21.11.2025), п. 4.7. (страница 5)"
         }
       },
       {
         scenario: {
-          ru: "Вы проводите анонимный опрос среди учеников о буллинге. Вам нужно получить согласие на обработку их мнений?",
-          en: "You are conducting an anonymous survey among students about bullying. Do you need to obtain consent for processing their opinions?"
+          ru: "Вы проводите анонимный опрос среди учеников о буллинге. Вам нужно получить согласие на обработку их мнений?"
         },
         solution: {
-          ru: "Сведения, содержащиеся в анкете, сами по себе могут позволять идентифицировать конкретного ученика. В этой связи они являются персональными данными и требуют наличия правового основания для их обработки (в частности, согласия).",
-          en: "The information contained in the questionnaire may itself allow the identification of a specific student. In this regard, it is personal data and requires a legal basis for its processing (in particular, consent)."
+          ru: "Сведения, содержащиеся в анкете, сами по себе могут позволять идентифицировать конкретного ученика. В этой связи они являются персональными данными и требуют наличия правового основания для их обработки (в частности, согласия)."
         },
         law: {
-          ru: "Статья 1 Закона (Обезличивание персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.11.",
-          en: "Article 1 of the Law (Anonymization of personal data); NPDPС Clarifications (21.11.2025), item 4.11."
+          ru: "Статья 1 Закона (Обезличивание персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.11."
         }
       },
       {
         scenario: {
-          ru: "Нужно ли вам как сотруднику бухгалтерии при оформлении документов для материальной помощи получать согласие?",
-          en: "As an accountant, do you need to obtain consent when processing documents for financial assistance?"
+          ru: "Нужно ли вам как сотруднику бухгалтерии при оформлении документов для материальной помощи получать согласие?"
         },
         solution: {
-          ru: "Нет. Обработка (передача) данных для цели получения материальной помощи осуществляется в рамках выполнения обязанностей, предусмотренных законодательством (по заявительному принципу), и не требует согласия.",
-          en: "No. The processing (transfer) of data for the purpose of receiving financial aid is carried out within the framework of fulfilling duties provided for by law (on an application basis) and does not require consent."
+          ru: "Нет. Обработка (передача) данных для цели получения материальной помощи осуществляется в рамках выполнения обязанностей, предусмотренных законодательством (по заявительному принципу), и не требует согласия."
         },
         law: {
-          ru: "Абзац двадцатый статьи 6 Закона; Разъяснения НЦЗПД (21.11.2025), п. 4.2.",
-          en: "Article 6, paragraph twenty of the Law; NPDPС Clarifications (21.11.2025), item 4.2."
+          ru: "Абзац двадцатый статьи 6 Закона; Разъяснения НЦЗПД (21.11.2025), п. 4.2."
         }
       },
       {
         scenario: {
-          ru: "Вы как оператор планируете обработку специальных пе��сональных данных (например, о состоянии здоровья). Какие дополнительные меры вы обязаны принять?",
-          en: "As an operator, you plan to process special personal data (e.g., about health status). What additional measures are you obligated to take?"
+          ru: "Вы как оператор планируете обработку специальных пе��сональных данных (например, о состоянии здоровья). Какие дополнительные меры вы обязаны принять?"
         },
         solution: {
-          ru: "Обработка специальных персональных данных допускается только при условии принятия комплекса мер, направленных на предупреждение рисков, которые могут возникнуть при обработке таких персональных данных для прав и свобод субъектов.",
-          en: "The processing of special personal data is permitted only on the condition of taking a set of measures aimed at preventing risks that may arise during the processing of such personal data to the rights and freedoms of data subjects."
+          ru: "Обработка специальных персональных данных допускается только при условии принятия комплекса мер, направленных на предупреждение рисков, которые могут возникнуть при обработке таких персональных данных для прав и свобод субъектов."
         },
         law: {
-          ru: "Пункт 3 статьи 8 Закона (Обработка специальных персональных данных).",
-          en: "Article 8, paragraph 3 of the Law (Processing of special personal data)."
+          ru: "Пункт 3 статьи 8 Закона (Обработка специальных персональных данных)."
         }
       }
     ];
 const directorScenarios = [
       {
         scenario: {
-          ru: "При входе в здание учреждения образования (школы, колледжа или вуза) охранник или сторож требует документ, удостоверяющий личность, для внесения данных посетителя в специальный журнал регистрации",
-          en: "At the entrance to the building of an educational institution (school, college or university), a security guard or watchman requires an identity document to enter the visitor's data in a special registration log."
+          ru: "При входе в здание учреждения образования (школы, колледжа или вуза) охранник или сторож требует документ, удостоверяющий личность, для внесения данных посетителя в специальный журнал регистрации"
         },
         solution: {
-          ru: "Работник охраны имеет право потребовать документ (паспорт) для идентификации личности и записи в журнал фамилии, собственного имени и отчества (при наличии), а также цели посещения. Фиксация в журнале серии и номера документа, удостоверяющего личность ЗАПРЕЩЕНА. Это признано избыточной обработкой персональных данных.",
-          en: "The security officer has the right to request a document (passport) for identification and entry in the journal of the surname, first name and patronymic (if any), as well as the purpose of the visit. It is PROHIBITED to record the series and number of the identity document in the journal. This is recognized as excessive processing of personal data."
+          ru: "Работник охраны имеет право потребовать документ (паспорт) для идентификации личности и записи в журнал фамилии, собственного имени и отчества (при наличии), а также цели посещения. Фиксация в журнале серии и номера документа, удостоверяющего личность ЗАПРЕЩЕНА. Это признано избыточной обработкой персональных данных."
         },
         law: {
-          ru: "Абзац 7 ст.83 Кодекса об образовании. Пункт 8 правил безопастности орагнизации образовательного процесса, организации воспитательного процесса при реализации образовательных программ общего среднего образования. (Утверждены постановлением Министерства образования Республики Беларусь от 03.08.2022 г. №227)",
-          en: "Paragraph 7 of Article 83 of the Education Code. Paragraph 8 of the rules of safety and organization of the educational process, the organization of the educational process in the implementation of educational programs of general secondary education. (Approved by Resolution No. 227 of the Ministry of Education of the Republic of Belarus dated 08/03/2022)"
+          ru: "Абзац 7 ст.83 Кодекса об образовании. Пункт 8 правил безопастности орагнизации образовательного процесса, организации воспитательного процесса при реализации образовательных программ общего среднего образования. (Утверждены постановлением Министерства образования Республики Беларусь от 03.08.2022 г. №227)"
         }
       },
       {
         scenario: {
-          ru: "В учреждениях образования внедрена пропускная система, которая фиксирует и сохраняет информацию о времени прихода и ухода конкретного обучающегося.",
-          en: "Educational institutions have implemented a pass system that records and stores information about the time of arrival and departure of a particular student."
+          ru: "В учреждениях образования внедрена пропускная система, которая фиксирует и сохраняет информацию о времени прихода и ухода конкретного обучающегося."
         },
         solution: {
-          ru: "Информация о времени посещения является персональными данными, так как относится к конкретному идентифицированному лицу. Хранение таких сведений должно быть ограничено по времени. Не допускается хранение этой информации в течение длительного срока (например, 20 лет), так как это не соответствует целям обработки.",
-          en: "Information about the time of the visit is personal data, as it relates to a specific identified person. The storage of such information should be limited in time. It is not allowed to store this information for a long period of time (for example, 20 years), as this does not correspond to the purposes of processing."
+          ru: "Информация о времени посещения является персональными данными, так как относится к конкретному идентифицированному лицу. Хранение таких сведений должно быть ограничено по времени. Не допускается хранение этой информации в течение длительного срока (например, 20 лет), так как это не соответствует целям обработки."
         },
         law: {
-          ru: "Статья 1 Закона Республики Беларусь «О защите персональных данных»: определяет информацию, относящуюся к идентифицированному физическому лицу, как персональные данные. Пункт 8 статьи 4 Закона: устанавливает требование о необходимости хранения персональных данных не дольше, чем этого требуют заявленные цели их обработки.",
-          en: "Article 1 of the Law defines information related to an identified individual as personal data. Paragraph 8 of Article 4 of the Law: establishes the requirement for the storage of personal data for no longer than required by the stated purposes of their processing."
+          ru: "Статья 1 Закона Республики Беларусь «О защите персональных данных»: определяет информацию, относящуюся к идентифицированному физическому лицу, как персональные данные. Пункт 8 статьи 4 Закона: устанавливает требование о необходимости хранения персональных данных не дольше, чем этого требуют заявленные цели их обработки."
         }
       },
       {
         scenario: {
-          ru: "При приеме на работу педагогических работников учреждение образования должно получить сведения об их правонарушениях из единого государственного банка данных. Это касается информации о неснятой или непогашенной судимости, а в определенных случаях — и о совершенных преступлениях даже при снятой судимости или прекращенном уголовном преследовании.",
-          en: "When hiring teaching staff, an educational institution must obtain information about their offenses from the unified state data bank. This applies to information about an outstanding or outstanding criminal record, and in certain cases, about crimes committed, even if the criminal record has been withdrawn or the criminal prosecution has been terminated."
+          ru: "При приеме на работу педагогических работников учреждение образования должно получить сведения об их правонарушениях из единого государственного банка данных. Это касается информации о неснятой или непогашенной судимости, а в определенных случаях — и о совершенных преступлениях даже при снятой судимости или прекращенном уголовном преследовании."
         },
         solution: {
-          ru: "Учреждение образования обязано самостоятельно запрашивать эти данные в отношении принимаемых работников. Сведения должны предоставляться бесплатно. Согласие работника на получение и обработку этой информации не требуется. Учреждению не следует брать у работника избыточное согласие, так как право на обработку данных закреплено законом.",
-          en: "The educational institution is obliged to independently request this data in relation to the accepted employees. Information should be provided free of charge. The employee's consent to receive and process this information is not required. An institution should not take excessive consent from an employee, as the right to process data is provided for by law."
+          ru: "Учреждение образования обязано самостоятельно запрашивать эти данные в отношении принимаемых работников. Сведения должны предоставляться бесплатно. Согласие работника на получение и обработку этой информации не требуется. Учреждению не следует брать у работника избыточное согласие, так как право на обработку данных закреплено законом."
         },
         law: {
-          ru: "Кодекс Республики Беларусь об образовании: обязывает запрашивать сведения и разрешает делать это без согласия лиц (пункт 4 статьи 51).  Закон Республики Беларусь «О защите персональных данных»: пункт 3 статьи 4 указывает, что обработка возможна без согласия, если это предусмотрено законодательными актами. Уголовно-процессуальный кодекс Республики Беларусь: пункты 3 или 4 части первой статьи 29 (в части оснований прекращения преследования).",
-          en: "The Code of the Republic of Belarus on Education: obliges to request information and allows it to be done without the consent of persons (paragraph 4 of Article 51).  The Law №99-З: paragraph 3 of Article 4 indicates that processing is possible without consent, if it is provided for by legislative acts. The Criminal Procedure Code of the Republic of Belarus: paragraphs 3 or 4 of the first part of Article 29 (regarding the grounds for termination of prosecution)."
+          ru: "Кодекс Республики Беларусь об образовании: обязывает запрашивать сведения и разрешает делать это без согласия лиц (пункт 4 статьи 51).  Закон Республики Беларусь «О защите персональных данных»: пункт 3 статьи 4 указывает, что обработка возможна без согласия, если это предусмотрено законодательными актами. Уголовно-процессуальный кодекс Республики Беларусь: пункты 3 или 4 части первой статьи 29 (в части оснований прекращения преследования)."
         }
       },
       // New 10 Scenarios for Teacher
       {
         scenario: {
-          ru: "Размещение на информационных стендах в помещениях учреждения образования списков именинников (преподавателей и учащихся) с соответствующими поздравлениями.",
-          en: "Placement of lists of birthday children (teachers) with appropriate congratulations on information stands in educational institutions."
+          ru: "Размещение на информационных стендах в помещениях учреждения образования списков именинников (преподавателей и учащихся) с соответствующими поздравлениями."
         },
         solution: {
-          ru: "Публикация имен и дат рождения на стендах официально признается обработкой персональных данных. Поскольку законодательство не обязывает учреждение вывешивать такие списки, для этого обязательно требуется согласие самих именинников. Оно должно быть получено в соответствии с правилами, изложенными в статье 5 Закона",
-          en: "The publication of names and dates of birth on the stands is officially recognized as personal data processing. Since the legislation does not oblige the institution to post such lists, it necessarily requires the consent of the birthday boys themselves. It must be obtained in accordance with the rules set out in article 5 of the Law."
+          ru: "Публикация имен и дат рождения на стендах официально признается обработкой персональных данных. Поскольку законодательство не обязывает учреждение вывешивать такие списки, для этого обязательно требуется согласие самих именинников. Оно должно быть получено в соответствии с правилами, изложенными в статье 5 Закона"
         },
         law: {
-          ru: "Закон Республики Беларусь «О защите персональных данных» классифицирует подобные действия как обработку данных. Статья 5 Закона устанавливает требования к порядку получения и форме согласия субъекта персональных данных.",
-          en: "The Law of the Republic of Belarus «On Personal Data Protection» classifies such actions as data processing. Article 5 of the Law establishes the requirements for the procedure for obtaining and the form of consent of the personal data subject."
+          ru: "Закон Республики Беларусь «О защите персональных данных» классифицирует подобные действия как обработку данных. Статья 5 Закона устанавливает требования к порядку получения и форме согласия субъекта персональных данных."
         }
       },
       {
         scenario: {
-          ru: "Вы просите родителей или учеников подписывать согласие на обработку персональных данных для тех процедур, которые и так обязательны по закону. Например, при зачислении в школу, организации уроков или питании учащихся. Часто это делается «на всякий случай», чтобы перестраховаться.",
-          en: "You are asking parents or students to sign consent to the processing of personal data for those procedures that are already required by law. For example, when enrolling in school, organizing lessons, or feeding students. This is often done «just in case» to be safe."
+          ru: "Вы просите родителей или учеников подписывать согласие на обработку персональных данных для тех процедур, которые и так обязательны по закону. Например, при зачислении в школу, организации уроков или питании учащихся. Часто это делается «на всякий случай», чтобы перестраховаться."
         },
         solution: {
-          ru: "Когда согласие НЕ нужно если обработка данных уже прописана в законе (например, для организации образовательного процесса или заключения договора на обучение), брать отдельную бумагу с подписью нельзя. Брать согласие там, где оно не требуется по закону, — это не «подстраховка», а нарушение, которое называется избыточной обработкой персональных данных. За сбор лишних согласий школе может грозить административная ответственность.",
-          en: "When consent is NOT needed, if data processing is already prescribed in law (for example, for organizing the educational process or concluding a training contract), you cannot take a separate paper with a signature. Taking consent where it is not required by law is not a «safety net», but a violation called excessive processing of personal data. The school may face administrative liability for collecting unnecessary consents."
+          ru: "Когда согласие НЕ нужно если обработка данных уже прописана в законе (например, для организации образовательного процесса или заключения договора на обучение), брать отдельную бумагу с подписью нельзя. Брать согласие там, где оно не требуется по закону, — это не «подстраховка», а нарушение, которое называется избыточной обработкой персональных данных. За сбор лишних согласий школе может грозить административная ответственность."
         },
         law: {
-          ru: "Пункт 3 статьи 4 Закона устанавливает, что обработка персональных данных возможна на основании нормы права без получения согласия. Пункт 5 статьи 4 Закона прямо запрещает избыточную обработку данных по отношению к заявленным целям. Статья 23.7 Кодекса об административных правонарушениях предусматривает ответственность за нарушения при работе с личными данными",
-          en: "Paragraph 3 of Article 4 of the Law establishes that the processing of personal data is possible on the basis of a rule of law without obtaining consent. Paragraph 5 of article 4 of the Law explicitly prohibits excessive processing of data in relation to the stated purposes. Article 23.7 of the Code of Administrative Offences provides for liability for violations when working with personal data"
+          ru: "Пункт 3 статьи 4 Закона устанавливает, что обработка персональных данных возможна на основании нормы права без получения согласия. Пункт 5 статьи 4 Закона прямо запрещает избыточную обработку данных по отношению к заявленным целям. Статья 23.7 Кодекса об административных правонарушениях предусматривает ответственность за нарушения при работе с личными данными"
         }
       }
     ];
@@ -995,58 +944,46 @@ const directorScenarios = [
     const studentScenarios = [
       {
         scenario: {
-          ru: "В учебном классе вашего УОСО установлена система постоянного видеонаблюдения. Вы считаете это чрезмерным вмешательством в частную жизнь и хотите оспорить ее установку. Каковы ваши шансы?",
-          en: "A permanent CCTV system is installed in your classroom. You consider this an excessive intrusion into private life and want to challenge its installation. What are your chances?"
+          ru: "В учебном классе вашего УОСО установлена система постоянного видеонаблюдения. Вы считаете это чрезмерным вмешательством в частную жизнь и хотите оспорить ее установку. Каковы ваши шансы?"
         },
         solution: {
-          ru: "Если видеонаблюдение установлено не для обеспечения охраны или пропускного режима, оператор должен доказать, что заявленной цели (например, контроль за обучением) невозможно достичь иными способами, предусматривающими меньшее вмешательство в частную жизнь. Вы можете обратиться к руководству УО с требованием разъяснить цель.",
-          en: "If CCTV is not installed for security or access control, the operator must prove that the stated goal (e.g., monitoring learning) cannot be achieved by other methods involving less intrusion into private life. You can contact the school management demanding clarification of the purpose."
+          ru: "Если видеонаблюдение установлено не для обеспечения охраны или пропускного режима, оператор должен доказать, что заявленной цели (например, контроль за обучением) невозможно достичь иными способами, предусматривающими меньшее вмешательство в частную жизнь. Вы можете обратиться к руководству УО с требованием разъяснить цель."
         },
         law: {
-          ru: "Пункт 2 статьи 4 Закона (Соразмерность обработки); Разъяснения НЦЗПД (21.11.2025), п. 5.1.",
-          en: "Article 4, paragraph 2 of the Law (Proportionality of processing); NPDPС Clarifications (21.11.2025), item 5.1."
+          ru: "Пункт 2 статьи 4 Закона (Соразмерность обработки); Разъяснения НЦЗПД (21.11.2025), п. 5.1."
         }
       },
       {
         scenario: {
-          ru: "В вашем УОСО проводится вакцинация. Медсестра просит классного руководителя передать список учеников (ФИО, класс) в поликлинику для организации процесса. Вы не хотите, чтобы ваши данные передавались. Можете ли вы отказать?",
-          en: "Vaccination is being carried out at your USO. The nurse asks the class teacher to transfer a list of students (full name, class) to the polyclinic to organize the process. You do not want your data to be transferred. Can you refuse?"
+          ru: "В вашем УОСО проводится вакцинация. Медсестра просит классного руководителя передать список учеников (ФИО, класс) в поликлинику для организации процесса. Вы не хотите, чтобы ваши данные передавались. Можете ли вы отказать?"
         },
         solution: {
-          ru: "Да. Передача данных для целей, не связанных с выполнением обязанностей, предусмотренных законодательством, требует вашего письменного согласия или согласия вашего законного представителя.",
-          en: "Yes. The transfer of data for purposes not related to the fulfillment of duties provided for by law requires your written consent or the consent of your legal representative."
+          ru: "Да. Передача данных для целей, не связанных с выполнением обязанностей, предусмотренных законодательством, требует вашего письменного согласия или согласия вашего законного представителя."
         },
         law: {
-          ru: "Пункт 1 статьи 5 Закона (Согласие субъекта персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4.",
-          en: "Article 5, paragraph 1 of the Law (Consent of the data subject); NPDPС Clarifications (21.11.2025), item 4.4."
+          ru: "Пункт 1 статьи 5 Закона (Согласие субъекта персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4."
         }
       },
       {
         scenario: {
-          ru: "Ваш классный руководитель сфотографировал вас на уроке и хочет опубликовать фото в школьной группе в социальной сети (ВКонтакте) в целях новостного контента. Вы — несовершеннолетний. Кто должен дать согласие?",
-          en: "Your class teacher photographed you during a lesson and wants to publish the photo in the school's social media group (VKontakte) for news content purposes. You are a minor. Who must give consent?"
+          ru: "Ваш классный руководитель сфотографировал вас на уроке и хочет опубликовать фото в школьной группе в социальной сети (ВКонтакте) в целях новостного контента. Вы — несовершеннолетний. Кто должен дать согласие?"
         },
         solution: {
-          ru: "Согласие должен дать ваш законный представитель (родитель/опекун), так как вы несовершеннолетний (до 16 лет), и публикация фотографии для новостного контента не входит в список обязательных действий по закону.",
-          en: "Consent must be given by your legal representative (parent/guardian), as you are a minor (under 16), and the publication of the photo for news content is not on the list of legally mandatory actions."
+          ru: "Согласие должен дать ваш законный представитель (родитель/опекун), так как вы несовершеннолетний (до 16 лет), и публикация фотографии для новостного контента не входит в список обязательных действий по закону."
         },
         law: {
-          ru: "Статьи 5 Закона (Согласие несовершеннолетнего); Разъяснения НЦЗПД (21.11.2025), п. 4.1.3.",
-          en: "Article 5 of the Law (Consent of a minor); NPDPС Clarifications (21.11.2025), item 4.1.3."
+          ru: "Статьи 5 Закона (Согласие несовершеннолетнего); Разъяснения НЦЗПД (21.11.2025), п. 4.1.3."
         }
       },
       {
         scenario: {
-          ru: "Ваш брат хочет получить справку о вашем обучении, но он не является вашим законным представителем. Имеет ли право УОСО выдать ему справку, содержащую ваши ФИО?",
-          en: "Your brother wants to obtain a certificate about your education, but he is not your legal representative. Does the USO have the right to issue him a certificate containing your full name?"
+          ru: "Ваш брат хочет получить справку о вашем обучении, но он не является вашим законным представителем. Имеет ли право УОСО выдать ему справку, содержащую ваши ФИО?"
         },
         solution: {
-          ru: "Нет. УОСО не может предоставлять персональные данные обучающихся (даже ближайшим родственникам) третьим лицам, не являющимся законными представителями, без письменного согласия субъекта данных или его законного представителя.",
-          en: "No. The USO cannot provide students' personal data (even to immediate relatives) to third parties who are not legal representatives, without the written consent of the data subject or their legal representative."
+          ru: "Нет. УОСО не может предоставлять персональные данные обучающихся (даже ближайшим родственникам) третьим лицам, не являющимся законными представителями, без письменного согласия субъекта данных или его законного представителя."
         },
         law: {
-          ru: "Cтатьи 11 Закона (Предоставление персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4.",
-          en: "Article 11 of the Law (Provision of personal data); NPDPС Clarifications (21.11.2025), item 4.4."
+          ru: "Cтатьи 11 Закона (Предоставление персональных данных); Разъяснения НЦЗПД (21.11.2025), п. 4.4."
         }
       }
     ];
@@ -1077,7 +1014,6 @@ const directorScenarios = [
     const container = document.getElementById(containerId);
     if (!container) return;
     container.innerHTML = '';
-    const t = translations[currentLang];
 
     scenarios.forEach((s, i) => {
       const card = document.createElement('div');
@@ -1093,7 +1029,7 @@ const directorScenarios = [
 
       const txt = document.createElement('div');
       txt.className = 'scenario-text';
-      txt.textContent = s.scenario[currentLang];
+      txt.textContent = s.scenario.ru;
 
       headerRow.appendChild(numEl);
       headerRow.appendChild(txt);
@@ -1108,21 +1044,21 @@ const directorScenarios = [
         <div class="modal-content">
           <div class="modal-header">
             <div class="modal-header-grid"></div>
-            <h2>${i + 1}. ${s.scenario[currentLang]}</h2>
+            <h2>${i + 1}. ${s.scenario.ru}</h2>
             <button class="modal-close" onclick="document.getElementById('${modalId}').classList.remove('show')">&times;</button>
           </div>
           <div class="modal-body">
             <div class="modal-section">
-              <div class="modal-section-label label-green"><i class="fas fa-check-circle"></i> ${t.solutionTitle}</div>
-              <div class="modal-section-content content-green">${s.solution[currentLang]}</div>
+              <div class="modal-section-label label-green"><i class="fas fa-check-circle"></i> ${T.solutionTitle}</div>
+              <div class="modal-section-content content-green">${s.solution.ru}</div>
             </div>
             <div class="modal-section">
-              <div class="modal-section-label label-blue"><i class="fas fa-balance-scale"></i> ${t.lawTitle}</div>
-              <div class="modal-section-content content-blue">${formatLaw(s.law[currentLang])}</div>
+              <div class="modal-section-label label-blue"><i class="fas fa-balance-scale"></i> ${T.lawTitle}</div>
+              <div class="modal-section-content content-blue">${formatLaw(s.law.ru)}</div>
             </div>
             <div class="ncdp-notice">
               <i class="fas fa-info-circle"></i>
-              <span>${t.ncdpNotice}</span>
+              <span>${T.ncdpNotice}</span>
             </div>
           </div>
         </div>`;
@@ -1132,7 +1068,7 @@ const directorScenarios = [
 
       const btn = document.createElement('button');
       btn.className = 'scenario-modal-btn';
-      btn.innerHTML = `<i class="fas fa-eye"></i> ${t.toggleDetails}`;
+      btn.innerHTML = `<i class="fas fa-eye"></i> ${T.toggleDetails}`;
       btn.addEventListener('click', () => modal.classList.add('show'));
       card.appendChild(btn);
       container.appendChild(card);
