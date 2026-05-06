@@ -1,0 +1,13 @@
+{
+  "name": "edusafe-blog-generator",
+  "version": "1.0.0",
+  "description": "Генератор статических HTML-страниц блога EduSafe из Contentful",
+  "scripts": {
+    "generate": "node generate-blog.js",
+    "build": "node generate-blog.js"
+  },
+  "dependencies": {
+    "contentful": "^10.0.0",
+    "@contentful/rich-text-html-renderer": "^16.0.0"
+  }
+}
