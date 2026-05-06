@@ -766,7 +766,6 @@
 <script>
   
 
-  let currentLang = 'ru';
 
   // ── MOBILE DRAWER ──────────────────────────────────────
   const overlay = document.getElementById('drawerOverlay');
@@ -782,64 +781,12 @@
   overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
   document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
-  // ── LANGUAGE ───────────────────────────────────────────
-  function setText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-  }
-
-  function updateLanguage(lang) {
-    const t = translations[lang];
-    if (!t) return;
-    currentLang = lang;
-
-    ['logoText','mobileLogoText','footerLogoText'].forEach(id => setText(id, t.logoText));
-    setText('heroBadge', t.heroBadge);
-    setText('pTitle', t.pTitle);
-    setText('pSub', t.pSub);
-    setText('tabLabel', t.tabLabel);
-    setText('usoTitle', t.usoTitle);
-    setText('usoDesc', t.usoDesc);
-    setText('uvoTitle', t.uvoTitle);
-    setText('uvoDesc', t.uvoDesc);
-    setText('footerDesc', t.footerDesc);
-    setText('footerCopyright', t.footerCopyright);
-    setText('footerDisclaimer1', t.footerDisclaimer1);
-    setText('footerDisclaimer2', t.footerDisclaimer2);
-
-    const navItems = [
-      ['navHome','mobileNavHome','navHome'],
-      ['navTheory','mobileNavTheory','navTheory'],
-      ['navPractice','mobileNavPractice','navPractice'],
-      ['navVideo','mobileNavVideo','navVideo'],
-      ['navQuiz','mobileNavQuiz','navQuiz'],
-      ['navBlog','mobileNavBlog','navBlog'],
-      ['navComplaint','mobileNavComplaint','navComplaint']
-    ];
-    navItems.forEach(([desktopId, mobileId, key]) => {
-      const spans = [
-        document.querySelector(`#${desktopId} span`),
-        document.querySelector(`#${mobileId} span`)
-      ];
-      spans.forEach(s => { if (s) s.textContent = t[key] || ''; });
-    });
-
-    document.documentElement.lang = lang;
-    document.getElementById('languageSelector').value = lang;
-    document.getElementById('mobileLanguageSelector').value = lang;
-  }
-
-  document.getElementById('languageSelector').addEventListener('change', e => updateLanguage(e.target.value));
-  document.getElementById('mobileLanguageSelector').addEventListener('change', e => updateLanguage(e.target.value));
-
   // ── SCROLL ANIMATIONS ──────────────────────────────────
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.anim').forEach(el => observer.observe(el));
 
-  // ── INIT ───────────────────────────────────────────────
-  updateLanguage('ru');
 </script>
 </body>
 </html>

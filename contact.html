@@ -771,78 +771,7 @@
 <script>
   
 
-  let currentLang = 'ru';
-
-  function setText(id, text) {
-    const el = document.getElementById(id);
-    if (el) el.textContent = text;
-  }
-  function setHTML(id, html) {
-    const el = document.getElementById(id);
-    if (el) el.innerHTML = html;
-  }
-
-  function updateLanguage(lang) {
-    const t = translations[lang];
-    if (!t) return;
-    currentLang = lang;
-
-    ['logoText','mobileLogoText','footerLogoText'].forEach(id => setText(id, t.logoText));
-    setHTML('heroTitle', t.heroTitle);
-    setText('heroBadge', t.heroBadge);
-    setText('heroSubtitle', t.heroSubtitle);
-    setText('emailLabel', t.emailLabel);
-    setText('responseLabel', t.responseLabel);
-    setText('responseTime', t.responseTime);
-    setText('sectionTag', t.sectionTag);
-    setText('sectionTitle', t.sectionTitle);
-    setText('sectionSub', t.sectionSub);
-    setText('card1Title', t.card1Title);
-    setText('card1Text1', t.card1Text1);
-    setText('card1Text2', t.card1Text2);
-    setText('card1Text3', t.card1Text3);
-    setText('card2Title', t.card2Title);
-    setText('req1', t.req1); setText('req2', t.req2);
-    setText('req3', t.req3); setText('req4', t.req4);
-    setText('card3Title', t.card3Title);
-    setText('att1', t.att1); setText('att2', t.att2); setText('att3', t.att3);
-    setText('attNote', t.attNote);
-    setText('card4Title', t.card4Title);
-    setHTML('card4Text1', t.card4Text1);
-    setText('card4Text2', t.card4Text2);
-    setText('card4Btn', t.card4Btn);
-    setText('formTag', t.formTag);
-    setText('formTitle', t.formTitle);
-    setText('formSubtitle', t.formSubtitle);
-    setText('labelName', t.labelName); setText('labelEmail', t.labelEmail);
-    setText('labelType', t.labelType);
-    setText('optSelect', t.optSelect); setText('optTech', t.optTech);
-    setText('optContent', t.optContent); setText('optPolicy', t.optPolicy);
-    setText('optOther', t.optOther);
-    setText('labelMessage', t.labelMessage);
-    setText('formNote', t.formNote);
-    setText('submitText', t.submitText);
-    setText('successTitle', t.successTitle);
-    setText('successText', t.successText);
-    setText('footerDesc', t.footerDesc);
-    setText('footerCopyright', t.footerCopyright);
-    setText('footerDisclaimer1', t.footerDisclaimer1);
-    setText('footerDisclaimer2', t.footerDisclaimer2);
-
-    // Nav
-    const navMap = {Home:'navHome',Theory:'navTheory',Practice:'navPractice',Video:'navVideo',Quiz:'navQuiz',Blog:'navBlog',Complaint:'navComplaint'};
-    Object.entries(navMap).forEach(([k,v]) => {
-      setText('nav'+k, t[v] || '');
-      setText('mobileNav'+k, t[v] || '');
-    });
-
-    const ta = document.getElementById('fmessage');
-    if (ta) ta.placeholder = lang === 'ru' ? 'Опишите ваш вопрос или проблему…' : 'Describe your question or issue…';
-
-    document.documentElement.lang = lang;
-    document.getElementById('languageSelector').value = lang;
-    document.getElementById('mobileLanguageSelector').value = lang;
-  }
+  
 
   /* ─── FORM SUBMISSION (Web3Forms) ──────── */
   const form = document.getElementById('contactForm');
@@ -896,9 +825,7 @@
   overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
   document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
-  /* ─── LANGUAGE SELECTORS ────────────── */
-  document.getElementById('languageSelector').addEventListener('change', e => updateLanguage(e.target.value));
-  document.getElementById('mobileLanguageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+
 
   /* ─── SCROLL ANIMATIONS ─────────────── */
   const observer = new IntersectionObserver(entries => {
@@ -906,8 +833,7 @@
   }, { threshold: 0.1 });
   document.querySelectorAll('.anim').forEach(el => observer.observe(el));
 
-  /* ─── INIT ───────────────────────────── */
-  updateLanguage('ru');
+
 </script>
 </body>
 </html>
