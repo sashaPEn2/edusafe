@@ -1,373 +1,487 @@
 <!DOCTYPE html>
-
-<html id="htmlRoot" lang="ru">
+<html lang="ru" id="htmlRoot">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<meta content="Видеоматериалы по защите персональных данных для учащихся, студентов, педагогов и ППС — EduSafe." name="description"/>
-<meta content="видео, персональные данные, защита данных, студенты, учащиеся, педагоги, ППС, EduSafe, Беларусь" name="keywords"/>
-<title>EduSafe — Видеоматериалы по защите персональных данных</title>
-<link href="./favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Видеоматериалы по защите персональных данных для учащихся, студентов, педагогов и ППС — EduSafe.">
+  <meta name="keywords" content="видео, персональные данные, защита данных, студенты, учащиеся, педагоги, ППС, EduSafe, Беларусь">
+  <title>EduSafe — Видеоматериалы по защите персональных данных</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
     :root {
-      --blue-900: #1e3a8a;
-      --blue-700: #1d4ed8;
-      --blue-100: #dbeafe;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-600: #4b5563;
-      --gray-900: #111827;
+      --ink: #0d1117;
+      --ink-soft: #1e2633;
+      --accent: #0057d9;
+      --accent-light: #3b82f6;
+      --accent-pale: #dbeafe;
+      --teal: #0ea5c7;
+      --surface: #ffffff;
+      --surface-2: #f5f7fb;
+      --border: #e2e8f0;
+      --text-muted: #64748b;
       --white: #ffffff;
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
     }
 
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(to bottom, #f8fafc, #eef2ff);
-      color: var(--gray-900);
-      line-height: 1.6;
+      font-family: 'Golos Text', sans-serif;
+      background: var(--surface-2);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
     }
 
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* Header */
+    /* ─── HEADER ──────────────────────────────── */
     header {
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
     }
 
-    .header-content {
+    .header-inner {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
+      justify-content: space-between;
+      height: 68px;
+      gap: 1rem;
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--blue-900);
+      gap: 0.6rem;
       text-decoration: none;
+      flex-shrink: 0;
     }
 
-    .logo i {
-      background: var(--blue-900);
-      color: var(--white);
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.5rem;
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .logo-text {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700;
+      font-size: 1.2rem;
+      color: var(--ink);
+    }
+
+    .nav-desktop {
       display: flex;
       align-items: center;
-      justify-content: center;
+      gap: 0.25rem;
     }
 
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--gray-900);
+    .nav-desktop a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-desktop a:hover, .nav-desktop a.active {
+      background: var(--accent-pale);
+      color: var(--accent);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .lang-select {
+      padding: 0.4rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-family: 'Golos Text', sans-serif;
       cursor: pointer;
-      z-index: 2;
-    }
-
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .lang-selector select {
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #d1d5db;
-      background-color: var(--white);
-      color: var(--gray-900);
-      font-size: 0.9rem;
       outline: none;
     }
 
-    .nav {
-      display: flex;
-      gap: 1rem;
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--ink);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.3rem;
+      border-radius: 8px;
+      transition: background 0.2s;
     }
+    .burger:hover { background: var(--surface-2); }
 
-    .nav a {
-      text-decoration: none;
-      color: var(--gray-600);
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      transition: all 0.2s ease;
+    /* ─── MOBILE DRAWER ───────────────────────── */
+    .drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 300;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+
+    .drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(88%, 340px);
+      height: 100%;
+      background: var(--surface);
+      z-index: 301;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+
+    .drawer-head {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    .drawer-close {
+      background: var(--surface-2); border: none;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; color: var(--text-muted);
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
       gap: 0.5rem;
     }
 
-    .nav a:hover,
-    .nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
-    }
-
-    /* Mobile menu */
-    .mobile-menu {
-      position: fixed;
-      top: 0; left: 0;
-      width: 100%; height: 100%;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(2px);
-      z-index: 101;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .mobile-menu.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .mobile-menu-content {
-      position: absolute;
-      top: 0; right: 0;
-      width: 85%;
-      max-width: 320px;
-      height: 100%;
-      background: var(--white);
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
-      border-radius: 0 0 0 1.5rem;
-      padding: 1.5rem;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .mobile-menu.active .mobile-menu-content {
-      transform: translateX(0);
-    }
-
-    .mobile-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .close-btn {
-      background: none; border: none;
-      font-size: 1.5rem;
-      color: var(--gray-900);
-      cursor: pointer;
-    }
-
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .mobile-nav a {
+    .drawer-nav a {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.875rem 1rem;
-      border-radius: 0.75rem;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
       text-decoration: none;
-      color: var(--gray-900);
+      color: var(--ink);
       font-weight: 500;
-      background: var(--gray-50);
-      transition: all 0.2s ease;
+      transition: all 0.2s;
+    }
+    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
+    .drawer-nav a:hover, .drawer-nav a.active {
+      background: var(--accent-pale);
+      color: var(--accent);
     }
 
-    .mobile-nav a:hover,
-    .mobile-nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
+    .drawer-lang {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
     }
 
-    .mobile-nav a i { width: 1.5rem; text-align: center; }
-
-    /* Hero */
+    /* ─── HERO ───────────────────────────────── */
     .hero {
-      background: linear-gradient(135deg, var(--blue-900), #1e40af);
-      color: var(--white);
-      padding: 4rem 0;
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%);
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%);
+      bottom: -150px; left: -50px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
       text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: #93c5fd;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
+      margin-bottom: 1.5rem;
+      letter-spacing: 0.02em;
     }
 
     .hero h1 {
-      font-size: 2.5rem;
-      font-weight: 800;
-      max-width: 800px;
-      margin: 0 auto 1.5rem;
-      line-height: 1.3;
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.22;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
     }
 
-    .hero p {
-      font-size: 1.25rem;
-      max-width: 700px;
-      margin: 0 auto 2.5rem;
-      opacity: 0.95;
+    .hero h1 span {
+      background: linear-gradient(135deg, #60a5fa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 620px;
+      margin: 0 auto 2rem;
+      line-height: 1.7;
     }
 
     .hero-note {
-      background: rgba(255,255,255,0.15);
-      display: inline-block;
-      padding: 0.5rem 1.5rem;
-      border-radius: 9999px;
-      font-size: 0.95rem;
-      margin-top: 1rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      color: #cbd5e1;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
     }
 
-    /* Audience Selector */
+    /* ─── AUDIENCE SELECTOR ──────────────────── */
     .audience-section {
-      background: var(--white);
-      padding: 3rem 0 2rem;
-      border-bottom: 1px solid var(--gray-100);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 2.5rem 0 2rem;
     }
 
-    .audience-title {
+    .audience-label {
       text-align: center;
-      font-size: 1.5rem;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.95rem;
       font-weight: 700;
-      color: var(--blue-900);
+      color: var(--ink);
       margin-bottom: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
     }
+
+    .audience-label i { color: var(--accent); }
 
     .audience-tabs {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.75rem;
       flex-wrap: wrap;
-      margin-bottom: 1.5rem;
+      margin-bottom: 1.25rem;
     }
 
     .audience-tab {
       display: flex;
       align-items: center;
       gap: 0.6rem;
-      padding: 0.875rem 2rem;
-      border-radius: 0.75rem;
-      border: 2px solid var(--blue-100);
-      background: var(--gray-50);
-      color: var(--gray-600);
-      font-size: 1rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-sm);
+      border: 1.5px solid var(--border);
+      background: var(--surface-2);
+      color: var(--text-muted);
+      font-family: 'Golos Text', sans-serif;
+      font-size: 0.92rem;
       font-weight: 600;
       cursor: pointer;
-      transition: all 0.25s ease;
+      transition: all 0.2s;
     }
 
     .audience-tab:hover {
-      border-color: var(--blue-700);
-      color: var(--blue-700);
-      background: var(--blue-100);
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-pale);
     }
 
     .audience-tab.active {
-      background: var(--blue-900);
+      background: var(--accent);
       color: var(--white);
-      border-color: var(--blue-900);
-      box-shadow: 0 4px 12px rgba(30, 58, 138, 0.25);
+      border-color: var(--accent);
+      box-shadow: 0 4px 14px rgba(0,87,217,0.3);
     }
 
-    .audience-tab i { font-size: 1.1rem; }
-
-    /* Sub-audience tabs */
+    /* Sub-tabs */
     .sub-audience-bar {
       display: flex;
       justify-content: center;
-      gap: 1rem;
+      gap: 0.6rem;
       flex-wrap: wrap;
-      min-height: 52px;
+      min-height: 44px;
       align-items: center;
     }
 
     .sub-tab {
       display: flex;
       align-items: center;
-      gap: 0.5rem;
-      padding: 0.6rem 1.5rem;
-      border-radius: 2rem;
-      border: 2px solid var(--blue-100);
-      background: var(--white);
-      color: var(--gray-600);
-      font-size: 0.95rem;
+      gap: 0.45rem;
+      padding: 0.5rem 1.25rem;
+      border-radius: 999px;
+      border: 1.5px solid var(--border);
+      background: var(--surface);
+      color: var(--text-muted);
+      font-family: 'Golos Text', sans-serif;
+      font-size: 0.88rem;
       font-weight: 500;
       cursor: pointer;
-      transition: all 0.2s ease;
+      transition: all 0.2s;
     }
 
     .sub-tab:hover {
-      border-color: var(--blue-700);
-      color: var(--blue-700);
+      border-color: var(--accent-light);
+      color: var(--accent);
     }
 
     .sub-tab.active {
-      background: var(--blue-700);
+      background: var(--accent-light);
       color: var(--white);
-      border-color: var(--blue-700);
+      border-color: var(--accent-light);
     }
 
-    /* Video Section */
+    /* ─── SECTION ────────────────────────────── */
     .section {
-      padding: 4rem 0;
+      padding: 4rem 0 5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--accent-pale);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
     }
 
     .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 0.75rem;
-      color: var(--blue-900);
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.3rem, 2.5vw, 1.85rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.6rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
     }
 
     .section-subtitle {
-      text-align: center;
-      max-width: 700px;
-      margin: 0 auto 3rem;
-      font-size: 1.1rem;
-      color: var(--gray-600);
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 640px;
+      line-height: 1.7;
+      margin-bottom: 3rem;
     }
 
+    /* ─── VIDEO GRID ─────────────────────────── */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-      gap: 2rem;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
     }
 
     .video-card {
-      background: var(--white);
-      border-radius: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       overflow: hidden;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.06);
-      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
+    }
+
+    .video-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 0.25s;
+      z-index: 1;
     }
 
     .video-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px rgba(0,0,0,0.1);
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
     }
 
-    /* Video embed area */
+    .video-card:hover::before { opacity: 1; }
+
+    /* Video embed */
     .video-embed {
       position: relative;
       width: 100%;
@@ -376,12 +490,11 @@
       line-height: 0;
     }
 
-    /* Тег <video> — заполняет карточку, не запускается сам */
     .video-embed video {
       width: 100%;
       height: auto;
       display: block;
-      max-height: 240px;
+      max-height: 220px;
       object-fit: cover;
       background: #0f172a;
     }
@@ -393,640 +506,629 @@
       border: none;
     }
 
-    /* Placeholder when no video yet */
+    /* Placeholder for empty video */
     .video-placeholder {
       width: 100%;
-      height: 180px;
+      height: 185px;
       display: flex;
       flex-direction: column;
       align-items: center;
       justify-content: center;
-      background: linear-gradient(135deg, #dbeafe, #eff6ff);
-      color: var(--blue-700);
+      background: linear-gradient(135deg, #0d1117 0%, #1e2633 100%);
+      color: #3b82f6;
       gap: 0.75rem;
     }
 
     .video-placeholder i {
-      font-size: 3rem;
-      opacity: 0.6;
+      font-size: 2.75rem;
+      opacity: 0.5;
     }
 
     .video-placeholder span {
-      font-size: 0.9rem;
+      font-size: 0.82rem;
       font-weight: 500;
-      opacity: 0.7;
+      color: #64748b;
     }
 
     .video-info {
-      padding: 1.25rem 1.5rem 1.5rem;
+      padding: 1.35rem 1.5rem 1.65rem;
     }
 
     .video-badge {
-      display: inline-block;
-      background: var(--blue-100);
-      color: var(--blue-900);
-      font-size: 0.75rem;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      background: var(--accent-pale);
+      color: var(--accent);
+      font-size: 0.72rem;
       font-weight: 600;
-      padding: 0.2rem 0.75rem;
-      border-radius: 9999px;
+      padding: 0.22rem 0.7rem;
+      border-radius: 999px;
       margin-bottom: 0.75rem;
-      letter-spacing: 0.03em;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
     }
 
     .video-title {
-      font-size: 1.1rem;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.92rem;
       font-weight: 700;
-      color: var(--gray-900);
+      color: var(--ink);
       margin-bottom: 0.5rem;
       line-height: 1.4;
     }
 
     .video-desc {
-      font-size: 0.95rem;
-      color: var(--gray-600);
-      line-height: 1.5;
+      font-size: 0.87rem;
+      color: var(--text-muted);
+      line-height: 1.6;
     }
 
     /* Panel visibility */
     .audience-panel { display: none; }
     .audience-panel.active { display: block; }
 
-    /* Footer */
+    /* ─── FOOTER ─────────────────────────────── */
     footer {
-      background: var(--gray-900);
-      color: #9ca3af;
-      padding: 3rem 0 1.5rem;
+      background: #070b11;
+      color: #64748b;
+      padding: 3rem 0 2rem;
     }
 
-    .footer-content {
+    .footer-top {
       display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
       margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
+
+    .footer-brand { max-width: 320px; }
 
     .footer-logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+    }
+    .footer-logo .logo-icon { background: var(--accent); }
+    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
+
+    .footer-nav-title {
+      font-size: 0.75rem;
       font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--white);
-      margin-bottom: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
     }
 
-    .footer-logo i {
-      background: var(--blue-700);
-      color: var(--white);
-      width: 2.5rem; height: 2.5rem;
-      border-radius: 0.5rem;
+    .footer-links {
+      list-style: none;
       display: flex;
-      align-items: center;
-      justify-content: center;
+      flex-direction: column;
+      gap: 0.4rem;
     }
 
-    .disclaimer {
-      border-top: 1px solid #374151;
-      padding-top: 1.5rem;
+    .footer-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #94a3b8; }
+
+    .footer-bottom {
+      font-size: 0.78rem;
       text-align: center;
-      font-size: 0.85rem;
-      line-height: 1.8;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
     }
 
-    /* Responsive */
-    @media (max-width: 768px) {
-      .nav-toggle { display: block; }
-      .nav-container { display: none; }
-      .hero h1 { font-size: 1.75rem; }
-      .video-grid { grid-template-columns: 1fr; }
-      .audience-tab { padding: 0.75rem 1.25rem; font-size: 0.9rem; }
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .video-grid { grid-template-columns: 1fr 1fr; }
+      .nav-desktop { display: none; }
+      .burger { display: flex; }
     }
+
+    @media (max-width: 600px) {
+      .video-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 0 2.5rem; }
+      .section { padding: 3rem 0 4rem; }
+      .footer-top { flex-direction: column; }
+      .audience-tab { padding: 0.65rem 1.25rem; font-size: 0.85rem; }
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { opacity: 0; }
+    .anim.visible { animation: fadeUp 0.55s ease both; }
+    .anim-d1 { animation-delay: 0.05s; }
+    .anim-d2 { animation-delay: 0.12s; }
+    .anim-d3 { animation-delay: 0.19s; }
   </style>
-  <link rel="stylesheet" href="./redesign.css" />
 </head>
 <body>
-<!-- Header -->
- <!-- Header -->
+
+<!-- ═══ HEADER ═══════════════════════════════════════ -->
 <header>
-<div class="container">
-<div class="header-content">
-<div class="logo">
-<i class="fas fa-shield-alt"></i>
-<span>EduSafe</span>
-</div>
-<button class="nav-toggle" id="navToggle">
-<i class="fas fa-bars"></i>
-</button>
-<div class="nav-container">
-<div class="lang-selector">
-<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
-<option value="ru">Русский</option>
-<option value="en">English</option>
-</select>
-</div>
-<nav class="nav">
-<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-<a class="active" href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
-<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
-<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-</nav>
-</div>
-</div>
-</div>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<div class="mobile-menu-content">
-<div class="mobile-header">
-<div class="logo" style="font-size: 1.25rem;">
-<i class="fas fa-shield-alt"></i>
-<span>EduSafe</span>
-</div>
-<button class="close-btn" id="closeMenu">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<nav class="mobile-nav">
-<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-<a class="active" href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
-<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
-<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-</nav>
-</div>
-</div>
-</header>
-<!-- Hero -->
-<section class="hero">
-<div class="container">
-<h1>Видеоматериалы по защите персональных данных</h1>
-<p>Подборка обучающих видео для каждой категории участников образовательного процесса — выберите свою аудиторию и начните просмотр.</p>
-<div class="hero-note">
-<i class="fas fa-play-circle"></i> Видеоматериалы соответствуют Закону РБ № 99-З «О защите персональных данных»
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+        <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+        <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+        <a href="videos.html" class="active"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+        <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+        <a href="blog.html"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+        <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+      </nav>
+
+      <div class="header-right">
+        <select class="lang-select" id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
+          <option value="ru">🇧🇾 Русский</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+        <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
       </div>
+    </div>
+  </div>
+</header>
+
+<!-- ═══ DRAWER ════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </div>
+      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+      <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+      <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+      <a href="videos.html" class="active"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+      <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+      <a href="blog.html"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+      <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+    </nav>
+    <div class="drawer-lang">
+      <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
+        <option value="ru">🇧🇾 Русский</option>
+        <option value="en">🇬🇧 English</option>
+      </select>
+    </div>
+  </div>
 </div>
+
+<!-- ═══ HERO ══════════════════════════════════════════ -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge anim">
+        <i class="fas fa-play-circle"></i>
+        <span>EduSafe · Видеоматериалы</span>
+      </div>
+      <h1 class="anim anim-d1">Видео по <span>защите персональных данных</span></h1>
+      <p class="hero-sub anim anim-d2">Обучающая подборка для каждой категории участников образовательного процесса — выберите свою аудиторию и начните просмотр.</p>
+      <div class="hero-note anim anim-d3">
+        <i class="fas fa-info-circle"></i>
+        <span>Видеоматериалы соответствуют Закону РБ № 99-З «О защите персональных данных»</span>
+      </div>
+    </div>
+  </div>
 </section>
-<!-- Audience Selector -->
+
+<!-- ═══ AUDIENCE SELECTOR ═════════════════════════════ -->
 <section class="audience-section">
-<div class="container">
-<p class="audience-title"><i class="fas fa-users" style="margin-right:0.5rem; color:var(--blue-700);"></i>Выберите свою аудиторию</p>
-<div class="audience-tabs">
-<button class="audience-tab active" id="tabUoso" onclick="showAudience('uoso')">
-<i class="fas fa-school"></i> УОСО <small style="font-weight:400; opacity:0.8;">(школы)</small>
-</button>
-<button class="audience-tab" id="tabUvosso" onclick="showAudience('uvosso')">
-<i class="fas fa-university"></i> УВО / УССО <small style="font-weight:400; opacity:0.8;">(вузы и колледжи)</small>
-</button>
-</div>
-<!-- Sub-tabs -->
-<div class="sub-audience-bar" id="subBarUoso">
-<button class="sub-tab active" id="subUosoStudent" onclick="showSub('uoso', 'student')">
-<i class="fas fa-user-graduate"></i> Учащиеся
-        </button>
-<button class="sub-tab" id="subUosoTeacher" onclick="showSub('uoso', 'teacher')">
-<i class="fas fa-chalkboard-teacher"></i> Учителя
-        </button>
-</div>
-<div class="sub-audience-bar" id="subBarUvosso" style="display:none;">
-<button class="sub-tab active" id="subUvossoStudent" onclick="showSub('uvosso', 'student')">
-<i class="fas fa-user-graduate"></i> Студенты
-        </button>
-<button class="sub-tab" id="subUvossoPps" onclick="showSub('uvosso', 'pps')">
-<i class="fas fa-chalkboard-teacher"></i> ППС
-        </button>
-</div>
-</div>
+  <div class="container">
+    <p class="audience-label">
+      <i class="fas fa-users"></i> Выберите свою аудиторию
+    </p>
+    <div class="audience-tabs">
+      <button class="audience-tab active" id="tabUoso" onclick="showAudience('uoso')">
+        <i class="fas fa-school"></i> УОСО <small style="font-weight:400; opacity:0.75;">(школы)</small>
+      </button>
+      <button class="audience-tab" id="tabUvosso" onclick="showAudience('uvosso')">
+        <i class="fas fa-university"></i> УВО / УССО <small style="font-weight:400; opacity:0.75;">(вузы и колледжи)</small>
+      </button>
+    </div>
+
+    <!-- Sub-tabs УОСО -->
+    <div class="sub-audience-bar" id="subBarUoso">
+      <button class="sub-tab active" id="subUosoStudent" onclick="showSub('uoso', 'student')">
+        <i class="fas fa-user-graduate"></i> Учащиеся
+      </button>
+      <button class="sub-tab" id="subUosoTeacher" onclick="showSub('uoso', 'teacher')">
+        <i class="fas fa-chalkboard-teacher"></i> Учителя
+      </button>
+    </div>
+
+    <!-- Sub-tabs УВО/УССО -->
+    <div class="sub-audience-bar" id="subBarUvosso" style="display:none;">
+      <button class="sub-tab active" id="subUvossoStudent" onclick="showSub('uvosso', 'student')">
+        <i class="fas fa-user-graduate"></i> Студенты
+      </button>
+      <button class="sub-tab" id="subUvossoPps" onclick="showSub('uvosso', 'pps')">
+        <i class="fas fa-chalkboard-teacher"></i> ППС
+      </button>
+    </div>
+  </div>
 </section>
-<!-- ==================== UOSO ==================== -->
-<!-- УОСО — Учащиеся -->
+
+<!-- ═══ PANEL: УОСО — Учащиеся ═══════════════════════ -->
 <div class="audience-panel active" id="panel-uoso-student">
-<section class="section">
-<div class="container">
-<h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--blue-700); margin-right:0.5rem;"></i>Учащиеся (УОСО)</h2>
-<p class="section-subtitle">Видеоматериалы о цифровой безопасности и персональных данных для школьников</p>
-<div class="video-grid">
-<!-- Видео 1 -->
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/uoso_student_1.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" preload="none">
-<source src="./videos-pd/Твои_Секреты,_Твои_Правила!.mp4" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Учащиеся · УОСО</span>
-<p class="video-title">Твои секреты - твои правила. 1-4 классы</p>
-<p class="video-desc">Простое объяснение понятия персональных данных: что к ним относится, почему они важны и как их защитить в повседневной жизни.</p>
-</div>
-</div>
-<!-- Видео 2 -->
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" preload="none">
-<source src="./videos-pd/Ваши_данные__просто_о_важном.mp4" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Учащиеся · УОСО</span>
-<p class="video-title">Ваши данные - просто о важном. 5-8 классы</p>
-<p class="video-desc">Что необходимо хранить и держать в тайне, и какие права вы имеете, когда ваши личные данные находятся в руках других людей</p>
-</div>
-</div>
-<!-- Видео 3 -->
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="./videos-pd/Твои_данные,_твои_правила.mp4" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Учащиеся · УОСО</span>
-<p class="video-title">Твои данные - твои правила. 9-11 классы</p>
-<p class="video-desc">Что необходимо знать, когда вы регистрируетесь в иностранных сервисах. Что такое трансграничная передача данных.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- УОСО — Учителя -->
-<div class="audience-panel" id="panel-uoso-teacher">
-<section class="section">
-<div class="container">
-<h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--blue-700); margin-right:0.5rem;"></i>Учителя (УОСО)</h2>
-<p class="section-subtitle">Методические видео по обработке персональных данных учащихся в учреждениях общего среднего образования</p>
-<div class="video-grid">
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="./videos-pd/Данные_учащихся__Руководство.mp4" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Учителя · УОСО</span>
-<p class="video-title">Данные учащихся. Руководство</p>
-<p class="video-desc">/</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Учителя · УОСО</span>
-<p class="video-title">Правовые основы обработки данных в школе</p>
-<p class="video-desc">Обзор Закона № 99-З: что педагог обязан знать, какие данные учащихся можно обрабатывать и на каком основании.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- ==================== UVO/USSO ==================== -->
-<!-- УВО/УССО — Студенты -->
-<div class="audience-panel" id="panel-uvosso-student">
-<section class="section">
-<div class="container">
-<h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--blue-700); margin-right:0.5rem;"></i>Студенты (УВО / УССО)</h2>
-<p class="section-subtitle">Видеоматериалы по цифровой безопасности и защите персональных данных для студентов вузов и ссузов</p>
-<div class="video-grid">
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Студенты · УВО/УССО</span>
-<p class="video-title">Персональные данные в студенческой жизни</p>
-<p class="video-desc">Где и как университет обрабатывает ваши данные: личное дело, портфолио, зачётная книжка — права студента.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Студенты · УВО/УССО</span>
-<p class="video-title">Онлайн-обучение и защита данных</p>
-<p class="video-desc">Безопасность при дистанционном обучении: Moodle, Zoom, Teams — что собирают платформы и как минимизировать риски.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Студенты · УВО/УССО</span>
-<p class="video-title">Цифровой след и репутация</p>
-<p class="video-desc">Как информация в интернете влияет на карьеру: управление цифровым следом и профессиональный профиль онлайн.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Студенты · УВО/УССО</span>
-<p class="video-title">Согласие на обработку данных: читаем внимательно</p>
-<p class="video-desc">Как правильно читать политику конфиденциальности и что означает подписание согласия на обработку персональных данных.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">Студенты · УВО/УССО</span>
-<p class="video-title">Как подать жалобу на нарушение прав</p>
-<p class="video-desc">Национальный центр защиты персональных данных: куда обращаться, как составить жалобу и каковы сроки рассмотрения.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- УВО/УССО — ППС -->
-<div class="audience-panel" id="panel-uvosso-pps">
-<section class="section">
-<div class="container">
-<h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--blue-700); margin-right:0.5rem;"></i>ППС (УВО / УССО)</h2>
-<p class="section-subtitle">Видеоматериалы для профессорско-преподавательского состава: правовые основы, практика и ответственность</p>
-<div class="video-grid">
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">ППС · УВО/УССО</span>
-<p class="video-title">Закон № 99-З для преподавателя: ключевые нормы</p>
-<p class="video-desc">Обязанности оператора персональных данных в вузе, перечень допустимых оснований для обработки данных студентов.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">ППС · УВО/УССО</span>
-<p class="video-title">Научные исследования и персональные данные</p>
-<p class="video-desc">Как проводить научные исследования с соблюдением требований о защите данных: анонимизация, псевдонимизация, хранение.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">ППС · УВО/УССО</span>
-<p class="video-title">Системы управления обучением (LMS)</p>
-<p class="video-desc">Moodle, Canvas и корпоративные LMS: настройка прав доступа, хранение данных студентов и журналов активности.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">ППС · УВО/УССО</span>
-<p class="video-title">Публикации и конференции: данные участников</p>
-<p class="video-desc">Правила работы с персональными данными при организации конференций, публикации тезисов и сборников трудов.</p>
-</div>
-</div>
-<div class="video-card">
-<div class="video-embed">
-<!--
-                Вставьте путь к вашему видеофайлу в атрибут src.
-                Пример: src="videos/video.mp4"
-                poster — необязательная картинка-превью (jpg/png).
-              -->
-<video controls="" poster="" preload="none">
-<source src="" type="video/mp4"/>
-                Ваш браузер не поддерживает тег video.
-              </video>
-</div>
-<div class="video-info">
-<span class="video-badge">ППС · УВО/УССО</span>
-<p class="video-title">Инциденты с данными: алгоритм действий</p>
-<p class="video-desc">Что делать при утечке или неправомерном доступе к персональным данным студентов: уведомление, расследование, документирование.</p>
-</div>
-</div>
-</div>
-</div>
-</section>
-</div>
-<!-- Footer -->
-<footer>
-<div class="container">
-<div class="footer-content">
-<div class="footer-logo">
-<i class="fas fa-shield-alt"></i>
-          EduSafe
+  <section class="section">
+    <div class="container">
+      <span class="section-tag">УОСО · Учащиеся</span>
+      <h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--accent); margin-right:0.5rem;"></i>Учащиеся (УОСО)</h2>
+      <p class="section-subtitle">Видеоматериалы о цифровой безопасности и персональных данных для школьников</p>
+      <div class="video-grid">
+
+        <div class="video-card anim">
+          <div class="video-embed">
+            <video controls preload="none">
+              <source src="./videos-pd/Твои_Секреты,_Твои_Правила!.mp4" type="video/mp4"/>
+              Ваш браузер не поддерживает тег video.
+            </video>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Учащиеся · УОСО</span>
+            <p class="video-title">Твои секреты — твои правила. 1–4 классы</p>
+            <p class="video-desc">Простое объяснение понятия персональных данных: что к ним относится, почему они важны и как их защитить в повседневной жизни.</p>
+          </div>
         </div>
-<p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
-<p style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</p>
+
+        <div class="video-card anim anim-d1">
+          <div class="video-embed">
+            <video controls preload="none">
+              <source src="./videos-pd/Ваши_данные__просто_о_важном.mp4" type="video/mp4"/>
+              Ваш браузер не поддерживает тег video.
+            </video>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Учащиеся · УОСО</span>
+            <p class="video-title">Ваши данные — просто о важном. 5–8 классы</p>
+            <p class="video-desc">Что необходимо хранить и держать в тайне, и какие права вы имеете, когда ваши личные данные находятся в руках других людей.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d2">
+          <div class="video-embed">
+            <video controls preload="none">
+              <source src="./videos-pd/Твои_данные,_твои_правила.mp4" type="video/mp4"/>
+              Ваш браузер не поддерживает тег video.
+            </video>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Учащиеся · УОСО</span>
+            <p class="video-title">Твои данные — твои правила. 9–11 классы</p>
+            <p class="video-desc">Что необходимо знать при регистрации в иностранных сервисах. Что такое трансграничная передача данных.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 </div>
-<div class="disclaimer">
-<span>Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br/>
-<span>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+
+<!-- ═══ PANEL: УОСО — Учителя ════════════════════════ -->
+<div class="audience-panel" id="panel-uoso-teacher">
+  <section class="section">
+    <div class="container">
+      <span class="section-tag">УОСО · Учителя</span>
+      <h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--accent); margin-right:0.5rem;"></i>Учителя (УОСО)</h2>
+      <p class="section-subtitle">Методические видео по обработке персональных данных учащихся в учреждениях общего среднего образования</p>
+      <div class="video-grid">
+
+        <div class="video-card anim">
+          <div class="video-embed">
+            <video controls preload="none">
+              <source src="./videos-pd/Данные_учащихся__Руководство.mp4" type="video/mp4"/>
+              Ваш браузер не поддерживает тег video.
+            </video>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Учителя · УОСО</span>
+            <p class="video-title">Данные учащихся. Руководство</p>
+            <p class="video-desc">Комплексное руководство для учителей по работе с персональными данными учеников в образовательном процессе.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d1">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Учителя · УОСО</span>
+            <p class="video-title">Правовые основы обработки данных в школе</p>
+            <p class="video-desc">Обзор Закона № 99-З: что педагог обязан знать, какие данные учащихся можно обрабатывать и на каком основании.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 </div>
+
+<!-- ═══ PANEL: УВО/УССО — Студенты ══════════════════ -->
+<div class="audience-panel" id="panel-uvosso-student">
+  <section class="section">
+    <div class="container">
+      <span class="section-tag">УВО/УССО · Студенты</span>
+      <h2 class="section-title"><i class="fas fa-user-graduate" style="color:var(--accent); margin-right:0.5rem;"></i>Студенты (УВО / УССО)</h2>
+      <p class="section-subtitle">Видеоматериалы по цифровой безопасности и защите персональных данных для студентов вузов и ссузов</p>
+      <div class="video-grid">
+
+        <div class="video-card anim">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Студенты · УВО/УССО</span>
+            <p class="video-title">Персональные данные в студенческой жизни</p>
+            <p class="video-desc">Где и как университет обрабатывает ваши данные: личное дело, портфолио, зачётная книжка — права студента.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d1">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Студенты · УВО/УССО</span>
+            <p class="video-title">Онлайн-обучение и защита данных</p>
+            <p class="video-desc">Безопасность при дистанционном обучении: Moodle, Zoom, Teams — что собирают платформы и как минимизировать риски.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d2">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Студенты · УВО/УССО</span>
+            <p class="video-title">Цифровой след и репутация</p>
+            <p class="video-desc">Как информация в интернете влияет на карьеру: управление цифровым следом и профессиональный профиль онлайн.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Студенты · УВО/УССО</span>
+            <p class="video-title">Согласие на обработку данных: читаем внимательно</p>
+            <p class="video-desc">Как правильно читать политику конфиденциальности и что означает подписание согласия на обработку персональных данных.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d1">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> Студенты · УВО/УССО</span>
+            <p class="video-title">Как подать жалобу на нарушение прав</p>
+            <p class="video-desc">Национальный центр защиты персональных данных: куда обращаться, как составить жалобу и каковы сроки рассмотрения.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
 </div>
+
+<!-- ═══ PANEL: УВО/УССО — ППС ════════════════════════ -->
+<div class="audience-panel" id="panel-uvosso-pps">
+  <section class="section">
+    <div class="container">
+      <span class="section-tag">УВО/УССО · ППС</span>
+      <h2 class="section-title"><i class="fas fa-chalkboard-teacher" style="color:var(--accent); margin-right:0.5rem;"></i>ППС (УВО / УССО)</h2>
+      <p class="section-subtitle">Видеоматериалы для профессорско-преподавательского состава: правовые основы, практика и ответственность</p>
+      <div class="video-grid">
+
+        <div class="video-card anim">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> ППС · УВО/УССО</span>
+            <p class="video-title">Закон № 99-З для преподавателя: ключевые нормы</p>
+            <p class="video-desc">Обязанности оператора персональных данных в вузе, перечень допустимых оснований для обработки данных студентов.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d1">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> ППС · УВО/УССО</span>
+            <p class="video-title">Научные исследования и персональные данные</p>
+            <p class="video-desc">Как проводить научные исследования с соблюдением требований о защите данных: анонимизация, псевдонимизация, хранение.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d2">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> ППС · УВО/УССО</span>
+            <p class="video-title">Системы управления обучением (LMS)</p>
+            <p class="video-desc">Moodle, Canvas и корпоративные LMS: настройка прав доступа, хранение данных студентов и журналов активности.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> ППС · УВО/УССО</span>
+            <p class="video-title">Публикации и конференции: данные участников</p>
+            <p class="video-desc">Правила работы с персональными данными при организации конференций, публикации тезисов и сборников трудов.</p>
+          </div>
+        </div>
+
+        <div class="video-card anim anim-d1">
+          <div class="video-embed">
+            <div class="video-placeholder">
+              <i class="fas fa-video-slash"></i>
+              <span>Видео скоро появится</span>
+            </div>
+          </div>
+          <div class="video-info">
+            <span class="video-badge"><i class="fas fa-play"></i> ППС · УВО/УССО</span>
+            <p class="video-title">Инциденты с данными: алгоритм действий</p>
+            <p class="video-desc">Что делать при утечке или неправомерном доступе к персональным данным студентов: уведомление, расследование, документирование.</p>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</div>
+
+<!-- ═══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span class="logo-text">EduSafe</span>
+        </a>
+        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+      </div>
+      <div>
+        <div class="footer-nav-title">Разделы</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="theory.html">Теория</a></li>
+          <li><a href="choice-sp.html">Практика</a></li>
+          <li><a href="videos.html">Видео</a></li>
+          <li><a href="quiz.html">Викторина</a></li>
+          <li><a href="blog.html">Блог</a></li>
+          <li><a href="contact.html">Жалоба</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</div>
+      <div>Ресурс не использует cookies и не собирает персональные данные пользователей.</div>
+      <div>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</div>
+    </div>
+  </div>
 </footer>
-<script>
-    // Mobile menu
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
-
-    navToggle.addEventListener('click', () => {
-      mobileMenu.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    });
-
-    closeMenu.addEventListener('click', () => {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-    });
-
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) {
-        mobileMenu.classList.remove('active');
-        document.body.style.overflow = '';
-      }
-    });
-
-    // Audience / Sub-audience logic
-    let currentAudience = 'uoso';
-    let currentSubs = { uoso: 'student', uvosso: 'student' };
-
-    function showAudience(audience) {
-      currentAudience = audience;
-
-      // Toggle main tabs
-      document.querySelectorAll('.audience-tab').forEach(t => t.classList.remove('active'));
-      document.getElementById('tab' + (audience === 'uoso' ? 'Uoso' : 'Uvosso')).classList.add('active');
-
-      // Toggle sub-bars
-      document.getElementById('subBarUoso').style.display = audience === 'uoso' ? 'flex' : 'none';
-      document.getElementById('subBarUvosso').style.display = audience === 'uvosso' ? 'flex' : 'none';
-
-      // Show correct panel
-      showSub(audience, currentSubs[audience]);
-    }
-
-    function showSub(audience, sub) {
-      currentSubs[audience] = sub;
-
-      // Deactivate all panels
-      document.querySelectorAll('.audience-panel').forEach(p => p.classList.remove('active'));
-
-      // Activate target panel
-      const panelId = 'panel-' + audience + '-' + sub;
-      const panel = document.getElementById(panelId);
-      if (panel) panel.classList.add('active');
-
-      // Update sub-tab highlights
-      if (audience === 'uoso') {
-        document.getElementById('subUosoStudent').classList.toggle('active', sub === 'student');
-        document.getElementById('subUosoTeacher').classList.toggle('active', sub === 'teacher');
-      } else {
-        document.getElementById('subUvossoStudent').classList.toggle('active', sub === 'student');
-        document.getElementById('subUvossoPps').classList.toggle('active', sub === 'pps');
-      }
-    }
-  </script>
 
 <script>
-    // Mobile menu toggle
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
+  // ─── DRAWER ─────────────────────────────────────────
+  const overlay = document.getElementById('drawerOverlay');
+  document.getElementById('navToggle').addEventListener('click', () => {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
-    function openMenu() {
-      mobileMenu.classList.add('active');
-      document.body.style.overflow = 'hidden';
+  // ─── AUDIENCE TABS ───────────────────────────────────
+  let currentAudience = 'uoso';
+  let currentSubs = { uoso: 'student', uvosso: 'student' };
+
+  function showAudience(audience) {
+    currentAudience = audience;
+    document.querySelectorAll('.audience-tab').forEach(t => t.classList.remove('active'));
+    document.getElementById('tab' + (audience === 'uoso' ? 'Uoso' : 'Uvosso')).classList.add('active');
+    document.getElementById('subBarUoso').style.display = audience === 'uoso' ? 'flex' : 'none';
+    document.getElementById('subBarUvosso').style.display = audience === 'uvosso' ? 'flex' : 'none';
+    showSub(audience, currentSubs[audience]);
+  }
+
+  function showSub(audience, sub) {
+    currentSubs[audience] = sub;
+    document.querySelectorAll('.audience-panel').forEach(p => p.classList.remove('active'));
+    const panel = document.getElementById('panel-' + audience + '-' + sub);
+    if (panel) {
+      panel.classList.add('active');
+      // Re-trigger animations for newly visible cards
+      panel.querySelectorAll('.anim').forEach(el => {
+        el.classList.remove('visible');
+        observer.observe(el);
+      });
     }
-
-    function closeMenuHandler() {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
+    if (audience === 'uoso') {
+      document.getElementById('subUosoStudent').classList.toggle('active', sub === 'student');
+      document.getElementById('subUosoTeacher').classList.toggle('active', sub === 'teacher');
+    } else {
+      document.getElementById('subUvossoStudent').classList.toggle('active', sub === 'student');
+      document.getElementById('subUvossoPps').classList.toggle('active', sub === 'pps');
     }
+  }
 
-    navToggle.addEventListener('click', openMenu);
-    closeMenu.addEventListener('click', closeMenuHandler);
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMenuHandler();
-    });
-
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-      link.addEventListener('click', closeMenuHandler);
-    });
-  </script>
+  // ─── INTERSECTION OBSERVER ──────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+</script>
 </body>
 </html>

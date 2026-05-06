@@ -1,815 +1,1009 @@
 <!DOCTYPE html>
-
-<html lang="ru">
+<html lang="ru" id="htmlRoot">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Подача жалобы — EduSafe</title>
-<link href="favcion.ico" rel="icon" type="image/x-icon"/>
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Контакты EduSafe — форма обратной связи, подача жалобы в Национальный центр защиты персональных данных.">
+  <title>Контакты и жалоба — EduSafe</title>
 
+  <!-- Yandex.Metrika counter -->
+  <script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+      m[i].l=1*new Date();
+      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
     ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<noscript><div><img alt="" src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;"/></div></noscript>
-<!-- /Yandex.Metrika counter -->
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<style>
+  </script>
+  <noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
     :root {
-      --blue-900: #1e3a8a;
-      --blue-700: #1d4ed8;
-      --blue-100: #dbeafe;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-600: #4b5563;
-      --gray-900: #111827;
+      --ink: #0d1117;
+      --ink-soft: #1e2633;
+      --accent: #0057d9;
+      --accent-light: #3b82f6;
+      --accent-pale: #dbeafe;
+      --teal: #0ea5c7;
+      --mint: #d1fae5;
+      --surface: #ffffff;
+      --surface-2: #f5f7fb;
+      --border: #e2e8f0;
+      --text-muted: #64748b;
       --white: #ffffff;
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
     }
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: linear-gradient(to bottom, #f8fafc, #eef2ff);
-      color: var(--gray-900);
-      line-height: 1.6;
+      font-family: 'Golos Text', sans-serif;
+      background: var(--surface-2);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
     }
+
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
 
-    /* Header */
+    /* ─── HEADER ──────────────────────────────── */
     header {
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
     }
-
-    .header-content {
+    .header-inner {
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      padding: 1rem 0;
+      justify-content: space-between;
+      height: 68px;
+      gap: 1rem;
     }
-
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--blue-900);
-      z-index: 2;
-    }
-
-    .logo i {
-      background: var(--blue-900);
-      color: var(--white);
-      width: 2.5rem;
-      height: 2.5rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    /* Nav toggle (mobile) */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--gray-900);
-      cursor: pointer;
-      z-index: 2;
-    }
-
-    /* Desktop nav */
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .lang-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lang-selector select {
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #d1d5db;
-      background-color: var(--white);
-      color: var(--gray-900);
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .nav {
-      display: flex;
-      gap: 1rem;
-    }
-
-    .nav a {
+      gap: 0.6rem;
       text-decoration: none;
-      color: var(--gray-600);
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      flex-shrink: 0;
     }
-
-    .nav a:hover,
-    .nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
+    .logo-icon {
+      width: 38px; height: 38px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1rem;
     }
-
-    /* Mobile menu */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(2px);
-      z-index: 101;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
+    .logo-text {
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700; font-size: 1.2rem;
+      color: var(--ink);
     }
-
-    .mobile-menu.active {
-      opacity: 1;
-      visibility: visible;
+    .nav-desktop {
+      display: flex; align-items: center; gap: 0.25rem;
     }
+    .nav-desktop a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500; font-size: 0.88rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex; align-items: center; gap: 0.4rem;
+    }
+    .nav-desktop a:hover, .nav-desktop a.active {
+      background: var(--accent-pale); color: var(--accent);
+    }
+    .header-right {
+      display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
+    }
+    .lang-select {
+      padding: 0.4rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface); color: var(--ink);
+      font-size: 0.85rem;
+      font-family: 'Golos Text', sans-serif;
+      cursor: pointer; outline: none;
+    }
+    .burger {
+      display: none; background: none; border: none;
+      color: var(--ink); font-size: 1.4rem; cursor: pointer;
+      padding: 0.3rem; border-radius: 8px; transition: background 0.2s;
+    }
+    .burger:hover { background: var(--surface-2); }
 
-    .mobile-menu-content {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 85%;
-      max-width: 320px;
-      height: 100%;
-      background: var(--white);
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
-      border-radius: 0 0 0 1.5rem;
-      padding: 1.5rem;
+    /* ─── MOBILE DRAWER ───────────────────────── */
+    .drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 300;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+    .drawer {
+      position: fixed; top: 0; right: 0;
+      width: min(88%, 340px); height: 100%;
+      background: var(--surface); z-index: 301;
       transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex; flex-direction: column; padding: 1.5rem;
+    }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+    .drawer-head {
+      display: flex; align-items: center; justify-content: space-between;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+    .drawer-close {
+      background: var(--surface-2); border: none;
+      width: 36px; height: 36px; border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; color: var(--text-muted);
+    }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+    .drawer-nav a {
+      display: flex; align-items: center; gap: 0.75rem;
+      padding: 0.8rem 1rem; border-radius: var(--radius-sm);
+      text-decoration: none; color: var(--ink);
+      font-weight: 500; transition: all 0.2s;
+    }
+    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
+    .drawer-nav a:hover, .drawer-nav a.active {
+      background: var(--accent-pale); color: var(--accent);
+    }
+    .drawer-lang {
+      margin-top: 1.5rem; padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
     }
 
-    .mobile-menu.active .mobile-menu-content {
-      transform: translateX(0);
-    }
-
-    .mobile-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--gray-100);
-    }
-
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--gray-900);
-      cursor: pointer;
-    }
-
-    .mobile-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-    }
-
-    .mobile-nav a {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.875rem 1rem;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      color: var(--gray-900);
-      font-weight: 500;
-      background: var(--gray-50);
-      transition: all 0.2s ease;
-    }
-
-    .mobile-nav a:hover,
-    .mobile-nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
-    }
-
-    .mobile-nav a i {
-      width: 1.5rem;
-      text-align: center;
-    }
-
-    /* Hero */
+    /* ─── HERO ───────────────────────────────── */
     .hero {
-      background: linear-gradient(135deg, var(--blue-900), #1e40af);
-      color: var(--white);
-      padding: 4rem 0;
-      text-align: center;
+      background: var(--ink);
+      position: relative; overflow: hidden;
+      padding: 5rem 0 4rem;
+    }
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+    .hero-glow {
+      position: absolute; width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%);
+      top: -200px; right: -100px; pointer-events: none;
+    }
+    .hero-glow-2 {
+      position: absolute; width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%);
+      bottom: -150px; left: -50px; pointer-events: none;
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; max-width: 820px; margin: 0 auto;
+    }
+    .hero-badge {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: #93c5fd; font-size: 0.8rem; font-weight: 600;
+      padding: 0.45rem 1rem; border-radius: 999px;
+      margin-bottom: 1.75rem; letter-spacing: 0.02em;
     }
     .hero h1 {
-      font-size: 2.25rem;
-      font-weight: 800;
-      margin-bottom: 1rem;
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 3rem);
+      font-weight: 700; color: var(--white);
+      line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.02em;
     }
-    .hero p {
-      font-size: 1.125rem;
-      max-width: 700px;
-      margin: 0 auto 2rem;
-      opacity: 0.95;
+    .hero h1 span {
+      background: linear-gradient(135deg, #60a5fa, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero-sub {
+      font-size: 1.1rem; color: #94a3b8;
+      max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.7;
     }
 
-    /* Sections */
-    .section {
-      padding: 3rem 0;
+    /* ─── SECTION ────────────────────────────── */
+    .section { padding: 5rem 0; }
+    .section-tag {
+      display: inline-block; background: var(--accent-pale); color: var(--accent);
+      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
+      letter-spacing: 0.08em; padding: 0.35rem 0.9rem;
+      border-radius: 999px; margin-bottom: 1rem;
     }
     .section-title {
-      text-align: center;
-      font-size: 2rem;
-      font-weight: 800;
-      margin-bottom: 1.5rem;
-      color: var(--blue-900);
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700; color: var(--ink);
+      margin-bottom: 0.75rem; letter-spacing: -0.02em; line-height: 1.25;
+    }
+    .section-sub {
+      font-size: 1.05rem; color: var(--text-muted);
+      max-width: 620px; line-height: 1.7;
+    }
+    .section-header { margin-bottom: 3rem; }
+    .section-header.centered { text-align: center; }
+    .section-header.centered .section-sub { margin: 0 auto; }
+
+    /* ─── INFO CARDS GRID ────────────────────── */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.5rem;
+      margin-bottom: 4rem;
     }
 
-    /* Info Cards */
-    .info-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-      gap: 2rem;
-      margin-bottom: 3rem;
-    }
     .info-card {
-      background: var(--white);
-      border-radius: 1rem;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
       padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+      position: relative; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
     }
+    .info-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--accent));
+      border-radius: 999px 999px 0 0;
+    }
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+    .info-card-1 { --card-accent: #0057d9; }
+    .info-card-2 { --card-accent: #0ea5c7; }
+    .info-card-3 { --card-accent: #10b981; }
+    .info-card-4 { --card-accent: #8b5cf6; }
+
+    .card-icon {
+      width: 50px; height: 50px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1.25rem;
+    }
+    .info-card-1 .card-icon { background: #eff6ff; color: #0057d9; }
+    .info-card-2 .card-icon { background: #ecfeff; color: #0ea5c7; }
+    .info-card-3 .card-icon { background: #d1fae5; color: #059669; }
+    .info-card-4 .card-icon { background: #ede9fe; color: #7c3aed; }
+
     .info-card h3 {
-      color: var(--blue-700);
-      margin-bottom: 1rem;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .info-card p, .info-card li {
+      font-size: 0.92rem; color: var(--text-muted);
+      line-height: 1.65;
     }
     .info-card ul {
-      padding-left: 1.5rem;
+      padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;
     }
-    .info-card li {
-      margin-bottom: 0.5rem;
+    .info-card li::marker { color: var(--card-accent, var(--accent)); }
+    .info-card p + p { margin-top: 0.6rem; }
+
+    .info-card .btn-card {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: white;
+      font-weight: 600; font-size: 0.88rem;
+      padding: 0.65rem 1.25rem; border-radius: var(--radius-sm);
+      text-decoration: none; margin-top: 1.25rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .btn-card:hover { background: #0046b0; transform: translateY(-2px); }
+
+    /* ─── CONTACT STRIP ──────────────────────── */
+    .contact-strip {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2rem 2.5rem;
+      display: flex; align-items: center; gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 4rem;
+    }
+    .contact-strip-icon {
+      width: 56px; height: 56px;
+      background: var(--accent-pale); border-radius: var(--radius);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.4rem; color: var(--accent); flex-shrink: 0;
+    }
+    .contact-strip-info { flex: 1; min-width: 180px; }
+    .contact-strip-info .label {
+      font-size: 0.78rem; font-weight: 600;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: var(--text-muted); margin-bottom: 0.25rem;
+    }
+    .contact-strip-info a {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.1rem; font-weight: 600;
+      color: var(--accent); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .contact-strip-info a:hover { color: #0046b0; }
+    .contact-divider {
+      width: 1px; height: 48px;
+      background: var(--border); flex-shrink: 0;
     }
 
-    /* Form */
-    .form-container {
-      background: var(--white);
-      border-radius: 1rem;
-      padding: 2rem;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+    /* ─── FORM SECTION ───────────────────────── */
+    .form-wrap {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 3rem;
+      position: relative; overflow: hidden;
     }
-    .form-group {
-      margin-bottom: 1.5rem;
+    .form-wrap::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: linear-gradient(90deg, var(--accent), var(--teal));
     }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5rem;
+    }
+    .form-grid .full { grid-column: 1 / -1; }
+
+    .form-group { display: flex; flex-direction: column; gap: 0.5rem; }
     .form-group label {
-      display: block;
-      margin-bottom: 0.5rem;
-      font-weight: 500;
-      color: var(--gray-900);
+      font-weight: 600; font-size: 0.88rem; color: var(--ink);
     }
     .form-group input,
-    .form-group textarea,
-    .form-group select {
-      width: 100%;
-      padding: 0.875rem;
-      border: 1px solid #d1d5db;
-      border-radius: 0.5rem;
-      font-family: inherit;
-      font-size: 1rem;
-      background: var(--gray-50);
+    .form-group select,
+    .form-group textarea {
+      padding: 0.75rem 1rem;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface-2);
+      font-family: 'Golos Text', sans-serif;
+      font-size: 0.95rem; color: var(--ink);
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      border-color: var(--accent);
+      box-shadow: 0 0 0 3px rgba(0,87,217,0.1);
+      background: var(--surface);
     }
     .form-group textarea {
-      min-height: 120px;
-      resize: vertical;
+      min-height: 140px; resize: vertical;
     }
 
-    .btn {
-      display: inline-block;
-      background: var(--blue-700);
-      color: var(--white);
-      font-weight: 600;
-      padding: 0.875rem 2rem;
-      border-radius: 0.75rem;
-      text-decoration: none;
-      transition: all 0.3s ease;
-      box-shadow: 0 2px 6px rgba(29, 78, 216, 0.2);
+    .form-submit-row {
+      display: flex; align-items: center; justify-content: space-between;
+      gap: 1rem; flex-wrap: wrap;
+      margin-top: 0.5rem;
     }
-    .btn:hover {
-      background: #1e40af;
-      transform: translateY(-2px);
-      box-shadow: 0 4px 10px rgba(29, 78, 216, 0.3);
+    .form-note {
+      font-size: 0.82rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.4rem;
     }
-    .btn-full {
-      width: 100%;
-      padding: 1rem;
-      font-size: 1.125rem;
-      margin-top: 1rem;
+    .btn-submit {
+      display: inline-flex; align-items: center; gap: 0.6rem;
+      background: var(--accent); color: white;
+      font-family: 'Golos Text', sans-serif;
+      font-weight: 600; font-size: 1rem;
+      padding: 0.85rem 2rem; border-radius: var(--radius-sm);
+      border: none; cursor: pointer;
+      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
+      box-shadow: 0 4px 16px rgba(0,87,217,0.25);
     }
-
-    /* Back btn */
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: none;
-      border: 2px solid var(--gray-600);
-      color: var(--gray-600);
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.75rem;
-      font-weight: 600;
-      cursor: pointer;
-      transition: all 0.2s;
-      text-decoration: none;
-      margin-bottom: 2rem;
+    .btn-submit:hover {
+      background: #0046b0; transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(0,87,217,0.3);
     }
-    .back-btn:hover {
-      background: var(--gray-600);
-      color: white;
+    .btn-submit:active { transform: translateY(0); }
+    .btn-submit:disabled {
+      background: #94a3b8; cursor: not-allowed; transform: none;
+      box-shadow: none;
     }
 
-    /* Footer */
+    /* Success message */
+    .form-success {
+      display: none;
+      text-align: center; padding: 3rem 2rem;
+    }
+    .form-success.show { display: block; }
+    .form-success-icon {
+      width: 72px; height: 72px;
+      background: var(--mint); border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 2rem; color: #059669;
+      margin: 0 auto 1.5rem;
+    }
+    .form-success h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 0.75rem;
+    }
+    .form-success p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* ─── ANIMATION ───────────────────────────── */
+    .anim {
+      opacity: 0; transform: translateY(24px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .anim.visible { opacity: 1; transform: none; }
+    .anim-delay-1 { transition-delay: 0.1s; }
+    .anim-delay-2 { transition-delay: 0.2s; }
+    .anim-delay-3 { transition-delay: 0.3s; }
+    .anim-delay-4 { transition-delay: 0.4s; }
+
+    /* ─── FOOTER ─────────────────────────────── */
     footer {
-      background: var(--gray-900);
-      color: #9ca3af;
-      padding: 3rem 0 1.5rem;
-      margin-top: 3rem;
+      background: var(--ink); color: #9ca3af;
+      padding: 3rem 0 1.5rem; margin-top: 0;
     }
-    .footer-content { text-align: center; }
+    .footer-inner {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      align-items: start; gap: 2rem;
+    }
     .footer-logo {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--white);
-      margin-bottom: 1rem;
+      display: flex; align-items: center; gap: 0.6rem;
+      font-family: 'Unbounded', sans-serif;
+      font-weight: 700; font-size: 1.1rem;
+      color: var(--white); margin-bottom: 0.75rem;
     }
-    .footer-logo i {
-      background: var(--blue-700);
-      width: 2.25rem;
-      height: 2.25rem;
-      border-radius: 0.5rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
+    .footer-logo-icon {
+      width: 34px; height: 34px;
+      background: var(--accent); border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 0.9rem;
     }
-    .disclaimer {
-      font-size: 0.8rem;
-      max-width: 700px;
-      margin: 1.5rem auto 0;
-      padding-top: 1.5rem;
-      border-top: 1px solid #374151;
+    .footer-desc { font-size: 0.85rem; line-height: 1.6; max-width: 280px; }
+    .footer-center { text-align: center; }
+    .footer-copy {
+      font-size: 0.8rem; color: #475569; text-align: right;
     }
-
-    @media (max-width: 768px) {
-      .nav-toggle {
-        display: block;
-      }
-
-      .nav-container {
-        display: none;
-      }
-
-      .hero h1 { font-size: 1.75rem; }
-      .section { padding: 2rem 0; }
+    .footer-divider {
+      border: none; border-top: 1px solid #1e2633;
+      margin: 2rem 0 1rem;
+    }
+    .footer-disclaimers {
+      font-size: 0.78rem; color: #475569;
+      text-align: center; line-height: 1.7;
     }
 
-    @media (min-width: 1024px) {
-      .info-cards {
-        grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
-      }
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .nav-desktop { display: none; }
+      .burger { display: block; }
+      .info-grid { grid-template-columns: 1fr; }
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: 1; }
+      .footer-inner { grid-template-columns: 1fr; }
+      .footer-copy { text-align: left; }
+      .contact-divider { display: none; }
+    }
+    @media (max-width: 640px) {
+      .section { padding: 3rem 0; }
+      .hero { padding: 3.5rem 0 3rem; }
+      .form-wrap { padding: 1.75rem; }
+      .contact-strip { padding: 1.5rem; }
     }
   </style>
-  <link rel="stylesheet" href="./redesign.css" />
 </head>
 <body>
-<!-- Header -->
- <!-- Header -->
+
+<!-- ─── HEADER ─────────────────────────────── -->
 <header>
-<div class="container">
-<div class="header-content">
-<div class="logo">
-<i class="fas fa-shield-alt"></i>
-<span>EduSafe</span>
-</div>
-<button class="nav-toggle" id="navToggle">
-<i class="fas fa-bars"></i>
-</button>
-<div class="nav-container">
-<div class="lang-selector">
-<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
-<option value="ru">Русский</option>
-<option value="en">English</option>
-</select>
-</div>
-<nav class="nav">
-<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
-<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
-<a class="active" href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-</nav>
-</div>
-</div>
-</div>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<div class="mobile-menu-content">
-<div class="mobile-header">
-<div class="logo" style="font-size: 1.25rem;">
-<i class="fas fa-shield-alt"></i>
-<span>EduSafe</span>
-</div>
-<button class="close-btn" id="closeMenu">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<nav class="mobile-nav">
-<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
-<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-<a href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
-<a class="active" href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-</nav>
-</div>
-</div>
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text" id="logoText">EduSafe</span>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="index.html" id="navHome"><i class="fas fa-home"></i> Главная</a>
+        <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> Теория</a>
+        <a href="choice-sp.html" id="navPractice"><i class="fas fa-lightbulb"></i> Практика</a>
+        <a href="videos.html" id="navVideo"><i class="fas fa-file-video"></i> Видео</a>
+        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> Викторина</a>
+        <a href="blog.html" id="navBlog"><i class="fas fa-pen"></i> Блог</a>
+        <a href="contact.html" class="active" id="navComplaint"><i class="fas fa-envelope"></i> Контакты</a>
+      </nav>
+
+      <div class="header-right">
+        <select class="lang-select" id="languageSelector">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+        </select>
+        <button class="burger" id="navToggle" aria-label="Меню">
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </div>
 </header>
-<!-- Hero -->
+
+<!-- ─── MOBILE DRAWER ─────────────────────── -->
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text" id="mobileLogoText">EduSafe</span>
+      </a>
+      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fas fa-home"></i> <span id="mobileNavHome">Главная</span></a>
+      <a href="theory.html"><i class="fas fa-book-open"></i> <span id="mobileNavTheory">Теория</span></a>
+      <a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span id="mobileNavPractice">Практика</span></a>
+      <a href="videos.html"><i class="fas fa-file-video"></i> <span id="mobileNavVideo">Видео</span></a>
+      <a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span id="mobileNavQuiz">Викторина</span></a>
+      <a href="blog.html"><i class="fas fa-pen"></i> <span id="mobileNavBlog">Блог</span></a>
+      <a href="contact.html" class="active"><i class="fas fa-envelope"></i> <span id="mobileNavComplaint">Контакты</span></a>
+    </nav>
+    <div class="drawer-lang">
+      <select class="lang-select" id="mobileLanguageSelector" style="width:100%;">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HERO ───────────────────────────────── -->
 <section class="hero">
-<div class="container">
-<h1 id="heroTitle">Подача жалобы в Национальный центр</h1>
-<p id="heroSubtitle">Если нарушены Ваши права в сфере персональных данных</p>
-</div>
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-envelope"></i>
+        <span id="heroBadge">Обратная связь · EduSafe</span>
+      </div>
+      <h1 id="heroTitle">Контакты и <span>обратная связь</span></h1>
+      <p class="hero-sub" id="heroSubtitle">Задайте вопрос по ресурсу, сообщите об ошибке или подайте жалобу в Национальный центр защиты персональных данных.</p>
+    </div>
+  </div>
 </section>
-<!-- Content -->
+
+<!-- ─── MAIN CONTENT ──────────────────────── -->
 <section class="section">
-<div class="container">
-<h2 class="section-title" id="pageTitle">Подача жалобы в Национальный центр защиты персональных данных</h2>
-<div class="info-cards">
-<div class="info-card">
-<h3><i class="fas fa-info-circle"></i> <span id="card1Title">Куда подавать</span></h3>
-<p id="card1Text1">Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:</p>
-<p id="card1Text2"><strong>ул. К. Цеткин, 24-3, 220004, г. Минск</strong></p>
-<p id="card1Text3">Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.</p>
-</div>
-<div class="info-card">
-<h3><i class="fas fa-clipboard-list"></i> <span id="card2Title">Что указывать</span></h3>
-<ul>
-<li id="req1">ФИО, адрес, контактные данные заявителя</li>
-<li id="req2">Наименование/ФИО лица, обрабатывающего персональные данные</li>
-<li id="req3">Суть нарушения и требуемая защита</li>
-<li id="req4">Дата и личная подпись (в бумажной версии)</li>
-</ul>
-</div>
-<div class="info-card">
-<h3><i class="fas fa-paperclip"></i> <span id="card3Title">Приложения</span></h3>
-<ul>
-<li id="att1">Документы, подтверждающие нарушение</li>
-<li id="att2">Фотографии, скриншоты, переписки</li>
-<li id="att3">Копии запросов и ответов</li>
-</ul>
-</div>
-<div class="info-card">
-<h3><i class="fas fa-globe"></i> <span id="card4Title">Онлайн подача</span></h3>
-<p id="card4Text1">Вы можете подать жалобу или предложение онлайн через платформу <a href="https://обращения.бел" target="_blank">обращения.бел</a>.</p>
-<p id="card4Text2">Выберите "Национальный центр защиты персональных данных" в качестве получателя.</p>
-<a class="btn" href="https://обращения.бел" id="card4Btn" target="_blank">Перейти на сайт</a>
-</div>
-</div>
-<h3 class="section-title" id="formTitle" style="font-size: 1.5rem;">Форма для подачи вопросов по ресурсу</h3>
-<div class="form-container">
-<form action="./thanks.html" id="resourceForm" method="POST">
-<input name="form-name" type="hidden" value="resourceForm"/>
-<div class="form-group">
-<label for="name" id="labelName">Имя</label>
-<input id="name" name="username" required="" type="text"/>
-</div>
-<div class="form-group">
-<label for="email" id="labelEmail">Email (для обратной связи)</label>
-<input id="email" name="email" required="" type="email"/>
-</div>
-<div class="form-group">
-<label for="questionType" id="labelType">Тип вопроса</label>
-<select id="questionType" name="type" required="">
-<option id="optSelect" value="">Выберите тип</option>
-<option id="optTech" value="technical">Технические проблемы</option>
-<option id="optContent" value="content">Содержание ресурса</option>
-<option id="optPolicy" value="policy">Вопросы по политике обработки данных</option>
-<option id="optOther" value="other">Другое</option>
-</select>
-</div>
-<div class="form-group">
-<label for="message" id="labelMessage">Ваш вопрос</label>
-<textarea id="message" name="alltext" placeholder="Опишите ваш вопрос или проблему..." required=""></textarea>
-</div>
-<button class="btn btn-full" id="submitBtn" type="submit">Отправить вопрос</button>
-</form>
-</div>
-</div>
+  <div class="container">
+
+    <!-- Email contact strip -->
+    <div class="contact-strip anim">
+      <div class="contact-strip-icon">
+        <i class="fas fa-at"></i>
+      </div>
+      <div class="contact-strip-info">
+        <div class="label" id="emailLabel">Электронная почта сайта</div>
+        <a href="mailto:info@edusafe.site" id="emailLink">info@edusafe.site</a>
+      </div>
+      <div class="contact-divider"></div>
+      <div class="contact-strip-icon" style="background: #ecfeff; color: var(--teal);">
+        <i class="fas fa-clock"></i>
+      </div>
+      <div class="contact-strip-info">
+        <div class="label" id="responseLabel">Срок ответа</div>
+        <span style="font-size: 0.95rem; font-weight: 600; color: var(--ink);" id="responseTime">В течение 3 рабочих дней</span>
+      </div>
+    </div>
+
+    <!-- Info cards -->
+    <div class="section-header centered anim anim-delay-1">
+      <span class="section-tag" id="sectionTag">Жалоба</span>
+      <h2 class="section-title" id="sectionTitle">Подача жалобы в Национальный центр</h2>
+      <p class="section-sub" id="sectionSub">Если нарушены Ваши права в сфере персональных данных — вы можете обратиться в уполномоченный государственный орган.</p>
+    </div>
+
+    <div class="info-grid">
+      <div class="info-card info-card-1 anim anim-delay-1">
+        <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
+        <h3 id="card1Title">Куда подавать</h3>
+        <p id="card1Text1">Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:</p>
+        <p><strong id="card1Text2">ул. К. Цеткин, 24-3, 220004, г. Минск</strong></p>
+        <p id="card1Text3">Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.</p>
+      </div>
+
+      <div class="info-card info-card-2 anim anim-delay-2">
+        <div class="card-icon"><i class="fas fa-clipboard-list"></i></div>
+        <h3 id="card2Title">Что указывать</h3>
+        <ul>
+          <li id="req1">ФИО, адрес, контактные данные заявителя</li>
+          <li id="req2">Наименование/ФИО лица, обрабатывающего персональные данные</li>
+          <li id="req3">Суть нарушения и требуемая защита</li>
+          <li id="req4">Дата и личная подпись (в бумажной версии)</li>
+        </ul>
+      </div>
+
+      <div class="info-card info-card-3 anim anim-delay-3">
+        <div class="card-icon"><i class="fas fa-paperclip"></i></div>
+        <h3 id="card3Title">Приложения</h3>
+        <ul>
+          <li id="att1">Документы, подтверждающие нарушение</li>
+          <li id="att2">Фотографии, скриншоты, переписки</li>
+          <li id="att3">Копии запросов и ответов</li>
+        </ul>
+        <p style="margin-top: 1rem; font-size: 0.82rem; background: var(--mint); padding: 0.6rem 0.9rem; border-radius: var(--radius-sm);" id="attNote">
+          <i class="fas fa-info-circle" style="color: #059669;"></i> При подаче в электронном виде — должна быть ЭЦП.
+        </p>
+      </div>
+
+      <div class="info-card info-card-4 anim anim-delay-4">
+        <div class="card-icon"><i class="fas fa-globe"></i></div>
+        <h3 id="card4Title">Онлайн подача</h3>
+        <p id="card4Text1">Вы можете подать жалобу или предложение онлайн через платформу <a href="https://обращения.бел" target="_blank" style="color: var(--accent);">обращения.бел</a>.</p>
+        <p id="card4Text2" style="margin-top: 0.6rem;">Выберите «Национальный центр защиты персональных данных» в качестве получателя.</p>
+        <a href="https://обращения.бел" target="_blank" class="btn-card" id="card4Btn">
+          <i class="fas fa-external-link-alt"></i> Перейти на сайт
+        </a>
+      </div>
+    </div>
+
+    <!-- Feedback form -->
+    <div class="section-header centered anim">
+      <span class="section-tag" id="formTag">Форма</span>
+      <h2 class="section-title" id="formTitle">Форма обратной связи</h2>
+      <p class="section-sub" id="formSubtitle">Ваше сообщение будет отправлено на почту ресурса. Мы ответим в течение нескольких рабочих дней.</p>
+    </div>
+
+    <div class="form-wrap anim">
+      <!-- Success state -->
+      <div class="form-success" id="formSuccess">
+        <div class="form-success-icon"><i class="fas fa-check"></i></div>
+        <h3 id="successTitle">Сообщение отправлено!</h3>
+        <p id="successText">Спасибо за обращение. Мы получили ваш вопрос и ответим на указанный email в течение 3 рабочих дней.</p>
+      </div>
+
+      <!-- Form -->
+      <form id="contactForm">
+        <!-- Web3Forms access key — получите бесплатный ключ на web3forms.com и вставьте сюда -->
+        <input type="hidden" name="access_key" value="88cfe6d6-aee2-4fdd-aeda-f5b7174de110">
+        <input type="hidden" name="subject" value="Обращение с сайта EduSafe">
+        <input type="hidden" name="from_name" value="EduSafe Contact Form">
+        <input type="hidden" name="redirect" value="false">
+        <!-- Honeypot anti-spam -->
+        <input type="checkbox" name="botcheck" style="display: none;">
+
+        <div class="form-grid">
+          <div class="form-group">
+            <label for="fname" id="labelName">Имя</label>
+            <input type="text" id="fname" name="name" placeholder="Ваше имя" required>
+          </div>
+
+          <div class="form-group">
+            <label for="femail" id="labelEmail">Email для ответа</label>
+            <input type="email" id="femail" name="email" placeholder="example@mail.ru" required>
+          </div>
+
+          <div class="form-group full">
+            <label for="ftype" id="labelType">Тип обращения</label>
+            <select id="ftype" name="type" required>
+              <option value="" id="optSelect">Выберите тип</option>
+              <option value="Технические проблемы" id="optTech">Технические проблемы</option>
+              <option value="Содержание ресурса" id="optContent">Содержание ресурса</option>
+              <option value="Вопросы по политике обработки данных" id="optPolicy">Вопросы по политике обработки данных</option>
+              <option value="Другое" id="optOther">Другое</option>
+            </select>
+          </div>
+
+          <div class="form-group full">
+            <label for="fmessage" id="labelMessage">Сообщение</label>
+            <textarea id="fmessage" name="message" placeholder="Опишите ваш вопрос или проблему…" required></textarea>
+          </div>
+        </div>
+
+        <div class="form-submit-row">
+          <p class="form-note">
+            <i class="fas fa-lock"></i>
+            <span id="formNote">Данные отправляются на info@edusafe.site через защищённый канал.</span>
+          </p>
+          <button type="submit" class="btn-submit" id="submitBtn">
+            <i class="fas fa-paper-plane"></i>
+            <span id="submitText">Отправить сообщение</span>
+          </button>
+        </div>
+      </form>
+    </div>
+
+  </div>
 </section>
-<!-- Footer -->
+
+<!-- ─── FOOTER ────────────────────────────── -->
 <footer>
-<div class="container">
-<div class="footer-content">
-<div class="footer-logo">
-<i class="fas fa-shield-alt"></i>
-<span id="footerLogoText">EduSafe</span>
-</div>
-<p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
-<p id="footerCopyright" style="margin-top: 0.5rem;">© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»</p>
-</div>
-<div class="disclaimer">
-<span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br/>
-<span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
-</div>
-</div>
+  <div class="container">
+    <div class="footer-inner">
+      <div>
+        <div class="footer-logo">
+          <div class="footer-logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span id="footerLogoText">EduSafe</span>
+        </div>
+        <p class="footer-desc" id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+      </div>
+      <div class="footer-center">
+        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
+          <i class="fas fa-envelope" style="color: var(--accent-light);"></i>
+          <a href="mailto:info@edusafe.site" style="color: #93c5fd; text-decoration: none;">info@edusafe.site</a>
+        </p>
+      </div>
+      <div class="footer-copy">
+        <p id="footerCopyright">© 2025 Невдах Александр,<br>УО «Белорусский государственный экономический университет»</p>
+      </div>
+    </div>
+    <hr class="footer-divider">
+    <p class="footer-disclaimers">
+      <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
+      <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+    </p>
+  </div>
 </footer>
+
 <script>
-    // Translations
-    const translations = {
-      ru: {
-        logoText: "EduSafe",
-        navHome: "Главная",
-        navTheory: "Теория",
-        navPractice: "Практика",
-        navQuiz: "Викторина",
-        navComplaint: "Жалоба",
-        heroTitle: "Подача жалобы в Национальный центр",
-        heroSubtitle: "Если нарушены Ваши права в сфере персональных данных",
-        pageTitle: "Подача жалобы в Национальный центр защиты персональных данных",
-        card1Title: "Куда подавать",
-        card1Text1: "Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:",
-        card1Text2: "ул. К. Цеткин, 24-3, 220004, г. Минск",
-        card1Text3: "Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.",
-        card2Title: "Что указывать",
-        req1: "ФИО, адрес, контактные данные заявителя",
-        req2: "Наименование/ФИО лица, обрабатывающего персональные данные",
-        req3: "Суть нарушения и требуемая защита",
-        req4: "Дата и личная подпись (в бумажной версии)",
-        card3Title: "Приложения",
-        att1: "Документы, подтверждающие нарушение",
-        att2: "Фотографии, скриншоты, переписки",
-        att3: "Копии запросов и ответов",
-        attNote: "При подаче в электронном виде — должна быть ЭЦП.",
-        card4Title: "Онлайн подача",
-        card4Text1: "Вы можете подать жалобу или предложение онлайн через платформу <a href=\"https://обращения.бел\" target=\"_blank\">обращения.бел</a>.",
-        card4Text2: "Выберите \"Национальный центр защиты персональных данных\" в качестве получателя.",
-        card4Btn: "Перейти на сайт",
-        formTitle: "Форма для подачи вопросов по ресурсу",
-        labelName: "Имя",
-        labelEmail: "Email (для обратной связи)",
-        labelType: "Тип вопроса",
-        optSelect: "Выберите тип",
-        optTech: "Технические проблемы",
-        optContent: "Содержание ресурса",
-        optPolicy: "Вопросы по политике обработки данных",
-        optOther: "Другое",
-        labelMessage: "Ваш вопрос",
-        submitBtn: "Отправить вопрос",
-        footerLogoText: "EduSafe",
-        footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
-        footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государтсвенный экономический университет»",
-        footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
-        footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь."
-      },
-      en: {
-        logoText: "EduSafe",
-        navHome: "Home",
-        navTheory: "Theory",
-        navPractice: "Practice",
-        navQuiz: "Quiz",
-        navComplaint: "Complaint",
-        heroTitle: "Filing a Complaint with the National Center",
-        heroSubtitle: "If your rights in the field of personal data have been violated",
-        pageTitle: "Filing a Complaint with the National Center for Personal Data Protection",
-        card1Title: "Where to Submit",
-        card1Text1: "Written complaints are submitted in person (by courier) or sent by mail to:",
-        card1Text2: "24-3 K. Zetkin St., 220004, Minsk",
-        card1Text3: "Complaints are reviewed no later than one month from the day following their registration.",
-        card2Title: "What to Include",
-        req1: "Full name, address, and contact details of the applicant",
-        req2: "Name/full name of the person/entity processing personal data",
-        req3: "Description of the violation and requested remedy",
-        req4: "Date and personal signature (for paper submissions)",
-        card3Title: "Attachments",
-        att1: "Documents confirming the violation",
-        att2: "Photos, screenshots, correspondence",
-        att3: "Copies of requests and responses",
-        attNote: "For electronic submissions — a qualified electronic signature (QES) is required.",
-        card4Title: "Online Submission",
-        card4Text1: "You can submit a complaint or proposal online through the <a href=\"https://обращения.бел\" target=\"_blank\">obrashchenie.bel</a> platform.",
-        card4Text2: "Select \"National Center for Personal Data Protection\" as the recipient.",
-        card4Btn: "Go to website",
-        formTitle: "Form for Questions About the Resource",
-        labelName: "Name",
-        labelEmail: "Email (for reply)",
-        labelType: "Question Type",
-        optSelect: "Select type",
-        optTech: "Technical issues",
-        optContent: "Resource content",
-        optPolicy: "Data processing policy questions",
-        optOther: "Other",
-        labelMessage: "Your question",
-        submitBtn: "Submit Question",
-        footerLogoText: "EduSafe",
-        footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
-        footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
-        footerDisclaimer1: "The resource does not use cookies and does not collect personal data of users.",
-        footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus."
-      }
-    };
-
-    // === SAFE UPDATE FUNCTION (prevents "Cannot set properties of null") ===
-    function safeSetText(selector, text) {
-      const el = document.querySelector(selector);
-      if (el) {
-        if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA' || el.tagName === 'SELECT') {
-          // For form labels / placeholders — skip (not needed here, but safe)
-        } else {
-          el.textContent = text;
-        }
-      }
-      // Else: silently ignore missing elements (e.g. hidden content)
+  /* ─── TRANSLATIONS ────────────────────── */
+  const translations = {
+    ru: {
+      logoText: "EduSafe",
+      navHome: "Главная", navTheory: "Теория", navPractice: "Практика",
+      navVideo: "Видео", navQuiz: "Викторина", navBlog: "Блог", navComplaint: "Контакты",
+      heroBadge: "Обратная связь · EduSafe",
+      heroTitle: 'Контакты и <span>обратная связь</span>',
+      heroSubtitle: "Задайте вопрос по ресурсу, сообщите об ошибке или подайте жалобу в Национальный центр защиты персональных данных.",
+      emailLabel: "Электронная почта сайта",
+      responseLabel: "Срок ответа",
+      responseTime: "В течение 3 рабочих дней",
+      sectionTag: "Жалоба",
+      sectionTitle: "Подача жалобы в Национальный центр",
+      sectionSub: "Если нарушены Ваши права в сфере персональных данных — вы можете обратиться в уполномоченный государственный орган.",
+      card1Title: "Куда подавать",
+      card1Text1: "Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:",
+      card1Text2: "ул. К. Цеткин, 24-3, 220004, г. Минск",
+      card1Text3: "Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.",
+      card2Title: "Что указывать",
+      req1: "ФИО, адрес, контактные данные заявителя",
+      req2: "Наименование/ФИО лица, обрабатывающего персональные данные",
+      req3: "Суть нарушения и требуемая защита",
+      req4: "Дата и личная подпись (в бумажной версии)",
+      card3Title: "Приложения",
+      att1: "Документы, подтверждающие нарушение",
+      att2: "Фотографии, скриншоты, переписки",
+      att3: "Копии запросов и ответов",
+      attNote: "При подаче в электронном виде — должна быть ЭЦП.",
+      card4Title: "Онлайн подача",
+      card4Text1: 'Вы можете подать жалобу или предложение онлайн через платформу <a href="https://обращения.бел" target="_blank" style="color: var(--accent);">обращения.бел</a>.',
+      card4Text2: "Выберите «Национальный центр защиты персональных данных» в качестве получателя.",
+      card4Btn: "Перейти на сайт",
+      formTag: "Форма",
+      formTitle: "Форма обратной связи",
+      formSubtitle: "Ваше сообщение будет отправлено на почту ресурса. Мы ответим в течение нескольких рабочих дней.",
+      labelName: "Имя", labelEmail: "Email для ответа", labelType: "Тип обращения",
+      optSelect: "Выберите тип", optTech: "Технические проблемы",
+      optContent: "Содержание ресурса", optPolicy: "Вопросы по политике обработки данных", optOther: "Другое",
+      labelMessage: "Сообщение",
+      formNote: "Данные отправляются на info@edusafe.site через защищённый канал.",
+      submitText: "Отправить сообщение",
+      successTitle: "Сообщение отправлено!",
+      successText: "Спасибо за обращение. Мы получили ваш вопрос и ответим на указанный email в течение 3 рабочих дней.",
+      footerDesc: "Республиканский информационно-практический ресурс для педагогов и студентов",
+      footerCopyright: "© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»",
+      footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
+      footerDisclaimer2: "Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь."
+    },
+    en: {
+      logoText: "EduSafe",
+      navHome: "Home", navTheory: "Theory", navPractice: "Practice",
+      navVideo: "Video", navQuiz: "Quiz", navBlog: "Blog", navComplaint: "Contacts",
+      heroBadge: "Feedback · EduSafe",
+      heroTitle: 'Contacts and <span>feedback</span>',
+      heroSubtitle: "Ask a question about the resource, report an error, or file a complaint with the National Center for Personal Data Protection.",
+      emailLabel: "Website email",
+      responseLabel: "Response time",
+      responseTime: "Within 3 business days",
+      sectionTag: "Complaint",
+      sectionTitle: "Filing a Complaint with the National Center",
+      sectionSub: "If your personal data rights have been violated, you may contact the authorized state body.",
+      card1Title: "Where to Submit",
+      card1Text1: "Written complaints are submitted in person (by courier) or sent by mail to:",
+      card1Text2: "24-3 K. Zetkin St., 220004, Minsk",
+      card1Text3: "Complaints are reviewed no later than one month from the day following their registration.",
+      card2Title: "What to Include",
+      req1: "Full name, address, and contact details of the applicant",
+      req2: "Name/full name of the person/entity processing personal data",
+      req3: "Description of the violation and requested remedy",
+      req4: "Date and personal signature (for paper submissions)",
+      card3Title: "Attachments",
+      att1: "Documents confirming the violation",
+      att2: "Photos, screenshots, correspondence",
+      att3: "Copies of requests and responses",
+      attNote: "For electronic submissions — a qualified electronic signature (QES) is required.",
+      card4Title: "Online Submission",
+      card4Text1: 'You can submit a complaint or proposal online via the <a href="https://обращения.бел" target="_blank" style="color: var(--accent);">obrashchenie.bel</a> platform.',
+      card4Text2: 'Select "National Center for Personal Data Protection" as the recipient.',
+      card4Btn: "Go to website",
+      formTag: "Form",
+      formTitle: "Feedback Form",
+      formSubtitle: "Your message will be sent to the resource email. We will reply within a few business days.",
+      labelName: "Name", labelEmail: "Reply email", labelType: "Question type",
+      optSelect: "Select type", optTech: "Technical issues",
+      optContent: "Resource content", optPolicy: "Data processing policy", optOther: "Other",
+      labelMessage: "Message",
+      formNote: "Data is sent to info@edusafe.site via a secure channel.",
+      submitText: "Send message",
+      successTitle: "Message sent!",
+      successText: "Thank you for reaching out. We received your message and will reply to the provided email within 3 business days.",
+      footerDesc: "Republican Informational-Practical Resource for Teachers and Students",
+      footerCopyright: "© 2025 Nevdakh Alexander, Belarusian State Economic University",
+      footerDisclaimer1: "The resource does not use cookies and does not collect personal data of users.",
+      footerDisclaimer2: "All materials are for informational and educational purposes and comply with the current legislation of the Republic of Belarus."
     }
+  };
 
-    function safeSetInnerHTML(selector, html) {
-      const el = document.querySelector(selector);
-      if (el) el.innerHTML = html;
-    }
+  let currentLang = 'ru';
 
-    // === Mobile Menu & Language Logic ===
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
+  function setText(id, text) {
+    const el = document.getElementById(id);
+    if (el) el.textContent = text;
+  }
+  function setHTML(id, html) {
+    const el = document.getElementById(id);
+    if (el) el.innerHTML = html;
+  }
 
-    function openMenu() {
-      mobileMenu.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
+  function updateLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    currentLang = lang;
 
-    function closeMenuHandler() {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-    }
+    ['logoText','mobileLogoText','footerLogoText'].forEach(id => setText(id, t.logoText));
+    setHTML('heroTitle', t.heroTitle);
+    setText('heroBadge', t.heroBadge);
+    setText('heroSubtitle', t.heroSubtitle);
+    setText('emailLabel', t.emailLabel);
+    setText('responseLabel', t.responseLabel);
+    setText('responseTime', t.responseTime);
+    setText('sectionTag', t.sectionTag);
+    setText('sectionTitle', t.sectionTitle);
+    setText('sectionSub', t.sectionSub);
+    setText('card1Title', t.card1Title);
+    setText('card1Text1', t.card1Text1);
+    setText('card1Text2', t.card1Text2);
+    setText('card1Text3', t.card1Text3);
+    setText('card2Title', t.card2Title);
+    setText('req1', t.req1); setText('req2', t.req2);
+    setText('req3', t.req3); setText('req4', t.req4);
+    setText('card3Title', t.card3Title);
+    setText('att1', t.att1); setText('att2', t.att2); setText('att3', t.att3);
+    setText('attNote', t.attNote);
+    setText('card4Title', t.card4Title);
+    setHTML('card4Text1', t.card4Text1);
+    setText('card4Text2', t.card4Text2);
+    setText('card4Btn', t.card4Btn);
+    setText('formTag', t.formTag);
+    setText('formTitle', t.formTitle);
+    setText('formSubtitle', t.formSubtitle);
+    setText('labelName', t.labelName); setText('labelEmail', t.labelEmail);
+    setText('labelType', t.labelType);
+    setText('optSelect', t.optSelect); setText('optTech', t.optTech);
+    setText('optContent', t.optContent); setText('optPolicy', t.optPolicy);
+    setText('optOther', t.optOther);
+    setText('labelMessage', t.labelMessage);
+    setText('formNote', t.formNote);
+    setText('submitText', t.submitText);
+    setText('successTitle', t.successTitle);
+    setText('successText', t.successText);
+    setText('footerDesc', t.footerDesc);
+    setText('footerCopyright', t.footerCopyright);
+    setText('footerDisclaimer1', t.footerDisclaimer1);
+    setText('footerDisclaimer2', t.footerDisclaimer2);
 
-    navToggle.addEventListener('click', openMenu);
-    closeMenu.addEventListener('click', closeMenuHandler);
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMenuHandler();
+    // Nav
+    const navMap = {Home:'navHome',Theory:'navTheory',Practice:'navPractice',Video:'navVideo',Quiz:'navQuiz',Blog:'navBlog',Complaint:'navComplaint'};
+    Object.entries(navMap).forEach(([k,v]) => {
+      setText('nav'+k, t[v] || '');
+      setText('mobileNav'+k, t[v] || '');
     });
 
-    // Sync language selectors
-    function syncLanguageSelectors(lang) {
-      document.getElementById('languageSelector').value = lang;
-      document.getElementById('mobileLanguageSelector').value = lang;
-    }
+    const ta = document.getElementById('fmessage');
+    if (ta) ta.placeholder = lang === 'ru' ? 'Опишите ваш вопрос или проблему…' : 'Describe your question or issue…';
 
-    // Update language
-    function updateLanguage(langCode) {
-      const t = translations[langCode];
-      if (!t) return;
+    document.documentElement.lang = lang;
+    document.getElementById('languageSelector').value = lang;
+    document.getElementById('mobileLanguageSelector').value = lang;
+  }
 
-      // Nav & Header
-      safeSetText('#logoText', t.logoText);
-      safeSetText('#mobileLogoText', t.logoText);
-      safeSetText('#footerLogoText', t.logoText);
-      
-      // Nav links (text inside <span>)
-      safeSetInnerHTML('#navHome span', t.navHome);
-      safeSetInnerHTML('#navTheory span', t.navTheory);
-      safeSetInnerHTML('#navPractice span', t.navPractice);
-      safeSetInnerHTML('#navQuiz span', t.navQuiz);
-      safeSetInnerHTML('#navComplaint span', t.navComplaint);
-      safeSetInnerHTML('#mobileNavHome span', t.navHome);
-      safeSetInnerHTML('#mobileNavTheory span', t.navTheory);
-      safeSetInnerHTML('#mobileNavPractice span', t.navPractice);
-      safeSetInnerHTML('#mobileNavQuiz span', t.navQuiz);
-      safeSetInnerHTML('#mobileNavComplaint span', t.navComplaint);
+  /* ─── FORM SUBMISSION (Web3Forms) ──────── */
+  const form = document.getElementById('contactForm');
+  const formSuccess = document.getElementById('formSuccess');
+  const submitBtn = document.getElementById('submitBtn');
 
-      // Page content
-      safeSetText('#heroTitle', t.heroTitle);
-      safeSetText('#heroSubtitle', t.heroSubtitle);
-      safeSetText('#pageTitle', t.pageTitle);
-      safeSetText('#card1Title', t.card1Title);
-      safeSetText('#card1Text1', t.card1Text1);
-      safeSetText('#card1Text2', t.card1Text2);
-      safeSetText('#card1Text3', t.card1Text3);
-      safeSetText('#card2Title', t.card2Title);
-      safeSetText('#req1', t.req1);
-      safeSetText('#req2', t.req2);
-      safeSetText('#req3', t.req3);
-      safeSetText('#req4', t.req4);
-      safeSetText('#card3Title', t.card3Title);
-      safeSetText('#att1', t.att1);
-      safeSetText('#att2', t.att2);
-      safeSetText('#att3', t.att3);
-      safeSetText('#attNote', t.attNote);
-      safeSetText('#card4Title', t.card4Title);
-      safeSetInnerHTML('#card4Text1', t.card4Text1);
-      safeSetText('#card4Text2', t.card4Text2);
-      safeSetText('#card4Btn', t.card4Btn);
-      safeSetText('#formTitle', t.formTitle);
-      safeSetText('#labelName', t.labelName);
-      safeSetText('#labelEmail', t.labelEmail);
-      safeSetText('#labelType', t.labelType);
-      safeSetText('#optSelect', t.optSelect);
-      safeSetText('#optTech', t.optTech);
-      safeSetText('#optContent', t.optContent);
-      safeSetText('#optPolicy', t.optPolicy);
-      safeSetText('#optOther', t.optOther);
-      safeSetText('#labelMessage', t.labelMessage);
-      safeSetText('#submitBtn', t.submitBtn);
-      safeSetText('#footerDesc', t.footerDesc);
-      safeSetText('#footerCopyright', t.footerCopyright);
-      safeSetText('#footerDisclaimer1', t.footerDisclaimer1);
-      safeSetText('#footerDisclaimer2', t.footerDisclaimer2);
+  form.addEventListener('submit', async function(e) {
+    e.preventDefault();
 
-      // Update form placeholder (not translated, but safe)
-      const textarea = document.getElementById('message');
-      if (textarea) {
-        textarea.placeholder = langCode === 'ru' 
-          ? "Опишите ваш вопрос или проблему..." 
-          : "Describe your question or issue...";
-      }
+    submitBtn.disabled = true;
+    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Отправка…</span>';
 
-      document.documentElement.lang = langCode;
-      syncLanguageSelectors(langCode);
-    }
+    const formData = new FormData(form);
 
-    // Event listeners for language change
-    document.getElementById('languageSelector')?.addEventListener('change', (e) => {
-      updateLanguage(e.target.value);
-    });
-
-    document.getElementById('mobileLanguageSelector')?.addEventListener('change', (e) => {
-      updateLanguage(e.target.value);
-    });
-
-    // Close mobile menu on nav link click
-    document.querySelectorAll('.nav a, .mobile-nav a').forEach(link => {
-      link.addEventListener('click', closeMenuHandler);
-    });
-
-    // Form submission (optional client-side feedback)
-    const form = document.getElementById('resourceForm');
-    if (form) {
-      form.addEventListener('submit', function(e) {
-        // Note: Netlify form handling works via `name` and `netlify` attr
-        // This is just client-side UX — no real submission here
-        // Uncomment if you want local feedback:
-        /*
-        e.preventDefault();
-        alert(lang === 'ru' 
-          ? 'Спасибо за ваш вопрос! Он будет рассмотрен в ближайшее время.' 
-          : 'Thank you for your question! It will be reviewed shortly.');
-        this.reset();
-        */
+    // Web3Forms automatically routes to the email tied to access_key.
+    // Register at https://web3forms.com to get your free access key.
+    try {
+      const res = await fetch('https://api.web3forms.com/submit', {
+        method: 'POST',
+        body: formData
       });
-    }
+      const data = await res.json();
 
-    // Initialize
-    updateLanguage('ru');
-  </script>
+      if (data.success) {
+        form.style.display = 'none';
+        formSuccess.classList.add('show');
+      } else {
+        throw new Error(data.message || 'Ошибка отправки');
+      }
+    } catch (err) {
+      submitBtn.disabled = false;
+      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="submitText">' +
+        (currentLang === 'ru' ? 'Отправить сообщение' : 'Send message') + '</span>';
+      alert(currentLang === 'ru'
+        ? 'Не удалось отправить сообщение. Проверьте access_key Web3Forms или напишите напрямую на info@edusafe.site'
+        : 'Failed to send. Please check the Web3Forms access_key or write directly to info@edusafe.site');
+    }
+  });
+
+  /* ─── MOBILE DRAWER ─────────────────── */
+  const overlay = document.getElementById('drawerOverlay');
+  document.getElementById('navToggle').addEventListener('click', () => {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
+
+  /* ─── LANGUAGE SELECTORS ────────────── */
+  document.getElementById('languageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+  document.getElementById('mobileLanguageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+
+  /* ─── SCROLL ANIMATIONS ─────────────── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+  /* ─── INIT ───────────────────────────── */
+  updateLanguage('ru');
+</script>
 </body>
 </html>

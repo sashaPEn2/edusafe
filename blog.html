@@ -1,599 +1,1072 @@
 <!DOCTYPE html>
-
-<html lang="ru">
+<html lang="ru" id="htmlRoot">
 <head>
-<meta charset="utf-8"/>
-<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
-<title>Блог EduSafe — Информационная безопасность</title>
-<link href="./favicon.svg" rel="icon" type="image/svg+xml"/>
-<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.browser.min.js"></script>
-<style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Блог EduSafe — актуальные новости и советы по защите персональных данных в образовании.">
+  <title>Блог — EduSafe</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.browser.min.js"></script>
+
+  <style>
     :root {
-      --blue-900: #1e3a8a;
-      --blue-700: #1d4ed8;
-      --gray-50: #f9fafb;
-      --gray-100: #f3f4f6;
-      --gray-600: #4b5563;
-      --gray-900: #111827;
+      --ink: #0d1117;
+      --ink-soft: #1e2633;
+      --accent: #0057d9;
+      --accent-light: #3b82f6;
+      --accent-pale: #dbeafe;
+      --teal: #0ea5c7;
+      --mint: #d1fae5;
+      --surface: #ffffff;
+      --surface-2: #f5f7fb;
+      --border: #e2e8f0;
+      --text-muted: #64748b;
       --white: #ffffff;
+      --radius-sm: 8px;
+      --radius: 16px;
+      --radius-lg: 24px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
+      --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
     }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      background: var(--gray-50);
-      color: var(--gray-900);
-      margin: 0;
-      line-height: 1.6;
+      font-family: 'Golos Text', sans-serif;
+      background: var(--surface-2);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
     }
 
-/* Стилизация содержимого статьи */
-.post-content h1, .post-content h2, .post-content h3 {
-    color: var(--blue-900);
-    margin-top: 2rem;
-    margin-bottom: 1rem;
-    line-height: 1.3;
-}
-
-.post-content h1 { font-size: 2.2rem; }
-.post-content h2 { font-size: 1.8rem; border-bottom: 2px solid var(--gray-100); padding-bottom: 0.5rem; }
-.post-content h3 { font-size: 1.5rem; }
-
-.post-content strong {
-    color: #000;
-    font-weight: 700;
-}
-
-.post-content em {
-    font-style: italic;
-    color: var(--gray-600);
-}
-
-.post-content ul, .post-content ol {
-    margin: 1.5rem 0;
-    padding-left: 1.5rem;
-}
-
-.post-content li {
-    margin-bottom: 0.5rem;
-}
-
-.post-content blockquote {
-    border-left: 4px solid var(--blue-700);
-    margin: 2rem 0;
-    padding: 0.5rem 1.5rem;
-    background: var(--gray-50);
-    font-style: italic;
-    font-size: 1.2rem;
-}
-    .post-content blockquote {
-    border-left: 5px solid var(--blue-700);
-    padding: 10px 20px;
-    margin: 25px 0;
-    background: #f0f4ff;
-    font-style: italic;
-    color: #1e3a8a;
-}
-
-.post-content ol {
-    padding-left: 20px;
-    margin-bottom: 20px;
-}
-
-.post-content ol li {
-    margin-bottom: 8px;
-}
-
-    .blog-hero { background: linear-gradient(135deg, var(--blue-900), #1e40af); color: var(--white); padding: 4rem 0; text-align: center; margin-bottom: 2rem; }
-    .blog-hero h1 { font-size: 2.5rem; margin: 0; }
-
-    /* Сетка карточек (Лента) */
-    .posts-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 2rem; margin-top: 2rem; }
-    .post-card { background: var(--white); border-radius: 1rem; overflow: hidden; box-shadow: 0 4px 6px rgba(0,0,0,0.05); transition: 0.3s; cursor: pointer; display: flex; flex-direction: column; height: 100%; border: 1px solid var(--gray-100); }
-    .post-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-    
-    /* Постер в карточке */
-    .card-image-wrap { width: 100%; height: 220px; overflow: hidden; background: var(--gray-100); }
-    .card-image { width: 100%; height: 100%; object-fit: cover; transition: 0.5s; }
-    .post-card:hover .card-image { scale: 1.05; }
-
-    .card-content { padding: 1.5rem; flex-grow: 1; display: flex; flex-direction: column; }
-    .card-date { font-size: 0.85rem; color: var(--gray-600); margin-bottom: 0.5rem; }
-    .card-title { font-size: 1.3rem; margin: 0 0 0.8rem 0; color: var(--blue-900); line-height: 1.3; }
-    .card-excerpt { font-size: 0.95rem; color: var(--gray-600); margin-bottom: 1.5rem; flex-grow: 1; }
-    .read-more { color: var(--blue-700); font-weight: 600; text-decoration: none; display: flex; align-items: center; gap: 5px; margin-top: auto; }
-
-    /* Страница статьи */
-    .single-post { background: var(--white); padding: 3rem; border-radius: 1.5rem; box-shadow: 0 10px 30px rgba(0,0,0,0.05); margin-top: 2rem; }
-    .article-title { font-size: 2.8rem; color: var(--blue-900); margin-bottom: 1rem; line-height: 1.1; }
-    
-    /* Главный постер внутри статьи */
-    .post-main-poster { width: 100%; max-height: 500px; object-fit: cover; border-radius: 1rem; margin: 2rem 0; box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
-    
-    .post-content { font-size: 1.15rem; line-height: 1.8; color: #374151; }
-    .rich-img { max-width: 100%; height: auto; border-radius: 12px; margin: 30px 0; display: block; }
-    
-    .back-btn { display: inline-flex; align-items: center; gap: 0.5rem; color: var(--gray-600); text-decoration: none; margin-bottom: 2rem; font-weight: 500; transition: 0.2s; }
-    .back-btn:hover { color: var(--blue-700); transform: translateX(-5px); }
-
-    .loading { text-align: center; padding: 5rem; font-size: 1.2rem; color: var(--gray-600); }
-    .error-box { background: #fff5f5; color: #c53030; padding: 2rem; border-radius: 1rem; border: 1px solid #feb2b2; text-align: center; }
-
-    
     .container {
       width: 100%;
-      max-width: 1200px;
+      max-width: 1180px;
       margin: 0 auto;
       padding: 0 1.5rem;
     }
-     header {
-      background: var(--white);
-      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+
+    /* ─── HEADER ──────────────────────────────── */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
-      z-index: 100;
+      z-index: 200;
     }
 
-    .header-content {
+    .header-inner {
       display: flex;
+      align-items: center;
       justify-content: space-between;
-      align-items: center;
-      padding: 1rem 0;
-    }
- .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .lang-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lang-selector select {
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #d1d5db;
-      background-color: var(--white);
-      color: var(--gray-900);
-      font-size: 0.9rem;
-      outline: none;
-    }
-
-    .nav {
-      display: flex;
+      height: 68px;
       gap: 1rem;
-    }
-.post-content a {
-    color: var(--blue-700);
-    text-decoration: underline;
-    font-weight: 500;
-    transition: color 0.2s;
-}
-
-.post-content a:hover {
-    color: var(--blue-900);
-    text-decoration: none;
-}
-    .nav a {
-      text-decoration: none;
-      color: var(--gray-600);
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      transition: all 0.2s ease;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .nav a:hover,
-    .nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
     }
 
     .logo {
       display: flex;
       align-items: center;
-      gap: 0.75rem;
+      gap: 0.6rem;
+      text-decoration: none;
+      flex-shrink: 0;
+    }
+
+    .logo-icon {
+      width: 38px;
+      height: 38px;
+      background: var(--accent);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .logo-text {
+      font-family: 'Unbounded', sans-serif;
       font-weight: 700;
-      font-size: 1.5rem;
-      color: var(--blue-900);
-      z-index: 2;
+      font-size: 1.2rem;
+      color: var(--ink);
     }
-    @media (max-width: 768px) {
-      .article-title { font-size: 2.2rem; }
-      .single-post { padding: 1.5rem; }
-      .card-image-wrap { height: 180px; }
+
+    .nav-desktop {
+      display: flex;
+      align-items: center;
+      gap: 0.25rem;
     }
-  
-    /* Nav toggle (mobile) */
-    .nav-toggle {
-      display: none;
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--gray-900);
+
+    .nav-desktop a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .nav-desktop a:hover, .nav-desktop a.active {
+      background: var(--accent-pale);
+      color: var(--accent);
+    }
+
+    .header-right {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      flex-shrink: 0;
+    }
+
+    .lang-select {
+      padding: 0.4rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-family: 'Golos Text', sans-serif;
       cursor: pointer;
-      z-index: 2;
-    }
-
-    /* Desktop nav */
-    .nav-container {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-    }
-
-    .lang-selector {
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .lang-selector select {
-      padding: 0.5rem 0.75rem;
-      border-radius: 0.5rem;
-      border: 1px solid #d1d5db;
-      background-color: var(--white);
-      color: var(--gray-900);
-      font-size: 0.9rem;
       outline: none;
     }
 
-    .nav {
-      display: flex;
-      gap: 1rem;
+    .burger {
+      display: none;
+      background: none;
+      border: none;
+      color: var(--ink);
+      font-size: 1.4rem;
+      cursor: pointer;
+      padding: 0.3rem;
+      border-radius: 8px;
+      transition: background 0.2s;
     }
+    .burger:hover { background: var(--surface-2); }
 
-    .nav a {
-      text-decoration: none;
-      color: var(--gray-600);
-      font-weight: 500;
-      padding: 0.5rem 1rem;
-      border-radius: 0.5rem;
-      transition: all 0.2s ease;
+    /* ─── MOBILE DRAWER ───────────────────────── */
+    .drawer-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,0.45);
+      backdrop-filter: blur(3px);
+      z-index: 300;
+      opacity: 0; visibility: hidden;
+      transition: opacity 0.3s, visibility 0.3s;
+    }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+
+    .drawer {
+      position: fixed;
+      top: 0; right: 0;
+      width: min(88%, 340px);
+      height: 100%;
+      background: var(--surface);
+      z-index: 301;
+      transform: translateX(100%);
+      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+      display: flex;
+      flex-direction: column;
+      padding: 1.5rem;
+    }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+
+    .drawer-head {
       display: flex;
       align-items: center;
+      justify-content: space-between;
+      padding-bottom: 1.25rem;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 1.25rem;
+    }
+
+    .drawer-close {
+      background: var(--surface-2); border: none;
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; font-size: 1rem; color: var(--text-muted);
+    }
+
+    .drawer-nav {
+      display: flex;
+      flex-direction: column;
       gap: 0.5rem;
     }
 
-    .nav a:hover,
-    .nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
-    }
-
-    /* Mobile menu */
-    .mobile-menu {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.4);
-      backdrop-filter: blur(2px);
-      z-index: 101;
-      opacity: 0;
-      visibility: hidden;
-      transition: opacity 0.3s ease, visibility 0.3s ease;
-    }
-
-    .mobile-menu.active {
-      opacity: 1;
-      visibility: visible;
-    }
-
-    .mobile-menu-content {
-      position: absolute;
-      top: 0;
-      right: 0;
-      width: 85%;
-      max-width: 320px;
-      height: 100%;
-      background: var(--white);
-      box-shadow: -4px 0 20px rgba(0,0,0,0.1);
-      border-radius: 0 0 0 1.5rem;
-      padding: 1.5rem;
-      transform: translateX(100%);
-      transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-    }
-
-    .mobile-menu.active .mobile-menu-content {
-      transform: translateX(0);
-    }
-
-    .mobile-header {
+    .drawer-nav a {
       display: flex;
-      justify-content: space-between;
       align-items: center;
+      gap: 0.75rem;
+      padding: 0.8rem 1rem;
+      border-radius: var(--radius-sm);
+      text-decoration: none;
+      color: var(--ink);
+      font-weight: 500;
+      transition: all 0.2s;
+    }
+    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
+    .drawer-nav a:hover, .drawer-nav a.active {
+      background: var(--accent-pale);
+      color: var(--accent);
+    }
+
+    .drawer-lang {
+      margin-top: 1.5rem;
+      padding-top: 1.25rem;
+      border-top: 1px solid var(--border);
+    }
+
+    /* ─── HERO ───────────────────────────────── */
+    .hero {
+      background: var(--ink);
+      position: relative;
+      overflow: hidden;
+      padding: 4.5rem 0 3.5rem;
+    }
+
+    .hero-grid {
+      position: absolute; inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
+      background-size: 48px 48px;
+    }
+
+    .hero-glow {
+      position: absolute;
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%);
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+
+    .hero-glow-2 {
+      position: absolute;
+      width: 400px; height: 400px;
+      background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%);
+      bottom: -150px; left: -50px;
+      pointer-events: none;
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background: rgba(59,130,246,0.15);
+      border: 1px solid rgba(59,130,246,0.3);
+      color: #93c5fd;
+      font-size: 0.8rem;
+      font-weight: 600;
+      padding: 0.45rem 1rem;
+      border-radius: 999px;
       margin-bottom: 1.5rem;
-      padding-bottom: 1rem;
-      border-bottom: 1px solid var(--gray-100);
+      letter-spacing: 0.02em;
     }
 
-    .close-btn {
-      background: none;
-      border: none;
-      font-size: 1.5rem;
-      color: var(--gray-900);
+    .hero h1 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      color: var(--white);
+      line-height: 1.2;
+      margin-bottom: 1.25rem;
+      letter-spacing: -0.02em;
+    }
+
+    .hero h1 span {
+      background: linear-gradient(135deg, #60a5fa, #38bdf8);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-sub {
+      font-size: 1.05rem;
+      color: #94a3b8;
+      max-width: 600px;
+      margin: 0 auto;
+      line-height: 1.7;
+    }
+
+    /* ─── SECTION ────────────────────────────── */
+    .section {
+      padding: 4rem 0 5rem;
+    }
+
+    .section-tag {
+      display: inline-block;
+      background: var(--accent-pale);
+      color: var(--accent);
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      margin-bottom: 1rem;
+    }
+
+    .section-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.4rem, 2.5vw, 2rem);
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.75rem;
+      letter-spacing: -0.02em;
+      line-height: 1.25;
+    }
+
+    .section-sub {
+      font-size: 1rem;
+      color: var(--text-muted);
+      max-width: 580px;
+      line-height: 1.7;
+    }
+
+    .section-header {
+      margin-bottom: 3rem;
+    }
+
+    .section-header.centered {
+      text-align: center;
+    }
+    .section-header.centered .section-sub {
+      margin: 0 auto;
+    }
+
+    /* ─── BLOG GRID ──────────────────────────── */
+    .posts-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem;
+    }
+
+    .post-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
       cursor: pointer;
-    }
-
-    .mobile-nav {
       display: flex;
       flex-direction: column;
-      gap: 0.75rem;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      position: relative;
     }
 
-    .mobile-nav a {
+    .post-card::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--accent);
+      border-radius: 999px 999px 0 0;
+      opacity: 0;
+      transition: opacity 0.25s;
+    }
+
+    .post-card:hover {
+      transform: translateY(-5px);
+      box-shadow: var(--shadow-lg);
+      border-color: transparent;
+    }
+
+    .post-card:hover::before { opacity: 1; }
+
+    .card-image-wrap {
+      width: 100%;
+      height: 210px;
+      overflow: hidden;
+      background: var(--surface-2);
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.5s;
+    }
+
+    .post-card:hover .card-image { transform: scale(1.05); }
+
+    .card-content {
+      padding: 1.5rem;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 0.6rem;
+    }
+
+    .card-meta {
       display: flex;
       align-items: center;
       gap: 0.75rem;
-      padding: 0.875rem 1rem;
-      border-radius: 0.75rem;
+    }
+
+    .card-date {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+    }
+
+    .card-tag {
+      font-size: 0.72rem;
+      font-weight: 600;
+      background: var(--accent-pale);
+      color: var(--accent);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .card-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.98rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+      margin: 0;
+    }
+
+    .card-excerpt {
+      font-size: 0.88rem;
+      color: var(--text-muted);
+      line-height: 1.65;
+      flex: 1;
+    }
+
+    .read-more {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-weight: 600;
+      font-size: 0.85rem;
+      color: var(--accent);
       text-decoration: none;
-      color: var(--gray-900);
+      margin-top: 0.5rem;
+      transition: gap 0.2s;
+    }
+    .read-more:hover { gap: 0.65rem; }
+
+    /* ─── SINGLE POST ────────────────────────── */
+    .single-post-wrap {
+      max-width: 820px;
+      margin: 0 auto;
+    }
+
+    .back-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      color: var(--text-muted);
+      text-decoration: none;
+      margin-bottom: 2rem;
       font-weight: 500;
-      background: var(--gray-50);
-      transition: all 0.2s ease;
+      font-size: 0.9rem;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      transition: all 0.2s;
+    }
+    .back-btn:hover {
+      color: var(--accent);
+      border-color: var(--accent);
+      transform: translateX(-3px);
     }
 
-    .mobile-nav a:hover,
-    .mobile-nav a.active {
-      background: var(--blue-100);
-      color: var(--blue-900);
+    .single-post {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      box-shadow: var(--shadow);
     }
 
-    .mobile-nav a i {
-      width: 1.5rem;
+    .post-header {
+      padding: 2.5rem 3rem 2rem;
+    }
+
+    .post-meta-row {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+
+    .post-meta-date {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .post-tag {
+      font-size: 0.75rem;
+      font-weight: 600;
+      background: var(--accent-pale);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.06em;
+    }
+
+    .article-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.5rem, 3vw, 2.25rem);
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.2;
+      letter-spacing: -0.02em;
+    }
+
+    .post-main-poster {
+      width: 100%;
+      max-height: 480px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .post-body {
+      padding: 2.5rem 3rem 3rem;
+    }
+
+    .post-content {
+      font-size: 1.08rem;
+      line-height: 1.85;
+      color: #374151;
+    }
+
+    .post-content h1, .post-content h2, .post-content h3 {
+      font-family: 'Unbounded', sans-serif;
+      color: var(--ink);
+      margin-top: 2rem;
+      margin-bottom: 0.9rem;
+      line-height: 1.3;
+      letter-spacing: -0.01em;
+    }
+
+    .post-content h1 { font-size: 1.8rem; }
+    .post-content h2 {
+      font-size: 1.35rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 0.5rem;
+    }
+    .post-content h3 { font-size: 1.15rem; }
+
+    .post-content p { margin-bottom: 1.2rem; }
+
+    .post-content strong { color: var(--ink); font-weight: 600; }
+
+    .post-content em { font-style: italic; color: var(--text-muted); }
+
+    .post-content ul, .post-content ol {
+      margin: 1.25rem 0;
+      padding-left: 1.5rem;
+    }
+
+    .post-content li { margin-bottom: 0.5rem; }
+
+    .post-content blockquote {
+      border-left: 3px solid var(--accent);
+      margin: 1.75rem 0;
+      padding: 0.75rem 1.5rem;
+      background: var(--accent-pale);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .post-content a {
+      color: var(--accent);
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    .post-content a:hover { color: #003fa8; text-decoration: none; }
+
+    .rich-img {
+      max-width: 100%;
+      height: auto;
+      border-radius: var(--radius);
+      margin: 2rem 0;
+      display: block;
+      box-shadow: var(--shadow);
+    }
+
+    /* ─── LOADING / ERROR ────────────────────── */
+    .loading {
+      text-align: center;
+      padding: 5rem 1.5rem;
+      font-size: 1.1rem;
+      color: var(--text-muted);
+    }
+
+    .loading i { color: var(--accent); margin-right: 0.5rem; }
+
+    .error-box {
+      background: #fff5f5;
+      color: #c53030;
+      padding: 2rem;
+      border-radius: var(--radius);
+      border: 1px solid #feb2b2;
       text-align: center;
     }
 
-    @media (max-width: 768px) {
-      .nav-container { display: none; }
-      .nav-toggle { display: block; }
+    /* ─── FOOTER ─────────────────────────────── */
+    footer {
+      background: #070b11;
+      color: #64748b;
+      padding: 3rem 0 2rem;
     }
-</style>
-  <link rel="stylesheet" href="./redesign.css" />
+
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+
+    .footer-brand { max-width: 320px; }
+
+    .footer-logo {
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-decoration: none;
+      margin-bottom: 0.75rem;
+    }
+    .footer-logo .logo-icon { background: var(--accent); }
+    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
+
+    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
+
+    .footer-nav-title {
+      font-size: 0.75rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: #94a3b8;
+      margin-bottom: 0.75rem;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    .footer-links a {
+      text-decoration: none;
+      color: #64748b;
+      font-size: 0.88rem;
+      transition: color 0.2s;
+    }
+    .footer-links a:hover { color: #94a3b8; }
+
+    .footer-bottom {
+      font-size: 0.78rem;
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+    }
+
+    /* ─── RESPONSIVE ─────────────────────────── */
+    @media (max-width: 900px) {
+      .posts-grid { grid-template-columns: 1fr 1fr; }
+      .nav-desktop { display: none; }
+      .burger { display: flex; }
+    }
+
+    @media (max-width: 600px) {
+      .posts-grid { grid-template-columns: 1fr; }
+      .hero { padding: 3rem 0 2.5rem; }
+      .section { padding: 3rem 0 4rem; }
+      .footer-top { flex-direction: column; }
+      .post-header { padding: 1.75rem 1.5rem 1.5rem; }
+      .post-body { padding: 1.5rem; }
+    }
+
+    /* ─── ANIMATIONS ─────────────────────────── */
+    @keyframes fadeUp {
+      from { opacity: 0; transform: translateY(20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .anim { opacity: 0; }
+    .anim.visible { animation: fadeUp 0.55s ease both; }
+    .anim-d1 { animation-delay: 0.05s; }
+    .anim-d2 { animation-delay: 0.12s; }
+    .anim-d3 { animation-delay: 0.19s; }
+
+    /* ─── COMMENTS ───────────────────────────── */
+    #comments-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.5rem 3rem;
+      margin-top: 2rem;
+    }
+
+    #comments-section h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      letter-spacing: -0.01em;
+    }
+
+    @media (max-width: 600px) {
+      #comments-section { padding: 1.5rem; }
+    }
+  </style>
 </head>
 <body>
- <!-- Header -->
+
+<!-- ═══ HEADER ═══════════════════════════════════════ -->
 <header>
-<div class="container">
-<div class="header-content">
-<div class="logo">
-<i class="fas fa-shield-alt"></i>
-<span>EduSafe</span>
-</div>
-<button class="nav-toggle" id="navToggle">
-<i class="fas fa-bars"></i>
-</button>
-<div class="nav-container">
-<div class="lang-selector">
-<select id="languageSelector" onchange="if(this.value==='en')alert('English version available on the main page')">
-<option value="ru">Русский</option>
-<option value="en">English</option>
-</select>
-</div>
-<nav class="nav">
-<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
-<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-<a class="active" href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
-<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-</nav>
-</div>
-</div>
-</div>
-<!-- Mobile Menu -->
-<div class="mobile-menu" id="mobileMenu">
-<div class="mobile-menu-content">
-<div class="mobile-header">
-<div class="logo" style="font-size: 1.25rem;">
-<i class="fas fa-shield-alt"></i>
-<span>EduSafe</span>
-</div>
-<button class="close-btn" id="closeMenu">
-<i class="fas fa-times"></i>
-</button>
-</div>
-<nav class="mobile-nav">
-<a href="index.html"><i class="fas fa-home"></i> <span>Главная</span></a>
-<a href="theory.html"><i class="fas fa-book-open"></i> <span>Теория</span></a>
-<a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
-<a href="videos.html"><i class="fas fa-file-video"></i> <span>Видео</span></a>
-<a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
-<a class="active" href="blog.html"><i class="fas fa-pen"></i> <span>Блог</span></a>
-<a href="contact.html"><i class="fas fa-exclamation-triangle"></i> <span>Жалоба</span></a>
-</nav>
-</div>
-</div>
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </a>
+
+      <nav class="nav-desktop">
+        <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+        <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+        <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+        <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+        <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+        <a href="blog.html" class="active"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+        <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+      </nav>
+
+      <div class="header-right">
+        <select class="lang-select" id="languageSelector">
+          <option value="ru">🇧🇾 Русский</option>
+          <option value="en">🇬🇧 English</option>
+        </select>
+        <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </div>
 </header>
-<section class="blog-hero" id="heroSection">
-<div class="container">
-<h1>Блог EduSafe</h1>
-<p>Актуальные новости и советы по безопасности</p>
+
+<!-- ═══ DRAWER ════════════════════════════════════════ -->
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </div>
+      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+      <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+      <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+      <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+      <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+      <a href="blog.html" class="active"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+      <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+    </nav>
+    <div class="drawer-lang">
+      <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
+        <option value="ru">🇧🇾 Русский</option>
+        <option value="en">🇬🇧 English</option>
+      </select>
+    </div>
+  </div>
 </div>
+
+<!-- ═══ HERO ══════════════════════════════════════════ -->
+<section class="hero" id="heroSection">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge anim">
+        <i class="fas fa-pen-nib"></i>
+        <span>EduSafe · Блог</span>
+      </div>
+      <h1 class="anim anim-d1">Актуальные <span>новости и советы</span> по безопасности данных</h1>
+      <p class="hero-sub anim anim-d2">Экспертные материалы о защите персональных данных в образовательной среде Республики Беларусь</p>
+    </div>
+  </div>
 </section>
-<main class="container" style="padding-bottom: 5rem;">
-<div id="app-container">
-<div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка контента...</div>
-</div>
-<div id="comments-section" style="display: none; margin-top: 4rem;">
-<h3 style="color: var(--blue-900); margin-bottom: 1.5rem;">Комментарии</h3>
-<div id="disqus_thread"></div>
-</div>
-</main>
+
+<!-- ═══ MAIN CONTENT ═════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div id="app-container">
+      <div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка материалов...</div>
+    </div>
+    <div id="comments-section" style="display: none;">
+      <h3><i class="fas fa-comments" style="color:var(--accent); margin-right:0.5rem;"></i>Комментарии</h3>
+      <div id="disqus_thread"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══ FOOTER ════════════════════════════════════════ -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span class="logo-text">EduSafe</span>
+        </a>
+        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+      </div>
+      <div>
+        <div class="footer-nav-title">Разделы</div>
+        <ul class="footer-links">
+          <li><a href="index.html">Главная</a></li>
+          <li><a href="theory.html">Теория</a></li>
+          <li><a href="choice-sp.html">Практика</a></li>
+          <li><a href="videos.html">Видео</a></li>
+          <li><a href="quiz.html">Викторина</a></li>
+          <li><a href="blog.html">Блог</a></li>
+          <li><a href="contact.html">Жалоба</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <div>© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</div>
+      <div>Ресурс не использует cookies и не собирает персональные данные пользователей.</div>
+      <div>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</div>
+    </div>
+  </div>
+</footer>
+
 <script>
-    // --- НАСТРОЙКИ CONTENTFUL ---
-const SPACE_ID = 'r6g09taz57g1'; 
-    const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
-    const client = contentful.createClient({ space: SPACE_ID, accessToken: ACCESS_TOKEN });
-    const appContainer = document.getElementById('app-container');
-    const heroSection = document.getElementById('heroSection');
-    const commentsSection = document.getElementById('comments-section');
+  // ─── CONTENTFUL ─────────────────────────────────────
+  const SPACE_ID = 'r6g09taz57g1';
+  const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
+  const client = contentful.createClient({ space: SPACE_ID, accessToken: ACCESS_TOKEN });
 
-    function init() {
-        const urlParams = new URLSearchParams(window.location.search);
-        const postId = urlParams.get('id');
-        if (postId) loadSinglePost(postId); else loadPostList();
-    }
+  const appContainer = document.getElementById('app-container');
+  const heroSection = document.getElementById('heroSection');
+  const commentsSection = document.getElementById('comments-section');
 
-    function loadPostList() {
-        heroSection.style.display = 'block';
-        commentsSection.style.display = 'none';
-        client.getEntries({ content_type: 'blogPost', order: '-fields.date', include: 2 })
-        .then((response) => {
-            let html = '<div class="posts-grid">';
-            response.items.forEach(item => {
-                const f = item.fields;
-                const id = item.sys.id;
-                const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU') : '';
-                let excerpt = 'Читать...';
-                try { excerpt = f.content.content.find(n => n.nodeType === 'paragraph').content[0].value.substring(0, 100) + '...'; } catch(e) {}
-                let imgUrl = f.image ? 'https:' + f.image.fields.file.url : 'https://via.placeholder.com/600x400';
-                html += `
-                    <div class="post-card" onclick="window.location.href='?id=${id}'">
-                        <div class="card-image-wrap"><img src="${imgUrl}" class="card-image"></div>
-                        <div class="card-content">
-                            <div class="card-date">${date}</div>
-                            <h3 class="card-title">${f.title || 'Без названия'}</h3>
-                            <div class="card-excerpt">${excerpt}</div>
-                            <span class="read-more">Читать далее <i class="fas fa-arrow-right"></i></span>
-                        </div>
-                    </div>`;
-            });
-            appContainer.innerHTML = html + '</div>';
-        }).catch(err => { appContainer.innerHTML = `<div class="error-box">Ошибка: ${err.message}</div>`; });
-    }
+  function init() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const postId = urlParams.get('id');
+    if (postId) loadSinglePost(postId); else loadPostList();
+  }
 
-    function loadSinglePost(id) {
-        heroSection.style.display = 'none';
-        client.getEntry(id, { include: 2 })
-        .then((item) => {
-            const f = item.fields;
-            const rawContent = f.content;
-            let contentHtml = '';
-
-            // Рекурсивная функция для обработки текста, ссылок и стилей внутри блоков
-            const renderInlines = (inlines) => {
-                if (!inlines) return '';
-                return inlines.map(inline => {
-                    if (inline.nodeType === 'text') {
-                        let text = inline.value || '';
-                        if (inline.marks) {
-                            inline.marks.forEach(mark => {
-                                if (mark.type === 'bold') text = `<strong>${text}</strong>`;
-                                if (mark.type === 'italic') text = `<em>${text}</em>`;
-                            });
-                        }
-                        return text;
-                    }
-                    if (inline.nodeType === 'hyperlink') {
-                        return `<a href="${inline.data.uri}" target="_blank" rel="noopener">${renderInlines(inline.content)}</a>`;
-                    }
-                    return '';
-                }).join('');
-            };
-
-            if (rawContent && rawContent.nodeType === 'document') {
-                const renderer = window.contentfulRichTextHtmlRenderer || window['@contentful/rich-text-html-renderer'];
-                
-                // Настройки для официального рендерера (если он загрузился)
-                const options = {
-                    renderNode: {
-                        'hyperlink': (node) => `<a href="${node.data.uri}" target="_blank">${renderInlines(node.content)}</a>`,
-                        'embedded-asset-block': (node) => `<img src="https:${node.data.target.fields.file.url}" class="rich-img" />`,
-                        'blockquote': (node) => `<blockquote>${node.content.map(n => `<p>${renderInlines(n.content)}</p>`).join('')}</blockquote>`,
-                        'ordered-list': (node) => `<ol>${node.content.map(li => `<li>${li.content.map(p => renderInlines(p.content)).join('')}</li>`).join('')}</ol>`,
-                        'unordered-list': (node) => `<ul>${node.content.map(li => `<li>${li.content.map(p => renderInlines(p.content)).join('')}</li>`).join('')}</ul>`
-                    }
-                };
-
-                if (renderer && renderer.documentToHtmlString) {
-                    contentHtml = renderer.documentToHtmlString(rawContent, options);
-                } else {
-                    // УЛЬТИМАТИВНЫЙ ПЛАН Б (ручной парсинг всего)
-                    contentHtml = rawContent.content.map(node => {
-                        switch(node.nodeType) {
-                            case 'paragraph': return `<p>${renderInlines(node.content)}</p>`;
-                            case 'heading-1': return `<h1>${renderInlines(node.content)}</h1>`;
-                            case 'heading-2': return `<h2>${renderInlines(node.content)}</h2>`;
-                            case 'heading-3': return `<h3>${renderInlines(node.content)}</h3>`;
-                            case 'blockquote': return `<blockquote>${node.content.map(p => `<p>${renderInlines(p.content)}</p>`).join('')}</blockquote>`;
-                            case 'ordered-list': 
-                                return `<ol>${node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('')}</ol>`;
-                            case 'unordered-list': 
-                                return `<ul>${node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('')}</ul>`;
-                            case 'embedded-asset-block':
-                                return `<img src="https:${node.data.target.fields.file.url}" class="rich-img" />`;
-                            default: return '';
-                        }
-                    }).join('');
-                }
-            }
-
-            let mainImg = f.image ? `<img src="https:${f.image.fields.file.url}" class="post-main-poster">` : '';
-
-            appContainer.innerHTML = `
-                <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к списку</a>
-                <article class="single-post">
-                    <h1 class="article-title">${f.title || 'Без названия'}</h1>
-                    <div style="color:var(--gray-600); margin-bottom:20px;"><i class="far fa-calendar-alt"></i> ${new Date(f.date).toLocaleDateString('ru-RU')}</div>
-                    ${mainImg}
-                    <div class="post-content">${contentHtml}</div>
-                </article>`;
-            commentsSection.style.display = 'block';
-            initDisqus(id);
-        }).catch(err => { appContainer.innerHTML = `<div class="error-box">Статья не найдена.</div>`; });
-    }
-
-    function initDisqus(id) {
-        if (window.DISQUS) {
-            window.DISQUS.reset({ reload: true, config: function () { this.page.identifier = id; this.page.url = window.location.href; } });
-        } else {
-            var d = document, s = d.createElement('script');
-            s.src = 'https://edusafe-test.disqus.com/embed.js'; 
-            s.setAttribute('data-timestamp', +new Date());
-            (d.head || d.body).appendChild(s);
+  function loadPostList() {
+    heroSection.style.display = '';
+    commentsSection.style.display = 'none';
+    client.getEntries({ content_type: 'blogPost', order: '-fields.date', include: 2 })
+      .then((response) => {
+        if (!response.items.length) {
+          appContainer.innerHTML = '<div class="loading">Пока нет публикаций.</div>';
+          return;
         }
+
+        // Section header
+        let html = `
+          <div class="section-header centered anim">
+            <span class="section-tag">Блог</span>
+            <h2 class="section-title">Последние публикации</h2>
+            <p class="section-sub">Разборы ситуаций, правовые новости и практические советы по цифровой безопасности</p>
+          </div>
+          <div class="posts-grid">`;
+
+        response.items.forEach((item, i) => {
+          const f = item.fields;
+          const id = item.sys.id;
+          const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+          let excerpt = 'Читать далее...';
+          try {
+            excerpt = f.content.content.find(n => n.nodeType === 'paragraph').content[0].value.substring(0, 120) + '...';
+          } catch(e) {}
+          const imgUrl = f.image ? 'https:' + f.image.fields.file.url : '';
+          const delay = i < 3 ? `anim-d${i}` : '';
+
+          html += `
+            <div class="post-card anim ${delay}" onclick="window.location.href='?id=${id}'">
+              ${imgUrl ? `<div class="card-image-wrap"><img src="${imgUrl}" class="card-image" alt="${f.title || ''}"></div>` : ''}
+              <div class="card-content">
+                <div class="card-meta">
+                  <span class="card-date"><i class="far fa-calendar-alt"></i> ${date}</span>
+                  <span class="card-tag">Блог</span>
+                </div>
+                <h3 class="card-title">${f.title || 'Без названия'}</h3>
+                <p class="card-excerpt">${excerpt}</p>
+                <span class="read-more">Читать далее <i class="fas fa-arrow-right fa-xs"></i></span>
+              </div>
+            </div>`;
+        });
+
+        html += '</div>';
+        appContainer.innerHTML = html;
+
+        // Re-observe new .anim elements
+        document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+      })
+      .catch(err => {
+        appContainer.innerHTML = `<div class="error-box"><i class="fas fa-exclamation-triangle"></i> Ошибка загрузки: ${err.message}</div>`;
+      });
+  }
+
+  function loadSinglePost(id) {
+    heroSection.style.display = 'none';
+    client.getEntry(id, { include: 2 })
+      .then((item) => {
+        const f = item.fields;
+        const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
+
+        const renderInlines = (inlines) => {
+          if (!inlines) return '';
+          return inlines.map(inline => {
+            if (inline.nodeType === 'text') {
+              let text = inline.value || '';
+              if (inline.marks) {
+                inline.marks.forEach(mark => {
+                  if (mark.type === 'bold') text = `<strong>${text}</strong>`;
+                  if (mark.type === 'italic') text = `<em>${text}</em>`;
+                });
+              }
+              return text;
+            }
+            if (inline.nodeType === 'hyperlink') {
+              return `<a href="${inline.data.uri}" target="_blank" rel="noopener">${renderInlines(inline.content)}</a>`;
+            }
+            return '';
+          }).join('');
+        };
+
+        let contentHtml = '';
+        const rawContent = f.content;
+
+        if (rawContent && rawContent.nodeType === 'document') {
+          const renderer = window.contentfulRichTextHtmlRenderer || window['@contentful/rich-text-html-renderer'];
+          const options = {
+            renderNode: {
+              'hyperlink': (node) => `<a href="${node.data.uri}" target="_blank">${renderInlines(node.content)}</a>`,
+              'embedded-asset-block': (node) => `<img src="https:${node.data.target.fields.file.url}" class="rich-img" />`,
+              'blockquote': (node) => `<blockquote>${node.content.map(n => `<p>${renderInlines(n.content)}</p>`).join('')}</blockquote>`,
+              'ordered-list': (node) => `<ol>${node.content.map(li => `<li>${li.content.map(p => renderInlines(p.content)).join('')}</li>`).join('')}</ol>`,
+              'unordered-list': (node) => `<ul>${node.content.map(li => `<li>${li.content.map(p => renderInlines(p.content)).join('')}</li>`).join('')}</ul>`
+            }
+          };
+
+          if (renderer && renderer.documentToHtmlString) {
+            contentHtml = renderer.documentToHtmlString(rawContent, options);
+          } else {
+            contentHtml = rawContent.content.map(node => {
+              switch(node.nodeType) {
+                case 'paragraph': return `<p>${renderInlines(node.content)}</p>`;
+                case 'heading-1': return `<h1>${renderInlines(node.content)}</h1>`;
+                case 'heading-2': return `<h2>${renderInlines(node.content)}</h2>`;
+                case 'heading-3': return `<h3>${renderInlines(node.content)}</h3>`;
+                case 'blockquote': return `<blockquote>${node.content.map(p => `<p>${renderInlines(p.content)}</p>`).join('')}</blockquote>`;
+                case 'ordered-list': return `<ol>${node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('')}</ol>`;
+                case 'unordered-list': return `<ul>${node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('')}</ul>`;
+                case 'embedded-asset-block': return `<img src="https:${node.data.target.fields.file.url}" class="rich-img" />`;
+                default: return '';
+              }
+            }).join('');
+          }
+        }
+
+        const mainImg = f.image ? `<img src="https:${f.image.fields.file.url}" class="post-main-poster" alt="${f.title || ''}">` : '';
+
+        appContainer.innerHTML = `
+          <div class="single-post-wrap">
+            <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к списку</a>
+            <article class="single-post">
+              <div class="post-header">
+                <div class="post-meta-row">
+                  <span class="post-tag"><i class="fas fa-pen-nib"></i> Блог</span>
+                  <span class="post-meta-date"><i class="far fa-calendar-alt"></i> ${date}</span>
+                </div>
+                <h1 class="article-title">${f.title || 'Без названия'}</h1>
+              </div>
+              ${mainImg}
+              <div class="post-body">
+                <div class="post-content">${contentHtml}</div>
+              </div>
+            </article>
+          </div>`;
+
+        commentsSection.style.display = 'block';
+        initDisqus(id);
+      })
+      .catch(() => {
+        appContainer.innerHTML = `<div class="error-box"><i class="fas fa-exclamation-triangle"></i> Статья не найдена.</div>`;
+      });
+  }
+
+  function initDisqus(id) {
+    if (window.DISQUS) {
+      window.DISQUS.reset({ reload: true, config: function() { this.page.identifier = id; this.page.url = window.location.href; }});
+    } else {
+      var d = document, s = d.createElement('script');
+      s.src = 'https://edusafe-test.disqus.com/embed.js';
+      s.setAttribute('data-timestamp', +new Date());
+      (d.head || d.body).appendChild(s);
     }
-    window.onload = init;
+  }
+
+  // ─── MOBILE DRAWER ──────────────────────────────────
+  const overlay = document.getElementById('drawerOverlay');
+  document.getElementById('navToggle').addEventListener('click', () => {
+    overlay.classList.add('open');
+    document.body.style.overflow = 'hidden';
+  });
+  function closeDrawer() {
+    overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
+
+  // ─── INTERSECTION OBSERVER ──────────────────────────
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+  // ─── INIT ────────────────────────────────────────────
+  window.onload = init;
 </script>
-
-<script>
-    // Mobile menu toggle
-    const navToggle = document.getElementById('navToggle');
-    const mobileMenu = document.getElementById('mobileMenu');
-    const closeMenu = document.getElementById('closeMenu');
-
-    function openMenu() {
-      mobileMenu.classList.add('active');
-      document.body.style.overflow = 'hidden';
-    }
-
-    function closeMenuHandler() {
-      mobileMenu.classList.remove('active');
-      document.body.style.overflow = '';
-    }
-
-    navToggle.addEventListener('click', openMenu);
-    closeMenu.addEventListener('click', closeMenuHandler);
-    mobileMenu.addEventListener('click', (e) => {
-      if (e.target === mobileMenu) closeMenuHandler();
-    });
-
-    document.querySelectorAll('.mobile-nav a').forEach(link => {
-      link.addEventListener('click', closeMenuHandler);
-    });
-  </script>
 </body>
 </html>
