@@ -1,765 +1,134 @@
 <!DOCTYPE html>
 <html lang="ru" id="htmlRoot">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Блог EduSafe — актуальные новости и советы по защите персональных данных в образовании.">
+  <meta name="description" content="Блог EduSafe — актуальные новости и советы по защите персональных данных в образовании."/>
   <title>Блог — EduSafe</title>
-
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
+  <link rel="canonical" href="https://edusafe.site/blog.html"/>
+  <meta property="og:type" content="website"/>
+  <meta property="og:title" content="Блог — EduSafe"/>
+  <meta property="og:description" content="Актуальные новости и советы по защите персональных данных в образовании."/>
+  <meta property="og:url" content="https://edusafe.site/blog.html"/>
+  <script type="application/ld+json">{
+  "@context": "https://schema.org",
+  "@type": "Blog",
+  "name": "EduSafe Блог",
+  "url": "https://edusafe.site/blog.html",
+  "description": "Актуальные новости и советы по защите персональных данных в образовании",
+  "blogPost": [
+    {
+      "@type": "BlogPosting",
+      "headline": "В TikTok набирает обороты опасный тренд: школьники публично оскорбляют педагогов. Разбираем последствия",
+      "url": "https://edusafe.site/blog/v-tiktok-nabiraet-oboroty-opasnyj-trend-shkol-niki-publichno-oskorblyayut-pedago.html",
+      "datePublished": "2026-05-05T00:00:00.000Z"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Защита персональных данных в образовании: правовой ликбез для всех участников",
+      "url": "https://edusafe.site/blog/zaschita-personal-nykh-dannykh-v-obrazovanii-pravovoj-likbez-dlya-vsekh-uchastni.html",
+      "datePublished": "2026-03-05T00:00:00.000Z"
+    },
+    {
+      "@type": "BlogPosting",
+      "headline": "Что о тебе знает ChatGPT? Искусственный интеллект и твои секреты",
+      "url": "https://edusafe.site/blog/chto-o-tebe-znaet-chatgpt-iskusstvennyj-intellekt-i-tvoi-sekrety.html",
+      "datePublished": "2026-01-25T00:00:00.000Z"
+    }
+  ]
+}</script>
 
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
-  <script src="https://cdn.jsdelivr.net/npm/contentful@latest/dist/contentful.browser.min.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/@contentful/rich-text-html-renderer@12.0.0/dist/rich-text-html-renderer.browser.min.js"></script>
-
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
   <style>
-    :root {
-      --ink: #0d1117;
-      --ink-soft: #1e2633;
-      --accent: #0057d9;
-      --accent-light: #3b82f6;
-      --accent-pale: #dbeafe;
-      --teal: #0ea5c7;
-      --mint: #d1fae5;
-      --surface: #ffffff;
-      --surface-2: #f5f7fb;
-      --border: #e2e8f0;
-      --text-muted: #64748b;
-      --white: #ffffff;
-      --radius-sm: 8px;
-      --radius: 16px;
-      --radius-lg: 24px;
-      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
-    }
-
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: 'Golos Text', sans-serif;
-      background: var(--surface-2);
-      color: var(--ink);
-      line-height: 1.65;
-      overflow-x: hidden;
-    }
-
-    .container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ─── HEADER ──────────────────────────────── */
-    header {
-      background: var(--surface);
-      border-bottom: 1px solid var(--border);
-      position: sticky;
-      top: 0;
-      z-index: 200;
-    }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-      gap: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .logo-icon {
-      width: 38px;
-      height: 38px;
-      background: var(--accent);
-      border-radius: 10px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: white;
-      font-size: 1rem;
-    }
-
-    .logo-text {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--ink);
-    }
-
-    .nav-desktop {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
-    .nav-desktop a {
-      text-decoration: none;
-      color: var(--text-muted);
-      font-weight: 500;
-      font-size: 0.88rem;
-      padding: 0.45rem 0.85rem;
-      border-radius: var(--radius-sm);
-      transition: all 0.2s;
-      white-space: nowrap;
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .nav-desktop a:hover, .nav-desktop a.active {
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-
-    .lang-select {
-      padding: 0.4rem 0.7rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: var(--surface);
-      color: var(--ink);
-      font-size: 0.85rem;
-      font-family: 'Golos Text', sans-serif;
-      cursor: pointer;
-      outline: none;
-    }
-
-    .burger {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--ink);
-      font-size: 1.4rem;
-      cursor: pointer;
-      padding: 0.3rem;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-    .burger:hover { background: var(--surface-2); }
-
-    /* ─── MOBILE DRAWER ───────────────────────── */
-    .drawer-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(3px);
-      z-index: 300;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-    .drawer-overlay.open { opacity: 1; visibility: visible; }
-
-    .drawer {
-      position: fixed;
-      top: 0; right: 0;
-      width: min(88%, 340px);
-      height: 100%;
-      background: var(--surface);
-      z-index: 301;
-      transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-    }
-    .drawer-overlay.open .drawer { transform: translateX(0); }
-
-    .drawer-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.25rem;
-    }
-
-    .drawer-close {
-      background: var(--surface-2); border: none;
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1rem; color: var(--text-muted);
-    }
-
-    .drawer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .drawer-nav a {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.8rem 1rem;
-      border-radius: var(--radius-sm);
-      text-decoration: none;
-      color: var(--ink);
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
-    .drawer-nav a:hover, .drawer-nav a.active {
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
-
-    .drawer-lang {
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ─── HERO ───────────────────────────────── */
-    .hero {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      padding: 4.5rem 0 3.5rem;
-    }
-
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-
-    .hero-glow {
-      position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%);
-      top: -200px; right: -100px;
-      pointer-events: none;
-    }
-
-    .hero-glow-2 {
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%);
-      bottom: -150px; left: -50px;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative;
-      z-index: 2;
-      text-align: center;
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.15);
-      border: 1px solid rgba(59,130,246,0.3);
-      color: #93c5fd;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.45rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 1.5rem;
-      letter-spacing: 0.02em;
-    }
-
-    .hero h1 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 2.75rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #60a5fa, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: #94a3b8;
-      max-width: 600px;
-      margin: 0 auto;
-      line-height: 1.7;
-    }
-
-    /* ─── SECTION ────────────────────────────── */
-    .section {
-      padding: 4rem 0 5rem;
-    }
-
-    .section-tag {
-      display: inline-block;
-      background: var(--accent-pale);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-    }
-
-    .section-sub {
-      font-size: 1rem;
-      color: var(--text-muted);
-      max-width: 580px;
-      line-height: 1.7;
-    }
-
-    .section-header {
-      margin-bottom: 3rem;
-    }
-
-    .section-header.centered {
-      text-align: center;
-    }
-    .section-header.centered .section-sub {
-      margin: 0 auto;
-    }
-
-    /* ─── BLOG GRID ──────────────────────────── */
-    .posts-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-    }
-
-    .post-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-      position: relative;
-    }
-
-    .post-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--accent);
-      border-radius: 999px 999px 0 0;
-      opacity: 0;
-      transition: opacity 0.25s;
-    }
-
-    .post-card:hover {
-      transform: translateY(-5px);
-      box-shadow: var(--shadow-lg);
-      border-color: transparent;
-    }
-
-    .post-card:hover::before { opacity: 1; }
-
-    .card-image-wrap {
-      width: 100%;
-      height: 210px;
-      overflow: hidden;
-      background: var(--surface-2);
-    }
-
-    .card-image {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      transition: transform 0.5s;
-    }
-
-    .post-card:hover .card-image { transform: scale(1.05); }
-
-    .card-content {
-      padding: 1.5rem;
-      flex: 1;
-      display: flex;
-      flex-direction: column;
-      gap: 0.6rem;
-    }
-
-    .card-meta {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-    }
-
-    .card-date {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.35rem;
-    }
-
-    .card-tag {
-      font-size: 0.72rem;
-      font-weight: 600;
-      background: var(--accent-pale);
-      color: var(--accent);
-      padding: 0.2rem 0.6rem;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .card-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.98rem;
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.35;
-      margin: 0;
-    }
-
-    .card-excerpt {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.65;
-      flex: 1;
-    }
-
-    .read-more {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.4rem;
-      font-weight: 600;
-      font-size: 0.85rem;
-      color: var(--accent);
-      text-decoration: none;
-      margin-top: 0.5rem;
-      transition: gap 0.2s;
-    }
-    .read-more:hover { gap: 0.65rem; }
-
-    /* ─── SINGLE POST ────────────────────────── */
-    .single-post-wrap {
-      max-width: 820px;
-      margin: 0 auto;
-    }
-
-    .back-btn {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      color: var(--text-muted);
-      text-decoration: none;
-      margin-bottom: 2rem;
-      font-weight: 500;
-      font-size: 0.9rem;
-      padding: 0.5rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      background: var(--surface);
-      transition: all 0.2s;
-    }
-    .back-btn:hover {
-      color: var(--accent);
-      border-color: var(--accent);
-      transform: translateX(-3px);
-    }
-
-    .single-post {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      overflow: hidden;
-      box-shadow: var(--shadow);
-    }
-
-    .post-header {
-      padding: 2.5rem 3rem 2rem;
-    }
-
-    .post-meta-row {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-      flex-wrap: wrap;
-    }
-
-    .post-meta-date {
-      font-size: 0.85rem;
-      color: var(--text-muted);
-      display: flex;
-      align-items: center;
-      gap: 0.4rem;
-    }
-
-    .post-tag {
-      font-size: 0.75rem;
-      font-weight: 600;
-      background: var(--accent-pale);
-      color: var(--accent);
-      padding: 0.25rem 0.75rem;
-      border-radius: 999px;
-      text-transform: uppercase;
-      letter-spacing: 0.06em;
-    }
-
-    .article-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    .post-main-poster {
-      width: 100%;
-      max-height: 480px;
-      object-fit: cover;
-      display: block;
-    }
-
-    .post-body {
-      padding: 2.5rem 3rem 3rem;
-    }
-
-    .post-content {
-      font-size: 1.08rem;
-      line-height: 1.85;
-      color: #374151;
-    }
-
-    .post-content h1, .post-content h2, .post-content h3 {
-      font-family: 'Unbounded', sans-serif;
-      color: var(--ink);
-      margin-top: 2rem;
-      margin-bottom: 0.9rem;
-      line-height: 1.3;
-      letter-spacing: -0.01em;
-    }
-
-    .post-content h1 { font-size: 1.8rem; }
-    .post-content h2 {
-      font-size: 1.35rem;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 0.5rem;
-    }
-    .post-content h3 { font-size: 1.15rem; }
-
-    .post-content p { margin-bottom: 1.2rem; }
-
-    .post-content strong { color: var(--ink); font-weight: 600; }
-
-    .post-content em { font-style: italic; color: var(--text-muted); }
-
-    .post-content ul, .post-content ol {
-      margin: 1.25rem 0;
-      padding-left: 1.5rem;
-    }
-
-    .post-content li { margin-bottom: 0.5rem; }
-
-    .post-content blockquote {
-      border-left: 3px solid var(--accent);
-      margin: 1.75rem 0;
-      padding: 0.75rem 1.5rem;
-      background: var(--accent-pale);
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-style: italic;
-      color: var(--ink-soft);
-    }
-
-    .post-content a {
-      color: var(--accent);
-      text-decoration: underline;
-      font-weight: 500;
-    }
-    .post-content a:hover { color: #003fa8; text-decoration: none; }
-
-    .rich-img {
-      max-width: 100%;
-      height: auto;
-      border-radius: var(--radius);
-      margin: 2rem 0;
-      display: block;
-      box-shadow: var(--shadow);
-    }
-
-    /* ─── LOADING / ERROR ────────────────────── */
-    .loading {
-      text-align: center;
-      padding: 5rem 1.5rem;
-      font-size: 1.1rem;
-      color: var(--text-muted);
-    }
-
-    .loading i { color: var(--accent); margin-right: 0.5rem; }
-
-    .error-box {
-      background: #fff5f5;
-      color: #c53030;
-      padding: 2rem;
-      border-radius: var(--radius);
-      border: 1px solid #feb2b2;
-      text-align: center;
-    }
-
-    /* ─── FOOTER ─────────────────────────────── */
-    footer {
-      background: #070b11;
-      color: #64748b;
-      padding: 3rem 0 2rem;
-    }
-
-    .footer-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 2rem;
-      flex-wrap: wrap;
-      margin-bottom: 2rem;
-      padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .footer-brand { max-width: 320px; }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      margin-bottom: 0.75rem;
-    }
-    .footer-logo .logo-icon { background: var(--accent); }
-    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
-
-    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
-
-    .footer-nav-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94a3b8;
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: #64748b;
-      font-size: 0.88rem;
-      transition: color 0.2s;
-    }
-    .footer-links a:hover { color: #94a3b8; }
-
-    .footer-bottom {
-      font-size: 0.78rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    /* ─── RESPONSIVE ─────────────────────────── */
-    @media (max-width: 900px) {
-      .posts-grid { grid-template-columns: 1fr 1fr; }
-      .nav-desktop { display: none; }
-      .burger { display: flex; }
-    }
-
-    @media (max-width: 600px) {
-      .posts-grid { grid-template-columns: 1fr; }
-      .hero { padding: 3rem 0 2.5rem; }
-      .section { padding: 3rem 0 4rem; }
-      .footer-top { flex-direction: column; }
-      .post-header { padding: 1.75rem 1.5rem 1.5rem; }
-      .post-body { padding: 1.5rem; }
-    }
-
-    /* ─── ANIMATIONS ─────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .anim { opacity: 0; }
-    .anim.visible { animation: fadeUp 0.55s ease both; }
-    .anim-d1 { animation-delay: 0.05s; }
-    .anim-d2 { animation-delay: 0.12s; }
-    .anim-d3 { animation-delay: 0.19s; }
-
-    /* ─── COMMENTS ───────────────────────────── */
-    #comments-section {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 3rem;
-      margin-top: 2rem;
-    }
-
-    #comments-section h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
-      letter-spacing: -0.01em;
-    }
-
-    @media (max-width: 600px) {
-      #comments-section { padding: 1.5rem; }
-    }
+    :root{--ink:#0d1117;--ink-soft:#1e2633;--accent:#0057d9;--accent-light:#3b82f6;--accent-pale:#dbeafe;--teal:#0ea5c7;--mint:#d1fae5;--surface:#ffffff;--surface-2:#f5f7fb;--border:#e2e8f0;--text-muted:#64748b;--white:#ffffff;--radius-sm:8px;--radius:16px;--radius-lg:24px;--shadow-sm:0 1px 4px rgba(0,0,0,.06);--shadow:0 4px 20px rgba(0,0,0,.08);--shadow-lg:0 16px 48px rgba(0,0,0,.12)}
+    *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{font-family:'Golos Text',sans-serif;background:var(--surface-2);color:var(--ink);line-height:1.65;overflow-x:hidden}
+    .container{width:100%;max-width:1180px;margin:0 auto;padding:0 1.5rem}
+    header{background:var(--surface);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:200}
+    .header-inner{display:flex;align-items:center;justify-content:space-between;height:68px;gap:1rem}
+    .logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;flex-shrink:0}
+    .logo-icon{width:38px;height:38px;background:var(--accent);border-radius:10px;display:flex;align-items:center;justify-content:center;color:#fff;font-size:1rem}
+    .logo-text{font-family:'Unbounded',sans-serif;font-weight:700;font-size:1.2rem;color:var(--ink)}
+    .nav-desktop{display:flex;align-items:center;gap:.25rem}
+    .nav-desktop a{text-decoration:none;color:var(--text-muted);font-weight:500;font-size:.88rem;padding:.45rem .85rem;border-radius:var(--radius-sm);transition:all .2s;white-space:nowrap;display:flex;align-items:center;gap:.4rem}
+    .nav-desktop a:hover,.nav-desktop a.active{background:var(--accent-pale);color:var(--accent)}
+    .header-right{display:flex;align-items:center;gap:.75rem;flex-shrink:0}
+    .lang-select{padding:.4rem .7rem;border:1px solid var(--border);border-radius:var(--radius-sm);background:var(--surface);color:var(--ink);font-size:.85rem;font-family:'Golos Text',sans-serif;cursor:pointer;outline:none}
+    .burger{display:none;background:none;border:none;color:var(--ink);font-size:1.4rem;cursor:pointer;padding:.3rem;border-radius:8px;transition:background .2s}
+    .burger:hover{background:var(--surface-2)}
+    .drawer-overlay{position:fixed;inset:0;background:rgba(0,0,0,.45);backdrop-filter:blur(3px);z-index:300;opacity:0;visibility:hidden;transition:opacity .3s,visibility .3s}
+    .drawer-overlay.open{opacity:1;visibility:visible}
+    .drawer{position:fixed;top:0;right:0;width:min(88%,340px);height:100%;background:var(--surface);z-index:301;transform:translateX(100%);transition:transform .35s cubic-bezier(.22,1,.36,1);display:flex;flex-direction:column;padding:1.5rem}
+    .drawer-overlay.open .drawer{transform:translateX(0)}
+    .drawer-head{display:flex;align-items:center;justify-content:space-between;padding-bottom:1.25rem;border-bottom:1px solid var(--border);margin-bottom:1.25rem}
+    .drawer-close{background:var(--surface-2);border:none;width:36px;height:36px;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:1rem;color:var(--text-muted)}
+    .drawer-nav{display:flex;flex-direction:column;gap:.5rem}
+    .drawer-nav a{display:flex;align-items:center;gap:.75rem;padding:.8rem 1rem;border-radius:var(--radius-sm);text-decoration:none;color:var(--ink);font-weight:500;transition:all .2s}
+    .drawer-nav a i{color:var(--accent);width:18px;text-align:center}
+    .drawer-nav a:hover,.drawer-nav a.active{background:var(--accent-pale);color:var(--accent)}
+    .drawer-lang{margin-top:1.5rem;padding-top:1.25rem;border-top:1px solid var(--border)}
+    .hero{background:var(--ink);position:relative;overflow:hidden;padding:4.5rem 0 3.5rem}
+    .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(59,130,246,.08) 1px,transparent 1px),linear-gradient(90deg,rgba(59,130,246,.08) 1px,transparent 1px);background-size:48px 48px}
+    .hero-glow{position:absolute;width:600px;height:600px;background:radial-gradient(circle,rgba(0,87,217,.35) 0%,transparent 70%);top:-200px;right:-100px;pointer-events:none}
+    .hero-glow-2{position:absolute;width:400px;height:400px;background:radial-gradient(circle,rgba(14,165,199,.2) 0%,transparent 70%);bottom:-150px;left:-50px;pointer-events:none}
+    .hero-content{position:relative;z-index:2;text-align:center;max-width:820px;margin:0 auto}
+    .hero-badge{display:inline-flex;align-items:center;gap:.5rem;background:rgba(59,130,246,.15);border:1px solid rgba(59,130,246,.3);color:#93c5fd;font-size:.8rem;font-weight:600;padding:.45rem 1rem;border-radius:999px;margin-bottom:1.5rem;letter-spacing:.02em}
+    .hero h1{font-family:'Unbounded',sans-serif;font-size:clamp(1.75rem,4vw,2.75rem);font-weight:700;color:var(--white);line-height:1.2;margin-bottom:1.25rem;letter-spacing:-.02em}
+    .hero h1 span{background:linear-gradient(135deg,#60a5fa,#38bdf8);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text}
+    .hero-sub{font-size:1.05rem;color:#94a3b8;max-width:600px;margin:0 auto;line-height:1.7}
+    .section{padding:4rem 0 5rem}
+    .section-tag{display:inline-block;background:var(--accent-pale);color:var(--accent);font-size:.75rem;font-weight:600;text-transform:uppercase;letter-spacing:.08em;padding:.35rem .9rem;border-radius:999px;margin-bottom:1rem}
+    .section-title{font-family:'Unbounded',sans-serif;font-size:clamp(1.4rem,2.5vw,2rem);font-weight:700;color:var(--ink);margin-bottom:.75rem;letter-spacing:-.02em;line-height:1.25}
+    .section-sub{font-size:1rem;color:var(--text-muted);max-width:580px;line-height:1.7}
+    .section-header{margin-bottom:3rem}
+    .section-header.centered{text-align:center}
+    .section-header.centered .section-sub{margin:0 auto}
+    .posts-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.5rem}
+    .post-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;display:flex;flex-direction:column;transition:transform .25s,box-shadow .25s,border-color .25s;position:relative;text-decoration:none;color:inherit}
+    .post-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:var(--accent);border-radius:999px 999px 0 0;opacity:0;transition:opacity .25s}
+    .post-card:hover{transform:translateY(-5px);box-shadow:var(--shadow-lg);border-color:transparent}
+    .post-card:hover::before{opacity:1}
+    .card-image-wrap{width:100%;height:210px;overflow:hidden;background:var(--surface-2)}
+    .card-image{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+    .post-card:hover .card-image{transform:scale(1.05)}
+    .card-content{padding:1.5rem;flex:1;display:flex;flex-direction:column;gap:.6rem}
+    .card-meta{display:flex;align-items:center;gap:.75rem}
+    .card-date{font-size:.8rem;color:var(--text-muted);display:flex;align-items:center;gap:.35rem}
+    .card-tag{font-size:.72rem;font-weight:600;background:var(--accent-pale);color:var(--accent);padding:.2rem .6rem;border-radius:999px;text-transform:uppercase;letter-spacing:.06em}
+    .card-title{font-family:'Unbounded',sans-serif;font-size:.98rem;font-weight:700;color:var(--ink);line-height:1.35;margin:0}
+    .card-excerpt{font-size:.88rem;color:var(--text-muted);line-height:1.65;flex:1}
+    .read-more{display:inline-flex;align-items:center;gap:.4rem;font-weight:600;font-size:.85rem;color:var(--accent);margin-top:.5rem;transition:gap .2s}
+    .read-more:hover{gap:.65rem}
+    .loading{text-align:center;padding:5rem 1.5rem;font-size:1.1rem;color:var(--text-muted)}
+    footer{background:#070b11;color:#64748b;padding:3rem 0 2rem}
+    .footer-top{display:flex;align-items:flex-start;justify-content:space-between;gap:2rem;flex-wrap:wrap;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid rgba(255,255,255,.07)}
+    .footer-brand{max-width:320px}
+    .footer-logo{display:flex;align-items:center;gap:.6rem;text-decoration:none;margin-bottom:.75rem}
+    .footer-logo .logo-icon{background:var(--accent)}
+    .footer-logo .logo-text{color:#fff;font-size:1.1rem}
+    .footer-brand p{font-size:.85rem;line-height:1.65}
+    .footer-nav-title{font-size:.75rem;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:#94a3b8;margin-bottom:.75rem}
+    .footer-links{list-style:none;display:flex;flex-direction:column;gap:.4rem}
+    .footer-links a{text-decoration:none;color:#64748b;font-size:.88rem;transition:color .2s}
+    .footer-links a:hover{color:#94a3b8}
+    .footer-bottom{font-size:.78rem;text-align:center;display:flex;flex-direction:column;gap:.4rem}
+    @keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+    .anim{opacity:0}
+    .anim.visible{animation:fadeUp .55s ease both}
+    .anim-d1{animation-delay:.05s}
+    .anim-d2{animation-delay:.12s}
+    .anim-d3{animation-delay:.19s}
+    @media(max-width:900px){.posts-grid{grid-template-columns:1fr 1fr}.nav-desktop{display:none}.burger{display:flex}}
+    @media(max-width:600px){.posts-grid{grid-template-columns:1fr}.hero{padding:3rem 0 2.5rem}.section{padding:3rem 0 4rem}.footer-top{flex-direction:column}}
   </style>
 </head>
 <body>
 
-<!-- ═══ HEADER ═══════════════════════════════════════ -->
 <header>
   <div class="container">
     <div class="header-inner">
@@ -767,7 +136,6 @@
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
         <span class="logo-text">EduSafe</span>
       </a>
-
       <nav class="nav-desktop">
         <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
         <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
@@ -777,7 +145,6 @@
         <a href="blog.html" class="active"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
         <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
       </nav>
-
       <div class="header-right">
         <select class="lang-select" id="languageSelector">
           <option value="ru">🇧🇾 Русский</option>
@@ -789,7 +156,6 @@
   </div>
 </header>
 
-<!-- ═══ DRAWER ════════════════════════════════════════ -->
 <div class="drawer-overlay" id="drawerOverlay">
   <div class="drawer">
     <div class="drawer-head">
@@ -817,37 +183,70 @@
   </div>
 </div>
 
-<!-- ═══ HERO ══════════════════════════════════════════ -->
-<section class="hero" id="heroSection">
+<section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge anim">
-        <i class="fas fa-pen-nib"></i>
-        <span>EduSafe · Блог</span>
-      </div>
+      <div class="hero-badge anim"><i class="fas fa-pen-nib"></i><span>EduSafe · Блог</span></div>
       <h1 class="anim anim-d1">Актуальные <span>новости и советы</span> по безопасности данных</h1>
       <p class="hero-sub anim anim-d2">Экспертные материалы о защите персональных данных в образовательной среде Республики Беларусь</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ MAIN CONTENT ═════════════════════════════════ -->
 <section class="section">
   <div class="container">
-    <div id="app-container">
-      <div class="loading"><i class="fas fa-spinner fa-spin"></i> Загрузка материалов...</div>
+    <div class="section-header centered anim">
+      <span class="section-tag">Блог</span>
+      <h2 class="section-title">Последние публикации</h2>
+      <p class="section-sub">Разборы ситуаций, правовые новости и практические советы по цифровой безопасности</p>
     </div>
-    <div id="comments-section" style="display: none;">
-      <h3><i class="fas fa-comments" style="color:var(--accent); margin-right:0.5rem;"></i>Комментарии</h3>
-      <div id="disqus_thread"></div>
+    <div class="posts-grid">
+      
+      <a class="post-card" href="blog/v-tiktok-nabiraet-oboroty-opasnyj-trend-shkol-niki-publichno-oskorblyayut-pedago.html">
+        <div class="card-image-wrap"><img src="https://images.ctfassets.net/r6g09taz57g1/5BkneIkxm4mMEYu5Vq3ywa/7902f984b0bcb807a96abd5e4403132e/solen-feyissa-Yaw9mfG9QfQ-unsplash.jpg" class="card-image" alt="В TikTok набирает обороты опасный тренд: школьники публично оскорбляют педагогов. Разбираем последствия" loading="lazy"></div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="card-date"><i class="far fa-calendar-alt"></i> 5 мая 2026 г.</span>
+            <span class="card-tag">Блог</span>
+          </div>
+          <h3 class="card-title">В TikTok набирает обороты опасный тренд: школьники публично оскорбляют педагогов. Разбираем последствия</h3>
+          <p class="card-excerpt">Edusafe / Новости....</p>
+          <span class="read-more">Читать далее <i class="fas fa-arrow-right fa-xs"></i></span>
+        </div>
+      </a>
+
+      <a class="post-card" href="blog/zaschita-personal-nykh-dannykh-v-obrazovanii-pravovoj-likbez-dlya-vsekh-uchastni.html">
+        <div class="card-image-wrap"><img src="https://images.ctfassets.net/r6g09taz57g1/vQbAlzKZEdwr7fejDNH6O/fc28c142fc9e1d93215dee7a70f392a9/Gemini_Generated_Image_y2q2d4y2q2d4y2q2.png" class="card-image" alt="Защита персональных данных в образовании: правовой ликбез для всех участников" loading="lazy"></div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="card-date"><i class="far fa-calendar-alt"></i> 5 марта 2026 г.</span>
+            <span class="card-tag">Блог</span>
+          </div>
+          <h3 class="card-title">Защита персональных данных в образовании: правовой ликбез для всех участников</h3>
+          <p class="card-excerpt">В образовательной среде к персональным данным относится гораздо больше информации, чем кажется на первый взгляд:...</p>
+          <span class="read-more">Читать далее <i class="fas fa-arrow-right fa-xs"></i></span>
+        </div>
+      </a>
+
+      <a class="post-card" href="blog/chto-o-tebe-znaet-chatgpt-iskusstvennyj-intellekt-i-tvoi-sekrety.html">
+        <div class="card-image-wrap"><img src="https://images.ctfassets.net/r6g09taz57g1/2vy6OVWmd5f0HkYgNw0lPd/2c8dc341c708abbb27c25bc627465588/igor-omilaev-gVQLAbGVB6Q-unsplash.jpg" class="card-image" alt="Что о тебе знает ChatGPT? Искусственный интеллект и твои секреты" loading="lazy"></div>
+        <div class="card-content">
+          <div class="card-meta">
+            <span class="card-date"><i class="far fa-calendar-alt"></i> 25 января 2026 г.</span>
+            <span class="card-tag">Блог</span>
+          </div>
+          <h3 class="card-title">Что о тебе знает ChatGPT? Искусственный интеллект и твои секреты</h3>
+          <p class="card-excerpt">Photo by ...</p>
+          <span class="read-more">Читать далее <i class="fas fa-arrow-right fa-xs"></i></span>
+        </div>
+      </a>
     </div>
   </div>
 </section>
 
-<!-- ═══ FOOTER ════════════════════════════════════════ -->
 <footer>
   <div class="container">
     <div class="footer-top">
@@ -872,7 +271,7 @@
       </div>
     </div>
     <div class="footer-bottom">
-      <div>© 2026 Edusafe, УО «Белорусский государственный экономический университет»</div>
+      <div>© 2025 Невдах Александр, УО «Белорусский государственный экономический университет»</div>
       <div>Ресурс не использует cookies и не собирает персональные данные пользователей.</div>
       <div>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</div>
     </div>
@@ -880,199 +279,19 @@
 </footer>
 
 <script>
-  // ─── CONTENTFUL ─────────────────────────────────────
-  const SPACE_ID = 'r6g09taz57g1';
-  const ACCESS_TOKEN = 'zqICxOXNmrLbK3yIiNLMZ19XwauYoQGurJJ7p2U6uqk';
-  const client = contentful.createClient({ space: SPACE_ID, accessToken: ACCESS_TOKEN });
-
-  const appContainer = document.getElementById('app-container');
-  const heroSection = document.getElementById('heroSection');
-  const commentsSection = document.getElementById('comments-section');
-
-  function init() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const postId = urlParams.get('id');
-    if (postId) loadSinglePost(postId); else loadPostList();
-  }
-
-  function loadPostList() {
-    heroSection.style.display = '';
-    commentsSection.style.display = 'none';
-    client.getEntries({ content_type: 'blogPost', order: '-fields.date', include: 2 })
-      .then((response) => {
-        if (!response.items.length) {
-          appContainer.innerHTML = '<div class="loading">Пока нет публикаций.</div>';
-          return;
-        }
-
-        // Section header
-        let html = `
-          <div class="section-header centered anim">
-            <span class="section-tag">Блог</span>
-            <h2 class="section-title">Последние публикации</h2>
-            <p class="section-sub">Разборы ситуаций, правовые новости и практические советы по цифровой безопасности</p>
-          </div>
-          <div class="posts-grid">`;
-
-        response.items.forEach((item, i) => {
-          const f = item.fields;
-          const id = item.sys.id;
-          const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
-          let excerpt = 'Читать далее...';
-          try {
-            excerpt = f.content.content.find(n => n.nodeType === 'paragraph').content[0].value.substring(0, 120) + '...';
-          } catch(e) {}
-          const imgUrl = f.image ? 'https:' + f.image.fields.file.url : '';
-          const delay = i < 3 ? `anim-d${i}` : '';
-
-          html += `
-            <div class="post-card anim ${delay}" onclick="window.location.href='?id=${id}'">
-              ${imgUrl ? `<div class="card-image-wrap"><img src="${imgUrl}" class="card-image" alt="${f.title || ''}"></div>` : ''}
-              <div class="card-content">
-                <div class="card-meta">
-                  <span class="card-date"><i class="far fa-calendar-alt"></i> ${date}</span>
-                  <span class="card-tag">Блог</span>
-                </div>
-                <h3 class="card-title">${f.title || 'Без названия'}</h3>
-                <p class="card-excerpt">${excerpt}</p>
-                <span class="read-more">Читать далее <i class="fas fa-arrow-right fa-xs"></i></span>
-              </div>
-            </div>`;
-        });
-
-        html += '</div>';
-        appContainer.innerHTML = html;
-
-        // Re-observe new .anim elements
-        document.querySelectorAll('.anim').forEach(el => observer.observe(el));
-      })
-      .catch(err => {
-        appContainer.innerHTML = `<div class="error-box"><i class="fas fa-exclamation-triangle"></i> Ошибка загрузки: ${err.message}</div>`;
-      });
-  }
-
-  function loadSinglePost(id) {
-    heroSection.style.display = 'none';
-    client.getEntry(id, { include: 2 })
-      .then((item) => {
-        const f = item.fields;
-        const date = f.date ? new Date(f.date).toLocaleDateString('ru-RU', { day: 'numeric', month: 'long', year: 'numeric' }) : '';
-
-        const renderInlines = (inlines) => {
-          if (!inlines) return '';
-          return inlines.map(inline => {
-            if (inline.nodeType === 'text') {
-              let text = inline.value || '';
-              if (inline.marks) {
-                inline.marks.forEach(mark => {
-                  if (mark.type === 'bold') text = `<strong>${text}</strong>`;
-                  if (mark.type === 'italic') text = `<em>${text}</em>`;
-                });
-              }
-              return text;
-            }
-            if (inline.nodeType === 'hyperlink') {
-              return `<a href="${inline.data.uri}" target="_blank" rel="noopener">${renderInlines(inline.content)}</a>`;
-            }
-            return '';
-          }).join('');
-        };
-
-        let contentHtml = '';
-        const rawContent = f.content;
-
-        if (rawContent && rawContent.nodeType === 'document') {
-          const renderer = window.contentfulRichTextHtmlRenderer || window['@contentful/rich-text-html-renderer'];
-          const options = {
-            renderNode: {
-              'hyperlink': (node) => `<a href="${node.data.uri}" target="_blank">${renderInlines(node.content)}</a>`,
-              'embedded-asset-block': (node) => `<img src="https:${node.data.target.fields.file.url}" class="rich-img" />`,
-              'blockquote': (node) => `<blockquote>${node.content.map(n => `<p>${renderInlines(n.content)}</p>`).join('')}</blockquote>`,
-              'ordered-list': (node) => `<ol>${node.content.map(li => `<li>${li.content.map(p => renderInlines(p.content)).join('')}</li>`).join('')}</ol>`,
-              'unordered-list': (node) => `<ul>${node.content.map(li => `<li>${li.content.map(p => renderInlines(p.content)).join('')}</li>`).join('')}</ul>`
-            }
-          };
-
-          if (renderer && renderer.documentToHtmlString) {
-            contentHtml = renderer.documentToHtmlString(rawContent, options);
-          } else {
-            contentHtml = rawContent.content.map(node => {
-              switch(node.nodeType) {
-                case 'paragraph': return `<p>${renderInlines(node.content)}</p>`;
-                case 'heading-1': return `<h1>${renderInlines(node.content)}</h1>`;
-                case 'heading-2': return `<h2>${renderInlines(node.content)}</h2>`;
-                case 'heading-3': return `<h3>${renderInlines(node.content)}</h3>`;
-                case 'blockquote': return `<blockquote>${node.content.map(p => `<p>${renderInlines(p.content)}</p>`).join('')}</blockquote>`;
-                case 'ordered-list': return `<ol>${node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('')}</ol>`;
-                case 'unordered-list': return `<ul>${node.content.map(li => `<li>${renderInlines(li.content[0].content)}</li>`).join('')}</ul>`;
-                case 'embedded-asset-block': return `<img src="https:${node.data.target.fields.file.url}" class="rich-img" />`;
-                default: return '';
-              }
-            }).join('');
-          }
-        }
-
-        const mainImg = f.image ? `<img src="https:${f.image.fields.file.url}" class="post-main-poster" alt="${f.title || ''}">` : '';
-
-        appContainer.innerHTML = `
-          <div class="single-post-wrap">
-            <a href="blog.html" class="back-btn"><i class="fas fa-arrow-left"></i> Назад к списку</a>
-            <article class="single-post">
-              <div class="post-header">
-                <div class="post-meta-row">
-                  <span class="post-tag"><i class="fas fa-pen-nib"></i> Блог</span>
-                  <span class="post-meta-date"><i class="far fa-calendar-alt"></i> ${date}</span>
-                </div>
-                <h1 class="article-title">${f.title || 'Без названия'}</h1>
-              </div>
-              ${mainImg}
-              <div class="post-body">
-                <div class="post-content">${contentHtml}</div>
-              </div>
-            </article>
-          </div>`;
-
-        commentsSection.style.display = 'block';
-        initDisqus(id);
-      })
-      .catch(() => {
-        appContainer.innerHTML = `<div class="error-box"><i class="fas fa-exclamation-triangle"></i> Статья не найдена.</div>`;
-      });
-  }
-
-  function initDisqus(id) {
-    if (window.DISQUS) {
-      window.DISQUS.reset({ reload: true, config: function() { this.page.identifier = id; this.page.url = window.location.href; }});
-    } else {
-      var d = document, s = d.createElement('script');
-      s.src = 'https://edusafe-test.disqus.com/embed.js';
-      s.setAttribute('data-timestamp', +new Date());
-      (d.head || d.body).appendChild(s);
-    }
-  }
-
-  // ─── MOBILE DRAWER ──────────────────────────────────
   const overlay = document.getElementById('drawerOverlay');
   document.getElementById('navToggle').addEventListener('click', () => {
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
   });
-  function closeDrawer() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
-  }
+  function closeDrawer() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
   document.getElementById('drawerClose').addEventListener('click', closeDrawer);
   overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
   document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
-
-  // ─── INTERSECTION OBSERVER ──────────────────────────
   const observer = new IntersectionObserver(entries => {
     entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
   }, { threshold: 0.1 });
   document.querySelectorAll('.anim').forEach(el => observer.observe(el));
-
-  // ─── INIT ────────────────────────────────────────────
-  window.onload = init;
 </script>
 </body>
 </html>
