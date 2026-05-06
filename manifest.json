@@ -1,0 +1,25 @@
+{
+  "name": "EduSafe",
+  "short_name": "EduSafe",
+  "description": "Интерактивный ресурс EduSafe: теория, практика и викторина для защиты персональных данных.",
+  "lang": "ru",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#0057d9",
+  "icons": [
+    {
+      "src": "./favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "./favcion.ico",
+      "sizes": "48x48",
+      "type": "image/x-icon"
+    }
+  ]
+}
+
