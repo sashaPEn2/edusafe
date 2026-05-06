@@ -804,7 +804,6 @@
 <script>
  
 
-  let currentLang = 'ru';
 
   const teacherScenarios = [
     { scenario: { ru: "Вас просят передать списки студентов, включая их ФИО и группу, в стороннюю организацию для последующего трудоустройства. Какое правовое основание нужно?", en: "You are asked to transfer student lists, including their full name and group, to a third-party organisation for employment purposes. What legal basis is needed?" }, solution: { ru: "Для этой цели необходимо получить письменное согласие каждого совершеннолетнего студента (или законного представителя несовершеннолетнего). Это не является обязанностью УО, предусмотренной законодательством.", en: "Written consent must be obtained from each adult student (or legal representative of a minor). This is not a statutory obligation of the educational institution." }, law: { ru: "Статья 5 Закона (Согласие субъекта ПД); Разъяснения НЦЗПД (21.11.2025), п. 4.4.", en: "Article 5 of the Law (Consent of the data subject); NCPDP Clarifications (21.11.2025), item 4.4." } },
@@ -856,102 +855,7 @@
     return role === 'teacher' ? 'var(--accent)' : role === 'student' ? 'var(--green)' : 'var(--teal)';
   }
 
-  function generateScenarios(scenarios, containerId, role) {
-    const container = document.getElementById(containerId);
-    if (!container) return;
-    container.innerHTML = '';
-    const t = translations[currentLang];
-
-    scenarios.forEach((s, i) => {
-      const card = document.createElement('div');
-      card.className = 'scenario-card';
-      card.style.setProperty('--card-color', cardColor(role));
-
-      const numEl = document.createElement('div');
-      numEl.style.cssText = `display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;background:${role === 'student' ? 'var(--green-pale)' : role === 'director' ? 'var(--teal-pale)' : 'var(--accent-pale)'};color:${cardColor(role)};border-radius:8px;font-family:'Unbounded',sans-serif;font-size:0.72rem;font-weight:700;flex-shrink:0;`;
-      numEl.textContent = i + 1;
-
-      const headerRow = document.createElement('div');
-      headerRow.className = 'scenario-header-row';
-
-      const txt = document.createElement('div');
-      txt.className = 'scenario-text';
-      txt.textContent = s.scenario[currentLang];
-
-      headerRow.appendChild(numEl);
-      headerRow.appendChild(txt);
-      card.appendChild(headerRow);
-
-      // Modal
-      const modalId = `modal-${containerId}-${i}`;
-      const modal = document.createElement('div');
-      modal.id = modalId;
-      modal.className = 'modal';
-      modal.innerHTML = `
-        <div class="modal-content">
-          <div class="modal-header">
-            <div class="modal-header-grid"></div>
-            <h2>${i + 1}. ${s.scenario[currentLang]}</h2>
-            <button class="modal-close" onclick="document.getElementById('${modalId}').classList.remove('show')">&times;</button>
-          </div>
-          <div class="modal-body">
-            <div class="modal-section">
-              <div class="modal-section-label label-green"><i class="fas fa-check-circle"></i> ${t.solutionTitle}</div>
-              <div class="modal-section-content content-green">${s.solution[currentLang]}</div>
-            </div>
-            <div class="modal-section">
-              <div class="modal-section-label label-blue"><i class="fas fa-balance-scale"></i> ${t.lawTitle}</div>
-              <div class="modal-section-content content-blue">${formatLaw(s.law[currentLang])}</div>
-            </div>
-            <div class="ncdp-notice">
-              <i class="fas fa-info-circle"></i>
-              <span>${t.ncdpNotice}</span>
-            </div>
-          </div>
-        </div>`;
-      document.body.appendChild(modal);
-      modal.addEventListener('click', e => { if (e.target === modal) modal.classList.remove('show'); });
-      document.addEventListener('keydown', e => { if (e.key === 'Escape') modal.classList.remove('show'); });
-
-      const btn = document.createElement('button');
-      btn.className = 'scenario-modal-btn';
-      btn.innerHTML = `<i class="fas fa-eye"></i> ${t.toggleDetails}`;
-      btn.addEventListener('click', () => modal.classList.add('show'));
-      card.appendChild(btn);
-      container.appendChild(card);
-    });
-  }
-
-  function applyTranslations(lang) {
-    const t = translations[lang];
-    document.getElementById('heroBadge').textContent = t.heroBadge;
-    document.getElementById('heroTitle').innerHTML = t.heroTitle;
-    document.getElementById('heroSubtitle').textContent = t.heroSubtitle;
-    document.getElementById('abbreviationsTitle').textContent = t.abbreviationsTitle;
-    document.getElementById('abbr_uvo_text').textContent = t.abbr_uvo;
-    document.getElementById('abbr_usso_text').textContent = t.abbr_usso;
-    document.getElementById('abbr_pd_text').textContent = t.abbr_pd;
-    document.getElementById('abbr_nczpd_text').textContent = t.abbr_nczpd;
-    document.getElementById('abbr_pps_text').textContent = t.abbr_pps;
-    document.getElementById('abbr_uo_text').textContent = t.abbr_uo;
-    document.getElementById('abbr_fio_text').textContent = t.abbr_fio;
-    document.getElementById('ncdpBannerTitle').textContent = t.ncdpBannerTitle;
-    document.getElementById('ncdpBannerText').innerHTML = t.ncdpBannerText;
-    document.getElementById('roleTeacherTitle').textContent = t.roleTeacherTitle;
-    document.getElementById('roleTeacherDesc').textContent = t.roleTeacherDesc;
-    document.getElementById('roleStudentTitle').textContent = t.roleStudentTitle;
-    document.getElementById('roleStudentDesc').textContent = t.roleStudentDesc;
-    document.getElementById('roleDirectorTitle').textContent = t.roleDirectorTitle;
-    document.getElementById('roleDirectorDesc').textContent = t.roleDirectorDesc;
-    document.getElementById('teacherHeader').textContent = t.teacherHeader;
-    document.getElementById('studentHeader').textContent = t.studentHeader;
-    document.getElementById('directorHeader').textContent = t.directorHeader;
-
-    document.querySelectorAll('.modal').forEach(m => m.remove());
-    generateScenarios(teacherScenarios, 'teacherScenariosGrid', 'teacher');
-    generateScenarios(studentScenarios, 'studentScenariosGrid', 'student');
-    generateScenarios(directorScenarios, 'directorScenariosGrid', 'director');
-  }
+  
 
   /* ─── TABS ─────────────────────────────── */
   document.querySelectorAll('.tab-btn').forEach(btn => {
