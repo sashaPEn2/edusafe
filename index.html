@@ -955,10 +955,7 @@
       </nav>
 
       <div class="header-right">
-        <!-- <select class="lang-select" id="languageSelector">
-          <option value="ru">🇧🇾 Русский</option>
-          <option value="en">🇬🇧 English</option>
-        </select> -->
+
         <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
       </div>
     </div>
@@ -985,10 +982,6 @@
       <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
     </nav>
     <div class="drawer-lang">
-      <!-- <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
-        <option value="ru">🇧🇾 Русский</option>
-        <option value="en">🇬🇧 English</option>
-      </select> -->
     </div>
   </div>
 </div>
@@ -1027,10 +1020,7 @@
         <span class="stat-num">99-З</span>
         <div class="stat-label">соответствие закону</div>
       </div>
-      <div class="stat-item">
-        <span class="stat-num">2</span>
-        <div class="stat-label">языка интерфейса</div>
-      </div>
+    
     </div>
   </div>
 </div>
@@ -1229,61 +1219,7 @@
     if (el) el.innerHTML = html;
   }
 
-  function updateLanguage(lang) {
-    const t = translations[lang];
-    if (!t) return;
-    currentLang = lang;
-
-    setText('heroBadge', t.heroBadge);
-    ['logoText','mobileLogoText','footerLogoText'].forEach(id => setText(id, t.logoText));
-    setHTML('heroTitle', t.heroTitle);
-    setText('heroSubtitle', t.heroSubtitle);
-    setText('heroNote', t.heroNote);
-    setText('whatsInsideTitle', t.whatsInsideTitle);
-    setText('whatsInsideSubtitle', t.whatsInsideSubtitle);
-    setText('card1Title', t.card1Title); setText('card1Text', t.card1Text); setText('card1Btn', t.card1Btn);
-    setText('card2Title', t.card2Title); setText('card2Text', t.card2Text); setText('card2Btn', t.card2Btn);
-    setText('card3Title', t.card3Title); setText('card3Text', t.card3Text); setText('card3Btn', t.card3Btn);
-    setText('value1Title', t.value1Title); setText('value1Text', t.value1Text);
-    setText('value2Title', t.value2Title); setText('value2Text', t.value2Text);
-    setText('value3Title', t.value3Title); setText('value3Text', t.value3Text);
-    setText('ctaTitle', t.ctaTitle); setText('ctaSubtitle', t.ctaSubtitle);
-    setText('ctaBtn1Text', t.ctaBtn1Text); setText('ctaBtn2Text', t.ctaBtn2Text); setText('ctaBtn3Text', t.ctaBtn3Text);
-    setText('sdgTitle', t.sdgTitle); setText('sdgInfoText', t.sdgDefault);
-    setText('cpdLabel', t.cpdLabel); setText('cpdTitle', t.cpdTitle);
-    setText('cpdText', t.cpdText); setText('cpdLink', t.cpdLink);
-    setText('footerDesc', t.footerDesc);
-    setText('footerCopyright', t.footerCopyright);
-    setText('footerDisclaimer1', t.footerDisclaimer1);
-    setText('footerDisclaimer2', t.footerDisclaimer2);
-
-    // sync nav
-    const navItems = ['Home','Theory','Practice','Video','Quiz','Blog','Complaint'];
-    navItems.forEach(item => {
-      const key = 'nav' + item;
-      setText('nav' + item, t[key] || '');
-      setText('mobileNav' + item, t[key] || '');
-    });
-
-    document.documentElement.lang = lang;
-    document.getElementById('languageSelector').value = lang;
-    document.getElementById('mobileLanguageSelector').value = lang;
-    // reset sdg active
-    document.querySelectorAll('.sdg-item').forEach(el => el.classList.remove('active'));
-  }
-
-  // SDG
-  function showSdgInfo(goal, element) {
-    const t = translations[currentLang];
-    document.querySelectorAll('.sdg-item').forEach(el => el.classList.remove('active'));
-    element.classList.add('active');
-    const el = document.getElementById('sdgInfoText');
-    el.style.opacity = 0;
-    setTimeout(() => {
-      el.textContent = goal === 'sdg4' ? t.sdg4Info : goal === 'sdg9' ? t.sdg9Info : t.sdg16Info;
-      el.style.opacity = 1;
-    }, 200);
-  }
+ 
 
   // Mobile drawer
   const overlay = document.getElementById('drawerOverlay');
@@ -1299,9 +1235,6 @@
   overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
   document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
-  // Language selectors
-  document.getElementById('languageSelector').addEventListener('change', e => updateLanguage(e.target.value));
-  document.getElementById('mobileLanguageSelector').addEventListener('change', e => updateLanguage(e.target.value));
 
   // Intersection observer for animations
   const observer = new IntersectionObserver(entries => {
@@ -1309,8 +1242,6 @@
   }, { threshold: 0.12 });
   document.querySelectorAll('.anim').forEach(el => observer.observe(el));
 
-  // Init
-  updateLanguage('ru');
 </script>
 </body>
 </html>
