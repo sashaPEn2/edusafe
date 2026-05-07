@@ -223,6 +223,26 @@ function buildPostPage(item, slug) {
   <meta name="description" content="${excerpt}"/>
   <link rel="canonical" href="${pageUrl}"/>
 
+<!-- Vercel Speed Insights -->
+<script>
+  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+</script>
+<script defer src="/_vercel/speed-insights/script.js"></script>
+
+<!-- Yandex.Metrika counter -->
+<script type="text/javascript">
+    (function(m,e,t,r,i,k,a){
+        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+        m[i].l=1*new Date();
+        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
+        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
+    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=109089619', 'ym');
+
+    ym(109089619, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", referrer: document.referrer, url: location.href, accurateTrackBounce:true, trackLinks:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/109089619" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+<!-- /Yandex.Metrika counter -->
+
   <!-- Open Graph -->
   <meta property="og:type" content="article"/>
   <meta property="og:title" content="${f.title || ''}"/>
@@ -367,6 +387,13 @@ function buildIndexPage(posts) {
   <meta name="description" content="Блог EduSafe — актуальные новости и советы по защите персональных данных в образовании."/>
   <title>Блог — EduSafe</title>
   <link rel="canonical" href="${SITE_BASE_URL}/blog.html"/>
+
+  <!-- Vercel Speed Insights -->
+  <script>
+    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
+  </script>
+  <script defer src="/_vercel/speed-insights/script.js"></script>
+
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Блог — EduSafe"/>
   <meta property="og:description" content="Актуальные новости и советы по защите персональных данных в образовании."/>
@@ -505,13 +532,13 @@ function buildIndexPage(posts) {
       <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
       <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
       <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
-      <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+      <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Виктор��на</span></a>
       <a href="blog.html" class="active"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
       <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
     </nav>
     <div class="drawer-lang">
       <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
-        <option value="ru">🇧🇾 Русский</option>
+        <option value="ru">🇧🇾 Ру��ский</option>
         <option value="en">🇬🇧 English</option>
       </select>
     </div>
