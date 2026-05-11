@@ -148,6 +148,21 @@
     .update-notice i { color: var(--text-muted); flex-shrink: 0; }
     .update-notice p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
 
+    /* PDF BLOCK */
+    .pdf-block { background: linear-gradient(135deg, #f0fdff 0%, #eff6ff 100%); border: 1.5px solid #bfdbfe; border-radius: var(--radius); padding: 1.75rem; margin-top: 2.5rem; display: flex; align-items: center; gap: 1.25rem; }
+    .pdf-block-icon { width: 48px; height: 48px; background: #fee2e2; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 1.5rem; flex-shrink: 0; }
+    .pdf-block-content { flex: 1; }
+    .pdf-block-title { font-family: 'Unbounded', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; }
+    .pdf-block-text { font-size: 0.83rem; color: #64748b; margin-bottom: 0.75rem; }
+    .pdf-block-link { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 8px; transition: all 0.2s; }
+    .pdf-block-link:hover { background: #0052c4; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 87, 217, 0.25); }
+    .pdf-block-link i { font-size: 0.9rem; }
+
+    /* DOWNLOAD BUTTON */
+    .download-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; width: 36px; height: 36px; background: var(--accent-pale); border: none; border-radius: 8px; color: var(--accent); cursor: pointer; transition: all 0.2s; font-size: 0.9rem; }
+    .download-btn:hover { background: var(--accent); color: white; }
+    .download-btn i { font-size: 0.95rem; }
+
     /* FOOTER */
     footer { background: #070b11; color: #64748b; padding: 3rem 0 2rem; }
     .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
@@ -238,6 +253,7 @@
         <div class="hero-badge"><i class="fas fa-gavel"></i> Закон РБ № 99-З</div>
         <div class="hero-badge" style="background:rgba(14,165,199,0.15); border-color:rgba(14,165,199,0.3); color:#7dd3fc;"><i class="fas fa-university"></i> По форме НЦЗПД</div>
         <div class="hero-date"><i class="fas fa-calendar-alt"></i> По состоянию на май 2026 г.</div>
+        <a href="./files/policy/cookie.pdf" download class="download-btn" title="Скачать политику в PDF"><i class="fas fa-download"></i></a>
       </div>
     </div>
   </div>
@@ -265,7 +281,7 @@
               <h3>Общие положения</h3>
             </div>
 
-            <p class="policy-text">1.1. Издание настоящей Политики в отношении обработки файлов cookie (далее — Политика) является одной из обязательных мер по обеспечению защиты персональных данных, предусмотренных <strong>статьёй 17 Закона Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных»</strong> (далее — Закон), принимаемых Учреждением образования «Белорусский государственный экономический университет» (далее — Оператор) в лице интернет-ресурса <strong>EduSafe</strong>.</p>
+            <p class="policy-text">1.1. Издание настоящей Политики в отношении обработки файлов cookie (далее — Политика) является одной из обязательных мер по обеспечению защиты персональных данных, предусмотренных <strong>статьёй 17 Закона Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных»</strong> (далее — Закон), принимаемых <strong>Невдахом Александром Сергеевичем</strong> (далее — Оператор) в лице интернет-ресурса <strong>EduSafe</strong>.</p>
 
             <p class="policy-text">Настоящая Политика разъясняет пользователям информационного ресурса <strong>EduSafe</strong> (далее — сайт), расположенного в сети Интернет, как, для каких целей и на каком правовом основании их персональные данные собираются, используются или иным образом обрабатываются при использовании файлов cookie.</p>
 
@@ -380,7 +396,7 @@
 
             <div class="info-box green">
               <div class="info-box-title"><i class="fas fa-envelope"></i> Контакт для обращений</div>
-              <p>По вопросам обработки персональных данных, в том числе файлов cookie, вы можете обратиться к Оператору через форму обратной связи на странице <a href="contact.html" style="color: #059669; font-weight:600;">«Жалоба»</a> или направив письменное обращение в Учреждение образования «Белорусский государственный экономический университет».</p>
+              <p>По вопросам обработки персональных данных, в том числе файлов cookie, вы можете обратиться к Оператору через форму обратной связи на странице <a href="contact.html" style="color: #059669; font-weight:600;">«Жалоба»</a>.</p>
             </div>
           </div>
 
@@ -408,6 +424,15 @@
             <div class="info-box amber">
               <div class="info-box-title"><i class="fas fa-exclamation-triangle"></i> Обратите внимание</div>
               <p>Полное отключение файлов cookie в браузере может привести к ограничению функциональности ряда разделов сайта, в частности к сбросу языковых настроек при каждом новом посещении.</p>
+            </div>
+          </div>
+
+          <div class="pdf-block">
+            <div class="pdf-block-icon"><i class="fas fa-file"></i></div>
+            <div class="pdf-block-content">
+              <div class="pdf-block-title">Политика в формате PDF</div>
+              <p class="pdf-block-text">Скачайте полный текст политики в формате PDF для сохранения на вашем устройстве.</p>
+              <a href="./files/policy/cookie.pdf" download class="pdf-block-link"><i class="fas fa-download"></i> Скачать PDF</a>
             </div>
           </div>
 
