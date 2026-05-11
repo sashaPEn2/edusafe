@@ -1,0 +1,506 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Политика EduSafe в отношении обработки файлов cookie. Соответствует примерной форме НЦЗПД и Закону РБ № 99-З.">
+  <title>Политика cookie — EduSafe</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --ink: #0d1117; --ink-soft: #1e2633; --accent: #0057d9; --accent-light: #3b82f6;
+      --accent-pale: #dbeafe; --teal: #0ea5c7; --surface: #ffffff;
+      --surface-2: #f5f7fb; --border: #e2e8f0; --text-muted: #64748b; --white: #ffffff;
+      --radius-sm: 8px; --radius: 16px; --radius-lg: 24px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06); --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Golos Text', sans-serif; background: var(--surface-2); color: var(--ink); line-height: 1.65; overflow-x: hidden; }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HEADER */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 200; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .logo-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+    .nav-desktop { display: flex; align-items: center; gap: 0.25rem; }
+    .nav-desktop a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.88rem; padding: 0.45rem 0.85rem; border-radius: var(--radius-sm); transition: all 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-desktop a:hover, .nav-desktop a.active { background: var(--accent-pale); color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .burger { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0.3rem; border-radius: 8px; transition: background 0.2s; }
+    .burger:hover { background: var(--surface-2); }
+
+    /* DRAWER */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+    .drawer { position: fixed; top: 0; right: 0; width: min(88%, 340px); height: 100%; background: var(--surface); z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; padding: 1.5rem; }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
+    .drawer-close { background: var(--surface-2); border: none; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+    .drawer-nav a { display: flex; align-items: center; gap: 0.75rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); font-weight: 500; transition: all 0.2s; }
+    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
+    .drawer-nav a:hover { background: var(--accent-pale); color: var(--accent); }
+
+    /* HERO */
+    .page-hero { background: var(--ink); position: relative; overflow: hidden; padding: 3.5rem 0 3rem; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px); background-size: 48px 48px; }
+    .hero-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,87,217,0.3) 0%, transparent 70%); top: -200px; right: -80px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: #64748b; text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #93c5fd; }
+    .breadcrumb span { color: #334155; font-size: 0.82rem; }
+    .breadcrumb i { color: #334155; font-size: 0.6rem; }
+    .page-hero h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: var(--white); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .page-hero h1 span { background: linear-gradient(135deg, #60a5fa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 999px; }
+    .hero-date { color: #64748b; font-size: 0.82rem; display: flex; align-items: center; gap: 0.35rem; }
+
+    /* LAYOUT */
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 2.5rem; padding: 3rem 0 4rem; align-items: start; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 88px; }
+    .sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+    .sidebar-title { font-family: 'Unbounded', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; letter-spacing: 0.01em; }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+    .toc-list li a { display: flex; align-items: flex-start; gap: 0.6rem; text-decoration: none; color: var(--text-muted); font-size: 0.84rem; padding: 0.45rem 0.6rem; border-radius: 8px; transition: all 0.2s; line-height: 1.4; }
+    .toc-list li a:hover { background: var(--accent-pale); color: var(--accent); }
+    .toc-list li a .toc-num { font-weight: 700; color: var(--accent); font-size: 0.75rem; flex-shrink: 0; min-width: 18px; padding-top: 1px; }
+    .cpd-ref { background: linear-gradient(135deg, #eff6ff, #f0fdff); border: 1.5px solid #bfdbfe; border-radius: var(--radius); padding: 1.25rem; }
+    .cpd-ref-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; margin-bottom: 0.85rem; }
+    .cpd-ref p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem; }
+    .cpd-ref a { font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .cpd-ref a:hover { text-decoration: underline; }
+
+    /* ARTICLE */
+    .policy-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .article-header { padding: 2rem 2.5rem; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, #f8faff 0%, #f0fdff 100%); }
+    .article-header .doc-label { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--accent-pale); color: var(--accent); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.85rem; }
+    .article-header h2 { font-family: 'Unbounded', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1.4; margin-bottom: 0.5rem; }
+    .article-header .doc-note { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
+    .article-body { padding: 2rem 2.5rem; }
+
+    /* POLICY SECTIONS */
+    .policy-section { margin-bottom: 2.5rem; scroll-margin-top: 100px; }
+    .policy-section:last-child { margin-bottom: 0; }
+    .section-heading { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--accent-pale); }
+    .section-num { width: 36px; height: 36px; background: var(--accent); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Unbounded', sans-serif; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .section-heading h3 { font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .policy-text { font-size: 0.93rem; color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+    .policy-text:last-child { margin-bottom: 0; }
+    .policy-text strong { color: var(--ink); font-weight: 600; }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding: 1.1rem 1.4rem; margin: 1rem 0; border-left: 4px solid; }
+    .info-box.blue { background: #eff6ff; border-color: var(--accent); }
+    .info-box.teal { background: #ecfeff; border-color: var(--teal); }
+    .info-box.green { background: #f0fdf4; border-color: #10b981; }
+    .info-box.amber { background: #fffbeb; border-color: #f59e0b; }
+    .info-box-title { font-weight: 700; font-size: 0.85rem; color: var(--ink); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem; }
+    .info-box-title i { font-size: 0.85rem; }
+    .info-box.blue .info-box-title i { color: var(--accent); }
+    .info-box.teal .info-box-title i { color: var(--teal); }
+    .info-box.green .info-box-title i { color: #10b981; }
+    .info-box.amber .info-box-title i { color: #f59e0b; }
+    .info-box p { font-size: 0.87rem; color: #374151; line-height: 1.65; }
+
+    /* TABLE */
+    .cookie-table-wrap { overflow-x: auto; margin: 1.25rem 0; border-radius: var(--radius); border: 1px solid var(--border); }
+    .cookie-table { width: 100%; border-collapse: collapse; font-size: 0.87rem; }
+    .cookie-table thead th { background: var(--ink); color: white; padding: 0.9rem 1.1rem; text-align: left; font-weight: 600; font-size: 0.82rem; white-space: nowrap; }
+    .cookie-table thead th:first-child { border-radius: 0; }
+    .cookie-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    .cookie-table tbody tr:last-child { border-bottom: none; }
+    .cookie-table tbody tr:hover { background: var(--surface-2); }
+    .cookie-table td { padding: 0.85rem 1.1rem; color: #374151; vertical-align: top; line-height: 1.55; }
+    .cookie-table td:first-child { font-weight: 600; color: var(--ink); white-space: nowrap; }
+    .badge-necessary { display: inline-flex; align-items: center; gap: 0.3rem; background: #d1fae5; color: #065f46; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+    .badge-analytics { display: inline-flex; align-items: center; gap: 0.3rem; background: #dbeafe; color: #1e40af; font-size: 0.72rem; font-weight: 700; padding: 0.2rem 0.6rem; border-radius: 999px; text-transform: uppercase; letter-spacing: 0.05em; }
+
+    /* BROWSER LIST */
+    .browser-list { display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 1rem; }
+    .browser-item { display: flex; align-items: center; gap: 0.6rem; background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius-sm); padding: 0.6rem 1rem; text-decoration: none; color: var(--ink); font-size: 0.85rem; font-weight: 500; transition: all 0.2s; }
+    .browser-item:hover { background: var(--accent-pale); border-color: var(--accent); color: var(--accent); }
+    .browser-item i { font-size: 1rem; }
+
+    /* RIGHTS LIST */
+    .rights-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+    .rights-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #374151; line-height: 1.6; }
+    .rights-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+
+    /* DIVIDER */
+    .section-divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+    /* UPDATE NOTICE */
+    .update-notice { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 0.85rem; margin-top: 2rem; }
+    .update-notice i { color: var(--text-muted); flex-shrink: 0; }
+    .update-notice p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* FOOTER */
+    footer { background: #070b11; color: #64748b; padding: 3rem 0 2rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-brand { max-width: 320px; }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 0.75rem; }
+    .footer-logo .logo-icon { background: var(--accent); }
+    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
+    .footer-nav-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.75rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-links a { text-decoration: none; color: #64748b; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom { font-size: 0.78rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
+
+    @media (max-width: 900px) {
+      .content-layout { grid-template-columns: 1fr; }
+      .sidebar { position: static; }
+      .nav-desktop { display: none; }
+      .burger { display: flex; }
+    }
+    @media (max-width: 600px) {
+      .article-body { padding: 1.5rem; }
+      .article-header { padding: 1.5rem; }
+      .hero-meta { gap: 0.75rem; }
+      .footer-top { flex-direction: column; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+        <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+        <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+        <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+        <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+        <a href="blog.html"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+        <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+      </nav>
+      <div class="header-right">
+        <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </div>
+      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+      <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+      <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+      <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+      <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+      <a href="blog.html"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+      <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Главная</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Политика cookie</span>
+      </div>
+      <h1><i class="fas fa-cookie-bite" style="color:#60a5fa; margin-right:0.5rem; font-size:0.85em;"></i>Политика в отношении<br><span>обработки файлов cookie</span></h1>
+      <div class="hero-meta">
+        <div class="hero-badge"><i class="fas fa-gavel"></i> Закон РБ № 99-З</div>
+        <div class="hero-badge" style="background:rgba(14,165,199,0.15); border-color:rgba(14,165,199,0.3); color:#7dd3fc;"><i class="fas fa-university"></i> По форме НЦЗПД</div>
+        <div class="hero-date"><i class="fas fa-calendar-alt"></i> По состоянию на май 2026 г.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="content-layout">
+
+    <!-- ARTICLE -->
+    <main>
+      <article class="policy-article">
+        <div class="article-header">
+          <div class="doc-label"><i class="fas fa-file-alt"></i> Официальный документ</div>
+          <h2>Политика в отношении обработки файлов cookie</h2>
+          <p class="doc-note">Разработана по примерной форме Национального центра защиты персональных данных Республики Беларусь. Соответствует ст. 17 Закона РБ от 7 мая 2021 г. № 99-З «О защите персональных данных».</p>
+        </div>
+
+        <div class="article-body">
+
+          <!-- 1. Общие положения -->
+          <div class="policy-section" id="s1">
+            <div class="section-heading">
+              <div class="section-num">1</div>
+              <h3>Общие положения</h3>
+            </div>
+
+            <p class="policy-text">1.1. Издание настоящей Политики в отношении обработки файлов cookie (далее — Политика) является одной из обязательных мер по обеспечению защиты персональных данных, предусмотренных <strong>статьёй 17 Закона Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных»</strong> (далее — Закон), принимаемых Учреждением образования «Белорусский государственный экономический университет» (далее — Оператор) в лице интернет-ресурса <strong>EduSafe</strong>.</p>
+
+            <p class="policy-text">Настоящая Политика разъясняет пользователям информационного ресурса <strong>EduSafe</strong> (далее — сайт), расположенного в сети Интернет, как, для каких целей и на каком правовом основании их персональные данные собираются, используются или иным образом обрабатываются при использовании файлов cookie.</p>
+
+            <p class="policy-text">1.2. Для целей настоящей Политики под <strong>файлами cookie</strong> понимаются текстовые файлы, сохраняемые в интернет-браузере пользовательского устройства (компьютер, мобильный телефон и т.д.) при посещении интернет-сайтов для отражения и (или) запоминания действий пользователя.</p>
+
+            <div class="info-box blue">
+              <div class="info-box-title"><i class="fas fa-info-circle"></i> Иные термины</div>
+              <p>Иные термины используются в настоящей Политике в значениях, определённых Законом Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных».</p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 2. Категории -->
+          <div class="policy-section" id="s2">
+            <div class="section-heading">
+              <div class="section-num">2</div>
+              <h3>Категории обрабатываемых файлов cookie</h3>
+            </div>
+
+            <p class="policy-text">2.1. На сайте обрабатываются следующие категории файлов cookie:</p>
+
+            <div class="cookie-table-wrap">
+              <table class="cookie-table">
+                <thead>
+                  <tr>
+                    <th>Категория</th>
+                    <th>Цель обработки</th>
+                    <th>Срок хранения</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td><span class="badge-necessary"><i class="fas fa-shield-alt"></i> Необходимые</span></td>
+                    <td>Корректное функционирование сайта: сохранение выбора языковой версии, работа навигации и интерактивных элементов</td>
+                    <td>В течение текущего сеанса; не более 1 года с момента первого посещения</td>
+                  </tr>
+                  <tr>
+                    <td><span class="badge-analytics"><i class="fas fa-chart-bar"></i> Аналитические</span></td>
+                    <td>Сбор и обработка аналитической и статистической информации об использовании сайта в обобщённом виде (Яндекс.Метрика). Используются для улучшения содержания и удобства ресурса</td>
+                    <td>Не более 6 месяцев с момента получения согласия пользователя</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p class="policy-text">2.2. Сайт <strong>не использует</strong> рекламные (целевые) файлы cookie для предоставления персонализированных маркетинговых предложений.</p>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 3. Правовые основания -->
+          <div class="policy-section" id="s3">
+            <div class="section-heading">
+              <div class="section-num">3</div>
+              <h3>Правовые основания обработки файлов cookie</h3>
+            </div>
+
+            <p class="policy-text">3.1. <strong>Необходимые файлы cookie</strong> используются для обеспечения полноценного и корректного функционирования сайта. Они обрабатываются независимо от предоставления пользователем согласия, поскольку без них невозможна корректная работа ресурса.</p>
+
+            <p class="policy-text">3.2. <strong>Аналитические файлы cookie</strong> обрабатываются на основании согласия пользователя на обработку персональных данных. При первом посещении сайта пользователю во всплывающем баннере предлагается дать согласие на использование аналитических файлов cookie либо отказаться от их использования.</p>
+
+            <div class="info-box teal">
+              <div class="info-box-title"><i class="fas fa-cookie-bite"></i> Управление согласием</div>
+              <p>Пользователь может изменить своё решение в любое время, очистив данные сайта в настройках браузера. Отказ от аналитических cookie не влияет на доступность контента и функциональность сайта.</p>
+            </div>
+
+            <p class="policy-text">3.3. Обращаем внимание, что в соответствии с разъяснениями Национального центра защиты персональных данных РБ при получении согласия на использование файлов cookie недопустимо применение «тёмных паттернов»: выделение (цветом, формой, размером) кнопки «дать согласие» в ущерб кнопке «отклонить», использование повторных уведомлений и т.д.</p>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 4. Трансграничная передача -->
+          <div class="policy-section" id="s4">
+            <div class="section-heading">
+              <div class="section-num">4</div>
+              <h3>Трансграничная передача данных файлов cookie</h3>
+            </div>
+
+            <p class="policy-text">4.1. При использовании сервиса аналитики Яндекс.Метрика Оператор осуществляет трансграничную передачу данных, содержащихся в аналитических файлах cookie, следующему третьему лицу:</p>
+
+            <div class="info-box blue">
+              <div class="info-box-title"><i class="fas fa-building"></i> Получатель данных</div>
+              <p><strong>ООО «Яндекс»</strong><br>Адрес: ул. Льва Толстого, д. 16, г. Москва, Российская Федерация, 119021.<br>Сервис: Яндекс.Метрика — сервис веб-аналитики для измерения посещаемости сайтов.</p>
+            </div>
+
+            <p class="policy-text">4.2. Трансграничная передача персональных данных, содержащихся в аналитических файлах cookie, осуществляется в Российскую Федерацию. Перечень государств, обеспечивающих надлежащий уровень защиты прав субъектов персональных данных, определяется в соответствии с законодательством Республики Беларусь.</p>
+
+            <p class="policy-text">4.3. Необходимые (технические) файлы cookie <strong>не передаются третьим лицам</strong> и не являются объектом трансграничной передачи.</p>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 5. Права -->
+          <div class="policy-section" id="s5">
+            <div class="section-heading">
+              <div class="section-num">5</div>
+              <h3>Права субъектов персональных данных</h3>
+            </div>
+
+            <p class="policy-text">5.1. В соответствии с Законом Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных» пользователи как субъекты персональных данных имеют следующие права:</p>
+
+            <ul class="rights-list">
+              <li>право на получение информации об обработке своих персональных данных;</li>
+              <li>право на изменение (дополнение) персональных данных, если они являются неполными, устаревшими или неточными;</li>
+              <li>право на прекращение обработки персональных данных, включая их удаление, в случаях, предусмотренных Законом;</li>
+              <li>право на отзыв ранее данного согласия на обработку персональных данных;</li>
+              <li>право на обжалование действий (бездействия) Оператора.</li>
+            </ul>
+
+            <p class="policy-text">5.2. Порядок реализации прав субъектов персональных данных, а также контактные данные Оператора для направления обращений определены в <strong>Политике в отношении обработки персональных данных</strong> EduSafe, доступной на сайте, а также на странице <a href="contact.html" style="color: var(--accent); font-weight: 600;">«Жалоба»</a>.</p>
+
+            <div class="info-box green">
+              <div class="info-box-title"><i class="fas fa-envelope"></i> Контакт для обращений</div>
+              <p>По вопросам обработки персональных данных, в том числе файлов cookie, вы можете обратиться к Оператору через форму обратной связи на странице <a href="contact.html" style="color: #059669; font-weight:600;">«Жалоба»</a> или направив письменное обращение в Учреждение образования «Белорусский государственный экономический университет».</p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 6. Браузерные настройки -->
+          <div class="policy-section" id="s6">
+            <div class="section-heading">
+              <div class="section-num">6</div>
+              <h3>Отключение файлов cookie в настройках браузера</h3>
+            </div>
+
+            <p class="policy-text">6.1. Большинство браузеров изначально настроены на приём файлов cookie. Пользователь может удалить ранее сохранённые файлы cookie, выбрав соответствующую опцию в истории браузера. Кроме того, некоторые браузеры позволяют посещать сайты в режиме «инкогнито», ограничивая хранимый на устройстве объём информации.</p>
+
+            <p class="policy-text">6.2. Пользователь может отключить использование файлов cookie путём изменения настроек своего браузера. Подробнее с параметрами управления файлами cookie можно ознакомиться на официальных сайтах основных браузеров:</p>
+
+            <div class="browser-list">
+              <a href="https://support.mozilla.org/ru/kb/udalenie-kukov-dlya-udaleniya-informacii-kotoruyu" target="_blank" rel="noopener" class="browser-item"><i class="fab fa-firefox-browser"></i> Mozilla Firefox</a>
+              <a href="https://support.google.com/chrome/answer/95647" target="_blank" rel="noopener" class="browser-item"><i class="fab fa-chrome"></i> Google Chrome</a>
+              <a href="https://support.apple.com/ru-ru/guide/safari/sfri11471/mac" target="_blank" rel="noopener" class="browser-item"><i class="fab fa-safari"></i> Apple Safari</a>
+              <a href="https://help.opera.com/ru/latest/web-preferences/#cookies" target="_blank" rel="noopener" class="browser-item"><i class="fab fa-opera"></i> Opera</a>
+              <a href="https://support.microsoft.com/ru-ru/microsoft-edge/удаление-файлов-cookie-в-microsoft-edge-63947406-40ac-c3b8-57b9-2a946a29ae09" target="_blank" rel="noopener" class="browser-item"><i class="fab fa-edge"></i> Microsoft Edge</a>
+            </div>
+
+            <div class="info-box amber">
+              <div class="info-box-title"><i class="fas fa-exclamation-triangle"></i> Обратите внимание</div>
+              <p>Полное отключение файлов cookie в браузере может привести к ограничению функциональности ряда разделов сайта, в частности к сбросу языковых настроек при каждом новом посещении.</p>
+            </div>
+          </div>
+
+          <div class="update-notice">
+            <i class="fas fa-history"></i>
+            <p>Настоящая Политика может периодически обновляться. Актуальная версия всегда доступна по данному адресу. Оператор уведомляет пользователей о существенных изменениях путём размещения соответствующего уведомления на сайте. Последнее обновление: <strong>май 2026 г.</strong></p>
+          </div>
+
+        </div><!-- /article-body -->
+      </article>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Содержание</div>
+        <ul class="toc-list">
+          <li><a href="#s1"><span class="toc-num">1</span>Общие положения</a></li>
+          <li><a href="#s2"><span class="toc-num">2</span>Категории файлов cookie</a></li>
+          <li><a href="#s3"><span class="toc-num">3</span>Правовые основания</a></li>
+          <li><a href="#s4"><span class="toc-num">4</span>Трансграничная передача</a></li>
+          <li><a href="#s5"><span class="toc-num">5</span>Права субъектов</a></li>
+          <li><a href="#s6"><span class="toc-num">6</span>Настройки браузера</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card cpd-ref">
+        <div class="cpd-ref-icon"><i class="fas fa-university"></i></div>
+        <div class="sidebar-title" style="margin-bottom:0.5rem;">Источник примерной формы</div>
+        <p>Настоящая Политика разработана по примерной форме Национального центра защиты персональных данных Республики Беларусь (НЦЗПД).</p>
+        <a href="https://cpd.by/politika-v-otnoshenii-obrabotki-kuki/" target="_blank" rel="noopener">Примерная форма НЦЗПД <i class="fas fa-external-link-alt fa-xs"></i></a>
+      </div>
+
+      <div class="sidebar-card" style="background: var(--ink); border-color: rgba(255,255,255,0.1);">
+        <div class="sidebar-title" style="color: white;">Правовая база</div>
+        <ul class="rights-list" style="margin:0;">
+          <li style="color: #94a3b8; font-size:0.84rem;">Закон РБ от 7 мая 2021 г. № 99-З «О защите персональных данных»</li>
+          <li style="color: #94a3b8; font-size:0.84rem;">Ст. 23.7 КоАП — ответственность за нарушения</li>
+          <li style="color: #94a3b8; font-size:0.84rem;">Разъяснения НЦЗПД об обработке cookie</li>
+        </ul>
+        <a href="theory.html" style="display:inline-flex; align-items:center; gap:0.4rem; margin-top:1rem; color: #60a5fa; font-size:0.84rem; font-weight:600; text-decoration:none;">
+          Читать теорию <i class="fas fa-arrow-right fa-xs"></i>
+        </a>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span class="logo-text">EduSafe</span>
+        </a>
+        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+      </div>
+      <div>
+        <div class="footer-nav-title">Разделы</div>
+        <ul class="footer-links">
+          <li><a href="theory.html">Теория</a></li>
+          <li><a href="choice-sp.html">Практика</a></li>
+          <li><a href="videos.html">Видео</a></li>
+          <li><a href="quiz.html">Викторина</a></li>
+          <li><a href="blog.html">Блог</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-nav-title">Документы</div>
+        <ul class="footer-links">
+          <li><a href="privacy.html">Политика cookie</a></li>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Политика разработана по примерной форме НЦЗПД в соответствии с Законом РБ № 99-З «О защите персональных данных».</span>
+      <span>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const overlay = document.getElementById('drawerOverlay');
+  document.getElementById('navToggle').addEventListener('click', () => { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  function closeDrawer() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+
+</body>
+</html>
