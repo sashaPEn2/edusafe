@@ -1,0 +1,688 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="Политика EduSafe в отношении обработки персональных данных. Разработана по примерной форме НЦЗПД и Закону РБ № 99-З.">
+  <title>Политика обработки персональных данных — EduSafe</title>
+
+  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <style>
+    :root {
+      --ink: #0d1117; --ink-soft: #1e2633; --accent: #0057d9; --accent-light: #3b82f6;
+      --accent-pale: #dbeafe; --teal: #0ea5c7; --surface: #ffffff;
+      --surface-2: #f5f7fb; --border: #e2e8f0; --text-muted: #64748b; --white: #ffffff;
+      --radius-sm: 8px; --radius: 16px; --radius-lg: 24px;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06); --shadow: 0 4px 20px rgba(0,0,0,0.08);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+    }
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body { font-family: 'Golos Text', sans-serif; background: var(--surface-2); color: var(--ink); line-height: 1.65; overflow-x: hidden; }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HEADER */
+    header { background: var(--surface); border-bottom: 1px solid var(--border); position: sticky; top: 0; z-index: 200; }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .logo-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+    .nav-desktop { display: flex; align-items: center; gap: 0.25rem; }
+    .nav-desktop a { text-decoration: none; color: var(--text-muted); font-weight: 500; font-size: 0.88rem; padding: 0.45rem 0.85rem; border-radius: var(--radius-sm); transition: all 0.2s; white-space: nowrap; display: flex; align-items: center; gap: 0.4rem; }
+    .nav-desktop a:hover, .nav-desktop a.active { background: var(--accent-pale); color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .burger { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0.3rem; border-radius: 8px; transition: background 0.2s; }
+    .burger:hover { background: var(--surface-2); }
+
+    /* DRAWER */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+    .drawer { position: fixed; top: 0; right: 0; width: min(88%, 340px); height: 100%; background: var(--surface); z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; padding: 1.5rem; }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; padding-bottom: 1.25rem; border-bottom: 1px solid var(--border); margin-bottom: 1.25rem; }
+    .drawer-close { background: var(--surface-2); border: none; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.5rem; }
+    .drawer-nav a { display: flex; align-items: center; gap: 0.75rem; padding: 0.8rem 1rem; border-radius: var(--radius-sm); text-decoration: none; color: var(--ink); font-weight: 500; transition: all 0.2s; }
+    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
+    .drawer-nav a:hover { background: var(--accent-pale); color: var(--accent); }
+
+    /* HERO */
+    .page-hero { background: var(--ink); position: relative; overflow: hidden; padding: 3.5rem 0 3rem; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px); background-size: 48px 48px; }
+    .hero-glow { position: absolute; width: 500px; height: 500px; background: radial-gradient(circle, rgba(0,87,217,0.3) 0%, transparent 70%); top: -200px; right: -80px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; }
+    .breadcrumb { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap; }
+    .breadcrumb a { color: #64748b; text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+    .breadcrumb a:hover { color: #93c5fd; }
+    .breadcrumb span { color: #334155; font-size: 0.82rem; }
+    .breadcrumb i { color: #334155; font-size: 0.6rem; }
+    .page-hero h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.5rem, 3vw, 2.25rem); font-weight: 700; color: var(--white); line-height: 1.25; margin-bottom: 1rem; letter-spacing: -0.02em; }
+    .page-hero h1 span { background: linear-gradient(135deg, #60a5fa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-meta { display: flex; align-items: center; gap: 1.25rem; flex-wrap: wrap; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.45rem; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; font-size: 0.78rem; font-weight: 600; padding: 0.35rem 0.85rem; border-radius: 999px; }
+    .hero-date { color: #64748b; font-size: 0.82rem; display: flex; align-items: center; gap: 0.35rem; }
+
+    /* LAYOUT */
+    .content-layout { display: grid; grid-template-columns: 1fr 280px; gap: 2.5rem; padding: 3rem 0 4rem; align-items: start; }
+
+    /* SIDEBAR */
+    .sidebar { position: sticky; top: 88px; }
+    .sidebar-card { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 1.5rem; margin-bottom: 1.25rem; }
+    .sidebar-title { font-family: 'Unbounded', sans-serif; font-size: 0.82rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; letter-spacing: 0.01em; }
+    .toc-list { list-style: none; display: flex; flex-direction: column; gap: 0.15rem; }
+    .toc-list li a { display: flex; align-items: flex-start; gap: 0.6rem; text-decoration: none; color: var(--text-muted); font-size: 0.84rem; padding: 0.45rem 0.6rem; border-radius: 8px; transition: all 0.2s; line-height: 1.4; }
+    .toc-list li a:hover { background: var(--accent-pale); color: var(--accent); }
+    .toc-list li a .toc-num { font-weight: 700; color: var(--accent); font-size: 0.75rem; flex-shrink: 0; min-width: 18px; padding-top: 1px; }
+    .cpd-ref { background: linear-gradient(135deg, #eff6ff, #f0fdff); border: 1.5px solid #bfdbfe; border-radius: var(--radius); padding: 1.25rem; }
+    .cpd-ref-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 0.9rem; margin-bottom: 0.85rem; }
+    .cpd-ref p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 0.75rem; }
+    .cpd-ref a { font-size: 0.82rem; font-weight: 600; color: var(--accent); text-decoration: none; display: inline-flex; align-items: center; gap: 0.3rem; }
+    .cpd-ref a:hover { text-decoration: underline; }
+
+    /* ARTICLE */
+    .policy-article { background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+    .article-header { padding: 2rem 2.5rem; border-bottom: 1px solid var(--border); background: linear-gradient(135deg, #f8faff 0%, #f0fdff 100%); }
+    .article-header .doc-label { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--accent-pale); color: var(--accent); font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.85rem; }
+    .article-header h2 { font-family: 'Unbounded', sans-serif; font-size: 1.1rem; font-weight: 700; color: var(--ink); line-height: 1.4; margin-bottom: 0.5rem; }
+    .article-header .doc-note { font-size: 0.82rem; color: var(--text-muted); font-style: italic; }
+    .article-body { padding: 2rem 2.5rem; }
+
+    /* POLICY SECTIONS */
+    .policy-section { margin-bottom: 2.5rem; scroll-margin-top: 100px; }
+    .policy-section:last-child { margin-bottom: 0; }
+    .section-heading { display: flex; align-items: center; gap: 0.85rem; margin-bottom: 1.25rem; padding-bottom: 0.75rem; border-bottom: 2px solid var(--accent-pale); }
+    .section-num { width: 36px; height: 36px; background: var(--accent); color: white; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-family: 'Unbounded', sans-serif; font-size: 0.8rem; font-weight: 700; flex-shrink: 0; }
+    .section-heading h3 { font-family: 'Unbounded', sans-serif; font-size: 1rem; font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .policy-text { font-size: 0.93rem; color: #374151; line-height: 1.75; margin-bottom: 1rem; }
+    .policy-text:last-child { margin-bottom: 0; }
+    .policy-text strong { color: var(--ink); font-weight: 600; }
+    .policy-text a { color: var(--accent); font-weight: 600; text-decoration: none; }
+    .policy-text a:hover { text-decoration: underline; }
+
+    /* INFO BOXES */
+    .info-box { border-radius: var(--radius); padding: 1.1rem 1.4rem; margin: 1rem 0; border-left: 4px solid; }
+    .info-box.blue { background: #eff6ff; border-color: var(--accent); }
+    .info-box.teal { background: #ecfeff; border-color: var(--teal); }
+    .info-box.green { background: #f0fdf4; border-color: #10b981; }
+    .info-box.amber { background: #fffbeb; border-color: #f59e0b; }
+    .info-box.red { background: #fff1f2; border-color: #ef4444; }
+    .info-box-title { font-weight: 700; font-size: 0.85rem; color: var(--ink); margin-bottom: 0.35rem; display: flex; align-items: center; gap: 0.4rem; }
+    .info-box-title i { font-size: 0.85rem; }
+    .info-box.blue .info-box-title i { color: var(--accent); }
+    .info-box.teal .info-box-title i { color: var(--teal); }
+    .info-box.green .info-box-title i { color: #10b981; }
+    .info-box.amber .info-box-title i { color: #f59e0b; }
+    .info-box.red .info-box-title i { color: #ef4444; }
+    .info-box p { font-size: 0.87rem; color: #374151; line-height: 1.65; }
+    .info-box p strong { color: var(--ink); }
+
+    /* ABBR TABLE */
+    .abbr-list { display: flex; flex-direction: column; gap: 0.4rem; margin: 0.75rem 0; }
+    .abbr-row { display: flex; gap: 0.75rem; font-size: 0.88rem; }
+    .abbr-key { font-weight: 700; color: var(--accent); min-width: 52px; flex-shrink: 0; }
+    .abbr-val { color: #374151; }
+
+    /* DATA TABLE */
+    .data-table-wrap { overflow-x: auto; margin: 1.25rem 0; border-radius: var(--radius); border: 1px solid var(--border); }
+    .data-table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    .data-table thead th { background: var(--ink); color: white; padding: 0.85rem 1rem; text-align: left; font-weight: 600; font-size: 0.8rem; }
+    .data-table tbody tr { border-bottom: 1px solid var(--border); transition: background 0.15s; }
+    .data-table tbody tr:last-child { border-bottom: none; }
+    .data-table tbody tr:hover { background: var(--surface-2); }
+    .data-table td { padding: 0.85rem 1rem; color: #374151; vertical-align: top; line-height: 1.55; }
+    .data-table td:first-child { font-weight: 600; color: var(--ink); }
+    .data-table .category-label { display: inline-flex; align-items: center; gap: 0.35rem; font-weight: 700; font-size: 0.8rem; padding: 0.25rem 0.65rem; border-radius: 999px; }
+    .cat-analytics { background: #dbeafe; color: #1e40af; }
+    .cat-contact { background: #dcfce7; color: #166534; }
+
+    /* RIGHTS LIST */
+    .rights-list { list-style: none; display: flex; flex-direction: column; gap: 0.6rem; margin: 1rem 0; }
+    .rights-list li { display: flex; align-items: flex-start; gap: 0.75rem; font-size: 0.9rem; color: #374151; line-height: 1.6; }
+    .rights-list li::before { content: ''; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 7px; flex-shrink: 0; }
+
+    /* CONTACT CARD */
+    .contact-card { background: linear-gradient(135deg, #f8faff 0%, #ecfeff 100%); border: 1.5px solid #bfdbfe; border-radius: var(--radius); padding: 1.5rem; margin: 1rem 0; }
+    .contact-card-title { font-family: 'Unbounded', sans-serif; font-size: 0.9rem; font-weight: 700; color: var(--ink); margin-bottom: 1rem; }
+    .contact-rows { display: flex; flex-direction: column; gap: 0.55rem; }
+    .contact-row { display: flex; align-items: center; gap: 0.75rem; font-size: 0.88rem; }
+    .contact-row i { color: var(--accent); width: 16px; text-align: center; flex-shrink: 0; }
+    .contact-row span { color: #374151; }
+    .contact-row a { color: var(--accent); text-decoration: none; font-weight: 500; }
+    .contact-row a:hover { text-decoration: underline; }
+
+    /* DIVIDER */
+    .section-divider { height: 1px; background: var(--border); margin: 2rem 0; }
+
+    /* PDF BLOCK */
+    .pdf-block { background: linear-gradient(135deg, #f0fdff 0%, #eff6ff 100%); border: 1.5px solid #bfdbfe; border-radius: var(--radius); padding: 1.75rem; margin-top: 2.5rem; display: flex; align-items: center; gap: 1.25rem; }
+    .pdf-block-icon { width: 48px; height: 48px; background: #fee2e2; border-radius: 12px; display: flex; align-items: center; justify-content: center; color: #dc2626; font-size: 1.5rem; flex-shrink: 0; }
+    .pdf-block-content { flex: 1; }
+    .pdf-block-title { font-family: 'Unbounded', sans-serif; font-size: 0.95rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; }
+    .pdf-block-text { font-size: 0.83rem; color: #64748b; margin-bottom: 0.75rem; }
+    .pdf-block-link { display: inline-flex; align-items: center; gap: 0.5rem; background: var(--accent); color: white; text-decoration: none; font-size: 0.85rem; font-weight: 600; padding: 0.5rem 1.1rem; border-radius: 8px; transition: all 0.2s; }
+    .pdf-block-link:hover { background: #0052c4; transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0, 87, 217, 0.25); }
+
+    /* UPDATE NOTICE */
+    .update-notice { background: var(--surface-2); border: 1px solid var(--border); border-radius: var(--radius); padding: 1rem 1.4rem; display: flex; align-items: center; gap: 0.85rem; margin-top: 2rem; }
+    .update-notice i { color: var(--text-muted); flex-shrink: 0; }
+    .update-notice p { font-size: 0.83rem; color: var(--text-muted); line-height: 1.55; }
+
+    /* DOWNLOAD BUTTON */
+    .download-btn { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; width: 36px; height: 36px; background: var(--accent-pale); border: none; border-radius: 8px; color: var(--accent); cursor: pointer; transition: all 0.2s; font-size: 0.9rem; text-decoration: none; }
+    .download-btn:hover { background: var(--accent); color: white; }
+
+    /* FOOTER */
+    footer { background: #070b11; color: #64748b; padding: 3rem 0 2rem; }
+    .footer-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 2rem; flex-wrap: wrap; margin-bottom: 2rem; padding-bottom: 2rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-brand { max-width: 320px; }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 0.75rem; }
+    .footer-logo .logo-icon { background: var(--accent); }
+    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
+    .footer-nav-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.75rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-links a { text-decoration: none; color: #64748b; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom { font-size: 0.78rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — TABLET (≤ 1024px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .content-layout { gap: 1.75rem; }
+      .sidebar { position: sticky; top: 80px; }
+      .container { padding: 0 1.25rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — TABLET PORTRAIT (≤ 900px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .content-layout { grid-template-columns: 1fr; gap: 1.5rem; padding: 2rem 0 3rem; }
+      .sidebar { position: static; display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+      .sidebar .sidebar-card:last-child { grid-column: 1 / -1; }
+      .nav-desktop { display: none; }
+      .burger { display: flex; }
+      .page-hero { padding: 2.5rem 0 2rem; }
+      .article-header { padding: 1.75rem 2rem; }
+      .article-body { padding: 1.75rem 2rem; }
+      .footer-top { gap: 1.5rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — MOBILE (≤ 640px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      .container { padding: 0 1rem; }
+      .header-inner { height: 60px; }
+      .logo-text { font-size: 1.05rem; }
+      .page-hero { padding: 2rem 0 1.75rem; }
+      .page-hero h1 { font-size: clamp(1.2rem, 5vw, 1.5rem); }
+      .hero-meta { gap: 0.6rem; }
+      .hero-badge { font-size: 0.72rem; padding: 0.3rem 0.7rem; }
+      .breadcrumb { margin-bottom: 1rem; }
+      .content-layout { padding: 1.5rem 0 2.5rem; gap: 1.25rem; }
+      .sidebar { grid-template-columns: 1fr; }
+      .sidebar .sidebar-card:last-child { grid-column: auto; }
+      .article-header { padding: 1.25rem 1rem; border-radius: 0; }
+      .article-header h2 { font-size: 0.95rem; }
+      .article-body { padding: 1.25rem 1rem; }
+      .policy-article { border-radius: var(--radius); }
+      .section-heading { gap: 0.65rem; }
+      .section-num { width: 30px; height: 30px; font-size: 0.72rem; border-radius: 8px; }
+      .section-heading h3 { font-size: 0.9rem; }
+      .policy-text { font-size: 0.88rem; }
+      .info-box { padding: 0.9rem 1rem; }
+      .info-box p { font-size: 0.84rem; }
+
+      /* Data table — stacked cards */
+      .data-table-wrap { border: none; background: transparent; overflow: visible; }
+      .data-table { display: block; }
+      .data-table thead { display: none; }
+      .data-table tbody { display: flex; flex-direction: column; gap: 0.75rem; }
+      .data-table tbody tr { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; background: var(--surface); }
+      .data-table tbody tr:hover { background: var(--surface); }
+      .data-table td { display: block; padding: 0.7rem 1rem; border-bottom: 1px solid var(--border); }
+      .data-table td:last-child { border-bottom: none; }
+      .data-table td::before { content: attr(data-label); display: block; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--text-muted); margin-bottom: 0.3rem; }
+
+      .rights-list li { font-size: 0.86rem; }
+      .contact-row { font-size: 0.84rem; }
+      .pdf-block { flex-direction: column; gap: 1rem; padding: 1.25rem; align-items: flex-start; }
+      .pdf-block-icon { width: 42px; height: 42px; font-size: 1.25rem; }
+      .update-notice { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+      .sidebar-card { padding: 1.1rem; }
+      .footer-top { flex-direction: column; gap: 1.5rem; }
+      .footer-brand { max-width: 100%; }
+      footer { padding: 2rem 0 1.5rem; }
+      .footer-bottom { font-size: 0.72rem; }
+    }
+
+    @media (max-width: 400px) {
+      .logo-text { font-size: 0.95rem; }
+      .page-hero h1 { font-size: 1.1rem; }
+      .section-heading h3 { font-size: 0.82rem; }
+      .article-body { padding: 1rem 0.85rem; }
+      .article-header { padding: 1rem 0.85rem; }
+    }
+  </style>
+</head>
+<body>
+
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+        <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+        <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+        <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+        <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+        <a href="blog.html"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+        <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+      </nav>
+      <div class="header-right">
+        <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <div class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </div>
+      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html"><i class="fas fa-home"></i><span>Главная</span></a>
+      <a href="theory.html"><i class="fas fa-book-open"></i><span>Теория</span></a>
+      <a href="choice-sp.html"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
+      <a href="videos.html"><i class="fas fa-play-circle"></i><span>Видео</span></a>
+      <a href="quiz.html"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
+      <a href="blog.html"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
+      <a href="contact.html"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+    </nav>
+  </div>
+</div>
+
+<!-- HERO -->
+<section class="page-hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="breadcrumb">
+        <a href="index.html">Главная</a>
+        <i class="fas fa-chevron-right"></i>
+        <span>Политика обработки персональных данных</span>
+      </div>
+      <h1><i class="fas fa-user-shield" style="color:#60a5fa; margin-right:0.5rem; font-size:0.85em;"></i>Политика в отношении<br><span>обработки персональных данных</span></h1>
+      <div class="hero-meta">
+        <div class="hero-badge"><i class="fas fa-gavel"></i> Закон РБ № 99-З</div>
+        <div class="hero-badge" style="background:rgba(14,165,199,0.15); border-color:rgba(14,165,199,0.3); color:#7dd3fc;"><i class="fas fa-university"></i> По форме НЦЗПД</div>
+        <div class="hero-date"><i class="fas fa-calendar-alt"></i> По состоянию на май 2026 г.</div>
+        <a href="./files/policy/personal-data.pdf" target="_blank" class="download-btn" title="Открыть политику в PDF"><i class="fas fa-download"></i></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTENT -->
+<div class="container">
+  <div class="content-layout">
+
+    <!-- ARTICLE -->
+    <main>
+      <article class="policy-article">
+        <div class="article-header">
+          <div class="doc-label"><i class="fas fa-file-alt"></i> Официальный документ</div>
+          <h2>Политика в отношении обработки персональных данных</h2>
+          <p class="doc-note">Разработана по примерной форме Национального центра защиты персональных данных Республики Беларусь (НЦЗПД). Соответствует ст. 17 Закона РБ от 7 мая 2021 г. № 99-З «О защите персональных данных».</p>
+        </div>
+
+        <div class="article-body">
+
+          <!-- 1. Общие положения -->
+          <div class="policy-section" id="s1">
+            <div class="section-heading">
+              <div class="section-num">1</div>
+              <h3>Общие положения</h3>
+            </div>
+
+            <p class="policy-text">1.1. Издание настоящей Политики в отношении обработки персональных данных (далее — Политика) является одной из обязательных мер по обеспечению защиты персональных данных, предусмотренных <strong>статьёй 17 Закона Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных»</strong> (далее — Закон), принимаемых <strong>Невдахом Александром Сергеевичем</strong> (далее — Оператор) в лице информационного ресурса <strong>EduSafe</strong>.</p>
+
+            <p class="policy-text">1.2. Настоящая Политика разработана в соответствии с Законом и разъясняет субъектам персональных данных, как, для каких целей и на каком правовом основании их персональные данные собираются, используются или иным образом обрабатываются, а также отражает имеющиеся в связи с этим у субъектов персональных данных права и механизм их реализации.</p>
+
+            <p class="policy-text">Настоящая Политика <strong>не применяется</strong> к обработке файлов cookie, которая регулируется отдельной <a href="privacy.html">Политикой в отношении обработки файлов cookie</a>.</p>
+
+            <p class="policy-text">1.3. Контактные данные Оператора:</p>
+
+            <div class="contact-card">
+              <div class="contact-card-title"><i class="fas fa-id-card" style="color:var(--accent); margin-right:0.5rem;"></i>Реквизиты Оператора</div>
+              <div class="contact-rows">
+                <div class="contact-row"><i class="fas fa-user"></i><span><strong>Оператор:</strong> Невдах Александр Сергеевич</span></div>
+                <div class="contact-row"><i class="fas fa-globe"></i><span><strong>Адрес в сети Интернет:</strong> <a href="https://edusafe.site">edusafe.site</a></span></div>
+                <div class="contact-row"><i class="fas fa-envelope"></i><span><strong>Адрес электронной почты:</strong> <a href="mailto:info@edusafe.by">info@edusafe.by</a></span></div>
+                <div class="contact-row"><i class="fas fa-comment-alt"></i><span><strong>Форма обратной связи:</strong> <a href="contact.html">страница «Жалоба»</a></span></div>
+              </div>
+            </div>
+
+            <p class="policy-text">1.4. В настоящей Политике используются термины и их определения в значении, предусмотренном Законом.</p>
+
+            <p class="policy-text">1.5. По тексту настоящей Политики применяются следующие сокращения:</p>
+            <div class="abbr-list">
+              <div class="abbr-row"><span class="abbr-key">ФИО</span><span class="abbr-val">— фамилия, собственное имя, отчество (если таковое имеется)</span></div>
+              <div class="abbr-row"><span class="abbr-key">ФЛ</span><span class="abbr-val">— физическое лицо</span></div>
+              <div class="abbr-row"><span class="abbr-key">ЮЛ</span><span class="abbr-val">— юридическое лицо</span></div>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 2. Порядок и условия обработки -->
+          <div class="policy-section" id="s2">
+            <div class="section-heading">
+              <div class="section-num">2</div>
+              <h3>Порядок и условия обработки персональных данных</h3>
+            </div>
+
+            <p class="policy-text">2.1. Обработка персональных данных осуществляется с использованием средств автоматизации посредством сбора, хранения, использования и удаления персональных данных.</p>
+
+            <p class="policy-text">2.2. Информация о целях обработки персональных данных, перечне обрабатываемых персональных данных, правовых основаниях и сроках их хранения приведена в таблице ниже.</p>
+
+            <div class="data-table-wrap">
+              <table class="data-table">
+                <thead>
+                  <tr>
+                    <th style="min-width:160px;">Цель обработки</th>
+                    <th style="min-width:160px;">Категории субъектов</th>
+                    <th style="min-width:180px;">Перечень данных</th>
+                    <th style="min-width:170px;">Правовое основание</th>
+                    <th style="min-width:150px;">Срок хранения</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td data-label="Цель обработки"><span class="category-label cat-analytics"><i class="fas fa-chart-bar"></i>&nbsp;Аналитика сайта</span><br><span style="font-size:0.82rem;color:#374151;font-weight:400;">Сбор статистики посещаемости, улучшение содержания и функциональности ресурса (Яндекс.Метрика)</span></td>
+                    <td data-label="Категории субъектов">Пользователи сайта — ФЛ</td>
+                    <td data-label="Перечень данных">IP-адрес устройства, идентификаторы файлов cookie, данные о браузере, операционной системе и действиях пользователя на сайте (в обезличенном и агрегированном виде)</td>
+                    <td data-label="Правовое основание">Согласие пользователя (абз. 2 ст. 5 Закона), полученное при посещении сайта через баннер уведомления</td>
+                    <td data-label="Срок хранения">Не более 6 месяцев с момента получения согласия; до отзыва согласия</td>
+                  </tr>
+                  <tr>
+                    <td data-label="Цель обработки"><span class="category-label cat-contact"><i class="fas fa-envelope"></i>&nbsp;Обработка обращений</span><br><span style="font-size:0.82rem;color:#374151;font-weight:400;">Рассмотрение обращений, жалоб и запросов пользователей через форму обратной связи</span></td>
+                    <td data-label="Категории субъектов">Пользователи сайта — ФЛ, направившие обращение</td>
+                    <td data-label="Перечень данных">Имя, адрес электронной почты, содержание обращения, иные персональные данные, добровольно указанные в тексте обращения</td>
+                    <td data-label="Правовое основание">Абз. 20 ст. 6 Закона (законодательство об обращениях граждан и юридических лиц); согласие — при наличии специальных персональных данных</td>
+                    <td data-label="Срок хранения">3 года с даты последнего обращения</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="info-box teal">
+              <div class="info-box-title"><i class="fas fa-info-circle"></i> Минимизация данных</div>
+              <p>Оператор обрабатывает только те персональные данные, которые необходимы для достижения конкретной цели обработки. Объём обрабатываемых данных соответствует принципу соразмерности, установленному пунктом 2 статьи 4 Закона.</p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 3. Уполномоченные лица -->
+          <div class="policy-section" id="s3">
+            <div class="section-heading">
+              <div class="section-num">3</div>
+              <h3>Уполномоченные лица</h3>
+            </div>
+
+            <p class="policy-text">3.1. Оператор поручает обработку аналитических персональных данных следующему уполномоченному лицу:</p>
+
+            <div class="info-box blue">
+              <div class="info-box-title"><i class="fas fa-building"></i> Уполномоченное лицо — сервис аналитики</div>
+              <p><strong>ООО «Яндекс»</strong><br>
+              Адрес: ул. Льва Толстого, д. 16, г. Москва, Российская Федерация, 119021.<br>
+              Сервис: Яндекс.Метрика — сервис веб-аналитики.<br>
+              Цель привлечения: сбор, хранение и обработка данных о посещаемости сайта в обезличенном и агрегированном виде.<br>
+              Основание: договор с ООО «Яндекс» (условия использования сервиса Яндекс.Метрика).</p>
+            </div>
+
+            <p class="policy-text">3.2. В целях обеспечения защиты персональных данных при их обработке уполномоченным лицом Оператор не предоставляет ООО «Яндекс» разрешения на привлечение субуполномоченных лиц без предварительного уведомления Оператора.</p>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 4. Трансграничная передача -->
+          <div class="policy-section" id="s4">
+            <div class="section-heading">
+              <div class="section-num">4</div>
+              <h3>Трансграничная передача персональных данных</h3>
+            </div>
+
+            <p class="policy-text">4.1. При использовании сервиса аналитики Яндекс.Метрика Оператор осуществляет трансграничную передачу персональных данных следующему лицу:</p>
+
+            <div class="info-box blue">
+              <div class="info-box-title"><i class="fas fa-globe-europe"></i> Получатель при трансграничной передаче</div>
+              <p><strong>ООО «Яндекс»</strong> — ул. Льва Толстого, д. 16, г. Москва, Российская Федерация, 119021.<br>
+              <strong>Передаваемые данные:</strong> обезличенные данные о действиях пользователей на сайте (аналитические данные).<br>
+              <strong>Цель передачи:</strong> обработка статистики посещаемости в интересах Оператора.</p>
+            </div>
+
+            <p class="policy-text">4.2. Трансграничная передача осуществляется в Российскую Федерацию. Перечень государств, обеспечивающих надлежащий уровень защиты прав субъектов персональных данных, определяется приказом директора Национального центра защиты персональных данных Республики Беларусь от 15 ноября 2021 г. № 14.</p>
+
+            <p class="policy-text">4.3. Правовым основанием трансграничной передачи аналитических персональных данных является <strong>согласие пользователя</strong> (абз. 2 ст. 5 Закона), полученное через баннер при первом посещении сайта.</p>
+
+            <p class="policy-text">4.4. Персональные данные, полученные в рамках обработки обращений пользователей (раздел 2, строка 2 таблицы), <strong>не передаются третьим лицам</strong> и не являются объектом трансграничной передачи.</p>
+
+            <div class="info-box amber">
+              <div class="info-box-title"><i class="fas fa-exclamation-triangle"></i> Отказ от аналитики</div>
+              <p>Пользователь может отказаться от передачи аналитических данных, нажав кнопку «Отклонить» в баннере при первом посещении или очистив данные сайта в настройках браузера. Это не влияет на доступность контента ресурса. Подробнее — в <a href="privacy.html" style="color:#b45309;font-weight:600;">Политике в отношении обработки файлов cookie</a>.</p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 5. Права субъектов -->
+          <div class="policy-section" id="s5">
+            <div class="section-heading">
+              <div class="section-num">5</div>
+              <h3>Права субъектов персональных данных</h3>
+            </div>
+
+            <p class="policy-text">5.1. В соответствии с Законом Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных» пользователи как субъекты персональных данных имеют следующие права:</p>
+
+            <ul class="rights-list">
+              <li>право на получение информации об обработке своих персональных данных, включая сведения о наличии данных о нём у Оператора, целях и правовых основаниях обработки, а также об уполномоченных лицах;</li>
+              <li>право на изменение (дополнение) персональных данных, если они являются неполными, устаревшими или неточными;</li>
+              <li>право на прекращение обработки персональных данных в случаях, предусмотренных Законом, включая их удаление;</li>
+              <li>право на отзыв ранее данного согласия на обработку персональных данных;</li>
+              <li>право на получение персональных данных, предоставленных Оператору, в структурированном, общедоступном и машиночитаемом формате (право на переносимость данных);</li>
+              <li>право на обжалование действий (бездействия) Оператора путём подачи обращения в Национальный центр защиты персональных данных Республики Беларусь.</li>
+            </ul>
+
+            <p class="policy-text">5.2. Для реализации своих прав субъект персональных данных вправе обратиться к Оператору в письменной форме (в том числе в виде электронного документа) по реквизитам, указанным в пункте 1.3 настоящей Политики, либо через форму обратной связи на странице <a href="contact.html">«Жалоба»</a>.</p>
+
+            <div class="info-box green">
+              <div class="info-box-title"><i class="fas fa-envelope"></i> Порядок подачи обращения</div>
+              <p>Обращение должно содержать: ФИО субъекта персональных данных, его контактные данные, суть требования (запроса). Оператор обязан рассмотреть обращение и направить ответ в сроки, установленные законодательством Республики Беларусь об обращениях граждан и юридических лиц.</p>
+            </div>
+
+            <p class="policy-text">5.3. Субъект персональных данных также вправе подать жалобу в <strong>Национальный центр защиты персональных данных Республики Беларусь</strong>:</p>
+
+            <div class="contact-card">
+              <div class="contact-card-title"><i class="fas fa-university" style="color:var(--accent); margin-right:0.5rem;"></i>НЦЗПД — регулятор в сфере защиты персональных данных</div>
+              <div class="contact-rows">
+                <div class="contact-row"><i class="fas fa-map-marker-alt"></i><span>220004, г. Минск, ул. К. Цеткин, 24-3</span></div>
+                <div class="contact-row"><i class="fas fa-phone"></i><span><a href="tel:+375173670790">+375 (17) 367-07-90</a></span></div>
+                <div class="contact-row"><i class="fas fa-envelope"></i><span><a href="mailto:info@cpd.by">info@cpd.by</a></span></div>
+                <div class="contact-row"><i class="fas fa-globe"></i><span><a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a></span></div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 6. Меры по защите -->
+          <div class="policy-section" id="s6">
+            <div class="section-heading">
+              <div class="section-num">6</div>
+              <h3>Меры по обеспечению защиты персональных данных</h3>
+            </div>
+
+            <p class="policy-text">6.1. В соответствии со статьёй 17 Закона Оператор принимает следующие меры по обеспечению защиты персональных данных:</p>
+
+            <ul class="rights-list">
+              <li>назначение лица, ответственного за осуществление внутреннего контроля за обработкой персональных данных;</li>
+              <li>ознакомление работников, непосредственно осуществляющих обработку персональных данных, с положениями законодательства о персональных данных, в том числе с требованиями к защите персональных данных, и локальными правовыми актами Оператора;</li>
+              <li>применение технических и криптографических средств защиты информации при передаче персональных данных по сети Интернет (протокол HTTPS);</li>
+              <li>ограничение доступа к персональным данным — обработка ведётся только уполномоченным Оператором и (или) привлечённым уполномоченным лицом;</li>
+              <li>издание локальных правовых актов, определяющих политику Оператора в отношении обработки персональных данных (настоящая Политика и Политика в отношении обработки файлов cookie);</li>
+              <li>осуществление внутреннего контроля за соответствием обработки персональных данных требованиям Закона.</li>
+            </ul>
+
+            <div class="info-box teal">
+              <div class="info-box-title"><i class="fas fa-lock"></i> Безопасность передачи данных</div>
+              <p>Передача персональных данных между устройством пользователя и сервером осуществляется по защищённому протоколу HTTPS с использованием TLS-шифрования, что исключает их перехват третьими лицами.</p>
+            </div>
+          </div>
+
+          <div class="section-divider"></div>
+
+          <!-- 7. Обновление политики -->
+          <div class="policy-section" id="s7">
+            <div class="section-heading">
+              <div class="section-num">7</div>
+              <h3>Актуализация и изменение Политики</h3>
+            </div>
+
+            <p class="policy-text">7.1. Настоящая Политика может периодически пересматриваться и обновляться в связи с изменением законодательства Республики Беларусь, деятельности Оператора или иными обстоятельствами. Актуальная версия Политики всегда доступна по постоянному адресу на сайте.</p>
+
+            <p class="policy-text">7.2. О существенных изменениях Политики Оператор уведомляет пользователей путём размещения соответствующего уведомления на сайте и (или) путём направления сообщения по контактным данным пользователя (при их наличии).</p>
+
+            <div class="pdf-block">
+              <div class="pdf-block-icon"><i class="fas fa-file"></i></div>
+              <div class="pdf-block-content">
+                <div class="pdf-block-title">Политика в формате PDF</div>
+                <p class="pdf-block-text">Откройте полный текст политики в формате PDF в новой вкладке браузера.</p>
+                <a href="./files/policy/personal-data.pdf" target="_blank" class="pdf-block-link"><i class="fas fa-download"></i> Открыть PDF</a>
+              </div>
+            </div>
+
+            <div class="update-notice">
+              <i class="fas fa-history"></i>
+              <p>Настоящая Политика действует с момента её размещения на сайте. Последнее обновление: <strong>май 2026 г.</strong></p>
+            </div>
+
+          </div><!-- /s7 -->
+
+        </div><!-- /article-body -->
+      </article>
+    </main>
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+      <div class="sidebar-card">
+        <div class="sidebar-title">Содержание</div>
+        <ul class="toc-list">
+          <li><a href="#s1"><span class="toc-num">1</span>Общие положения</a></li>
+          <li><a href="#s2"><span class="toc-num">2</span>Порядок обработки</a></li>
+          <li><a href="#s3"><span class="toc-num">3</span>Уполномоченные лица</a></li>
+          <li><a href="#s4"><span class="toc-num">4</span>Трансграничная передача</a></li>
+          <li><a href="#s5"><span class="toc-num">5</span>Права субъектов</a></li>
+          <li><a href="#s6"><span class="toc-num">6</span>Меры по защите</a></li>
+          <li><a href="#s7"><span class="toc-num">7</span>Актуализация Политики</a></li>
+        </ul>
+      </div>
+
+      <div class="sidebar-card cpd-ref">
+        <div class="cpd-ref-icon"><i class="fas fa-university"></i></div>
+        <div class="sidebar-title" style="margin-bottom:0.5rem;">Источник примерной формы</div>
+        <p>Политика разработана по примерной форме Национального центра защиты персональных данных Республики Беларусь (НЦЗПД), опубликованной 24 апреля 2025 г.</p>
+        <a href="https://cpd.by/politika-v-otnoshenii-obrabotki-personalnyh-dannyh/" target="_blank" rel="noopener">Примерная форма НЦЗПД <i class="fas fa-external-link-alt fa-xs"></i></a>
+      </div>
+
+      <div class="sidebar-card" style="background: var(--ink); border-color: rgba(255,255,255,0.1);">
+        <div class="sidebar-title" style="color: white;">Правовая база</div>
+        <ul class="rights-list" style="margin:0;">
+          <li style="color: #94a3b8; font-size:0.84rem;">Закон РБ от 7 мая 2021 г. № 99-З «О защите персональных данных»</li>
+          <li style="color: #94a3b8; font-size:0.84rem;">Ст. 23.7 КоАП — ответственность за нарушения</li>
+          <li style="color: #94a3b8; font-size:0.84rem;">Приказ НЦЗПД № 14 от 15.11.2021 — перечень государств с надлежащим уровнем защиты</li>
+          <li style="color: #94a3b8; font-size:0.84rem;">Разъяснения НЦЗПД по составлению политик обработки ПД</li>
+        </ul>
+        <a href="theory.html" style="display:inline-flex; align-items:center; gap:0.4rem; margin-top:1rem; color: #60a5fa; font-size:0.84rem; font-weight:600; text-decoration:none;">
+          Читать теорию <i class="fas fa-arrow-right fa-xs"></i>
+        </a>
+      </div>
+
+      <div class="sidebar-card" style="background: linear-gradient(135deg,#f0fdf4,#ecfeff); border-color:#bbf7d0;">
+        <div class="sidebar-title">Смежные документы</div>
+        <ul class="rights-list" style="margin:0;">
+          <li style="font-size:0.84rem;"><a href="privacy.html" style="color:var(--accent);font-weight:600;text-decoration:none;">Политика в отношении обработки файлов cookie</a></li>
+          <li style="font-size:0.84rem;"><a href="contact.html" style="color:var(--accent);font-weight:600;text-decoration:none;">Форма подачи жалобы / обращения</a></li>
+        </ul>
+      </div>
+    </aside>
+
+  </div>
+</div>
+
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span class="logo-text">EduSafe</span>
+        </a>
+        <p>Республиканский информационно-практический ресурс для педагогов и студентов</p>
+      </div>
+      <div>
+        <div class="footer-nav-title">Разделы</div>
+        <ul class="footer-links">
+          <li><a href="theory.html">Теория</a></li>
+          <li><a href="choice-sp.html">Практика</a></li>
+          <li><a href="videos.html">Видео</a></li>
+          <li><a href="quiz.html">Викторина</a></li>
+          <li><a href="blog.html">Блог</a></li>
+        </ul>
+      </div>
+      <div>
+        <div class="footer-nav-title">Документы</div>
+        <ul class="footer-links">
+          <li><a href="pd-policy.html">Политика обработки ПД</a></li>
+          <li><a href="privacy.html">Политика cookie</a></li>
+          <li><a href="contact.html">Контакты</a></li>
+          <li><a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>Политика разработана по примерной форме НЦЗПД в соответствии с Законом РБ № 99-З «О защите персональных данных».</span>
+      <span>Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  const overlay = document.getElementById('drawerOverlay');
+  document.getElementById('navToggle').addEventListener('click', () => { overlay.classList.add('open'); document.body.style.overflow = 'hidden'; });
+  function closeDrawer() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
+  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
+</script>
+
+</body>
+</html>
