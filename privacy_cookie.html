@@ -177,17 +177,178 @@
     .footer-links a:hover { color: #94a3b8; }
     .footer-bottom { font-size: 0.78rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
 
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — TABLET (≤ 1024px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 1024px) {
+      .content-layout { gap: 1.75rem; }
+      .sidebar { position: sticky; top: 80px; }
+      .container { padding: 0 1.25rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — TABLET PORTRAIT (≤ 900px)
+    ═══════════════════════════════════════════ */
     @media (max-width: 900px) {
-      .content-layout { grid-template-columns: 1fr; }
-      .sidebar { position: static; }
+      /* Layout: sidebar drops below article */
+      .content-layout {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+        padding: 2rem 0 3rem;
+      }
+      .sidebar {
+        position: static;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+      .sidebar .sidebar-card:last-child {
+        grid-column: 1 / -1;
+      }
+
+      /* Navigation */
       .nav-desktop { display: none; }
       .burger { display: flex; }
+
+      /* Hero */
+      .page-hero { padding: 2.5rem 0 2rem; }
+      .page-hero h1 { font-size: clamp(1.35rem, 3.5vw, 1.85rem); }
+
+      /* Article */
+      .article-header { padding: 1.75rem 2rem; }
+      .article-body { padding: 1.75rem 2rem; }
+
+      /* Footer */
+      .footer-top { gap: 1.5rem; }
     }
-    @media (max-width: 600px) {
-      .article-body { padding: 1.5rem; }
-      .article-header { padding: 1.5rem; }
-      .hero-meta { gap: 0.75rem; }
-      .footer-top { flex-direction: column; }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — MOBILE (≤ 640px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 640px) {
+      /* Container */
+      .container { padding: 0 1rem; }
+
+      /* Header */
+      .header-inner { height: 60px; }
+      .logo-text { font-size: 1.05rem; }
+
+      /* Hero */
+      .page-hero { padding: 2rem 0 1.75rem; }
+      .page-hero h1 { font-size: clamp(1.2rem, 5vw, 1.5rem); }
+      .hero-meta { gap: 0.6rem; }
+      .hero-badge { font-size: 0.72rem; padding: 0.3rem 0.7rem; }
+      .hero-date { font-size: 0.78rem; }
+      .breadcrumb { margin-bottom: 1rem; }
+
+      /* Layout */
+      .content-layout { padding: 1.5rem 0 2.5rem; gap: 1.25rem; }
+
+      /* Sidebar: single column on mobile */
+      .sidebar {
+        grid-template-columns: 1fr;
+      }
+      .sidebar .sidebar-card:last-child {
+        grid-column: auto;
+      }
+
+      /* Article */
+      .article-header { padding: 1.25rem 1rem; border-radius: 0; }
+      .article-header h2 { font-size: 0.95rem; }
+      .article-body { padding: 1.25rem 1rem; }
+      .policy-article { border-radius: var(--radius); }
+
+      /* Section headings */
+      .section-heading { gap: 0.65rem; }
+      .section-num { width: 30px; height: 30px; font-size: 0.72rem; border-radius: 8px; }
+      .section-heading h3 { font-size: 0.9rem; }
+
+      /* Text */
+      .policy-text { font-size: 0.88rem; }
+
+      /* Info boxes */
+      .info-box { padding: 0.9rem 1rem; }
+      .info-box p { font-size: 0.84rem; }
+
+      /* Cookie table — stacked cards on mobile */
+      .cookie-table-wrap {
+        border: none;
+        background: transparent;
+        overflow: visible;
+      }
+      .cookie-table { display: block; }
+      .cookie-table thead { display: none; }
+      .cookie-table tbody { display: flex; flex-direction: column; gap: 0.75rem; }
+      .cookie-table tbody tr {
+        display: flex;
+        flex-direction: column;
+        gap: 0;
+        border: 1px solid var(--border);
+        border-radius: var(--radius);
+        overflow: hidden;
+        background: var(--surface);
+      }
+      .cookie-table tbody tr:hover { background: var(--surface); }
+      .cookie-table td {
+        display: block;
+        padding: 0.7rem 1rem;
+        border-bottom: 1px solid var(--border);
+        white-space: normal;
+      }
+      .cookie-table td:last-child { border-bottom: none; }
+      .cookie-table td::before {
+        content: attr(data-label);
+        display: block;
+        font-size: 0.7rem;
+        font-weight: 700;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--text-muted);
+        margin-bottom: 0.3rem;
+      }
+
+      /* Browser list */
+      .browser-list { gap: 0.5rem; }
+      .browser-item { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
+
+      /* Rights list */
+      .rights-list li { font-size: 0.86rem; }
+
+      /* PDF block */
+      .pdf-block {
+        flex-direction: column;
+        gap: 1rem;
+        padding: 1.25rem;
+        align-items: flex-start;
+      }
+      .pdf-block-icon { width: 42px; height: 42px; font-size: 1.25rem; }
+
+      /* Update notice */
+      .update-notice { flex-direction: column; gap: 0.6rem; align-items: flex-start; }
+      .update-notice p { font-size: 0.8rem; }
+
+      /* Sidebar cards */
+      .sidebar-card { padding: 1.1rem; }
+      .cpd-ref { padding: 1.1rem; }
+
+      /* Footer */
+      .footer-top { flex-direction: column; gap: 1.5rem; }
+      .footer-brand { max-width: 100%; }
+      footer { padding: 2rem 0 1.5rem; }
+      .footer-bottom { font-size: 0.72rem; }
+    }
+
+    /* ═══════════════════════════════════════════
+       RESPONSIVE — SMALL MOBILE (≤ 400px)
+    ═══════════════════════════════════════════ */
+    @media (max-width: 400px) {
+      .logo-text { font-size: 0.95rem; }
+      .page-hero h1 { font-size: 1.1rem; }
+      .hero-badge { display: none; }
+      .hero-badge:first-child { display: inline-flex; }
+      .section-heading h3 { font-size: 0.82rem; }
+      .article-body { padding: 1rem 0.85rem; }
+      .article-header { padding: 1rem 0.85rem; }
     }
   </style>
 </head>
@@ -253,7 +414,7 @@
         <div class="hero-badge"><i class="fas fa-gavel"></i> Закон РБ № 99-З</div>
         <div class="hero-badge" style="background:rgba(14,165,199,0.15); border-color:rgba(14,165,199,0.3); color:#7dd3fc;"><i class="fas fa-university"></i> По форме НЦЗПД</div>
         <div class="hero-date"><i class="fas fa-calendar-alt"></i> По состоянию на май 2026 г.</div>
-        <a href="./files/policy/cookie.pdf" download class="download-btn" title="Скачать политику в PDF"><i class="fas fa-download"></i></a>
+        <a href="./files/policy/cookie.pdf" target="_blank" class="download-btn" title="Открыть политику в PDF"><i class="fas fa-download"></i></a>
       </div>
     </div>
   </div>
@@ -315,14 +476,14 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td><span class="badge-necessary"><i class="fas fa-shield-alt"></i> Необходимые</span></td>
-                    <td>Корректное функционирование сайта: сохранение выбора языковой версии, работа навигации и интерактивных элементов</td>
-                    <td>В течение текущего сеанса; не более 1 года с момента первого посещения</td>
+                    <td data-label="Категория"><span class="badge-necessary"><i class="fas fa-shield-alt"></i> Необходимые</span></td>
+                    <td data-label="Цель обработки">Корректное функционирование сайта: сохранение выбора языковой версии, работа навигации и интерактивных элементов</td>
+                    <td data-label="Срок хранения">В течение текущего сеанса; не более 1 года с момента первого посещения</td>
                   </tr>
                   <tr>
-                    <td><span class="badge-analytics"><i class="fas fa-chart-bar"></i> Аналитические</span></td>
-                    <td>Сбор и обработка аналитической и статистической информации об использовании сайта в обобщённом виде (Яндекс.Метрика). Используются для улучшения содержания и удобства ресурса</td>
-                    <td>Не более 6 месяцев с момента получения согласия пользователя</td>
+                    <td data-label="Категория"><span class="badge-analytics"><i class="fas fa-chart-bar"></i> Аналитические</span></td>
+                    <td data-label="Цель обработки">Сбор и обработка аналитической и статистической информации об использовании сайта в обобщённом виде (Яндекс.Метрика). Используются для улучшения содержания и удобства ресурса</td>
+                    <td data-label="Срок хранения">Не более 6 месяцев с момента получения согласия пользователя</td>
                   </tr>
                 </tbody>
               </table>
@@ -431,8 +592,8 @@
             <div class="pdf-block-icon"><i class="fas fa-file"></i></div>
             <div class="pdf-block-content">
               <div class="pdf-block-title">Политика в формате PDF</div>
-              <p class="pdf-block-text">Скачайте полный текст политики в формате PDF для сохранения на вашем устройстве.</p>
-              <a href="./files/policy/cookie.pdf" download class="pdf-block-link"><i class="fas fa-download"></i> Скачать PDF</a>
+              <p class="pdf-block-text">Откройте полный текст политики в формате PDF в новой вкладке браузера.</p>
+              <a href="./files/policy/cookie.pdf" target="_blank" class="pdf-block-link"><i class="fas fa-download"></i> Открыть PDF</a>
             </div>
           </div>
 
