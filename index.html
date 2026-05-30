@@ -272,6 +272,136 @@
     .footer-bottom { font-size: 0.78rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
     .footer-bottom a { color: #60a5fa; text-decoration: none; }
 
+    /* EDUSAFE BANNER */
+    .edusafe-banner {
+      padding: 0;
+      background: linear-gradient(135deg, #0a1628 0%, #0d1f3c 50%, #0a1628 100%);
+      border-top: 1px solid rgba(59,130,246,0.2);
+      border-bottom: 1px solid rgba(59,130,246,0.2);
+      position: relative;
+      overflow: hidden;
+    }
+    .edusafe-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
+      background-size: 40px 40px;
+    }
+    .edusafe-banner-glow {
+      position: absolute;
+      width: 500px; height: 500px;
+      background: radial-gradient(circle, rgba(0,87,217,0.3) 0%, transparent 65%);
+      top: -200px; right: -100px;
+      pointer-events: none;
+    }
+    .edusafe-banner-glow-2 {
+      position: absolute;
+      width: 350px; height: 350px;
+      background: radial-gradient(circle, rgba(14,165,199,0.18) 0%, transparent 65%);
+      bottom: -150px; left: -50px;
+      pointer-events: none;
+    }
+    .edusafe-banner-inner {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      gap: 2.5rem;
+      padding: 3rem 0;
+    }
+    .edusafe-banner-icon {
+      flex-shrink: 0;
+      width: 72px; height: 72px;
+      background: linear-gradient(135deg, #0057d9, #0ea5c7);
+      border-radius: 18px;
+      display: flex; align-items: center; justify-content: center;
+      color: white; font-size: 1.8rem;
+      box-shadow: 0 8px 28px rgba(0,87,217,0.4);
+    }
+    .edusafe-banner-body { flex: 1; }
+    .edusafe-banner-badge {
+      display: inline-flex; align-items: center; gap: 0.4rem;
+      background: rgba(59,130,246,0.18);
+      border: 1px solid rgba(59,130,246,0.35);
+      color: #93c5fd;
+      font-size: 0.72rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      padding: 0.3rem 0.85rem; border-radius: 999px;
+      margin-bottom: 0.75rem;
+    }
+    .edusafe-banner-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: clamp(1.1rem, 2.5vw, 1.55rem);
+      font-weight: 700; color: #fff;
+      line-height: 1.25; margin-bottom: 0.65rem;
+      letter-spacing: -0.01em;
+    }
+    .edusafe-banner-title span {
+      background: linear-gradient(135deg, #60a5fa, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .edusafe-banner-desc {
+      font-size: 0.9rem; color: #94a3b8;
+      line-height: 1.65; max-width: 640px;
+      margin-bottom: 1.25rem;
+    }
+    .edusafe-banner-pills {
+      display: flex; flex-wrap: wrap; gap: 0.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .edusafe-pill {
+      display: inline-flex; align-items: center; gap: 0.35rem;
+      background: rgba(255,255,255,0.07);
+      border: 1px solid rgba(255,255,255,0.13);
+      color: #cbd5e1; font-size: 0.8rem; font-weight: 500;
+      padding: 0.35rem 0.85rem; border-radius: 999px;
+    }
+    .edusafe-pill i { color: #60a5fa; font-size: 0.72rem; }
+    .edusafe-banner-cta {
+      display: flex; align-items: center; gap: 1rem; flex-wrap: wrap;
+    }
+    .edusafe-btn-primary {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: linear-gradient(135deg, #0057d9, #0ea5c7);
+      color: #fff; font-family: 'Golos Text', sans-serif;
+      font-size: 0.88rem; font-weight: 600;
+      padding: 0.7rem 1.5rem; border-radius: var(--radius-sm);
+      text-decoration: none;
+      box-shadow: 0 4px 20px rgba(0,87,217,0.35);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .edusafe-btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 28px rgba(0,87,217,0.45); }
+    .edusafe-launch-date {
+      display: inline-flex; align-items: center; gap: 0.45rem;
+      color: #64748b; font-size: 0.82rem;
+    }
+    .edusafe-launch-date strong { color: #cbd5e1; }
+    .edusafe-banner-visual {
+      flex-shrink: 0;
+      display: flex; flex-direction: column; gap: 0.75rem;
+      min-width: 200px;
+    }
+    .edusafe-stat-box {
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius);
+      padding: 1rem 1.25rem;
+      text-align: center;
+    }
+    .edusafe-stat-box .num {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.3rem; font-weight: 700;
+      background: linear-gradient(135deg, #60a5fa, #38bdf8);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      background-clip: text;
+      display: block; margin-bottom: 0.2rem;
+    }
+    .edusafe-stat-box .lbl { font-size: 0.74rem; color: #64748b; line-height: 1.4; }
+
     /* RESPONSIVE */
     @media (max-width: 900px) {
       .modules-grid { grid-template-columns: 1fr 1fr; }
@@ -293,6 +423,9 @@
       .sdg-item { width: 72px; height: 72px; }
       .blog-preview-grid { grid-template-columns: 1fr; }
       .blog-preview-header { flex-direction: column; align-items: flex-start; }
+      .edusafe-banner-icon { width: 56px; height: 56px; font-size: 1.4rem; }
+      .edusafe-banner-visual { flex-direction: column; }
+      .edusafe-banner-cta { flex-direction: column; align-items: flex-start; }
     }
     @media (max-width: 420px) {
       .cta-btns { flex-direction: column; align-items: center; }
@@ -503,6 +636,55 @@
     </div>
   </div>
 </section>
+
+<!-- ═══ EDUSAFE EDUCATIONAL PORTAL BANNER ══════════════════════════════════ -->
+<div class="edusafe-banner">
+  <div class="edusafe-banner-glow"></div>
+  <div class="edusafe-banner-glow-2"></div>
+  <div class="container">
+    <div class="edusafe-banner-inner">
+      <div class="edusafe-banner-icon">
+        <i class="fas fa-graduation-cap"></i>
+      </div>
+      <div class="edusafe-banner-body">
+        <div class="edusafe-banner-badge">
+          <i class="fas fa-rocket"></i> Скоро открытие
+        </div>
+        <h2 class="edusafe-banner-title">
+          Образовательный портал <span>Edusafe</span> —<br>курсы для всех участников учебного процесса
+        </h2>
+        <p class="edusafe-banner-desc">
+          На портале <strong style="color:#e2e8f0">learn.edusafe.site</strong> будут собраны учебные материалы для педагогов, администраторов, студентов и учащихся. Лекции, тесты и глоссарии по защите персональных данных — всё в одном месте.
+        </p>
+        <div class="edusafe-banner-pills">
+          <span class="edusafe-pill"><i class="fas fa-play-circle"></i> Лекции</span>
+          <span class="edusafe-pill"><i class="fas fa-tasks"></i> Тесты</span>
+          <span class="edusafe-pill"><i class="fas fa-book"></i> Глоссарии</span>
+          <span class="edusafe-pill"><i class="fas fa-users"></i> Для всех участников процесса</span>
+        </div>
+        <div class="edusafe-banner-cta">
+          <a href="https://learn.edusafe.site" target="_blank" rel="noopener" class="edusafe-btn-primary">
+            <i class="fas fa-external-link-alt fa-sm"></i> learn.edusafe.site
+          </a>
+          <span class="edusafe-launch-date">
+            <i class="fas fa-calendar-alt"></i>
+            Старт работы ресурса: <strong>1 июля 2026 года</strong>
+          </span>
+        </div>
+      </div>
+      <div class="edusafe-banner-visual">
+        <div class="edusafe-stat-box">
+          <span class="num">01.07</span>
+          <span class="lbl">Дата запуска<br>2026 года</span>
+        </div>
+        <div class="edusafe-stat-box">
+          <span class="num"><i class="fas fa-users" style="font-size:1.1rem"></i></span>
+          <span class="lbl">Для всех участников<br>образовательного процесса</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ═══ BLOG PREVIEW ══════════════════════════════════ -->
 <section class="blog-preview">
