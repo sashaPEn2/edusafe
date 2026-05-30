@@ -395,6 +395,11 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
+      /* Адаптивность: растягиваем на всю доступную ширину */
+      width: 100%;
+      min-width: 0;          /* предотвращает переполнение во flex/grid */
+      box-sizing: border-box;
+
       padding: 0.75rem 1rem;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
@@ -402,8 +407,31 @@
       font-family: 'Golos Text', sans-serif;
       font-size: 0.95rem; color: var(--ink);
       outline: none;
-      transition: border-color 0.2s, box-shadow 0.2s;
+      transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
+
+      /* Убираем нативный вид на iOS/Safari */
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      appearance: none;
     }
+
+    /* Select: возвращаем стрелку вручную */
+    .form-group select {
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 1rem center;
+      padding-right: 2.5rem;
+      cursor: pointer;
+    }
+
+    /* Placeholder */
+    .form-group input::placeholder,
+    .form-group textarea::placeholder {
+      color: #94a3b8;
+      opacity: 1; /* Firefox снижает opacity по умолчанию */
+    }
+
+    /* Фокус */
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
@@ -411,8 +439,39 @@
       box-shadow: 0 0 0 3px rgba(0,87,217,0.1);
       background: var(--surface);
     }
+
+    /* Автозаполнение браузером — убираем жёлтый фон */
+    .form-group input:-webkit-autofill,
+    .form-group input:-webkit-autofill:focus {
+      -webkit-box-shadow: 0 0 0 1000px var(--surface-2) inset;
+      -webkit-text-fill-color: var(--ink);
+      transition: background-color 9999s ease;
+    }
+
+    /* Состояния валидации */
+    .form-group input:not(:placeholder-shown):valid,
+    .form-group select:valid:not([value=""]),
+    .form-group textarea:not(:placeholder-shown):valid {
+      border-color: #10b981;
+    }
+    .form-group input:not(:placeholder-shown):invalid,
+    .form-group textarea:not(:placeholder-shown):invalid {
+      border-color: #f87171;
+    }
+
+    /* Disabled */
+    .form-group input:disabled,
+    .form-group select:disabled,
+    .form-group textarea:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+      background: var(--surface-2);
+    }
+
     .form-group textarea {
-      min-height: 140px; resize: vertical;
+      min-height: 140px;
+      resize: vertical;
+      line-height: 1.6;
     }
 
     .form-submit-row {
@@ -557,14 +616,16 @@
       /* Форма-враппер: уменьшаем отступы */
       .form-wrap { padding: 1.5rem 1.25rem; }
 
-      /* Поля ввода: чуть крупнее для пальца */
+      /* Поля ввода: крупнее для тапа пальцем, предотвращаем zoom на iOS (font-size >= 16px) */
       .form-group input,
       .form-group select,
       .form-group textarea {
-        padding: 0.85rem 1rem;
-        font-size: 1rem;
+        padding: 0.9rem 1rem;
+        font-size: 1rem; /* iOS не зумит поля если font-size ≥ 16px */
+        min-height: 48px; /* минимальная зона касания по рекомендациям */
       }
-      .form-group textarea { min-height: 120px; }
+      .form-group textarea { min-height: 130px; }
+      .form-group label { font-size: 0.9rem; }
 
       /* Кнопка отправки */
       .btn-submit {
@@ -605,7 +666,13 @@
       .form-group label { font-size: 0.85rem; }
       .form-group input,
       .form-group select,
-      .form-group textarea { font-size: 0.95rem; }
+      .form-group textarea {
+        padding: 0.85rem 0.9rem;
+        font-size: 1rem;  /* не уменьшаем ниже 16px — iOS не будет зумить */
+        border-radius: 6px;
+      }
+      .form-group { gap: 0.35rem; }
+      .form-grid { gap: 1rem; }
 
       .info-grid { gap: 0.75rem; }
       .info-card { padding: 1.25rem; border-radius: var(--radius); }
