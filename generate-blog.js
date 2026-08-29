@@ -223,12 +223,6 @@ function buildPostPage(item, slug) {
   <meta name="description" content="${excerpt}"/>
   <link rel="canonical" href="${pageUrl}"/>
 
-<!-- Vercel Speed Insights -->
-<script>
-  window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-</script>
-<script defer src="/_vercel/speed-insights/script.js"></script>
-
 <!-- Yandex.Metrika counter -->
 <script type="text/javascript">
     (function(m,e,t,r,i,k,a){
@@ -387,12 +381,6 @@ function buildIndexPage(posts) {
   <meta name="description" content="Блог EduSafe — актуальные новости и советы по защите персональных данных в образовании."/>
   <title>Блог — EduSafe</title>
   <link rel="canonical" href="${SITE_BASE_URL}/blog.html"/>
-
-  <!-- Vercel Speed Insights -->
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
 
   <meta property="og:type" content="website"/>
   <meta property="og:title" content="Блог — EduSafe"/>
