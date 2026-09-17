@@ -3,8 +3,19 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <meta name="description" content="Контакты EduSafe — форма обратной связи, подача жалобы в Национальный центр защиты персональных данных.">
-  <title>Контакты и жалоба — EduSafe</title>
+  <meta name="description" content="Контакты EduSafe — форма обратной связи, подача обращения и жалобы в Национальный центр защиты персональных данных.">
+  <title id="pageTitle">Контакты и обратная связь — EduSafe</title>
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
 
   <!-- Yandex.Metrika counter -->
   <script type="text/javascript">
@@ -18,47 +29,81 @@
   </script>
   <noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
-
-  <!-- Vercel Speed Insights -->
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
-
   <link rel="icon" href="./favicon.svg" type="image/svg+xml">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
   <style>
     :root {
-      --ink: #0d1117;
-      --ink-soft: #1e2633;
+      --ink: #0f172a;
+      --ink-soft: #334155;
       --accent: #0057d9;
-      --accent-light: #3b82f6;
-      --accent-pale: #dbeafe;
-      --teal: #0ea5c7;
+      --accent-light: #2563eb;
+      --accent-pale: #eff6ff;
+      --teal: #0284c7;
+      --teal-pale: #f0f9ff;
       --mint: #d1fae5;
+      --green: #059669;
+      --green-pale: #ecfdf5;
+      --purple: #7c3aed;
+      --purple-pale: #f5f3ff;
       --surface: #ffffff;
-      --surface-2: #f5f7fb;
+      --surface-2: #f8fafc;
+      --surface-3: #f1f5f9;
       --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
       --text-muted: #64748b;
       --white: #ffffff;
+      --hero-bg: #090e1a;
+      --banner-bg: #0d1527;
+      --footer-bg: #060a12;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(10,15,29,0.06);
+      --shadow: 0 4px 16px rgba(10,15,29,0.08);
+      --shadow-lg: 0 12px 32px rgba(10,15,29,0.12);
       --radius-sm: 8px;
-      --radius: 16px;
-      --radius-lg: 24px;
-      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius: 14px;
+      --radius-lg: 20px;
     }
 
-    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    [data-theme="dark"] {
+      --ink: #f8fafc;
+      --ink-soft: #cbd5e1;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-pale: rgba(59, 130, 246, 0.16);
+      --teal: #38bdf8;
+      --teal-pale: rgba(56, 189, 248, 0.16);
+      --mint: rgba(16, 185, 129, 0.2);
+      --green: #34d399;
+      --green-pale: rgba(52, 211, 153, 0.16);
+      --purple: #a78bfa;
+      --purple-pale: rgba(167, 139, 250, 0.16);
+      --surface: #111827;
+      --surface-2: #0b0f19;
+      --surface-3: #1a233a;
+      --border: #232f48;
+      --border-subtle: #1e293b;
+      --text-muted: #94a3b8;
+      --white: #ffffff;
+      --hero-bg: #070b14;
+      --banner-bg: #0f1629;
+      --footer-bg: #05080f;
+      --card-bg: #131d31;
+      --card-border: #23314d;
+      --input-bg: #0f1629;
+      --input-border: #2a3b5c;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.4);
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.65);
+    }
+
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
     html { scroll-behavior: smooth; }
     body {
       font-family: 'Golos Text', sans-serif;
@@ -66,136 +111,92 @@
       color: var(--ink);
       line-height: 1.65;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
 
-    .container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ─── HEADER ──────────────────────────────── */
+    /* HEADER */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 200;
+      transition: background 0.3s, border-color 0.3s;
     }
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-      gap: 1rem;
-    }
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-    .logo-icon {
-      width: 38px; height: 38px;
-      background: var(--accent);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 1rem;
-    }
-    .logo-text {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700; font-size: 1.2rem;
-      color: var(--ink);
-    }
-    .nav-desktop {
-      display: flex; align-items: center; gap: 0.25rem;
-    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .logo-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+    .nav-desktop { display: flex; align-items: center; gap: 0.25rem; }
     .nav-desktop a {
       text-decoration: none;
       color: var(--text-muted);
-      font-weight: 500; font-size: 0.88rem;
+      font-weight: 500;
+      font-size: 0.88rem;
       padding: 0.45rem 0.85rem;
       border-radius: var(--radius-sm);
       transition: all 0.2s;
       white-space: nowrap;
-      display: flex; align-items: center; gap: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-    .nav-desktop a:hover, .nav-desktop a.active {
-      background: var(--accent-pale); color: var(--accent);
-    }
-    .header-right {
-      display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
-    }
+    .nav-desktop a:hover, .nav-desktop a.active { background: var(--accent-pale); color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
     .lang-select {
       padding: 0.4rem 0.7rem;
       border: 1px solid var(--border);
       border-radius: var(--radius-sm);
-      background: var(--surface); color: var(--ink);
+      background: var(--surface);
+      color: var(--ink);
       font-size: 0.85rem;
       font-family: 'Golos Text', sans-serif;
-      cursor: pointer; outline: none;
+      cursor: pointer;
+      outline: none;
     }
-    .burger {
-      display: none; background: none; border: none;
-      color: var(--ink); font-size: 1.4rem; cursor: pointer;
-      padding: 0.3rem; border-radius: 8px; transition: background 0.2s;
+    .theme-toggle-btn {
+      width: 38px; height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
     }
-    .burger:hover { background: var(--surface-2); }
+    .theme-toggle-btn:hover {
+      background: var(--accent-pale);
+      color: var(--accent);
+      border-color: var(--accent-light);
+    }
+    .burger { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0.3rem; border-radius: 8px; }
+    .burger:hover { background: var(--surface-3); }
 
-    /* ─── MOBILE DRAWER ───────────────────────── */
-    .drawer-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(3px);
-      z-index: 300;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
+    /* DRAWER */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
     .drawer-overlay.open { opacity: 1; visibility: visible; }
-    .drawer {
-      position: fixed; top: 0; right: 0;
-      width: min(88%, 340px); height: 100%;
-      background: var(--surface); z-index: 301;
-      transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex; flex-direction: column; padding: 1.5rem;
-    }
+    .drawer { position: fixed; top: 0; right: 0; width: min(88%, 340px); height: 100%; background: var(--surface); z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; padding: 1.5rem; }
     .drawer-overlay.open .drawer { transform: translateX(0); }
-    .drawer-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.25rem;
-    }
-    .drawer-close {
-      background: var(--surface-2); border: none;
-      width: 36px; height: 36px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1rem; color: var(--text-muted);
-    }
-    .drawer-nav { display: flex; flex-direction: column; gap: 0.5rem; }
-    .drawer-nav a {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.8rem 1rem; border-radius: var(--radius-sm);
-      text-decoration: none; color: var(--ink);
-      font-weight: 500; transition: all 0.2s;
-    }
-    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
-    .drawer-nav a:hover, .drawer-nav a.active {
-      background: var(--accent-pale); color: var(--accent);
-    }
-    .drawer-lang {
-      margin-top: 1.5rem; padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .drawer-close { background: var(--surface-3); border: none; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.4rem; }
+    .drawer-nav a { text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.95rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; }
+    .drawer-nav a:hover, .drawer-nav a.active { background: var(--accent-pale); color: var(--accent); }
 
-    /* ─── HERO ───────────────────────────────── */
+    /* HERO */
     .hero {
-      background: var(--ink);
-      position: relative; overflow: hidden;
+      background: var(--hero-bg);
+      position: relative;
+      overflow: hidden;
       padding: 5rem 0 4rem;
+      color: #fff;
+      text-align: center;
     }
     .hero-grid {
       position: absolute; inset: 0;
@@ -224,124 +225,56 @@
       border: 1px solid rgba(59,130,246,0.3);
       color: #93c5fd; font-size: 0.8rem; font-weight: 600;
       padding: 0.45rem 1rem; border-radius: 999px;
-      margin-bottom: 1.75rem; letter-spacing: 0.02em;
+      margin-bottom: 1.5rem; letter-spacing: 0.02em;
     }
     .hero h1 {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.75rem, 4vw, 3rem);
-      font-weight: 700; color: var(--white);
-      line-height: 1.2; margin-bottom: 1.5rem; letter-spacing: -0.02em;
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700; color: #ffffff;
+      line-height: 1.25; margin-bottom: 1rem;
     }
     .hero h1 span {
       background: linear-gradient(135deg, #60a5fa, #38bdf8);
-      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
       background-clip: text;
     }
     .hero-sub {
-      font-size: 1.1rem; color: #94a3b8;
-      max-width: 680px; margin: 0 auto 2.5rem; line-height: 1.7;
+      font-size: 1.05rem; color: #cbd5e1;
+      max-width: 680px; margin: 0 auto; line-height: 1.7;
     }
 
-    /* ─── SECTION ────────────────────────────── */
-    .section { padding: 5rem 0; }
+    /* SECTION */
+    .section { padding: 4.5rem 0; flex: 1; }
+    .section-header { margin-bottom: 3rem; }
+    .section-header.centered { text-align: center; }
     .section-tag {
-      display: inline-block; background: var(--accent-pale); color: var(--accent);
-      font-size: 0.75rem; font-weight: 600; text-transform: uppercase;
-      letter-spacing: 0.08em; padding: 0.35rem 0.9rem;
-      border-radius: 999px; margin-bottom: 1rem;
+      display: inline-block; font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      background: var(--accent-pale); color: var(--accent);
+      padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.6rem;
     }
     .section-title {
       font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.5rem, 3vw, 2.25rem);
-      font-weight: 700; color: var(--ink);
-      margin-bottom: 0.75rem; letter-spacing: -0.02em; line-height: 1.25;
+      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
+      font-weight: 700; color: var(--ink); line-height: 1.3;
     }
     .section-sub {
-      font-size: 1.05rem; color: var(--text-muted);
-      max-width: 620px; line-height: 1.7;
+      font-size: 0.98rem; color: var(--text-muted);
+      margin-top: 0.5rem; max-width: 640px;
     }
-    .section-header { margin-bottom: 3rem; }
-    .section-header.centered { text-align: center; }
-    .section-header.centered .section-sub { margin: 0 auto; }
+    .section-header.centered .section-sub { margin-left: auto; margin-right: auto; }
 
-    /* ─── INFO CARDS GRID ────────────────────── */
-    .info-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 4rem;
-    }
-
-    .info-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      position: relative; overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-    }
-    .info-card::before {
-      content: '';
-      position: absolute; top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--card-accent, var(--accent));
-      border-radius: 999px 999px 0 0;
-    }
-    .info-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: transparent;
-    }
-    .info-card-1 { --card-accent: #0057d9; }
-    .info-card-2 { --card-accent: #0ea5c7; }
-    .info-card-3 { --card-accent: #10b981; }
-    .info-card-4 { --card-accent: #8b5cf6; }
-
-    .card-icon {
-      width: 50px; height: 50px;
-      border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.3rem; margin-bottom: 1.25rem;
-    }
-    .info-card-1 .card-icon { background: #eff6ff; color: #0057d9; }
-    .info-card-2 .card-icon { background: #ecfeff; color: #0ea5c7; }
-    .info-card-3 .card-icon { background: #d1fae5; color: #059669; }
-    .info-card-4 .card-icon { background: #ede9fe; color: #7c3aed; }
-
-    .info-card h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--ink); margin-bottom: 1rem;
-    }
-    .info-card p, .info-card li {
-      font-size: 0.92rem; color: var(--text-muted);
-      line-height: 1.65;
-    }
-    .info-card ul {
-      padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;
-    }
-    .info-card li::marker { color: var(--card-accent, var(--accent)); }
-    .info-card p + p { margin-top: 0.6rem; }
-
-    .info-card .btn-card {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: var(--accent); color: white;
-      font-weight: 600; font-size: 0.88rem;
-      padding: 0.65rem 1.25rem; border-radius: var(--radius-sm);
-      text-decoration: none; margin-top: 1.25rem;
-      transition: background 0.2s, transform 0.2s;
-    }
-    .btn-card:hover { background: #0046b0; transform: translateY(-2px); }
-
-    /* ─── CONTACT STRIP ──────────────────────── */
+    /* CONTACT STRIP */
     .contact-strip {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
       padding: 2rem 2.5rem;
       display: flex; align-items: center; gap: 2rem;
       flex-wrap: wrap;
       margin-bottom: 4rem;
+      box-shadow: var(--shadow-sm);
     }
     .contact-strip-icon {
       width: 56px; height: 56px;
@@ -357,27 +290,103 @@
     }
     .contact-strip-info a {
       font-family: 'Unbounded', sans-serif;
-      font-size: 1.1rem; font-weight: 600;
+      font-size: 1.15rem; font-weight: 600;
       color: var(--accent); text-decoration: none;
       transition: color 0.2s;
     }
-    .contact-strip-info a:hover { color: #0046b0; }
+    .contact-strip-info a:hover { color: var(--accent-light); text-decoration: underline; }
     .contact-divider {
       width: 1px; height: 48px;
       background: var(--border); flex-shrink: 0;
     }
 
-    /* ─── FORM SECTION ───────────────────────── */
+    /* INFO CARDS GRID */
+    .info-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1.75rem;
+      margin-bottom: 4.5rem;
+    }
+    .info-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      position: relative; overflow: hidden;
+      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
+      box-shadow: var(--shadow-sm);
+      display: flex;
+      flex-direction: column;
+    }
+    .info-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0;
+      height: 3px;
+      background: var(--card-accent, var(--accent));
+      border-radius: 999px 999px 0 0;
+    }
+    .info-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent-light);
+    }
+    .info-card-1 { --card-accent: #0057d9; }
+    .info-card-2 { --card-accent: #0ea5c7; }
+    .info-card-3 { --card-accent: #10b981; }
+    .info-card-4 { --card-accent: #8b5cf6; }
+
+    .card-icon {
+      width: 50px; height: 50px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.3rem; margin-bottom: 1.25rem;
+    }
+    .info-card-1 .card-icon { background: rgba(0,87,217,0.12); color: var(--accent); }
+    .info-card-2 .card-icon { background: rgba(14,165,199,0.12); color: var(--teal); }
+    .info-card-3 .card-icon { background: rgba(16,185,129,0.12); color: var(--green); }
+    .info-card-4 .card-icon { background: rgba(139,92,246,0.12); color: var(--purple); }
+
+    .info-card h3 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.05rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 1rem;
+    }
+    .info-card p, .info-card li {
+      font-size: 0.92rem; color: var(--ink-soft);
+      line-height: 1.65;
+    }
+    .info-card ul {
+      padding-left: 1.25rem; display: flex; flex-direction: column; gap: 0.5rem;
+    }
+    .info-card li::marker { color: var(--card-accent, var(--accent)); }
+    .info-card p + p { margin-top: 0.6rem; }
+
+    .info-card .btn-card {
+      display: inline-flex; align-items: center; gap: 0.5rem;
+      background: var(--accent); color: white;
+      font-weight: 600; font-size: 0.88rem;
+      padding: 0.65rem 1.25rem; border-radius: var(--radius-sm);
+      text-decoration: none; margin-top: auto; padding-top: 0.75rem;
+      transition: background 0.2s, transform 0.2s;
+      align-self: flex-start;
+      margin-top: 1.5rem;
+    }
+    .btn-card:hover { background: #0046b0; transform: translateY(-2px); }
+
+    /* FORM SECTION */
     .form-wrap {
-      background: var(--surface);
-      border: 1px solid var(--border);
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
       border-radius: var(--radius-lg);
       padding: 3rem;
       position: relative; overflow: hidden;
+      box-shadow: var(--shadow);
+      max-width: 860px;
+      margin: 0 auto;
     }
     .form-wrap::before {
       content: '';
-      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      position: absolute; top: 0; left: 0; right: 0; height: 4px;
       background: linear-gradient(90deg, var(--accent), var(--teal));
     }
 
@@ -395,12 +404,10 @@
     .form-group input,
     .form-group select,
     .form-group textarea {
-      /* Адаптивность: растягиваем на всю доступную ширину */
       width: 100%;
-      min-width: 0;          /* предотвращает переполнение во flex/grid */
+      min-width: 0;
       box-sizing: border-box;
-
-      padding: 0.75rem 1rem;
+      padding: 0.8rem 1rem;
       border: 1.5px solid var(--border);
       border-radius: var(--radius-sm);
       background: var(--surface-2);
@@ -408,284 +415,136 @@
       font-size: 0.95rem; color: var(--ink);
       outline: none;
       transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
-
-      /* Убираем нативный вид на iOS/Safari */
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
     }
-
-    /* Select: возвращаем стрелку вручную */
-    .form-group select {
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%2364748b' stroke-width='1.5' fill='none' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
-      background-repeat: no-repeat;
-      background-position: right 1rem center;
-      padding-right: 2.5rem;
-      cursor: pointer;
-    }
-
-    /* Placeholder */
-    .form-group input::placeholder,
-    .form-group textarea::placeholder {
-      color: #94a3b8;
-      opacity: 1; /* Firefox снижает opacity по умолчанию */
-    }
-
-    /* Фокус */
     .form-group input:focus,
     .form-group select:focus,
     .form-group textarea:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 3px rgba(0,87,217,0.1);
       background: var(--surface);
+      box-shadow: 0 0 0 3px var(--accent-pale);
     }
 
-    /* Автозаполнение браузером — убираем жёлтый фон */
-    .form-group input:-webkit-autofill,
-    .form-group input:-webkit-autofill:focus {
-      -webkit-box-shadow: 0 0 0 1000px var(--surface-2) inset;
-      -webkit-text-fill-color: var(--ink);
-      transition: background-color 9999s ease;
+    .form-group select {
+      cursor: pointer;
     }
-
-    /* Состояния валидации */
-    .form-group input:not(:placeholder-shown):valid,
-    .form-group select:valid:not([value=""]),
-    .form-group textarea:not(:placeholder-shown):valid {
-      border-color: #10b981;
-    }
-    .form-group input:not(:placeholder-shown):invalid,
-    .form-group textarea:not(:placeholder-shown):invalid {
-      border-color: #f87171;
-    }
-
-    /* Disabled */
-    .form-group input:disabled,
-    .form-group select:disabled,
-    .form-group textarea:disabled {
-      opacity: 0.55;
-      cursor: not-allowed;
-      background: var(--surface-2);
-    }
-
     .form-group textarea {
       min-height: 140px;
       resize: vertical;
-      line-height: 1.6;
     }
 
     .form-submit-row {
-      display: flex; align-items: center; justify-content: space-between;
-      gap: 1rem; flex-wrap: wrap;
-      margin-top: 0.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1.5rem;
+      margin-top: 1.75rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+      flex-wrap: wrap;
     }
     .form-note {
-      font-size: 0.82rem; color: var(--text-muted);
-      display: flex; align-items: center; gap: 0.4rem;
+      font-size: 0.84rem; color: var(--text-muted);
+      display: flex; align-items: center; gap: 0.5rem;
     }
     .btn-submit {
       display: inline-flex; align-items: center; gap: 0.6rem;
       background: var(--accent); color: white;
       font-family: 'Golos Text', sans-serif;
-      font-weight: 600; font-size: 1rem;
-      padding: 0.85rem 2rem; border-radius: var(--radius-sm);
+      font-weight: 600; font-size: 0.95rem;
+      padding: 0.85rem 1.8rem; border-radius: var(--radius-sm);
       border: none; cursor: pointer;
-      transition: background 0.2s, transform 0.2s, box-shadow 0.2s;
-      box-shadow: 0 4px 16px rgba(0,87,217,0.25);
+      transition: background 0.2s, transform 0.2s;
     }
-    .btn-submit:hover {
-      background: #0046b0; transform: translateY(-2px);
-      box-shadow: 0 6px 20px rgba(0,87,217,0.3);
-    }
-    .btn-submit:active { transform: translateY(0); }
-    .btn-submit:disabled {
-      background: #94a3b8; cursor: not-allowed; transform: none;
-      box-shadow: none;
-    }
+    .btn-submit:hover { background: #0046b0; transform: translateY(-2px); }
+    .btn-submit:disabled { opacity: 0.65; cursor: not-allowed; transform: none; }
 
-    /* Success message */
     .form-success {
       display: none;
-      text-align: center; padding: 3rem 2rem;
+      text-align: center;
+      padding: 3rem 1.5rem;
     }
     .form-success.show { display: block; }
     .form-success-icon {
-      width: 72px; height: 72px;
-      background: var(--mint); border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 2rem; color: #059669;
-      margin: 0 auto 1.5rem;
+      width: 64px; height: 64px;
+      background: rgba(16,185,129,0.15); color: var(--green);
+      border-radius: 50%; display: flex; align-items: center; justify-content: center;
+      font-size: 1.75rem; margin: 0 auto 1.25rem;
     }
     .form-success h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.3rem; font-weight: 700;
-      color: var(--ink); margin-bottom: 0.75rem;
+      font-family: 'Unbounded', sans-serif; font-size: 1.35rem; font-weight: 700;
+      color: var(--ink); margin-bottom: 0.5rem;
     }
-    .form-success p { color: var(--text-muted); font-size: 0.95rem; }
+    .form-success p { font-size: 0.95rem; color: var(--text-muted); max-width: 480px; margin: 0 auto; }
 
-    /* ─── ANIMATION ───────────────────────────── */
-    .anim {
-      opacity: 0; transform: translateY(24px);
-      transition: opacity 0.6s ease, transform 0.6s ease;
-    }
-    .anim.visible { opacity: 1; transform: none; }
-    .anim-delay-1 { transition-delay: 0.1s; }
-    .anim-delay-2 { transition-delay: 0.2s; }
-    .anim-delay-3 { transition-delay: 0.3s; }
-    .anim-delay-4 { transition-delay: 0.4s; }
-
-    /* ─── FOOTER ─────────────────────────────── */
+    /* FOOTER */
     footer {
-      background: var(--ink); color: #9ca3af;
-      padding: 3rem 0 1.5rem; margin-top: 0;
+      background: var(--footer-bg);
+      color: #64748b;
+      padding: 4rem 0 2.5rem;
+      border-top: 1px solid rgba(255,255,255,0.06);
+      margin-top: 4rem;
     }
-    .footer-inner {
-      display: grid; grid-template-columns: 1fr auto 1fr;
-      align-items: start; gap: 2rem;
+    .footer-top {
+      display: flex; justify-content: space-between;
+      gap: 3rem; flex-wrap: wrap;
+      margin-bottom: 2.5rem; padding-bottom: 2.5rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
     }
+    .footer-brand { max-width: 340px; }
     .footer-logo {
       display: flex; align-items: center; gap: 0.6rem;
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700; font-size: 1.1rem;
-      color: var(--white); margin-bottom: 0.75rem;
+      text-decoration: none; margin-bottom: 1rem;
     }
-    .footer-logo-icon {
-      width: 34px; height: 34px;
-      background: var(--accent); border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 0.9rem;
+    .footer-logo .logo-icon { background: var(--accent); }
+    .footer-logo .logo-text { color: white; font-size: 1.15rem; }
+    .footer-brand p { font-size: 0.86rem; line-height: 1.65; color: #94a3b8; }
+    .footer-nav-title {
+      font-size: 0.75rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.08em;
+      color: #94a3b8; margin-bottom: 1rem;
     }
-    .footer-desc { font-size: 0.85rem; line-height: 1.6; max-width: 280px; }
-    .footer-center { text-align: center; }
-    .footer-copy {
-      font-size: 0.8rem; color: #475569; text-align: right;
-    }
-    .footer-divider {
-      border: none; border-top: 1px solid #1e2633;
-      margin: 2rem 0 1rem;
-    }
-    .footer-disclaimers {
-      font-size: 0.78rem; color: #475569;
-      text-align: center; line-height: 1.7;
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a { text-decoration: none; color: #64748b; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom {
+      font-size: 0.8rem; text-align: center;
+      display: flex; flex-direction: column; gap: 0.4rem; color: #64748b;
     }
 
-    /* ─── RESPONSIVE ─────────────────────────── */
+    /* ANIMATIONS */
+    .anim {
+      opacity: 0; transform: translateY(20px);
+      transition: opacity 0.55s ease, transform 0.55s ease;
+    }
+    .anim.visible { opacity: 1; transform: none; }
+    .anim-delay-1 { transition-delay: 0.08s; }
+    .anim-delay-2 { transition-delay: 0.16s; }
+    .anim-delay-3 { transition-delay: 0.24s; }
+    .anim-delay-4 { transition-delay: 0.32s; }
 
-    /* Планшет — ≤ 900px */
+    /* RESPONSIVE */
     @media (max-width: 900px) {
       .nav-desktop { display: none; }
-      .burger { display: block; }
-
-      /* Инфо-карточки: 2→1 колонка */
-      .info-grid { grid-template-columns: 1fr; gap: 1rem; }
-
-      /* Форма: двухколоночная сетка → одна колонка */
-      .form-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+      .burger { display: flex; }
+      .info-grid { grid-template-columns: 1fr; gap: 1.25rem; }
+      .form-grid { grid-template-columns: 1fr; }
       .form-grid .full { grid-column: 1; }
-
-      /* Строка отправки: note и кнопка в колонку */
-      .form-submit-row {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-      }
-      .btn-submit { width: 100%; justify-content: center; }
-
-      /* Разделитель между контактами убираем */
+      .contact-strip { flex-direction: column; align-items: flex-start; gap: 1.25rem; padding: 1.5rem; }
       .contact-divider { display: none; }
-
-      /* Контакт-полоса: два блока стекуются */
-      .contact-strip {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 1.25rem;
-        padding: 1.5rem;
-      }
-
-      /* Футер в одну колонку */
-      .footer-inner { grid-template-columns: 1fr; gap: 1.25rem; }
-      .footer-copy { text-align: left; }
+      .footer-top { flex-direction: column; gap: 2rem; }
     }
-
-    /* Мобильник — ≤ 640px */
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
+      .hero { padding: 3.5rem 0 2.5rem; }
       .section { padding: 3rem 0; }
-      .hero { padding: 3rem 0 2.5rem; }
-      .hero-sub { font-size: 0.95rem; }
-
-      /* Форма-враппер: уменьшаем отступы */
       .form-wrap { padding: 1.5rem 1.25rem; }
-
-      /* Поля ввода: крупнее для тапа пальцем, предотвращаем zoom на iOS (font-size >= 16px) */
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        padding: 0.9rem 1rem;
-        font-size: 1rem; /* iOS не зумит поля если font-size ≥ 16px */
-        min-height: 48px; /* минимальная зона касания по рекомендациям */
-      }
-      .form-group textarea { min-height: 130px; }
-      .form-group label { font-size: 0.9rem; }
-
-      /* Кнопка отправки */
-      .btn-submit {
-        padding: 0.9rem 1.5rem;
-        font-size: 0.95rem;
-      }
-
-      /* note под кнопкой: уменьшаем */
-      .form-note { font-size: 0.78rem; }
-
-      /* Карточки с информацией */
-      .info-card { padding: 1.5rem; }
-      .card-icon { width: 44px; height: 44px; font-size: 1.1rem; margin-bottom: 1rem; }
-      .info-card h3 { font-size: 0.95rem; }
-      .info-card p, .info-card li { font-size: 0.88rem; }
-
-      /* Контакт-полоса */
-      .contact-strip { padding: 1.25rem; gap: 1rem; margin-bottom: 2.5rem; }
-      .contact-strip-icon { width: 46px; height: 46px; font-size: 1.2rem; }
-      .contact-strip-info a { font-size: 0.95rem; }
-
-      /* Заголовки секций */
-      .section-header { margin-bottom: 2rem; }
-      .section-sub { font-size: 0.95rem; }
-
-      /* Сообщение об успехе */
-      .form-success { padding: 2rem 1rem; }
-    }
-
-    /* Узкие экраны — ≤ 420px */
-    @media (max-width: 420px) {
-      .container { padding: 0 1rem; }
-
-      .hero h1 { font-size: 1.5rem; }
-      .hero-badge { font-size: 0.75rem; padding: 0.4rem 0.85rem; }
-
-      .form-wrap { padding: 1.25rem 1rem; border-radius: var(--radius); }
-      .form-group label { font-size: 0.85rem; }
-      .form-group input,
-      .form-group select,
-      .form-group textarea {
-        padding: 0.85rem 0.9rem;
-        font-size: 1rem;  /* не уменьшаем ниже 16px — iOS не будет зумить */
-        border-radius: 6px;
-      }
-      .form-group { gap: 0.35rem; }
-      .form-grid { gap: 1rem; }
-
-      .info-grid { gap: 0.75rem; }
-      .info-card { padding: 1.25rem; border-radius: var(--radius); }
-
-      .contact-strip { border-radius: var(--radius); }
-
-      .footer-disclaimers { font-size: 0.74rem; }
+      .form-submit-row { flex-direction: column; align-items: stretch; }
+      .btn-submit { width: 100%; justify-content: center; }
     }
   </style>
 </head>
 <body>
 
-<!-- ─── HEADER ─────────────────────────────── -->
+<!-- HEADER -->
 <header>
   <div class="container">
     <div class="header-inner">
@@ -693,31 +552,31 @@
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
         <span class="logo-text" id="logoText">EduSafe</span>
       </a>
-
       <nav class="nav-desktop">
-        <a href="index.html" id="navHome"><i class="fas fa-home"></i> Главная</a>
-        <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> Теория</a>
-        <a href="choice-sp.html" id="navPractice"><i class="fas fa-lightbulb"></i> Практика</a>
-        <a href="videos.html" id="navVideo"><i class="fas fa-file-video"></i> Видео</a>
-        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> Викторина</a>
-        <a href="blog.html" id="navBlog"><i class="fas fa-pen"></i> Блог</a>
-        <a href="contact.html" class="active" id="navComplaint"><i class="fas fa-envelope"></i> Контакты</a>
+        <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+        <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+        <a href="choice-sp.html" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+        <a href="glossary.html" id="navGlossary"><i class="fas fa-spell-check"></i> <span>Глоссарий</span></a>
+        <a href="videos.html" id="navVideo"><i class="fas fa-play-circle"></i> <span>Видео</span></a>
+        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+        <a href="blog.html" id="navBlog"><i class="fas fa-newspaper"></i> <span>Блог</span></a>
+        <a href="contact.html" class="active" id="navComplaint"><i class="fas fa-envelope"></i> <span>Контакты</span></a>
       </nav>
-
       <div class="header-right">
-        <!-- <select class="lang-select" id="languageSelector">
+        <select class="lang-select" id="languageSelector" aria-label="Select language">
           <option value="ru">Русский</option>
           <option value="en">English</option>
-        </select> -->
-        <button class="burger" id="navToggle" aria-label="Меню">
-          <i class="fas fa-bars"></i>
+        </select>
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme" title="Переключить тему">
+          <i class="fas fa-moon"></i>
         </button>
+        <button class="burger" id="navToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ─── MOBILE DRAWER ─────────────────────── -->
+<!-- MOBILE DRAWER -->
 <div class="drawer-overlay" id="drawerOverlay">
   <div class="drawer">
     <div class="drawer-head">
@@ -725,44 +584,48 @@
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
         <span class="logo-text" id="mobileLogoText">EduSafe</span>
       </a>
-      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
     </div>
     <nav class="drawer-nav">
-      <a href="index.html"><i class="fas fa-home"></i> <span id="mobileNavHome">Главная</span></a>
-      <a href="theory.html"><i class="fas fa-book-open"></i> <span id="mobileNavTheory">Теория</span></a>
-      <a href="choice-sp.html"><i class="fas fa-lightbulb"></i> <span id="mobileNavPractice">Практика</span></a>
-      <a href="videos.html"><i class="fas fa-file-video"></i> <span id="mobileNavVideo">Видео</span></a>
-      <a href="quiz.html"><i class="fas fa-graduation-cap"></i> <span id="mobileNavQuiz">Викторина</span></a>
-      <a href="blog.html"><i class="fas fa-pen"></i> <span id="mobileNavBlog">Блог</span></a>
-      <a href="contact.html" class="active"><i class="fas fa-envelope"></i> <span id="mobileNavComplaint">Контакты</span></a>
+      <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+      <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+      <a href="choice-sp.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+      <a href="glossary.html" id="mobileNavGlossary"><i class="fas fa-spell-check"></i> <span>Глоссарий</span></a>
+      <a href="videos.html" id="mobileNavVideo"><i class="fas fa-play-circle"></i> <span>Видео</span></a>
+      <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+      <a href="blog.html" id="mobileNavBlog"><i class="fas fa-newspaper"></i> <span>Блог</span></a>
+      <a href="contact.html" class="active" id="mobileNavComplaint"><i class="fas fa-envelope"></i> <span>Контакты</span></a>
     </nav>
-   <!-- <div class="drawer-lang">
-      <select class="lang-select" id="mobileLanguageSelector" style="width:100%;">
+    <div style="display:flex; gap:0.5rem; align-items:center; margin-top:auto; padding-top:1.25rem; border-top:1px solid var(--border);">
+      <select class="lang-select" id="mobileLanguageSelector" style="flex:1;" aria-label="Select language">
         <option value="ru">Русский</option>
         <option value="en">English</option>
-      </select>-->
+      </select>
+      <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle theme" title="Переключить тему">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </div>
 </div>
 
-<!-- ─── HERO ───────────────────────────────── -->
+<!-- HERO -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge">
+      <div class="hero-badge anim">
         <i class="fas fa-envelope"></i>
         <span id="heroBadge">Обратная связь · EduSafe</span>
       </div>
-      <h1 id="heroTitle">Контакты и <span>обратная связь</span></h1>
-      <p class="hero-sub" id="heroSubtitle">Задайте вопрос по ресурсу, сообщите об ошибке или подайте жалобу в Национальный центр защиты персональных данных.</p>
+      <h1 class="anim anim-delay-1" id="heroTitle">Контакты и <span>обратная связь</span></h1>
+      <p class="hero-sub anim anim-delay-2" id="heroSubtitle">Задайте вопрос по ресурсу, сообщите об ошибке или подайте жалобу в Национальный центр защиты персональных данных.</p>
     </div>
   </div>
 </section>
 
-<!-- ─── MAIN CONTENT ──────────────────────── -->
+<!-- MAIN CONTENT -->
 <section class="section">
   <div class="container">
 
@@ -773,15 +636,15 @@
       </div>
       <div class="contact-strip-info">
         <div class="label" id="emailLabel">Электронная почта сайта</div>
-        <a href="mailto:info@edusafe.site" id="emailLink">info@edusafe.site</a>
+        <a href="mailto:nevdahalek@yandex.by" id="emailLink">nevdahalek@yandex.by</a>
       </div>
       <div class="contact-divider"></div>
-      <div class="contact-strip-icon" style="background: #ecfeff; color: var(--teal);">
+      <div class="contact-strip-icon" style="background: rgba(14,165,199,0.12); color: var(--teal);">
         <i class="fas fa-clock"></i>
       </div>
       <div class="contact-strip-info">
         <div class="label" id="responseLabel">Срок ответа</div>
-        <span style="font-size: 0.95rem; font-weight: 600; color: var(--ink);" id="responseTime">В течение 3 рабочих дней</span>
+        <span style="font-size: 1.05rem; font-weight: 600; color: var(--ink);" id="responseTime">В течение 3 рабочих дней</span>
       </div>
     </div>
 
@@ -789,7 +652,7 @@
     <div class="section-header centered anim anim-delay-1">
       <span class="section-tag" id="sectionTag">Жалоба</span>
       <h2 class="section-title" id="sectionTitle">Подача жалобы в Национальный центр</h2>
-      <p class="section-sub" id="sectionSub">Если нарушены Ваши права в сфере персональных данных — вы можете обратиться в уполномоченный государственный орган.</p>
+      <p class="section-sub" id="sectionSub">Если нарушены Ваши права в сфере персональных данных — вы можете обратиться в уполномоченный государственный орган Республики Беларусь.</p>
     </div>
 
     <div class="info-grid">
@@ -797,7 +660,7 @@
         <div class="card-icon"><i class="fas fa-map-marker-alt"></i></div>
         <h3 id="card1Title">Куда подавать</h3>
         <p id="card1Text1">Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:</p>
-        <p><strong id="card1Text2">ул. К. Цеткин, 24-3, 220004, г. Минск</strong></p>
+        <p><strong id="card1Text2" style="color: var(--ink);">ул. К. Цеткин, 24-3, 220004, г. Минск</strong></p>
         <p id="card1Text3">Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.</p>
       </div>
 
@@ -820,18 +683,18 @@
           <li id="att2">Фотографии, скриншоты, переписки</li>
           <li id="att3">Копии запросов и ответов</li>
         </ul>
-        <p style="margin-top: 1rem; font-size: 0.82rem; background: var(--mint); padding: 0.6rem 0.9rem; border-radius: var(--radius-sm);" id="attNote">
-          <i class="fas fa-info-circle" style="color: #059669;"></i> При подаче в электронном виде — должна быть ЭЦП.
+        <p style="margin-top: 1rem; font-size: 0.85rem; background: var(--accent-pale); padding: 0.6rem 0.9rem; border-radius: var(--radius-sm); color: var(--accent);" id="attNote">
+          <i class="fas fa-info-circle"></i> При подаче в электронном виде — должна быть ЭЦП.
         </p>
       </div>
 
       <div class="info-card info-card-4 anim anim-delay-4">
         <div class="card-icon"><i class="fas fa-globe"></i></div>
         <h3 id="card4Title">Онлайн подача</h3>
-        <p id="card4Text1">Вы можете подать жалобу или предложение онлайн через платформу <a href="https://обращения.бел" target="_blank" style="color: var(--accent);">обращения.бел</a>.</p>
-        <p id="card4Text2" style="margin-top: 0.6rem;">Выберите «Национальный центр защиты персональных данных» в качестве получателя.</p>
+        <p id="card4Text1">Вы можете подать жалобу или обращение онлайн через государственную платформу <a href="https://обращения.бел" target="_blank" style="color: var(--accent); font-weight: 600;">обращения.бел</a>.</p>
+        <p id="card4Text2" style="margin-top: 0.6rem;">Выберите «Национальный центр защиты персональных данных» в качестве адресата.</p>
         <a href="https://обращения.бел" target="_blank" class="btn-card" id="card4Btn">
-          <i class="fas fa-external-link-alt"></i> Перейти на сайт
+          <i class="fas fa-external-link-alt"></i> Перейти на обращения.бел
         </a>
       </div>
     </div>
@@ -840,7 +703,7 @@
     <div class="section-header centered anim">
       <span class="section-tag" id="formTag">Форма</span>
       <h2 class="section-title" id="formTitle">Форма обратной связи</h2>
-      <p class="section-sub" id="formSubtitle">Ваше сообщение будет отправлено на почту ресурса. Мы ответим в течение нескольких рабочих дней.</p>
+      <p class="section-sub" id="formSubtitle">Ваше сообщение будет отправлено администрации ресурса на nevdahalek@yandex.by. Мы ответим в течение нескольких рабочих дней.</p>
     </div>
 
     <div class="form-wrap anim">
@@ -848,51 +711,53 @@
       <div class="form-success" id="formSuccess">
         <div class="form-success-icon"><i class="fas fa-check"></i></div>
         <h3 id="successTitle">Сообщение отправлено!</h3>
-        <p id="successText">Спасибо за обращение. Мы получили ваш вопрос и ответим на указанный email в течение 3 рабочих дней.</p>
+        <p id="successDesc">Спасибо за обращение! Мы получили ваш вопрос и ответим вам в течение 3 рабочих дней.</p>
+        <button type="button" class="btn-submit" id="successBtn" style="margin-top: 1.5rem;" onclick="resetForm()">
+          <i class="fas fa-redo"></i> <span>Отправить ещё одно сообщение</span>
+        </button>
       </div>
 
       <!-- Form -->
       <form id="contactForm">
-        <!-- Web3Forms access key — получите бесплатный ключ на web3forms.com и вставьте сюда -->
         <input type="hidden" name="access_key" value="88cfe6d6-aee2-4fdd-aeda-f5b7174de110">
         <input type="hidden" name="subject" value="Обращение с сайта EduSafe">
         <input type="hidden" name="from_name" value="EduSafe Contact Form">
         <input type="hidden" name="redirect" value="false">
-        <!-- Honeypot anti-spam -->
         <input type="checkbox" name="botcheck" style="display: none;">
 
         <div class="form-grid">
           <div class="form-group">
-            <label for="fname" id="labelName">Имя</label>
+            <label for="fname" id="labelName">Ваше имя *</label>
             <input type="text" id="fname" name="name" placeholder="Ваше имя" required>
           </div>
 
           <div class="form-group">
-            <label for="femail" id="labelEmail">Email для ответа</label>
+            <label for="femail" id="labelEmail">Email для ответа *</label>
             <input type="email" id="femail" name="email" placeholder="example@mail.ru" required>
           </div>
 
           <div class="form-group full">
-            <label for="ftype" id="labelType">Тип обращения</label>
+            <label for="ftype" id="labelRole">Тема обращения</label>
             <select id="ftype" name="type" required>
-              <option value="" id="optSelect">Выберите тип</option>
-              <option value="Технические проблемы" id="optTech">Технические проблемы</option>
-              <option value="Содержание ресурса" id="optContent">Содержание ресурса</option>
-              <option value="Вопросы по политике обработки данных" id="optPolicy">Вопросы по политике обработки данных</option>
+              <option value="" id="optError">Выберите тему</option>
+              <option value="Вопрос по теории и Закону № 99-З" id="optPolicy">Вопрос по теории и Закону № 99-З</option>
+              <option value="Вопрос по практическим кейсам" id="optContent">Вопрос по практическим кейсам</option>
+              <option value="Предложение по улучшению ресурса" id="optSuggest">Предложение по улучшению ресурса</option>
+              <option value="Техническая ошибка на сайте" id="optTech">Техническая ошибка на сайте</option>
               <option value="Другое" id="optOther">Другое</option>
             </select>
           </div>
 
           <div class="form-group full">
-            <label for="fmessage" id="labelMessage">Сообщение</label>
-            <textarea id="fmessage" name="message" placeholder="Опишите ваш вопрос или проблему…" required></textarea>
+            <label for="fmessage" id="labelMessage">Сообщение *</label>
+            <textarea id="fmessage" name="message" placeholder="Опишите ваш вопрос или предложение…" required></textarea>
           </div>
         </div>
 
         <div class="form-submit-row">
           <p class="form-note">
-            <i class="fas fa-lock"></i>
-            <span id="formNote">Данные отправляются на info@edusafe.site через защищённый канал.</span>
+            <i class="fas fa-lock" style="color: var(--accent);"></i>
+            <span id="formNote">Данные направляются на nevdahalek@yandex.by через защищённый канал.</span>
           </p>
           <button type="submit" class="btn-submit" id="submitBtn">
             <i class="fas fa-paper-plane"></i>
@@ -905,101 +770,350 @@
   </div>
 </section>
 
-<!-- ─── FOOTER ────────────────────────────── -->
+<!-- FOOTER -->
 <footer>
   <div class="container">
-    <div class="footer-inner">
-      <div>
-        <div class="footer-logo">
-          <div class="footer-logo-icon"><i class="fas fa-shield-alt"></i></div>
-          <span id="footerLogoText">EduSafe</span>
-        </div>
-        <p class="footer-desc" id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span class="logo-text" id="footerLogoText">EduSafe</span>
+        </a>
+        <p id="footerDesc">Республиканский информационно-практический ресурс по защите персональных данных в сфере образования Республики Беларусь.</p>
       </div>
-      <div class="footer-center">
-        <p style="font-size: 0.85rem; margin-bottom: 0.5rem;">
-          <i class="fas fa-envelope" style="color: var(--accent-light);"></i>
-          <a href="mailto:info@edusafe.site" style="color: #93c5fd; text-decoration: none;">info@edusafe.site</a>
-        </p>
+      <div class="footer-col">
+        <div class="footer-nav-title" id="footerNavTitle">Навигация</div>
+        <ul class="footer-links">
+          <li><a href="theory.html">Теоретическая база</a></li>
+          <li><a href="choice-sp.html">Практикум и кейсы</a></li>
+          <li><a href="glossary.html">Глоссарий понятий</a></li>
+          <li><a href="quiz.html">Интерактивная викторина</a></li>
+          <li><a href="videos.html">Видеоматериалы</a></li>
+          <li><a href="blog.html">Блог и новости</a></li>
+          <li><a href="contact.html">Обратная связь</a></li>
+        </ul>
       </div>
-      <div class="footer-copy">
-        <p id="footerCopyright">© 2026 Edusafe</p>
+      <div class="footer-col">
+        <div class="footer-nav-title" id="footerContactTitle">Контакты и поддержка</div>
+        <ul class="footer-links">
+          <li><a href="mailto:nevdahalek@yandex.by"><i class="fas fa-envelope"></i> nevdahalek@yandex.by</a></li>
+          <li><a href="https://cpd.by" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Портал НЦЗПД (cpd.by)</a></li>
+          <li><a href="https://pravo.by" target="_blank" rel="noopener"><i class="fas fa-balance-scale"></i> Портал Pravo.by</a></li>
+        </ul>
       </div>
     </div>
-    <hr class="footer-divider">
-    <p class="footer-disclaimers">
-      <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span><br>
-      <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</span>
-    </p>
+    <div class="footer-bottom">
+      <p id="footerCopyright">© 2026 EduSafe. Все права защищены.</p>
+      <p id="footerDisclaimer1" style="color:#64748b; font-size:0.75rem;">Ресурс не использует cookie-файлы слежения и не собирает персональные данные посетителей.</p>
+      <p id="footerDisclaimer2" style="color:#64748b; font-size:0.75rem;">Материалы подготовлены в соответствии с Законом Республики Беларусь № 99-З «О защите персональных данных».</p>
+    </div>
   </div>
 </footer>
 
 <script>
-  
-
-  
-
-  /* ─── FORM SUBMISSION (Web3Forms) ──────── */
-  const form = document.getElementById('contactForm');
-  const formSuccess = document.getElementById('formSuccess');
-  const submitBtn = document.getElementById('submitBtn');
-
-  form.addEventListener('submit', async function(e) {
-    e.preventDefault();
-
-    submitBtn.disabled = true;
-    submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>Отправка…</span>';
-
-    const formData = new FormData(form);
-
-    // Web3Forms automatically routes to the email tied to access_key.
-    // Register at https://web3forms.com to get your free access key.
-    try {
-      const res = await fetch('https://api.web3forms.com/submit', {
-        method: 'POST',
-        body: formData
-      });
-      const data = await res.json();
-
-      if (data.success) {
-        form.style.display = 'none';
-        formSuccess.classList.add('show');
-      } else {
-        throw new Error(data.message || 'Ошибка отправки');
-      }
-    } catch (err) {
-      submitBtn.disabled = false;
-      submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span id="submitText">' +
-        (currentLang === 'ru' ? 'Отправить сообщение' : 'Send message') + '</span>';
-      alert(currentLang === 'ru'
-        ? 'Не удалось отправить сообщение. Проверьте access_key Web3Forms или напишите напрямую на info@edusafe.site'
-        : 'Failed to send. Please check the Web3Forms access_key or write directly to info@edusafe.site');
+  const translations = {
+    ru: {
+      pageTitle: "Контакты и обратная связь — EduSafe",
+      logoText: "EduSafe",
+      navHome: "Главная", navTheory: "Теория", navPractice: "Практика", navGlossary: "Глоссарий",
+      navVideo: "Видео", navQuiz: "Викторина", navBlog: "Блог", navComplaint: "Контакты",
+      heroBadge: "Обратная связь · EduSafe",
+      heroTitle: 'Контакты и <span>обратная связь</span>',
+      heroSubtitle: "Задайте вопрос по ресурсу, сообщите об ошибке или подайте жалобу в Национальный центр защиты персональных данных.",
+      emailLabel: "Электронная почта сайта",
+      responseLabel: "Срок ответа",
+      responseTime: "В течение 3 рабочих дней",
+      sectionTag: "Жалоба",
+      sectionTitle: "Подача жалобы в Национальный центр",
+      sectionSub: "Если нарушены Ваши права в сфере персональных данных — вы можете обратиться в уполномоченный государственный орган Республики Беларусь.",
+      card1Title: "Куда подавать",
+      card1Text1: "Письменные жалобы подаются нарочным (курьером) или направляются по почте на адрес:",
+      card1Text2: "ул. К. Цеткин, 24-3, 220004, г. Минск",
+      card1Text3: "Жалобы рассматриваются не позднее одного месяца со дня, следующего за днем их регистрации.",
+      card2Title: "Что указывать",
+      req1: "ФИО, адрес, контактные данные заявителя",
+      req2: "Наименование/ФИО лица, обрабатывающего персональные данные",
+      req3: "Суть нарушения и требуемая защита",
+      req4: "Дата и личная подпись (в бумажной версии)",
+      card3Title: "Приложения",
+      att1: "Документы, подтверждающие нарушение",
+      att2: "Фотографии, скриншоты, переписки",
+      att3: "Копии запросов и ответов",
+      attNote: '<i class="fas fa-info-circle"></i> При подаче в электронном виде — должна быть ЭЦП.',
+      card4Title: "Онлайн подача",
+      card4Text1: 'Вы можете подать жалобу или обращение онлайн через государственную платформу <a href="https://обращения.бел" target="_blank" style="color: var(--accent); font-weight: 600;">обращения.бел</a>.',
+      card4Text2: "Выберите «Национальный центр защиты персональных данных» в качестве адресата.",
+      card4Btn: '<i class="fas fa-external-link-alt"></i> Перейти на обращения.бел',
+      formTag: "Форма",
+      formTitle: "Форма обратной связи",
+      formSubtitle: "Ваше сообщение будет отправлено администрации ресурса на nevdahalek@yandex.by. Мы ответим в течение нескольких рабочих дней.",
+      labelName: "Ваше имя *",
+      labelEmail: "Email для ответа *",
+      labelRole: "Тема обращения",
+      labelMessage: "Сообщение *",
+      optError: "Выберите тему",
+      optPolicy: "Вопрос по теории и Закону № 99-З",
+      optContent: "Вопрос по практическим кейсам",
+      optSuggest: "Предложение по улучшению ресурса",
+      optTech: "Техническая ошибка на сайте",
+      optOther: "Другое",
+      formNote: "Данные направляются на nevdahalek@yandex.by через защищённый канал.",
+      submitText: "Отправить сообщение",
+      successTitle: "Сообщение отправлено!",
+      successDesc: "Спасибо за обращение! Мы получили ваш вопрос и ответим вам в течение 3 рабочих дней.",
+      successBtn: "Отправить ещё одно сообщение",
+      footerDesc: "Республиканский информационно-практический ресурс по защите персональных данных в сфере образования Республики Беларусь.",
+      footerNavTitle: "Навигация",
+      footerContactTitle: "Контакты и поддержка",
+      footerCopyright: "© 2026 EduSafe. Все права защищены.",
+      footerDisclaimer1: "Ресурс не использует cookie-файлы слежения и не собирает персональные данные посетителей.",
+      footerDisclaimer2: "Материалы подготовлены в соответствии с Законом Республики Беларусь № 99-З «О защите персональных данных»."
+    },
+    en: {
+      pageTitle: "Contacts and Feedback — EduSafe",
+      logoText: "EduSafe",
+      navHome: "Home", navTheory: "Theory", navPractice: "Practice", navGlossary: "Glossary",
+      navVideo: "Videos", navQuiz: "Quiz", navBlog: "Blog", navComplaint: "Contacts",
+      heroBadge: "Feedback · EduSafe",
+      heroTitle: 'Contacts and <span>Feedback</span>',
+      heroSubtitle: "Ask a question about the resource, report an issue, or submit a complaint to the National Center for Personal Data Protection.",
+      emailLabel: "Website Email",
+      responseLabel: "Response time",
+      responseTime: "Within 3 business days",
+      sectionTag: "Complaint",
+      sectionTitle: "Filing a Complaint with the National Center",
+      sectionSub: "If your personal data rights have been violated, you can file a complaint with the authorized state body of Belarus.",
+      card1Title: "Where to submit",
+      card1Text1: "Written complaints are delivered by courier or sent by mail to:",
+      card1Text2: "24-3 K. Tsetkin St., 220004, Minsk, Belarus",
+      card1Text3: "Complaints are reviewed within one month following the day of registration.",
+      card2Title: "What to include",
+      req1: "Full name, address, contact details of applicant",
+      req2: "Name / Full name of entity processing personal data",
+      req3: "Substance of violation and requested remedy",
+      req4: "Date and personal signature (for paper submissions)",
+      card3Title: "Attachments",
+      att1: "Documents confirming violation",
+      att2: "Photos, screenshots, correspondence",
+      att3: "Copies of requests and responses",
+      attNote: '<i class="fas fa-info-circle"></i> For electronic submission, a digital signature (EDS) is required.',
+      card4Title: "Online Submission",
+      card4Text1: 'You can submit a complaint or inquiry online via the state platform <a href="https://обращения.бел" target="_blank" style="color: var(--accent); font-weight: 600;">обращения.бел</a>.',
+      card4Text2: "Select National Center for Personal Data Protection as the recipient.",
+      card4Btn: '<i class="fas fa-external-link-alt"></i> Visit обращения.бел',
+      formTag: "Form",
+      formTitle: "Feedback Form",
+      formSubtitle: "Your message will be sent to the website administration at nevdahalek@yandex.by. We will reply within a few business days.",
+      labelName: "Your Name *",
+      labelEmail: "Email for response *",
+      labelRole: "Subject",
+      labelMessage: "Message *",
+      optError: "Select subject",
+      optPolicy: "Theory & Law No. 99-Z questions",
+      optContent: "Practical cases questions",
+      optSuggest: "Improvement suggestion",
+      optTech: "Technical issue on website",
+      optOther: "Other",
+      formNote: "Data is transmitted to nevdahalek@yandex.by via a secure channel.",
+      submitText: "Send Message",
+      successTitle: "Message Sent!",
+      successDesc: "Thank you for reaching out! We will reply to you within 3 business days.",
+      successBtn: "Send another message",
+      footerDesc: "National practical information resource on personal data protection in education in the Republic of Belarus.",
+      footerNavTitle: "Navigation",
+      footerContactTitle: "Contacts & Support",
+      footerCopyright: "© 2026 EduSafe. All rights reserved.",
+      footerDisclaimer1: "This resource uses no tracking cookies and does not collect personal user data.",
+      footerDisclaimer2: "Materials comply with the Law of the Republic of Belarus No. 99-Z 'On Personal Data Protection'."
     }
-  });
+  };
 
-  /* ─── MOBILE DRAWER ─────────────────── */
-  const overlay = document.getElementById('drawerOverlay');
-  document.getElementById('navToggle').addEventListener('click', () => {
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-  function closeDrawer() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
+  let currentLang = localStorage.getItem("lang") || "ru";
+
+  function setEl(id, val, isHtml) {
+    const el = document.getElementById(id);
+    if (!el || val === undefined) return;
+    if (isHtml) el.innerHTML = val; else el.textContent = val;
   }
-  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
-  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
+  function updateThemeUI() {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const icon = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    const title = isDark ? (currentLang === "ru" ? "Светлая тема" : "Light theme") : (currentLang === "ru" ? "Тёмная тема" : "Dark theme");
+    document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+      if (b) {
+        b.innerHTML = icon;
+        b.setAttribute("title", title);
+      }
+    });
+  }
 
+  function toggleTheme() {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const newTheme = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateThemeUI();
+  }
 
-  /* ─── SCROLL ANIMATIONS ─────────────── */
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+  function updateLanguage(lang) {
+    const t = translations[lang] || translations.ru;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    localStorage.setItem("lang", lang);
+    document.title = t.pageTitle;
 
+    const ids = [
+      "logoText", "mobileLogoText", "heroBadge", "heroSubtitle", "emailLabel", "responseLabel", "responseTime",
+      "sectionTag", "sectionTitle", "sectionSub",
+      "card1Title", "card1Text1", "card1Text2", "card1Text3",
+      "card2Title", "req1", "req2", "req3", "req4",
+      "card3Title", "att1", "att2", "att3",
+      "card4Title", "card4Text2",
+      "formTag", "formTitle", "formSubtitle",
+      "labelName", "labelEmail", "labelRole", "labelMessage",
+      "optError", "optPolicy", "optContent", "optSuggest", "optTech", "optOther",
+      "formNote", "submitText", "successTitle", "successDesc", "successBtn",
+      "footerDesc", "footerNavTitle", "footerContactTitle", "footerCopyright", "footerDisclaimer1", "footerDisclaimer2"
+    ];
 
+    ids.forEach(id => {
+      setEl(id, t[id]);
+    });
+
+    setEl("heroTitle", t.heroTitle, true);
+    setEl("attNote", t.attNote, true);
+    setEl("card4Text1", t.card4Text1, true);
+    setEl("card4Btn", t.card4Btn, true);
+
+    const navMap = {
+      Home: ['fa-home', 'navHome', 'mobileNavHome'],
+      Theory: ['fa-book-open', 'navTheory', 'mobileNavTheory'],
+      Practice: ['fa-lightbulb', 'navPractice', 'mobileNavPractice'],
+      Glossary: ['fa-spell-check', 'navGlossary', 'mobileNavGlossary'],
+      Video: ['fa-play-circle', 'navVideo', 'mobileNavVideo'],
+      Quiz: ['fa-graduation-cap', 'navQuiz', 'mobileNavQuiz'],
+      Blog: ['fa-newspaper', 'navBlog', 'mobileNavBlog'],
+      Complaint: ['fa-envelope', 'navComplaint', 'mobileNavComplaint']
+    };
+
+    for (const key in navMap) {
+      const icon = navMap[key][0];
+      const text = t['nav' + key];
+      const el = document.getElementById(navMap[key][1]);
+      if (el) el.innerHTML = '<i class="fas ' + icon + '"></i> <span>' + text + '</span>';
+      const mel = document.getElementById(navMap[key][2]);
+      if (mel) mel.innerHTML = '<i class="fas ' + icon + '"></i> <span>' + text + '</span>';
+    }
+
+    if (document.getElementById("languageSelector")) document.getElementById("languageSelector").value = lang;
+    if (document.getElementById("mobileLanguageSelector")) document.getElementById("mobileLanguageSelector").value = lang;
+
+    updateThemeUI();
+  }
+
+  function resetForm() {
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    if (form) {
+      form.reset();
+      form.style.display = 'block';
+    }
+    if (formSuccess) {
+      formSuccess.classList.remove('show');
+    }
+  }
+  window.resetForm = resetForm;
+
+  document.addEventListener('DOMContentLoaded', () => {
+    // Theme toggle listeners
+    document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+      if (b) b.addEventListener("click", toggleTheme);
+    });
+
+    // Language listeners
+    if (document.getElementById("languageSelector")) {
+      document.getElementById("languageSelector").addEventListener("change", (e) => {
+        updateLanguage(e.target.value);
+      });
+    }
+    if (document.getElementById("mobileLanguageSelector")) {
+      document.getElementById("mobileLanguageSelector").addEventListener("change", (e) => {
+        updateLanguage(e.target.value);
+      });
+    }
+
+    // Drawer handlers
+    const overlay = document.getElementById('drawerOverlay');
+    const navToggle = document.getElementById('navToggle');
+    const drawerClose = document.getElementById('drawerClose');
+
+    if (navToggle && overlay) {
+      navToggle.addEventListener('click', () => {
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      });
+    }
+    function closeDrawer() {
+      if (overlay) overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+    if (drawerClose) drawerClose.addEventListener('click', closeDrawer);
+    if (overlay) overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+    document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
+
+    // Form submission
+    const form = document.getElementById('contactForm');
+    const formSuccess = document.getElementById('formSuccess');
+    const submitBtn = document.getElementById('submitBtn');
+
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> <span>' + (currentLang === 'ru' ? 'Отправка…' : 'Sending…') + '</span>';
+        }
+
+        const formData = new FormData(form);
+        try {
+          const res = await fetch('https://api.web3forms.com/submit', {
+            method: 'POST',
+            body: formData
+          });
+          const data = await res.json();
+          if (data.success) {
+            form.style.display = 'none';
+            if (formSuccess) formSuccess.classList.add('show');
+          } else {
+            throw new Error(data.message || 'Error');
+          }
+        } catch (err) {
+          if (submitBtn) {
+            submitBtn.disabled = false;
+            submitBtn.innerHTML = '<i class="fas fa-paper-plane"></i> <span>' +
+              (currentLang === 'ru' ? 'Отправить сообщение' : 'Send message') + '</span>';
+          }
+          // Graceful fallback to mailto
+          const name = document.getElementById('fname')?.value || '';
+          const type = document.getElementById('ftype')?.value || '';
+          const msg = document.getElementById('fmessage')?.value || '';
+          const mailtoUrl = `mailto:nevdahalek@yandex.by?subject=${encodeURIComponent('EduSafe: ' + type)}&body=${encodeURIComponent('Имя: ' + name + '\n\n' + msg)}`;
+          window.location.href = mailtoUrl;
+        }
+      });
+    }
+
+    // Scroll Animations
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.1 });
+    document.querySelectorAll('.anim').forEach(el => observer.observe(el));
+
+    // Init state
+    updateLanguage(currentLang);
+    updateThemeUI();
+  });
 </script>
 </body>
 </html>

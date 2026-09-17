@@ -3,126 +3,120 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Практика — EduSafe</title>
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <title id="pageTitle">Практика — EduSafe</title>
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 
-  <!-- Yandex.Metrika -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
-    ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-  <!-- Vercel Web Analytics -->
   <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
+    (function() {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
   </script>
-  <script defer src="/_vercel/insights/script.js"></script>
-
-  <!-- Vercel Speed Insights -->
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
 
   <style>
-    /* ─── DESIGN TOKENS (from index.html) ─────────────── */
     :root {
-      --ink: #0d1117;
-      --ink-soft: #1e2633;
+      --ink: #0f172a;
+      --ink-soft: #334155;
       --accent: #0057d9;
-      --accent-light: #3b82f6;
-      --accent-pale: #dbeafe;
-      --teal: #0ea5c7;
-      --teal-pale: #ecfeff;
+      --accent-light: #2563eb;
+      --accent-pale: #eff6ff;
+      --teal: #0284c7;
+      --teal-pale: #f0f9ff;
       --mint: #d1fae5;
-      --green: #10b981;
+      --green: #059669;
+      --green-pale: #ecfdf5;
+      --purple: #7c3aed;
+      --purple-pale: #f5f3ff;
       --surface: #ffffff;
-      --surface-2: #f5f7fb;
+      --surface-2: #f8fafc;
+      --surface-3: #f1f5f9;
       --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
       --text-muted: #64748b;
       --white: #ffffff;
+      --hero-bg: #090e1a;
+      --banner-bg: #0d1527;
+      --footer-bg: #060a12;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(10,15,29,0.06);
+      --shadow: 0 4px 16px rgba(10,15,29,0.08);
+      --shadow-lg: 0 12px 32px rgba(10,15,29,0.12);
       --radius-sm: 8px;
-      --radius: 16px;
-      --radius-lg: 24px;
-      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius: 14px;
+      --radius-lg: 20px;
+    }
+
+    [data-theme="dark"] {
+      --ink: #f8fafc;
+      --ink-soft: #cbd5e1;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-pale: rgba(59, 130, 246, 0.16);
+      --teal: #38bdf8;
+      --teal-pale: rgba(56, 189, 248, 0.16);
+      --mint: rgba(16, 185, 129, 0.2);
+      --green: #34d399;
+      --green-pale: rgba(52, 211, 153, 0.16);
+      --purple: #a78bfa;
+      --purple-pale: rgba(167, 139, 250, 0.16);
+      --surface: #111827;
+      --surface-2: #0b0f19;
+      --surface-3: #1a233a;
+      --border: #232f48;
+      --border-subtle: #1e293b;
+      --text-muted: #94a3b8;
+      --white: #ffffff;
+      --hero-bg: #070b14;
+      --banner-bg: #0f1629;
+      --footer-bg: #05080f;
+      --card-bg: #131d31;
+      --card-border: #23314d;
+      --input-bg: #0f1629;
+      --input-border: #2a3b5c;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.4);
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.65);
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Golos Text', sans-serif;
       background: var(--surface-2);
       color: var(--ink);
       line-height: 1.65;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
 
-    .container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ─── HEADER ──────────────────────────────── */
+    /* HEADER */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 200;
+      transition: background 0.3s, border-color 0.3s;
     }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-      gap: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .logo-icon {
-      width: 38px; height: 38px;
-      background: var(--accent);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 1rem;
-    }
-
-    .logo-text {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--ink);
-    }
-
-    .nav-desktop {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .logo-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+    .nav-desktop { display: flex; align-items: center; gap: 0.25rem; }
     .nav-desktop a {
       text-decoration: none;
       color: var(--text-muted);
@@ -132,18 +126,12 @@
       border-radius: var(--radius-sm);
       transition: all 0.2s;
       white-space: nowrap;
-      display: flex; align-items: center; gap: 0.4rem;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
     }
-
-    .nav-desktop a:hover, .nav-desktop a.active {
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
-
-    .header-right {
-      display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0;
-    }
-
+    .nav-desktop a:hover, .nav-desktop a.active { background: var(--accent-pale); color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
     .lang-select {
       padding: 0.4rem 0.7rem;
       border: 1px solid var(--border);
@@ -152,488 +140,163 @@
       color: var(--ink);
       font-size: 0.85rem;
       font-family: 'Golos Text', sans-serif;
-      cursor: pointer; outline: none;
-    }
-
-    .burger {
-      display: none;
-      background: none; border: none;
-      color: var(--ink); font-size: 1.4rem;
-      cursor: pointer; padding: 0.3rem;
-      border-radius: 8px; transition: background 0.2s;
-    }
-    .burger:hover { background: var(--surface-2); }
-
-    /* ─── MOBILE DRAWER ───────────────────────── */
-    .drawer-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(3px);
-      z-index: 300;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-    .drawer-overlay.open { opacity: 1; visibility: visible; }
-
-    .drawer {
-      position: fixed; top: 0; right: 0;
-      width: min(88%, 340px); height: 100%;
-      background: var(--surface); z-index: 301;
-      transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex; flex-direction: column; padding: 1.5rem;
-    }
-    .drawer-overlay.open .drawer { transform: translateX(0); }
-
-    .drawer-head {
-      display: flex; align-items: center; justify-content: space-between;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.25rem;
-    }
-
-    .drawer-close {
-      background: var(--surface-2); border: none;
-      width: 36px; height: 36px; border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1rem; color: var(--text-muted);
-    }
-
-    .drawer-nav {
-      display: flex; flex-direction: column; gap: 0.5rem;
-    }
-
-    .drawer-nav a {
-      display: flex; align-items: center; gap: 0.75rem;
-      padding: 0.8rem 1rem; border-radius: var(--radius-sm);
-      text-decoration: none; color: var(--ink);
-      font-weight: 500; transition: all 0.2s;
-    }
-    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
-    .drawer-nav a:hover, .drawer-nav a.active {
-      background: var(--accent-pale); color: var(--accent);
-    }
-
-    .drawer-lang {
-      margin-top: 1.5rem; padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
-
-    /* ─── PAGE HERO (PRACTICE) ────────────────── */
-    .page-hero {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      padding: 4rem 0 3.5rem;
-    }
-
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
-
-    .hero-glow {
-      position: absolute;
-      width: 500px; height: 500px;
-      background: radial-gradient(circle, rgba(14,165,199,0.3) 0%, transparent 70%);
-      top: -150px; right: -80px;
-      pointer-events: none;
-    }
-
-    .hero-glow-2 {
-      position: absolute;
-      width: 350px; height: 350px;
-      background: radial-gradient(circle, rgba(0,87,217,0.25) 0%, transparent 70%);
-      bottom: -120px; left: -30px;
-      pointer-events: none;
-    }
-
-    .page-hero-content {
-      position: relative; z-index: 2;
-      text-align: center;
-      max-width: 720px; margin: 0 auto;
-    }
-
-    .page-hero-badge {
-      display: inline-flex; align-items: center; gap: 0.5rem;
-      background: rgba(14,165,199,0.15);
-      border: 1px solid rgba(14,165,199,0.3);
-      color: #67e8f9;
-      font-size: 0.8rem; font-weight: 600;
-      padding: 0.45rem 1rem; border-radius: 999px;
-      margin-bottom: 1.5rem; letter-spacing: 0.02em;
-    }
-
-    .page-hero h1 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.5rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 1rem;
-      letter-spacing: -0.02em;
-    }
-
-    .page-hero h1 span {
-      background: linear-gradient(135deg, #38bdf8, #67e8f9);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .page-hero-sub {
-      font-size: 1rem;
-      color: #94a3b8;
-      line-height: 1.7;
-    }
-
-    /* ─── MAIN CONTENT ────────────────────────── */
-    main { padding: 3.5rem 0 5rem; }
-
-    /* ─── TAB SWITCHER ────────────────────────── */
-    .tab-section {
-      margin-bottom: 3rem;
-    }
-
-    .tab-section-label {
-      display: block;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.7rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      color: var(--text-muted);
-      text-align: center;
-      margin-bottom: 1.25rem;
-    }
-
-    .tab-controls {
-      display: flex;
-      gap: 1rem;
-      justify-content: center;
-      flex-wrap: wrap;
-    }
-
-    .tab-btn {
-      background: var(--surface);
-      border: 1.5px solid var(--border);
-      padding: 1.25rem 1.75rem;
-      border-radius: var(--radius);
       cursor: pointer;
-      transition: all 0.25s;
-      display: flex; align-items: center; gap: 1rem;
-      text-align: left;
-      min-width: 260px; max-width: 340px;
-      flex: 1;
-      box-shadow: var(--shadow-sm);
+      outline: none;
     }
-
-    .tab-btn-icon {
-      width: 52px; height: 52px;
+    .theme-toggle-btn {
+      width: 38px; height: 38px;
       border-radius: var(--radius-sm);
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.4rem;
-      flex-shrink: 0;
-      transition: all 0.25s;
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
-
-    .tab-btn-2 .tab-btn-icon {
-      background: var(--teal-pale);
-      color: var(--teal);
-    }
-
-    .tab-btn h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1rem; font-weight: 700;
-      color: var(--ink); margin-bottom: 0.2rem;
-      transition: color 0.25s;
-    }
-
-    .tab-btn p {
-      font-size: 0.85rem; color: var(--text-muted);
-      transition: color 0.25s;
-    }
-
-    .tab-btn:hover {
-      border-color: var(--accent);
-      box-shadow: var(--shadow);
-      transform: translateY(-2px);
-    }
-
-    .tab-btn-2:hover { border-color: var(--teal); }
-
-    .tab-btn.active {
-      background: var(--accent);
-      border-color: var(--accent);
-      box-shadow: 0 8px 24px rgba(0,87,217,0.3);
-      transform: translateY(-2px);
-    }
-
-    .tab-btn-2.active {
-      background: var(--teal);
-      border-color: var(--teal);
-      box-shadow: 0 8px 24px rgba(14,165,199,0.3);
-    }
-
-    .tab-btn.active .tab-btn-icon {
-      background: rgba(255,255,255,0.2);
-      color: white;
-    }
-
-    .tab-btn.active h3,
-    .tab-btn.active p {
-      color: white;
-    }
-
-    /* ─── SCENARIOS GRID ──────────────────────── */
-    .scenarios-section {
-      animation: fadeUp 0.4s ease both;
-    }
-
-    .scenarios-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
-      gap: 1.5rem;
-    }
-
-    .scenario-card {
-      background: var(--surface);
       border: 1px solid var(--border);
-      border-radius: var(--radius);
-      padding: 1.75rem;
-      display: flex; flex-direction: column;
+      background: var(--surface);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn:hover {
+      background: var(--accent-pale);
+      color: var(--accent);
+      border-color: var(--accent-light);
+    }
+    .burger { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0.3rem; border-radius: 8px; }
+    .burger:hover { background: var(--surface-3); }
+
+    /* DRAWER */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+    .drawer { position: fixed; top: 0; right: 0; width: min(88%, 340px); height: 100%; background: var(--surface); z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; padding: 1.5rem; }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .drawer-close { background: var(--surface-3); border: none; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.4rem; }
+    .drawer-nav a { text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.95rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; }
+    .drawer-nav a:hover, .drawer-nav a.active { background: var(--accent-pale); color: var(--accent); }
+
+    /* HERO */
+    .hero { background: var(--hero-bg); position: relative; overflow: hidden; padding: 4.5rem 0 3.5rem; color: #fff; text-align: center; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px); background-size: 48px 48px; }
+    .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+    .hero-glow-2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%); bottom: -150px; left: -50px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; font-size: 0.8rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+    .hero h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 1rem; }
+    .hero h1 span { background: linear-gradient(135deg, #60a5fa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; color: #cbd5e1; max-width: 680px; margin: 0 auto; line-height: 1.7; }
+
+    /* STAT STRIP */
+    .stat-strip { background: var(--surface); border-bottom: 1px solid var(--border); padding: 2rem 0; }
+    .stat-row { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; text-align: center; }
+    .stat-num { font-family: 'Unbounded', sans-serif; font-size: 2.2rem; font-weight: 800; color: var(--accent); }
+    .stat-label { font-size: 0.88rem; color: var(--text-muted); font-weight: 500; }
+
+    /* SECTION */
+    .section { padding: 4.5rem 0; flex: 1; }
+    .section-header { margin-bottom: 3.5rem; text-align: center; }
+    .section-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: var(--accent-pale); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.6rem; }
+    .section-title { font-family: 'Unbounded', sans-serif; font-size: clamp(1.5rem, 2.8vw, 2.2rem); font-weight: 700; color: var(--ink); line-height: 1.3; }
+    .section-sub { font-size: 1rem; color: var(--text-muted); margin-top: 0.5rem; max-width: 600px; margin-left: auto; margin-right: auto; }
+
+    /* CHOICE CARDS */
+    .choice-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 2rem;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .choice-card {
+      background: var(--card-bg);
+      border: 2px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 3rem 2.5rem;
+      text-align: center;
+      text-decoration: none;
+      color: inherit;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
       box-shadow: var(--shadow-sm);
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
       position: relative;
-      overflow: hidden;
     }
-
-    .scenario-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: linear-gradient(90deg, var(--accent), var(--teal));
-      border-radius: 999px 999px 0 0;
+    .choice-card:hover {
+      transform: translateY(-8px);
+      box-shadow: var(--shadow-lg);
+      border-color: var(--accent);
     }
-
-    .scenario-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow);
-      border-color: rgba(0,87,217,0.2);
+    .choice-icon {
+      width: 80px;
+      height: 80px;
+      border-radius: 24px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.2rem;
+      margin-bottom: 1.75rem;
+      transition: transform 0.3s ease;
     }
+    .choice-card:hover .choice-icon { transform: scale(1.1); }
+    .choice-uso .choice-icon { background: rgba(0,87,217,0.1); color: var(--accent); }
+    .choice-uvo .choice-icon { background: rgba(124,58,237,0.1); color: var(--purple); }
 
-    .scenario-num {
+    .choice-card h3 {
       font-family: 'Unbounded', sans-serif;
-      font-size: 0.65rem;
+      font-size: 1.5rem;
       font-weight: 700;
-      color: var(--text-muted);
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
+      color: var(--ink);
       margin-bottom: 0.75rem;
     }
-
-    .scenario-q {
-      font-weight: 600;
-      color: var(--ink);
+    .choice-card p {
       font-size: 0.95rem;
-      line-height: 1.55;
-      margin-bottom: 1.25rem;
+      color: var(--ink-soft);
+      line-height: 1.65;
+      margin-bottom: 2rem;
       flex: 1;
     }
-
-    .scenario-details {
-      display: none;
-      margin-bottom: 1rem;
-    }
-    .scenario-details.show {
-      display: block;
-      animation: fadeUp 0.3s ease both;
-    }
-
-    .sol-text {
-      background: #f0fdf4;
-      border-left: 3px solid var(--green);
-      padding: 1rem 1.1rem;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      margin-bottom: 0.75rem;
-      font-size: 0.9rem;
-      line-height: 1.6;
-      color: var(--ink);
-    }
-
-    .sol-text strong {
-      font-weight: 700;
-      color: #059669;
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .law-text {
-      background: var(--accent-pale);
-      border-left: 3px solid var(--accent);
-      padding: 1rem 1.1rem;
-      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
-      font-size: 0.88rem;
-      line-height: 1.6;
-      color: var(--ink-soft);
-      font-style: italic;
-    }
-
-    .law-text strong {
-      font-style: normal;
-      font-weight: 700;
-      color: var(--accent);
-      display: block;
-      margin-bottom: 0.35rem;
-      font-size: 0.8rem;
-      text-transform: uppercase;
-      letter-spacing: 0.05em;
-    }
-
-    .scenario-toggle {
-      background: var(--accent);
-      color: white;
-      border: none;
-      padding: 0.8rem 1.1rem;
-      border-radius: var(--radius-sm);
-      font-family: 'Golos Text', sans-serif;
-      font-weight: 600;
-      font-size: 0.88rem;
-      cursor: pointer;
-      display: flex;
-      justify-content: space-between;
+    .choice-btn {
+      display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      transition: all 0.2s;
-      margin-top: auto;
-    }
-
-    .scenario-toggle:hover {
-      background: #0041a8;
-      transform: translateY(-1px);
-    }
-
-    .scenario-toggle i { transition: transform 0.3s; }
-
-    /* Empty state */
-    .empty-state {
-      grid-column: 1 / -1;
-      text-align: center;
-      padding: 5rem 2rem;
-      background: var(--surface);
-      border: 1px dashed var(--border);
-      border-radius: var(--radius-lg);
-    }
-
-    .empty-state-icon {
-      width: 72px; height: 72px;
-      background: var(--accent-pale);
-      border-radius: 50%;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 1.75rem;
-      color: var(--accent);
-      margin: 0 auto 1.5rem;
-    }
-
-    .empty-state h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.1rem;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-    }
-
-    .empty-state p {
-      color: var(--text-muted);
+      font-weight: 700;
       font-size: 0.92rem;
+      padding: 0.75rem 1.75rem;
+      border-radius: var(--radius-sm);
+      color: white;
+      transition: all 0.2s;
     }
+    .choice-uso .choice-btn { background: var(--accent); }
+    .choice-uso:hover .choice-btn { background: #0041a8; }
+    .choice-uvo .choice-btn { background: var(--purple); }
+    .choice-uvo:hover .choice-btn { background: #6d28d9; }
 
-    /* ─── FOOTER ─��───────────────────────────── */
-    footer {
-      background: #070b11;
-      color: #64748b;
-      padding: 3rem 0 2rem;
-    }
-
-    .footer-top {
-      display: flex;
-      align-items: flex-start;
-      justify-content: space-between;
-      gap: 2rem; flex-wrap: wrap;
-      margin-bottom: 2rem; padding-bottom: 2rem;
-      border-bottom: 1px solid rgba(255,255,255,0.07);
-    }
-
-    .footer-brand { max-width: 320px; }
-
-    .footer-logo {
-      display: flex; align-items: center; gap: 0.6rem;
-      text-decoration: none; margin-bottom: 0.75rem;
-    }
-
+    /* FOOTER */
+    footer { background: var(--footer-bg); color: #64748b; padding: 4rem 0 2.5rem; border-top: 1px solid rgba(255,255,255,0.06); margin-top: auto; }
+    .footer-top { display: flex; justify-content: space-between; gap: 3rem; flex-wrap: wrap; margin-bottom: 2.5rem; padding-bottom: 2.5rem; border-bottom: 1px solid rgba(255,255,255,0.07); }
+    .footer-brand { max-width: 340px; }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 1rem; }
     .footer-logo .logo-icon { background: var(--accent); }
-    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
-
-    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
-
-    .footer-nav-title {
-      font-size: 0.75rem; font-weight: 700;
-      text-transform: uppercase; letter-spacing: 0.08em;
-      color: #94a3b8; margin-bottom: 0.75rem;
-    }
-
-    .footer-links {
-      list-style: none; display: flex;
-      flex-direction: column; gap: 0.4rem;
-    }
-
-    .footer-links a {
-      text-decoration: none; color: #64748b;
-      font-size: 0.88rem; transition: color 0.2s;
-    }
+    .footer-logo .logo-text { color: white; font-size: 1.15rem; }
+    .footer-brand p { font-size: 0.86rem; line-height: 1.65; color: #94a3b8; }
+    .footer-nav-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 1rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.5rem; }
+    .footer-links a { text-decoration: none; color: #64748b; font-size: 0.88rem; transition: color 0.2s; }
     .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom { font-size: 0.8rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; color: #64748b; }
+    .footer-bottom a { color: #60a5fa; text-decoration: none; }
 
-    .footer-bottom {
-      font-size: 0.78rem; text-align: center;
-      display: flex; flex-direction: column; gap: 0.4rem;
-    }
-
-    /* ─── ANIMATIONS ─────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(16px); }
-      to   { opacity: 1; transform: translateY(0); }
-    }
-
-    .anim { opacity: 0; }
-    .anim.visible { animation: fadeUp 0.55s ease both; }
-    .anim-d1 { animation-delay: 0.07s; }
-    .anim-d2 { animation-delay: 0.14s; }
-
-    /* ─── RESPONSIVE ─────────────────────────── */
     @media (max-width: 900px) {
       .nav-desktop { display: none; }
       .burger { display: flex; }
-    }
-
-    @media (max-width: 640px) {
-      .tab-btn { min-width: 100%; max-width: 100%; }
-      .scenarios-grid { grid-template-columns: 1fr; }
-      .page-hero { padding: 3rem 0 2.5rem; }
-      .footer-top { flex-direction: column; }
+      .stat-row { grid-template-columns: 1fr; gap: 1.5rem; }
+      .choice-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ HEADER ═══════════════════════════════════════ -->
 <header>
   <div class="container">
     <div class="header-inner">
@@ -641,164 +304,291 @@
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
         <span class="logo-text" id="logoText">EduSafe</span>
       </a>
-
       <nav class="nav-desktop">
-        <a href="index.html" id="navHome"><i class="fas fa-home"></i><span>Главная</span></a>
-        <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i><span>Теория</span></a>
-        <a href="choice-sp.html" class="active" id="navPractice"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
-        <a href="videos.html" id="navVideo"><i class="fas fa-play-circle"></i><span>Видео</span></a>
-        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
-        <a href="blog.html" id="navBlog"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
-        <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+        <a href="index.html" id="navHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+        <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+        <a href="choice-sp.html" class="active" id="navPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+        <a href="glossary.html" id="navGlossary"><i class="fas fa-spell-check"></i> <span>Глоссарий</span></a>
+        <a href="videos.html" id="navVideo"><i class="fas fa-play-circle"></i> <span>Видео</span></a>
+        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+        <a href="blog.html" id="navBlog"><i class="fas fa-newspaper"></i> <span>Блог</span></a>
+        <a href="contact.html" id="navComplaint"><i class="fas fa-envelope"></i> <span>Контакты</span></a>
       </nav>
-
       <div class="header-right">
-        <select class="lang-select" id="languageSelector">
-          <option value="ru">🇧🇾 Русский</option>
-          <option value="en">🇬🇧 English</option>
+        <select class="lang-select" id="languageSelector" aria-label="Select language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
         </select>
-        <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme" title="Переключить тему">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="burger" id="navToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ═══ DRAWER ════════════════════════════════════════ -->
 <div class="drawer-overlay" id="drawerOverlay">
   <div class="drawer">
     <div class="drawer-head">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
         <span class="logo-text" id="mobileLogoText">EduSafe</span>
-      </div>
-      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+      </a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
     </div>
     <nav class="drawer-nav">
-      <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i><span>Главная</span></a>
-      <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i><span>Теория</span></a>
-      <a href="choice-sp.html" class="active" id="mobileNavPractice"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
-      <a href="videos.html" id="mobileNavVideo"><i class="fas fa-play-circle"></i><span>Видео</span></a>
-      <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
-      <a href="blog.html" id="mobileNavBlog"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
-      <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+      <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> <span>Главная</span></a>
+      <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> <span>Теория</span></a>
+      <a href="choice-sp.html" class="active" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> <span>Практика</span></a>
+      <a href="glossary.html" id="mobileNavGlossary"><i class="fas fa-spell-check"></i> <span>Глоссарий</span></a>
+      <a href="videos.html" id="mobileNavVideo"><i class="fas fa-play-circle"></i> <span>Видео</span></a>
+      <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> <span>Викторина</span></a>
+      <a href="blog.html" id="mobileNavBlog"><i class="fas fa-newspaper"></i> <span>Блог</span></a>
+      <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-envelope"></i> <span>Контакты</span></a>
     </nav>
-    <!-- <div class="drawer-lang">
-      <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
-        <option value="ru">🇧🇾 Русский</option>
-        <option value="en">🇬🇧 English</option>
+    <div style="display:flex; gap:0.5rem; align-items:center; margin-top:auto; padding-top:1.25rem; border-top:1px solid var(--border);">
+      <select class="lang-select" id="mobileLanguageSelector" style="flex:1;" aria-label="Select language">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
       </select>
-    </div> -->
+      <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle theme" title="Переключить тему">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
   </div>
 </div>
 
-<!-- ═══ PAGE HERO ═════════════════════════════════════ -->
-<section class="page-hero">
+<section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
   <div class="container">
-    <div class="page-hero-content">
-      <div class="page-hero-badge anim">
-        <i class="fas fa-lightbulb"></i>
-        <span id="heroBadge">Практические сценарии</span>
-      </div>
-      <h1 class="anim anim-d1" id="pTitle">Практические <span>сценарии</span></h1>
-      <p class="page-hero-sub anim anim-d2" id="pSub">Выберите уровень образования, чтобы увидеть реальные кейсы с решениями</p>
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge"><i class="fas fa-lightbulb"></i> <span>Интерактивный практикум · Кейсы и сценарии</span></div>
+      <h1 id="heroTitle">Практика применения <span>законодательства</span></h1>
+      <p class="hero-sub" id="heroSubtitle">Выберите тип учреждения образования для перехода к разбору реальных правовых сценариев и практических ситуаций.</p>
     </div>
   </div>
 </section>
 
-<!-- ═══ MAIN ══════════════════════════════════════════ -->
-<main>
+<div class="stat-strip">
   <div class="container">
-
-    <!-- Tab switcher -->
-    <div class="tab-section anim">
-      <span class="tab-section-label" id="tabLabel">Уровень образования</span>
-      <div class="tab-controls">
-        <button class="tab-btn" id="btn-uso" onclick="window.location.href='./USO-practice.html'">
-          <div class="tab-btn-icon"><i class="fas fa-school"></i></div>
-          <div>
-            <h3 id="usoTitle">УОСО</h3>
-            <p id="usoDesc">Школы, гимназии, лицеи</p>
-          </div>
-        </button>
-        <button class="tab-btn tab-btn-2" id="btn-uvo" onclick="window.location.href='./UVO-USSO-practice.html'">
-          <div class="tab-btn-icon"><i class="fas fa-university"></i></div>
-          <div>
-            <h3 id="uvoTitle">УВО / УССО</h3>
-            <p id="uvoDesc">Вузы и колледжи</p>
-          </div>
-        </button>
+    <div class="stat-row">
+      <div>
+        <div class="stat-num" id="stat1Num">21+</div>
+        <div class="stat-label" id="stat1Label">Актуальных кейсов</div>
+      </div>
+      <div>
+        <div class="stat-num" id="stat2Num">100%</div>
+        <div class="stat-label" id="stat2Label">Соответствие Закону № 99-З</div>
+      </div>
+      <div>
+        <div class="stat-num" id="stat3Num">4</div>
+        <div class="stat-label" id="stat3Label">Категории ролей</div>
       </div>
     </div>
-
-    <!-- Scenarios (not needed on this page — navigation happens on click) -->
-
   </div>
-</main>
+</div>
 
-<!-- ═══ FOOTER ════════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="section-header">
+      <span class="section-tag" id="secTag">Тип учреждения</span>
+      <h2 class="section-title" id="secTitle">Выберите образовательное учреждение</h2>
+      <p class="section-sub" id="secSub">Сценарии разделены по специфике учебного процесса и правового статуса участников.</p>
+    </div>
+
+    <div class="choice-grid">
+      <a href="USO-practice.html" class="choice-card choice-uso">
+        <div class="choice-icon"><i class="fas fa-school"></i></div>
+        <h3 id="usoTitle">УОСО</h3>
+        <p id="usoDesc">Учреждения общего среднего образования: школы, гимназии, лицеи. Практика работы с несовершеннолетними учащимися и родителями.</p>
+        <span class="choice-btn">Перейти к сценариям <i class="fas fa-arrow-right"></i></span>
+      </a>
+
+      <a href="UVO-USSO-practice.html" class="choice-card choice-uvo">
+        <div class="choice-icon"><i class="fas fa-university"></i></div>
+        <h3 id="uvoTitle">УВО / УССО</h3>
+        <p id="uvoDesc">Учреждения высшего и среднего специального образования: университеты, академии, колледжи. Обработка данных совершеннолетних студентов и преподавателей.</p>
+        <span class="choice-btn">Перейти к сценариям <i class="fas fa-arrow-right"></i></span>
+      </a>
+    </div>
+  </div>
+</section>
+
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
         <a href="index.html" class="footer-logo">
           <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
-          <span class="logo-text" id="footerLogoText">EduSafe</span>
+          <span class="logo-text">EduSafe</span>
         </a>
-        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p id="footerDesc">Республиканский информационно-практический ресурс по защите персональных данных в образовании.</p>
       </div>
       <div>
         <div class="footer-nav-title">Разделы</div>
         <ul class="footer-links">
+          <li><a href="index.html">Главная</a></li>
           <li><a href="theory.html">Теория</a></li>
           <li><a href="choice-sp.html">Практика</a></li>
+          <li><a href="glossary.html">Глоссарий</a></li>
           <li><a href="videos.html">Видео</a></li>
           <li><a href="quiz.html">Викторина</a></li>
           <li><a href="blog.html">Блог</a></li>
-        </ul>
-      </div>
-      <div>
-        <div class="footer-nav-title">Информация</div>
-        <ul class="footer-links">
           <li><a href="contact.html">Контакты</a></li>
-          <li><a href="https://cpd.by" target="_blank" rel="noopener">cpd.by</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <span id="footerCopyright">© 2026 Edusafe</span>
-      <span id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</span>
-      <span id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь. Ресурс разработан с использованием рекомендаций Национального центра защиты персональных данных.</span>
+      <div id="footerCopyright">© 2025–2026 EduSafe · Разработано для учреждений образования Республики Беларусь</div>
+      <div id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</div>
+      <div id="footerDisclaimer2">Все материалы соответствуют Закону Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных».</div>
     </div>
   </div>
 </footer>
 
 <script>
-  
+  const translations = {
+    ru: {
+      pageTitle: "Практика — EduSafe",
+      logoText: "EduSafe",
+      heroBadge: "Интерактивный практикум · Кейсы и сценарии",
+      heroTitle: "Практика применения <span>законодательства</span>",
+      heroSubtitle: "Выберите тип учреждения образования для перехода к разбору реальных правовых сценариев и практических ситуаций.",
+      stat1Num: "21+", stat1Label: "Актуальных кейсов",
+      stat2Num: "100%", stat2Label: "Соответствие Закону № 99-З",
+      stat3Num: "4", stat3Label: "Категории ролей",
+      secTag: "Тип учреждения",
+      secTitle: "Выберите образовательное учреждение",
+      secSub: "Сценарии разделены по специфике учебного процесса и правового статуса участников.",
+      usoTitle: "УОСО",
+      usoDesc: "Учреждения общего среднего образования: школы, гимназии, лицеи. Практика работы с несовершеннолетними учащимися и родителями.",
+      uvoTitle: "УВО / УССО",
+      uvoDesc: "Учреждения высшего и среднего специального образования: университеты, академии, колледжи. Обработка данных совершеннолетних студентов и преподавателей.",
+      footerDesc: "Республиканский информационно-практический ресурс по защите персональных данных в образовании.",
+      footerCopyright: "© 2025–2026 EduSafe · Разработано для учреждений образования Республики Беларусь",
+      footerDisclaimer1: "Ресурс не использует cookies и не собирает персональные данные пользователей.",
+      footerDisclaimer2: "Все материалы соответствуют Закону Республики Беларусь от 7 мая 2021 г. № 99-З «О защите персональных данных»."
+    },
+    en: {
+      pageTitle: "Practice — EduSafe",
+      logoText: "EduSafe",
+      heroBadge: "Interactive Practice · Cases & Scenarios",
+      heroTitle: "Practical Application of <span>Data Law</span>",
+      heroSubtitle: "Select educational institution category to explore practical legal scenarios and resolutions.",
+      stat1Num: "21+", stat1Label: "Practical Scenarios",
+      stat2Num: "100%", stat2Label: "Law Compliance",
+      stat3Num: "4", stat3Label: "Target Roles",
+      secTag: "Institution Category",
+      secTitle: "Select Educational Institution",
+      secSub: "Scenarios are organized by institution workflow and participant legal status.",
+      usoTitle: "Secondary Education (USO)",
+      usoDesc: "General secondary education: schools, gymnasiums, lyceums. Data processing of minors and parents.",
+      uvoTitle: "Higher & Vocational Education (UVO / USSO)",
+      uvoDesc: "Higher education institutions and colleges: universities, academies. Data processing of adult students and faculty.",
+      footerDesc: "Republican informational and practical resource on personal data protection in education.",
+      footerCopyright: "© 2025–2026 EduSafe · Designed for educational institutions of the Republic of Belarus",
+      footerDisclaimer1: "This resource does not use cookies and does not collect personal user data.",
+      footerDisclaimer2: "All materials comply with the Law of the Republic of Belarus No. 99-Z 'On Personal Data Protection'."
+    }
+  };
 
+  let currentLang = localStorage.getItem('lang') || 'ru';
 
-  // ── MOBILE DRAWER ──────────────────────────────────────
-  const overlay = document.getElementById('drawerOverlay');
-  document.getElementById('navToggle').addEventListener('click', () => {
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
-  });
-  function closeDrawer() {
-    overlay.classList.remove('open');
-    document.body.style.overflow = '';
+  function setEl(id, val, isHtml) {
+    const el = document.getElementById(id);
+    if (!el || val === undefined) return;
+    if (isHtml) el.innerHTML = val; else el.textContent = val;
   }
-  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+
+  function updateLanguage(lang) {
+    const t = translations[lang];
+    if (!t) return;
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    document.title = t.pageTitle;
+
+    setEl('logoText', t.logoText);
+    setEl('heroBadge', t.heroBadge);
+    setEl('heroTitle', t.heroTitle, true);
+    setEl('heroSubtitle', t.heroSubtitle);
+    setEl('stat1Num', t.stat1Num);
+    setEl('stat1Label', t.stat1Label);
+    setEl('stat2Num', t.stat2Num);
+    setEl('stat2Label', t.stat2Label);
+    setEl('stat3Num', t.stat3Num);
+    setEl('stat3Label', t.stat3Label);
+    setEl('secTag', t.secTag);
+    setEl('secTitle', t.secTitle);
+    setEl('secSub', t.secSub);
+    setEl('usoTitle', t.usoTitle);
+    setEl('usoDesc', t.usoDesc);
+    setEl('uvoTitle', t.uvoTitle);
+    setEl('uvoDesc', t.uvoDesc);
+    setEl('footerDesc', t.footerDesc);
+    setEl('footerCopyright', t.footerCopyright);
+    setEl('footerDisclaimer1', t.footerDisclaimer1);
+    setEl('footerDisclaimer2', t.footerDisclaimer2);
+
+    if (document.getElementById('languageSelector')) document.getElementById('languageSelector').value = lang;
+    if (document.getElementById('mobileLanguageSelector')) document.getElementById('mobileLanguageSelector').value = lang;
+  }
+
+  function updateThemeUI(theme) {
+    const isDark = theme === "dark";
+    document.querySelectorAll(".theme-toggle-btn i").forEach(icon => {
+      icon.className = isDark ? "fas fa-sun" : "fas fa-moon";
+    });
+  }
+
+  function toggleTheme() {
+    const current = document.documentElement.getAttribute("data-theme") || "light";
+    const next = current === "dark" ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", next);
+    localStorage.setItem("theme", next);
+    updateThemeUI(next);
+  }
+
+  document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+    if (b) b.addEventListener("click", toggleTheme);
+  });
+
+  if (document.getElementById('languageSelector')) {
+    document.getElementById('languageSelector').addEventListener('change', e => {
+      localStorage.setItem('lang', e.target.value);
+      updateLanguage(e.target.value);
+    });
+  }
+  if (document.getElementById('mobileLanguageSelector')) {
+    document.getElementById('mobileLanguageSelector').addEventListener('change', e => {
+      localStorage.setItem('lang', e.target.value);
+      updateLanguage(e.target.value);
+    });
+  }
+
+  const overlay = document.getElementById('drawerOverlay');
+  if (document.getElementById('navToggle')) {
+    document.getElementById('navToggle').addEventListener('click', () => {
+      if (overlay) {
+        overlay.classList.add('open');
+        document.body.style.overflow = 'hidden';
+      }
+    });
+  }
+  function closeDrawer() {
+    if (overlay) {
+      overlay.classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  if (document.getElementById('drawerClose')) document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
   document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
-  // ── SCROLL ANIMATIONS ──────────────────────────────────
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
-  }, { threshold: 0.1 });
-  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
-
+  updateLanguage(currentLang);
+  updateThemeUI(document.documentElement.getAttribute("data-theme") || "light");
 </script>
 </body>
 </html>

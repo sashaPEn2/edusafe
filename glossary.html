@@ -1,0 +1,1656 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title id="pageTitle">Глоссарий — EduSafe</title>
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
+
+  <style>
+    :root {
+      --ink: #0f172a;
+      --ink-soft: #334155;
+      --accent: #0057d9;
+      --accent-light: #2563eb;
+      --accent-pale: #eff6ff;
+      --teal: #0284c7;
+      --teal-pale: #f0f9ff;
+      --mint: #d1fae5;
+      --green: #059669;
+      --green-pale: #ecfdf5;
+      --purple: #7c3aed;
+      --purple-pale: #f5f3ff;
+      --surface: #ffffff;
+      --surface-2: #f8fafc;
+      --surface-3: #f1f5f9;
+      --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
+      --text-muted: #64748b;
+      --white: #ffffff;
+      --hero-bg: #090e1a;
+      --banner-bg: #0d1527;
+      --footer-bg: #060a12;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(10,15,29,0.06);
+      --shadow: 0 4px 16px rgba(10,15,29,0.08);
+      --shadow-lg: 0 12px 32px rgba(10,15,29,0.12);
+      --radius-sm: 8px;
+      --radius: 14px;
+      --radius-lg: 20px;
+    }
+
+    [data-theme="dark"] {
+      --ink: #f8fafc;
+      --ink-soft: #cbd5e1;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-pale: rgba(59, 130, 246, 0.16);
+      --teal: #38bdf8;
+      --teal-pale: rgba(56, 189, 248, 0.16);
+      --mint: rgba(16, 185, 129, 0.2);
+      --green: #34d399;
+      --green-pale: rgba(52, 211, 153, 0.16);
+      --purple: #a78bfa;
+      --purple-pale: rgba(167, 139, 250, 0.16);
+      --surface: #111827;
+      --surface-2: #0b0f19;
+      --surface-3: #1a233a;
+      --border: #232f48;
+      --border-subtle: #1e293b;
+      --text-muted: #94a3b8;
+      --white: #ffffff;
+      --hero-bg: #070b14;
+      --banner-bg: #0f1629;
+      --footer-bg: #05080f;
+      --card-bg: #131d31;
+      --card-border: #23314d;
+      --input-bg: #0f1629;
+      --input-border: #2a3b5c;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.4);
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.65);
+    }
+
+    *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Golos Text', sans-serif;
+      background: var(--surface-2);
+      color: var(--ink);
+      line-height: 1.65;
+      overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
+
+    /* HEADER */
+    header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      transition: background 0.3s, border-color 0.3s;
+    }
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .logo-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+    .nav-desktop { display: flex; align-items: center; gap: 0.25rem; }
+    .nav-desktop a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.88rem;
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      transition: all 0.2s;
+      white-space: nowrap;
+      display: flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .nav-desktop a:hover, .nav-desktop a.active { background: var(--accent-pale); color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
+    .lang-select {
+      padding: 0.4rem 0.7rem;
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      background: var(--surface);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-family: 'Golos Text', sans-serif;
+      cursor: pointer;
+      outline: none;
+    }
+    .theme-toggle-btn {
+      width: 38px; height: 38px;
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink);
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
+    }
+    .theme-toggle-btn:hover {
+      background: var(--accent-pale);
+      color: var(--accent);
+      border-color: var(--accent-light);
+    }
+    .burger { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0.3rem; border-radius: 8px; }
+    .burger:hover { background: var(--surface-3); }
+
+    /* DRAWER */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+    .drawer { position: fixed; top: 0; right: 0; width: min(88%, 340px); height: 100%; background: var(--surface); z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; padding: 1.5rem; }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .drawer-close { background: var(--surface-3); border: none; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.4rem; }
+    .drawer-nav a { text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.95rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; }
+    .drawer-nav a:hover, .drawer-nav a.active { background: var(--accent-pale); color: var(--accent); }
+
+    /* HERO */
+    .hero { background: var(--hero-bg); position: relative; overflow: hidden; padding: 4.5rem 0 3.5rem; color: #fff; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px); background-size: 48px 48px; }
+    .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+    .hero-glow-2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%); bottom: -150px; left: -50px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; text-align: center; max-width: 820px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; font-size: 0.8rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+    .hero h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 1rem; }
+    .hero h1 span { background: linear-gradient(135deg, #60a5fa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; color: #cbd5e1; max-width: 680px; margin: 0 auto 2rem; line-height: 1.7; }
+
+    /* SEARCH BAR */
+    .search-box-wrap {
+      max-width: 680px;
+      margin: 0 auto;
+      position: relative;
+    }
+    .search-input {
+      width: 100%;
+      padding: 1rem 1.25rem 1rem 3.25rem;
+      border-radius: var(--radius);
+      border: 1px solid rgba(255,255,255,0.2);
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      color: #ffffff;
+      font-size: 1rem;
+      font-family: 'Golos Text', sans-serif;
+      outline: none;
+      transition: all 0.25s;
+    }
+    .search-input::placeholder { color: #94a3b8; }
+    .search-input:focus {
+      background: rgba(15, 23, 42, 0.85);
+      border-color: #60a5fa;
+      box-shadow: 0 0 0 4px rgba(59, 130, 246, 0.25);
+    }
+    .search-icon {
+      position: absolute;
+      left: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      font-size: 1.1rem;
+      pointer-events: none;
+    }
+    .search-clear {
+      position: absolute;
+      right: 1.2rem;
+      top: 50%;
+      transform: translateY(-50%);
+      color: #94a3b8;
+      cursor: pointer;
+      font-size: 1rem;
+      display: none;
+      background: none;
+      border: none;
+    }
+    .search-clear:hover { color: #ffffff; }
+
+    /* MAIN CONTENT */
+    .main-section { padding: 3.5rem 0 5rem; flex: 1; }
+
+    /* CONTROLS BAR */
+    .controls-panel {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 1.5rem;
+      margin-bottom: 2.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+    .filter-pills {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+      margin-bottom: 1.25rem;
+    }
+    .filter-pill {
+      padding: 0.45rem 0.95rem;
+      border-radius: 999px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+    .filter-pill:hover {
+      background: var(--accent-pale);
+      color: var(--accent);
+      border-color: var(--accent-light);
+    }
+    .filter-pill.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 2px 8px rgba(0,87,217,0.25);
+    }
+
+    /* Alphabet bar */
+    .alphabet-bar {
+      display: flex;
+      gap: 0.4rem;
+      flex-wrap: wrap;
+      align-items: center;
+      padding-top: 1rem;
+      border-top: 1px solid var(--border);
+    }
+    .alpha-label {
+      font-size: 0.75rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin-right: 0.4rem;
+    }
+    .alpha-btn {
+      min-width: 32px;
+      height: 32px;
+      padding: 0 0.35rem;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      background: var(--surface-2);
+      color: var(--ink);
+      font-size: 0.85rem;
+      font-weight: 600;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.15s;
+    }
+    .alpha-btn:hover, .alpha-btn.active {
+      background: var(--accent);
+      color: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 2px 6px rgba(0,87,217,0.25);
+    }
+    .alpha-btn.disabled {
+      opacity: 0.3;
+      cursor: not-allowed;
+      pointer-events: none;
+    }
+
+    /* STATS STRIP */
+    .glossary-stats {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 1.5rem;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .stats-count {
+      font-size: 0.92rem;
+      color: var(--text-muted);
+    }
+    .stats-count strong {
+      color: var(--accent);
+      font-weight: 700;
+    }
+    .action-tools {
+      display: flex;
+      gap: 0.5rem;
+    }
+    .tool-btn {
+      padding: 0.45rem 0.85rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.82rem;
+      font-weight: 600;
+      border: 1px solid var(--border);
+      background: var(--surface);
+      color: var(--ink-soft);
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      transition: all 0.2s;
+    }
+    .tool-btn:hover {
+      background: var(--accent-pale);
+      color: var(--accent);
+    }
+
+    /* RANDOM TERM BANNER */
+    .featured-card {
+      background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%);
+      border: 1.5px solid #bfdbfe;
+      border-radius: var(--radius-lg);
+      padding: 1.75rem 2rem;
+      margin-bottom: 2.5rem;
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+    [data-theme="dark"] .featured-card {
+      background: linear-gradient(135deg, #131d33 0%, #112623 100%);
+      border-color: #233e68;
+    }
+    .featured-icon {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      background: var(--accent);
+      color: white;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.3rem;
+      flex-shrink: 0;
+    }
+    .featured-content { flex: 1; }
+    .featured-tag {
+      display: inline-block;
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--accent);
+      background: rgba(0,87,217,0.1);
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      margin-bottom: 0.5rem;
+    }
+    .featured-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.5rem;
+    }
+    .featured-desc {
+      font-size: 0.92rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      margin-bottom: 0.75rem;
+    }
+    .featured-action {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--accent);
+      cursor: pointer;
+      background: none;
+      border: none;
+    }
+    .featured-action:hover { text-decoration: underline; }
+
+    /* TERMS GRID */
+    .terms-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+      gap: 1.25rem;
+    }
+    .term-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+      transition: all 0.25s cubic-bezier(0.2, 0, 0, 1);
+      position: relative;
+    }
+    .term-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent-light);
+    }
+    .term-header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+    .term-cat-badge {
+      font-size: 0.7rem;
+      font-weight: 700;
+      padding: 0.2rem 0.6rem;
+      border-radius: 999px;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      background: var(--surface-3);
+      color: var(--text-muted);
+    }
+    .cat-basic { background: #eff6ff; color: #1d4ed8; }
+    .cat-sensitive { background: #fef2f2; color: #b91c1c; }
+    .cat-process { background: #f5f3ff; color: #6d28d9; }
+    .cat-rights { background: #ecfdf5; color: #047857; }
+    .cat-edu { background: #fffbeb; color: #b45309; }
+    .cat-sec { background: #f0fdf4; color: #15803d; }
+
+    [data-theme="dark"] .cat-basic { background: rgba(59,130,246,0.18); color: #93c5fd; }
+    [data-theme="dark"] .cat-sensitive { background: rgba(239,68,68,0.18); color: #fca5a5; }
+    [data-theme="dark"] .cat-process { background: rgba(139,92,246,0.18); color: #c4b5fd; }
+    [data-theme="dark"] .cat-rights { background: rgba(16,185,129,0.18); color: #6ee7b7; }
+    [data-theme="dark"] .cat-edu { background: rgba(245,158,11,0.18); color: #fcd34d; }
+    [data-theme="dark"] .cat-sec { background: rgba(34,197,94,0.18); color: #86efac; }
+
+    .term-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.08rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.35;
+    }
+    .term-en-title {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: -0.4rem;
+    }
+    .term-definition {
+      font-size: 0.9rem;
+      color: var(--ink-soft);
+      line-height: 1.6;
+      flex: 1;
+    }
+    .term-meta-box {
+      background: var(--surface-2);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-sm);
+      padding: 0.75rem 0.9rem;
+      font-size: 0.82rem;
+    }
+    .term-law-ref {
+      color: var(--accent);
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      gap: 0.35rem;
+      margin-bottom: 0.35rem;
+    }
+    .term-example {
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .term-footer {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      border-top: 1px solid var(--border);
+      padding-top: 0.75rem;
+      margin-top: 0.25rem;
+    }
+    .copy-term-btn {
+      background: none;
+      border: none;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.2s;
+    }
+    .copy-term-btn:hover { color: var(--accent); }
+    .term-num-badge {
+      font-size: 0.75rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    /* DOCUMENTS SECTION */
+    .docs-section {
+      margin-top: 5rem;
+      padding: 3.5rem 0;
+      border-top: 1px solid var(--border);
+    }
+    .docs-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+      gap: 1.25rem;
+      margin-top: 2rem;
+    }
+    .doc-card {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 1.75rem;
+      display: flex;
+      gap: 1.25rem;
+      align-items: flex-start;
+      transition: all 0.25s;
+    }
+    .doc-card:hover {
+      transform: translateY(-3px);
+      box-shadow: var(--shadow);
+      border-color: var(--accent-light);
+    }
+    .doc-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: 10px;
+      background: var(--accent-pale);
+      color: var(--accent);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .doc-info { flex: 1; }
+    .doc-type {
+      font-size: 0.72rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--accent);
+      margin-bottom: 0.25rem;
+    }
+    .doc-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--ink);
+      margin-bottom: 0.4rem;
+      line-height: 1.4;
+    }
+    .doc-desc {
+      font-size: 0.84rem;
+      color: var(--text-muted);
+      line-height: 1.55;
+      margin-bottom: 0.75rem;
+    }
+    .doc-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      font-size: 0.84rem;
+      font-weight: 600;
+      color: var(--accent);
+      text-decoration: none;
+    }
+    .doc-link:hover { text-decoration: underline; }
+
+    /* NO RESULTS */
+    .no-results {
+      text-align: center;
+      padding: 4rem 1rem;
+      display: none;
+    }
+    .no-results i { font-size: 3rem; color: var(--text-muted); margin-bottom: 1rem; opacity: 0.5; }
+    .no-results h3 { font-family: 'Unbounded', sans-serif; font-size: 1.25rem; color: var(--ink); margin-bottom: 0.5rem; }
+    .no-results p { color: var(--text-muted); font-size: 0.95rem; }
+
+    /* TOAST */
+    .toast {
+      position: fixed;
+      bottom: 2rem;
+      right: 2rem;
+      background: #0f172a;
+      color: #ffffff;
+      padding: 0.85rem 1.4rem;
+      border-radius: var(--radius-sm);
+      font-size: 0.88rem;
+      font-weight: 500;
+      box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      z-index: 999;
+      transform: translateY(100px);
+      opacity: 0;
+      transition: all 0.3s cubic-bezier(0.2, 0, 0, 1);
+    }
+    .toast.show { transform: translateY(0); opacity: 1; }
+
+    /* FOOTER */
+    footer {
+      background: var(--footer-bg);
+      color: #64748b;
+      padding: 3.5rem 0 2rem;
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
+    }
+    .footer-top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: 2rem;
+      flex-wrap: wrap;
+      margin-bottom: 2rem;
+      padding-bottom: 2rem;
+      border-bottom: 1px solid rgba(255,255,255,0.07);
+    }
+    .footer-brand { max-width: 320px; }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 0.75rem; }
+    .footer-logo .logo-icon { background: var(--accent); }
+    .footer-logo .logo-text { color: white; font-size: 1.1rem; }
+    .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
+    .footer-nav-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.75rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-links a { text-decoration: none; color: #64748b; font-size: 0.88rem; transition: color 0.2s; }
+    .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom { font-size: 0.78rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-bottom a { color: #60a5fa; text-decoration: none; }
+
+    @media (max-width: 900px) {
+      .nav-desktop { display: none; }
+      .burger { display: flex; }
+      .terms-grid { grid-template-columns: 1fr; }
+      .docs-grid { grid-template-columns: 1fr; }
+      .featured-card { flex-direction: column; padding: 1.5rem; gap: 1rem; }
+      .controls-panel { padding: 1.25rem; }
+      .footer-top { flex-direction: column; gap: 2rem; }
+    }
+
+    @media (max-width: 600px) {
+      .hero { padding: 3.5rem 0 2.5rem; }
+      .search-input { font-size: 0.95rem; padding: 0.85rem 1rem 0.85rem 2.8rem; }
+      .search-icon { left: 1rem; }
+      .filter-pills { gap: 0.4rem; }
+      .filter-pill { font-size: 0.78rem; padding: 0.4rem 0.75rem; }
+      .alpha-btn { min-width: 28px; height: 28px; font-size: 0.8rem; }
+      .action-tools { width: 100%; justify-content: flex-start; }
+      .term-card { padding: 1.25rem; }
+      .stats-count { width: 100%; }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ─── HEADER ─────────────────────────────── -->
+<header>
+  <div class="container">
+    <div class="header-inner">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </a>
+      <nav class="nav-desktop">
+        <a href="index.html" id="navHome"><i class="fas fa-home"></i> Главная</a>
+        <a href="theory.html" id="navTheory"><i class="fas fa-book-open"></i> Теория</a>
+        <a href="choice-sp.html" id="navPractice"><i class="fas fa-lightbulb"></i> Практика</a>
+        <a href="glossary.html" class="active" id="navGlossary"><i class="fas fa-spell-check"></i> Глоссарий</a>
+        <a href="videos.html" id="navVideo"><i class="fas fa-play-circle"></i> Видео</a>
+        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> Викторина</a>
+        <a href="blog.html" id="navBlog"><i class="fas fa-newspaper"></i> Блог</a>
+        <a href="contact.html" id="navComplaint"><i class="fas fa-envelope"></i> Контакты</a>
+      </nav>
+      <div class="header-right">
+        <select class="lang-select" id="languageSelector" aria-label="Select language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
+        </select>
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme" title="Переключить тему">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="burger" id="navToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<!-- ─── MOBILE DRAWER ─────────────────────── -->
+<div class="drawer-overlay" id="drawerOverlay">
+  <div class="drawer">
+    <div class="drawer-head">
+      <a href="index.html" class="logo">
+        <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+        <span class="logo-text">EduSafe</span>
+      </a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
+    </div>
+    <nav class="drawer-nav">
+      <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> Главная</a>
+      <a href="theory.html" id="mobileNavTheory"><i class="fas fa-book-open"></i> Теория</a>
+      <a href="choice-sp.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> Практика</a>
+      <a href="glossary.html" class="active" id="mobileNavGlossary"><i class="fas fa-spell-check"></i> Глоссарий</a>
+      <a href="videos.html" id="mobileNavVideo"><i class="fas fa-play-circle"></i> Видео</a>
+      <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> Викторина</a>
+      <a href="blog.html" id="mobileNavBlog"><i class="fas fa-newspaper"></i> Блог</a>
+      <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-envelope"></i> Контакты</a>
+    </nav>
+    <div style="display:flex; gap:0.5rem; align-items:center; margin-top:auto; padding-top:1.25rem; border-top:1px solid var(--border);">
+      <select class="lang-select" id="mobileLanguageSelector" style="flex:1;" aria-label="Select language">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
+      </select>
+      <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle theme" title="Переключить тему">
+        <i class="fas fa-moon"></i>
+      </button>
+    </div>
+  </div>
+</div>
+
+<!-- ─── HERO ───────────────────────────────── -->
+<section class="hero">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow-2"></div>
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-badge" id="heroBadge"><i class="fas fa-book-atlas"></i> Понятийный аппарат · Законодательство РБ</div>
+      <h1 id="heroTitle">Глоссарий <span>персональных данных</span></h1>
+      <p class="hero-sub" id="heroSubtitle">
+        Полный справочник терминов, правовых определений, практических примеров и нормативных документов в сфере образования Республики Беларусь.
+      </p>
+
+      <div class="search-box-wrap">
+        <i class="fas fa-search search-icon"></i>
+        <input type="text" id="glossarySearch" class="search-input" placeholder="Поиск по термину, статье закона или ключевому слову..." autocomplete="off">
+        <button id="searchClearBtn" class="search-clear" aria-label="Очистить"><i class="fas fa-times"></i></button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ─── MAIN CONTENT ───────────────────────── -->
+<main class="main-section">
+  <div class="container">
+
+    <!-- FEATURED TERM OF THE DAY -->
+    <div class="featured-card" id="featuredCard">
+      <div class="featured-icon"><i class="fas fa-lightbulb"></i></div>
+      <div class="featured-content">
+        <span class="featured-tag" id="featTag">Термин дня</span>
+        <h3 class="featured-title" id="featTitle">Специальные персональные данные</h3>
+        <p class="featured-desc" id="featDesc">
+          Сведения о здоровье, биометрии, религиозных убеждениях и привлечении к ответственности. В школах и вузах (медсправки, спецгруппы физкультуры, группа здоровья) требуют строжайшего режима конфиденциальности и отдельного правового основания.
+        </p>
+        <button class="featured-action" id="randomTermBtn">
+          <i class="fas fa-dice"></i> <span id="randomBtnText">Показать другой случайный термин</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- CONTROLS -->
+    <div class="controls-panel">
+      <div class="filter-pills" id="filterPills">
+        <button class="filter-pill active" data-cat="all"><i class="fas fa-border-all"></i> <span class="pill-text">Все термины</span></button>
+        <button class="filter-pill" data-cat="basic"><i class="fas fa-cube"></i> <span class="pill-text">Базовые понятия</span></button>
+        <button class="filter-pill" data-cat="sensitive"><i class="fas fa-fingerprint"></i> <span class="pill-text">Категории данных</span></button>
+        <button class="filter-pill" data-cat="process"><i class="fas fa-cogs"></i> <span class="pill-text">Процессы и операции</span></button>
+        <button class="filter-pill" data-cat="rights"><i class="fas fa-user-shield"></i> <span class="pill-text">Права и согласия</span></button>
+        <button class="filter-pill" data-cat="edu"><i class="fas fa-school"></i> <span class="pill-text">Школа и вуз</span></button>
+        <button class="filter-pill" data-cat="sec"><i class="fas fa-lock"></i> <span class="pill-text">Безопасность и IT</span></button>
+      </div>
+
+      <div class="alphabet-bar" id="alphabetBar">
+        <span class="alpha-label" id="alphaLabel">Алфавит:</span>
+        <!-- alphabet buttons injected by JS -->
+      </div>
+    </div>
+
+    <!-- STATS -->
+    <div class="glossary-stats">
+      <div class="stats-count" id="statsCount">
+        Найдено терминов: <strong id="termsCountNum">0</strong>
+      </div>
+      <div class="action-tools">
+        <button class="tool-btn" id="expandAllBtn"><i class="fas fa-expand-alt"></i> <span id="expandBtnText">Раскрыть примеры</span></button>
+        <button class="tool-btn" id="printGlossaryBtn"><i class="fas fa-print"></i> <span id="printBtnText">Печать / PDF</span></button>
+      </div>
+    </div>
+
+    <!-- TERMS GRID -->
+    <div class="terms-grid" id="termsGrid">
+      <!-- Term Cards injected by JS -->
+    </div>
+
+    <!-- NO RESULTS -->
+    <div class="no-results" id="noResults">
+      <i class="fas fa-search-minus"></i>
+      <h3 id="noResTitle">Ничего не найдено</h3>
+      <p id="noResSub">Попробуйте изменить поисковый запрос или выбрать другую категорию.</p>
+    </div>
+
+    <!-- OFFICIAL LEGAL DOCUMENTS SECTION -->
+    <section class="docs-section">
+      <div style="text-align: center; max-width: 680px; margin: 0 auto;">
+        <span class="hero-badge" style="background:var(--accent-pale); color:var(--accent); border-color:transparent;" id="docsBadge"><i class="fas fa-file-contract"></i> Нормативная база</span>
+        <h2 style="font-family:'Unbounded',sans-serif; font-size:1.75rem; color:var(--ink); margin: 0.5rem 0 0.75rem;" id="docsTitle">Ключевые правовые акты и документы</h2>
+        <p style="color:var(--text-muted); font-size:0.95rem;" id="docsSub">Официальные источники законодательства Республики Беларусь и методические разъяснения регулятора</p>
+      </div>
+
+      <div class="docs-grid">
+        <div class="doc-card">
+          <div class="doc-icon"><i class="fas fa-gavel"></i></div>
+          <div class="doc-info">
+            <div class="doc-type">Закон РБ</div>
+            <div class="doc-title">Закон № 99-З «О защите персональных данных»</div>
+            <div class="doc-desc">Базовый закон от 07.05.2021, регулирующий отношения, связанные с защитой ПД при их обработке.</div>
+            <a href="Закон Республики Беларусь от 7 мая 2021 г. №99-З «О защите персональных данных».pdf" target="_blank" class="doc-link"><i class="fas fa-file-pdf"></i> Читать PDF-документ</a>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon"><i class="fas fa-university"></i></div>
+          <div class="doc-info">
+            <div class="doc-type">Разъяснения НЦЗПД</div>
+            <div class="doc-title">Разъяснения об обработке ПД в УОСО и УВО</div>
+            <div class="doc-desc">Официальные рекомендации Национального центра от 21.11.2025 по применению закона в школах и вузах.</div>
+            <a href="Razjasnenija-o-primenenii-ZPD-v-dejatelnosti-USSO-i-UVO.pdf" target="_blank" class="doc-link"><i class="fas fa-file-pdf"></i> Скачать разъяснения</a>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon"><i class="fas fa-book-reader"></i></div>
+          <div class="doc-info">
+            <div class="doc-type">Кодекс РБ</div>
+            <div class="doc-title">Кодекс Республики Беларусь об образовании</div>
+            <div class="doc-desc">Правовая основа образовательного процесса, ведения документации, электронных дневников и аттестации.</div>
+            <a href="https://pravo.by/document/?guid=3871&p0=Hk1100243" target="_blank" rel="noopener" class="doc-link"><i class="fas fa-external-link-alt"></i> Открыть на Pravo.by</a>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon"><i class="fas fa-shield-virus"></i></div>
+          <div class="doc-info">
+            <div class="doc-type">Указ Президента</div>
+            <div class="doc-title">Указ Президента РБ № 422</div>
+            <div class="doc-desc">О мерах по совершенствованию защиты персональных данных и создании Национального центра (НЦЗПД).</div>
+            <a href="https://cpd.by/pravovaya-osnova/ukaz-prezidenta-respubliki-belarus-ot-28-oktyabrya-2021-g-422/" target="_blank" rel="noopener" class="doc-link"><i class="fas fa-external-link-alt"></i> Портал cpd.by</a>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon"><i class="fas fa-server"></i></div>
+          <div class="doc-info">
+            <div class="doc-type">Приказ НЦЗПД № 64</div>
+            <div class="doc-title">Классификация информационных систем</div>
+            <div class="doc-desc">Требования к уровням защищенности информсистем, обрабатывающих персональные данные в учреждениях.</div>
+            <a href="https://cpd.by" target="_blank" rel="noopener" class="doc-link"><i class="fas fa-external-link-alt"></i> Ознакомиться на cpd.by</a>
+          </div>
+        </div>
+
+        <div class="doc-card">
+          <div class="doc-icon"><i class="fas fa-globe"></i></div>
+          <div class="doc-info">
+            <div class="doc-type">Официальный регулятор</div>
+            <div class="doc-title">Национальный центр (НЦЗПД)</div>
+            <div class="doc-desc">Официальный государственный орган по защите прав субъектов персональных данных в Республике Беларусь.</div>
+            <a href="https://cpd.by" target="_blank" rel="noopener" class="doc-link"><i class="fas fa-external-link-alt"></i> Перейти на сайт cpd.by</a>
+          </div>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<div class="toast" id="toast"><i class="fas fa-check-circle"></i> <span id="toastText">Определение скопировано!</span></div>
+
+<!-- ─── FOOTER ─────────────────────────────── -->
+<footer>
+  <div class="container">
+    <div class="footer-top">
+      <div class="footer-brand">
+        <a href="index.html" class="footer-logo">
+          <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
+          <span class="logo-text">EduSafe</span>
+        </a>
+        <p id="footerDesc">Республиканский информационно-практический ресурс по защите персональных данных в сфере образования Республики Беларусь.</p>
+      </div>
+      <div class="footer-col">
+        <div class="footer-nav-title" id="footerNavTitle">Навигация</div>
+        <ul class="footer-links">
+          <li><a href="theory.html">Теоретическая база</a></li>
+          <li><a href="choice-sp.html">Практикум и кейсы</a></li>
+          <li><a href="glossary.html">Глоссарий понятий</a></li>
+          <li><a href="quiz.html">Интерактивная викторина</a></li>
+          <li><a href="videos.html">Видеоматериалы</a></li>
+          <li><a href="blog.html">Блог и новости</a></li>
+          <li><a href="contact.html">Обратная связь</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <div class="footer-nav-title" id="footerContactTitle">Контакты и поддержка</div>
+        <ul class="footer-links">
+          <li><a href="mailto:nevdahalek@yandex.by"><i class="fas fa-envelope"></i> nevdahalek@yandex.by</a></li>
+          <li><a href="https://cpd.by" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Портал НЦЗПД (cpd.by)</a></li>
+          <li><a href="https://pravo.by" target="_blank" rel="noopener"><i class="fas fa-balance-scale"></i> Портал Pravo.by</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p id="footerCopyright">© 2026 EduSafe. Все права защищены.</p>
+      <p id="footerDisclaimer1" style="color:#64748b; font-size:0.75rem;">Ресурс не использует cookie-файлы слежения и не собирает персональные данные посетителей.</p>
+      <p id="footerDisclaimer2" style="color:#64748b; font-size:0.75rem;">Материалы подготовлены в соответствии с Законом Республики Беларусь № 99-З «О защите персональных данных».</p>
+    </div>
+  </div>
+</footer>
+
+<script>
+// ═════════════════════════════════════════════════════════════
+// GLOSSARY DATA (28 COMPREHENSIVE TERMS)
+// ═════════════════════════════════════════════════════════════
+const glossaryData = [
+  {
+    id: "pd",
+    cat: "basic",
+    title: "Персональные данные",
+    titleEn: "Personal Data",
+    def: "Любая информация, относящаяся к идентифицированному физическому лицу или физическому лицу, которое может быть идентифицировано.",
+    defEn: "Any information relating to an identified or identifiable natural person.",
+    law: "Ст. 1 Закона № 99-З",
+    example: "ФИО ученика/студента, дата рождения, домашний адрес, номер телефона, фотография, оценки в журнале, ID в системе электронного обучения.",
+    mistake: "Считать, что если убрать фамилию, но оставить редкое имя и точный класс/школу, данные перестают быть персональными."
+  },
+  {
+    id: "subject",
+    cat: "basic",
+    title: "Субъект персональных данных",
+    titleEn: "Data Subject",
+    def: "Физическое лицо, в отношении которого осуществляется обработка персональных данных.",
+    defEn: "The individual whose personal data is processed.",
+    law: "Ст. 1 Закона № 99-З",
+    example: "Учащийся, воспитанник детского сада, родитель, учитель, преподаватель вуза, абитуриент, студент, выпускник.",
+    mistake: "Относить юридические лица к субъектам ПД (закон защищает только физлиц)."
+  },
+  {
+    id: "operator",
+    cat: "basic",
+    title: "Оператор",
+    titleEn: "Data Controller / Operator",
+    def: "Государственный орган, юридическое лицо, иная организация или физическое лицо, самостоятельно или совместно с иными лицами организующие и (или) осуществляющие обработку персональных данных.",
+    defEn: "An entity or person determining the purposes and means of processing personal data.",
+    law: "Ст. 1 Закона № 99-З",
+    example: "Школа, гимназия, лицей, колледж, университет, детский сад, отдел образования.",
+    mistake: "Считать отдельного учителя отдельным оператором — оператором является всё учреждение образования как юрлицо."
+  },
+  {
+    id: "processor",
+    cat: "basic",
+    title: "Уполномоченное лицо",
+    titleEn: "Data Processor",
+    def: "Организация или физическое лицо, которые на основании договора с оператором осуществляют обработку персональных данных от имени оператора или в его интересах.",
+    defEn: "A party processing personal data on behalf of the controller pursuant to a contract.",
+    law: "Ст. 1, 7 Закона № 99-З",
+    example: "Разработчик системы «Электронный дневник», облачный хостинг-провайдер, частное охранное предприятие с доступом к СКУД учреждения.",
+    mistake: "Передавать списки учеников разработчикам программного обеспечения без заключения договора поручения с требованиями ст. 7 Закона № 99-З."
+  },
+  {
+    id: "processing",
+    cat: "process",
+    title: "Обработка персональных данных",
+    titleEn: "Data Processing",
+    def: "Любое действие или совокупность действий с персональными данными: сбор, систематизация, хранение, изменение, использование, обезличивание, блокирование, распространение, предоставление, удаление.",
+    defEn: "Any operation performed on personal data, such as collection, storage, adaptation, retrieval, dissemination or erasure.",
+    law: "Ст. 1, 4 Закона № 99-З",
+    example: "Внесение оценок в журнал, фотографирование на празднике, хранение медицинских справок в медпункте, отправка списка участников олимпиады.",
+    mistake: "Полагать, что простое «прочтение» или «просмотр» списка не является обработкой данных."
+  },
+  {
+    id: "sensitive",
+    cat: "sensitive",
+    title: "Специальные персональные данные",
+    titleEn: "Special (Sensitive) Personal Data",
+    def: "Персональные данные, касающиеся расовой/национальной принадлежности, политических взглядов, членства в профсоюзах, религии, здоровья, половой жизни, судимости, а также биометрические и генетические данные.",
+    defEn: "Sensitive data concerning health, biometrics, religion, racial origin, political opinions, or criminal record.",
+    law: "Ст. 1, 8 Закона № 99-З",
+    example: "Справка о группе здоровья, диагноз в медкарте, сведения о нахождении в СОП, отпечатки пальцев для входа в кампус.",
+    mistake: "Оглашение диагноза или ограничений по здоровью учащегося публично перед всем классом или в родительском чате."
+  },
+  {
+    id: "biometric",
+    cat: "sensitive",
+    title: "Биометрические персональные данные",
+    titleEn: "Biometric Data",
+    def: "Информация, характеризующая физиологические и биологические особенности человека, которая используется для его уникальной идентификации (отпечатки пальцев, скан лица, радужка).",
+    defEn: "Biological characteristics used for unique identification (fingerprints, facial recognition).",
+    law: "Ст. 1, 8 Закона № 99-З",
+    example: "Система распознавания лиц на турникетах при входе в университет или общежитие.",
+    mistake: "Приравнивание обычной групповой фотографии с праздника к биометрическим данным (без применения биометрического софта распознавания фото — это общее ПД)."
+  },
+  {
+    id: "public",
+    cat: "sensitive",
+    title: "Общедоступные персональные данные",
+    titleEn: "Publicly Available Data",
+    def: "Персональные данные, распространенные самим субъектом персональных данных либо с его согласия или в соответствии с требованиями законодательных актов.",
+    defEn: "Data made publicly accessible by the subject or under statutory legal mandate.",
+    law: "Ст. 1, 6 Закона № 99-З",
+    example: "ФИО, должность, рабочий телефон и график приема директора и декана на официальном сайте учреждения.",
+    mistake: "Публикация личных мобильных телефонов и домашних адресов педагогов на общедоступном сайте без их явного согласия."
+  },
+  {
+    id: "consent",
+    cat: "rights",
+    title: "Согласие субъекта",
+    titleEn: "Consent of Data Subject",
+    def: "Свободное, однозначное, информированное выражение воли субъекта, посредством которого он разрешает обработку своих персональных данных для конкретной цели.",
+    defEn: "Freely given, specific, informed, and unambiguous indication of the subject's wishes.",
+    law: "Ст. 5 Закона № 99-З",
+    example: "Отдельное письменное согласие родителей на публикацию фотографий ребенка в промо-буклете гимназии или соцсетях.",
+    mistake: "Использование одного «универсального согласия на всё» или принуждение к даче согласия под угрозой недопуска к учебе."
+  },
+  {
+    id: "withdrawal",
+    cat: "rights",
+    title: "Отзыв согласия",
+    titleEn: "Withdrawal of Consent",
+    def: "Безусловное право субъекта в любой момент без объяснения причин отозвать ранее предоставленное согласие. Оператор обязан прекратить обработку и удалить данные в 15-дневный срок.",
+    defEn: "The absolute right of a data subject to withdraw previously given consent at any time without justification.",
+    law: "Ст. 10 Закона № 99-З",
+    example: "Родитель подает заявление об отказе от публикации фото ребенка в соцсетях школы; школа обязана удалить фото в течение 15 дней.",
+    mistake: "Отказ в удалении публикации под предлогом «вы же раньше подписали согласие на год»."
+  },
+  {
+    id: "erasure",
+    cat: "rights",
+    title: "Право на удаление (забвение)",
+    titleEn: "Right to Erasure",
+    def: "Право требовать бесплатного прекращения обработки и полного удаления своих персональных данных при отсутствии законных оснований для их дальнейшего сохранения.",
+    defEn: "Right to demand cessation of processing and deletion of personal data when legal basis ceases.",
+    law: "Ст. 13 Закона № 99-З",
+    example: "Выпускник требует удалить свое резюме и анкету из открытой базы соискателей на сайте колледжа по окончании учебы.",
+    mistake: "Требование удалить личное дело или журнал оценок до истечения обязательного срока архивного хранения, установленного законом."
+  },
+  {
+    id: "anonymization",
+    cat: "process",
+    title: "Обезличивание",
+    titleEn: "Anonymization",
+    def: "Действия, в результате которых становится невозможным без использования дополнительной информации определить принадлежность персональных данных конкретному субъекту.",
+    defEn: "Processing of personal data so that it can no longer be attributed to a specific subject without additional info.",
+    law: "Ст. 1 Закона № 99-З",
+    example: "Публикация результатов олимпиады в виде «Код участника 4082 — 92 балла» вместо «Иванов Иван — 92 балла».",
+    mistake: "Публикация полного списка класса с указанием только номеров по списку, если порядок в журнале известен всем ученикам."
+  },
+  {
+    id: "blocking",
+    cat: "process",
+    title: "Блокирование персональных данных",
+    titleEn: "Data Blocking",
+    def: "Временное прекращение доступа к персональным данным без их физического удаления (например, на период рассмотрения заявления или проверки недостоверности сведений).",
+    defEn: "Temporary suspension of access to personal data without deletion during dispute or investigation.",
+    law: "Ст. 1, 11 Закона № 99-З",
+    example: "Ограничение доступа к анкете студента в деканате на время проведения служебной проверки корректности начисленной стипендии.",
+    mistake: "Продолжение рассылки уведомлений после поступления заявления о недостоверности данных до завершения проверки."
+  },
+  {
+    id: "destruction",
+    cat: "process",
+    title: "Уничтожение персональных данных",
+    titleEn: "Data Destruction",
+    def: "Действия, в результате которых становится невозможным восстановить содержание персональных данных в информационной системе или уничтожаются материальные бумажные носители.",
+    defEn: "Permanent erasure of digital records or physical shredding of paper files.",
+    law: "Ст. 1, 17 Закона № 99-З",
+    example: "Шредирование черновиков заявлений на общежитие или гарантированное удаление базы данных абитуриентов прошлых лет.",
+    mistake: "Выбрасывание списков учащихся с паспортными данными в обычную мусорную корзину без шредирования."
+  },
+  {
+    id: "dissemination",
+    cat: "process",
+    title: "Распространение персональных данных",
+    titleEn: "Dissemination of Data",
+    def: "Действия, направленные на ознакомление с персональными данными неопределенного круга лиц.",
+    defEn: "Disclosing personal data to an indefinite, unrestricted public audience.",
+    law: "Ст. 1 Закона № 99-З",
+    example: "Вывешивание приказа о зачислении на открытом уличном стенде или публикация видеоурока в открытом YouTube-канале.",
+    mistake: "Публикация списков должников по оплате питания в открытом школьном фойе или родительском чате."
+  },
+  {
+    id: "provision",
+    cat: "process",
+    title: "Предоставление персональных данных",
+    titleEn: "Provision of Data",
+    def: "Действия, направленные на ознакомление с персональными данными определенного лица или определенного круга лиц (в отличие от распространения).",
+    defEn: "Disclosing personal data to a specific, identified recipient.",
+    law: "Ст. 1 Закона № 99-З",
+    example: "Направление списка призывников в районный военный комиссариат на основании законодательного требования.",
+    mistake: "Передача персональных данных учащихся коммерческим фотографам или репетиторским центрам без согласия родителей."
+  },
+  {
+    id: "crossborder",
+    cat: "process",
+    title: "Трансграничная передача",
+    titleEn: "Cross-Border Data Transfer",
+    def: "Передача персональных данных на территорию иностранного государства (включая использование зарубежных серверов, облаков и платформ).",
+    defEn: "Transfer of personal data to foreign servers, cloud storages or services abroad.",
+    law: "Ст. 9 Закона № 99-З",
+    example: "Использование Google Forms, Microsoft Forms или зарубежных облачных хранилищ для сбора анкет школьников.",
+    mistake: "Сбор персональных данных учащихся через зарубежные опросники без надлежащего информирования и оценки уровня защиты страны."
+  },
+  {
+    id: "dpo",
+    cat: "basic",
+    title: "Лицо, ответственное за внутренний контроль",
+    titleEn: "Data Protection Officer (DPO)",
+    def: "Должностное лицо или структурное подразделение, назначенное оператором для осуществления непосредственного контроля за соблюдением законодательства о ПД в учреждении.",
+    defEn: "The designated officer or team overseeing internal compliance with personal data laws.",
+    law: "Ст. 17 Закона № 99-З",
+    example: "Заместитель директора школы по учебной работе или штатный юрисконсульт вуза, прошедший повышение квалификации в НЦЗПД.",
+    mistake: "Формальное назначение ответственного без предоставления полномочий и регулярного обучения."
+  },
+  {
+    id: "policy",
+    cat: "basic",
+    title: "Политика в отношении обработки ПД",
+    titleEn: "Privacy & Data Processing Policy",
+    def: "Обязательный локальный правовой акт оператора, определяющий цели, категории обрабатываемых ПД, сроки их хранения и порядок реализации прав субъектов.",
+    defEn: "A mandatory document describing data processing rules, categories, retention periods, and rights.",
+    law: "Ст. 17 Закона № 99-З",
+    example: "Политика конфиденциальности, размещенная в подвале официального сайта школы и на информационном стенде учреждения.",
+    mistake: "Отсутствие доступного документа политики до начала сбора данных через сайт или анкеты."
+  },
+  {
+    id: "eljournal",
+    cat: "edu",
+    title: "Электронный журнал и дневник",
+    titleEn: "Electronic Gradebook & Diary",
+    def: "Государственная информационная система учета успеваемости, обработка данных в которой осуществляется на основании Кодекса об образовании без необходимости сбора согласий.",
+    defEn: "Educational information system for academic records processed under statutory educational code.",
+    law: "Кодекс об образовании, Разъяснения НЦЗПД",
+    example: "Внесение отметок, тем уроков, пропусков занятий и домашних заданий в систему schools.by или аналогичную.",
+    mistake: "Требование от родителей подписания отдельного согласия на ведение обязательного электронного журнала."
+  },
+  {
+    id: "chats",
+    cat: "edu",
+    title: "Родительские чаты в мессенджерах",
+    titleEn: "Parent Messaging Groups",
+    def: "Канал оперативной коммуникации. Размещение списков успеваемости, сведений о здоровье, долгах или фото детей без согласия запрещено.",
+    defEn: "Informal communication channels where publishing grades, debts or health records is strictly prohibited.",
+    law: "Разъяснения НЦЗПД от 21.11.2025",
+    example: "Публикация в общем чате Viber/Telegram только организационных объявлений (время экскурсии, расписание каникул).",
+    mistake: "Отправка в общий чат ведомости четвертных оценок или списка детей, не сдавших деньги на питание."
+  },
+  {
+    id: "cctv",
+    cat: "edu",
+    title: "Видеонаблюдение в учреждении",
+    titleEn: "Video Surveillance (CCTV)",
+    def: "Обработка биометрических/персональных данных в целях безопасности. Требует наличия предупреждающих знаков и локального положения. Скрытое наблюдение запрещено.",
+    defEn: "Security surveillance requiring prominent warning signs and local regulatory policies.",
+    law: "Ст. 17 Закона № 99-З, Рекомендации НЦЗПД",
+    example: "Таблички «Ведется видеонаблюдение» на входах, по периметру и в коридорах учреждения образования.",
+    mistake: "Установка скрытых камер или размещение камер в раздевалках, туалетах и комнатах отдыха персонала."
+  },
+  {
+    id: "breach",
+    cat: "sec",
+    title: "Утечка (нарушение безопасности) ПД",
+    titleEn: "Personal Data Breach",
+    def: "Событие, повлекшее несанкционированный доступ, уничтожение, модификацию, блокирование, копирование или распространение персональных данных. Уведомление НЦЗПД обязательно в течение 3 рабочих дней.",
+    defEn: "Security incident leading to unlawful access, loss or dissemination of data. Requires 3-day regulator notification.",
+    law: "Ст. 17 Закона № 99-З",
+    example: "Утеря флешки с базой данных выпускников или взлом сервера электронного деканата с утечкой паспортных данных.",
+    mistake: "Попытка скрыть факт утечки данных от Национального центра защиты персональных данных."
+  },
+  {
+    id: "darkpatterns",
+    cat: "sec",
+    title: "Темные паттерны (Dark Patterns)",
+    titleEn: "Dark Patterns",
+    def: "Интерфейсные уловки и манипуляции (заранее проставленные галочки, скрытый мелкий шрифт, вводящие в заблуждение кнопки), делающие согласие недействительным.",
+    defEn: "Deceptive UI designs (pre-ticked boxes, hidden terms) that render consent legally invalid.",
+    law: "Ст. 5 Закона № 99-З",
+    example: "Предустановленная галочка «Согласен на получение рекламных рассылок от партнеров школы» в веб-форме регистрации.",
+    mistake: "Использование формы регистрации, где нельзя отказаться от передачи данных третьим лицам."
+  },
+  {
+    id: "cookies",
+    cat: "sec",
+    title: "Файлы Cookie",
+    titleEn: "Cookies",
+    def: "Фрагменты данных, сохраняемые браузером. Технические cookie не требуют согласия, а аналитические и маркетинговые cookie требуют предварительного информированного выбора пользователя.",
+    defEn: "Small data files stored by browsers. Analytics & marketing cookies require prior consent.",
+    law: "Разъяснения НЦЗПД о файлах cookie",
+    example: "Баннер на сайте университета с кнопками «Принять все», «Отклонить» и выбором категорий cookie.",
+    mistake: "Установка аналитических счетчиков Google Analytics/Яндекс.Метрики до получения согласия пользователя."
+  },
+  {
+    id: "portfolio",
+    cat: "edu",
+    title: "Портфолио учащегося / студента",
+    titleEn: "Student Portfolio",
+    def: "Комплекс материалов об индивидуальных достижениях. Внутреннее ведение регламентируется учебным планом, а публичное размещение требует согласия.",
+    defEn: "Record of individual student achievements. Public display requires explicit consent.",
+    law: "Кодекс об образовании",
+    example: "Хранение грамот и дипломов в личном кабинете студента внутри закрытой университетской сети.",
+    mistake: "Публикация полных дипломных работ с паспортными данными авторов в открытом интернет-доступе без согласия."
+  },
+  {
+    id: "ncpd",
+    cat: "basic",
+    title: "НЦЗПД Республики Беларусь",
+    titleEn: "National Center for Personal Data Protection (NCPD)",
+    def: "Специально уполномоченный орган по защите прав субъектов персональных данных, осуществляющий надзор, плановые и внеплановые проверки, дающий разъяснения и ведущий реестры.",
+    defEn: "The national supervisory authority in Belarus overseeing personal data protection compliance.",
+    law: "Указ Президента № 422, Закон № 99-З",
+    example: "Национальный центр защиты персональных данных Республики Беларусь (официальный портал cpd.by).",
+    mistake: "Игнорирование предписаний и запросов НЦЗПД при проведении проверок учреждения образования."
+  },
+  {
+    id: "encryption",
+    cat: "sec",
+    title: "Криптографическая защита и шифрование",
+    titleEn: "Encryption & Security Measures",
+    def: "Технические меры по защите персональных данных при их передаче по открытым каналам связи (HTTPS, VPN, шифрование баз данных).",
+    defEn: "Technical measures safeguarding data in transit and at rest using certified cryptographic protocols.",
+    law: "Приказ НЦЗПД № 64, СТБ 34.101.X",
+    example: "Использование SSL/TLS сертификатов на сайте школы и шифрование архивных резервных копий баз данных.",
+    mistake: "Пересылка таблиц с паспортными данными учащихся по незашифрованной электронной почте без пароля на архиве."
+  }
+];
+
+// ═════════════════════════════════════════════════════════════
+// LOCALIZATION DICTIONARY
+// ═════════════════════════════════════════════════════════════
+const translations = {
+  ru: {
+    pageTitle: "Глоссарий — EduSafe",
+    heroBadge: "Понятийный аппарат · Законодательство РБ",
+    heroTitle: "Глоссарий <span>персональных данных</span>",
+    heroSubtitle: "Полный справочник терминов, правовых определений, практических примеров и нормативных документов в сфере образования Республики Беларусь.",
+    searchPlaceholder: "Поиск по термину, статье закона или ключевому слову...",
+    featTag: "Термин для повторения",
+    randomBtnText: "Показать другой случайный термин",
+    alphaLabel: "Алфавит:",
+    statsCount: "Найдено терминов: ",
+    expandBtnText: "Раскрыть примеры",
+    collapseBtnText: "Свернуть примеры",
+    printBtnText: "Печать / PDF",
+    noResTitle: "Ничего не найдено",
+    noResSub: "Попробуйте изменить поисковый запрос или выбрать другую категорию.",
+    docsBadge: "Нормативная база",
+    docsTitle: "Ключевые правовые акты и документы",
+    docsSub: "Официальные источники законодательства Республики Беларусь и методические разъяснения регулятора",
+    footerDesc: "Республиканский информационно-практический ресурс по защите персональных данных в сфере образования Республики Беларусь.",
+    footerNavTitle: "Навигация",
+    footerContactTitle: "Контакты и поддержка",
+    footerCopyright: "© 2026 EduSafe. Все права защищены.",
+    footerDisclaimer1: "Ресурс не использует cookie-файлы слежения и не собирает персональные данные посетителей.",
+    footerDisclaimer2: "Материалы подготовлены в соответствии с Законом Республики Беларусь № 99-З «О защите персональных данных».",
+    toastCopied: "Определение скопировано в буфер обмена!",
+    navHome: "Главная", navTheory: "Теория", navPractice: "Практика",
+    navGlossary: "Глоссарий", navVideo: "Видео", navQuiz: "Викторина",
+    navBlog: "Блог", navComplaint: "Контакты",
+    catNames: {
+      all: "Все термины",
+      basic: "Базовые понятия",
+      sensitive: "Категории данных",
+      process: "Процессы и операции",
+      rights: "Права и согласия",
+      edu: "Школа и вуз",
+      sec: "Безопасность и IT"
+    }
+  },
+  en: {
+    pageTitle: "Glossary — EduSafe",
+    heroBadge: "Legal Concepts · Legislation of Belarus",
+    heroTitle: "Personal Data <span>Glossary</span>",
+    heroSubtitle: "Comprehensive glossary of terms, statutory legal definitions, practical examples, and regulatory documents in education.",
+    searchPlaceholder: "Search by term, legal article or keyword...",
+    featTag: "Term of the Day",
+    randomBtnText: "Show another random term",
+    alphaLabel: "Alphabet:",
+    statsCount: "Terms found: ",
+    expandBtnText: "Expand details",
+    collapseBtnText: "Collapse details",
+    printBtnText: "Print / PDF",
+    noResTitle: "No results found",
+    noResSub: "Try changing your search keywords or switching category filter.",
+    docsBadge: "Legal Framework",
+    docsTitle: "Key Legal Acts & Regulatory Documents",
+    docsSub: "Official sources of Belarusian legislation and official regulator guidelines",
+    footerDesc: "National practical information resource on personal data protection in education in the Republic of Belarus.",
+    footerNavTitle: "Navigation",
+    footerContactTitle: "Contacts & Support",
+    footerCopyright: "© 2026 EduSafe. All rights reserved.",
+    footerDisclaimer1: "This resource uses no tracking cookies and does not collect personal user data.",
+    footerDisclaimer2: "Materials comply with the Law of the Republic of Belarus No. 99-Z 'On Personal Data Protection'.",
+    toastCopied: "Definition copied to clipboard!",
+    navHome: "Home", navTheory: "Theory", navPractice: "Practice",
+    navGlossary: "Glossary", navVideo: "Videos", navQuiz: "Quiz",
+    navBlog: "Blog", navComplaint: "Contacts",
+    catNames: {
+      all: "All Terms",
+      basic: "Basic Concepts",
+      sensitive: "Data Categories",
+      process: "Operations & Actions",
+      rights: "Rights & Consent",
+      edu: "School & University",
+      sec: "Security & IT"
+    }
+  }
+};
+
+let currentLang = localStorage.getItem('lang') || 'ru';
+let activeCategory = 'all';
+let activeLetter = 'all';
+let searchQuery = '';
+let isAllExpanded = false;
+
+// DOM Elements
+const searchInput = document.getElementById('glossarySearch');
+const searchClearBtn = document.getElementById('searchClearBtn');
+const termsGrid = document.getElementById('termsGrid');
+const statsCountEl = document.getElementById('termsCountNum');
+const noResultsEl = document.getElementById('noResults');
+const alphabetBar = document.getElementById('alphabetBar');
+const filterPills = document.getElementById('filterPills');
+const randomTermBtn = document.getElementById('randomTermBtn');
+const expandAllBtn = document.getElementById('expandAllBtn');
+const printGlossaryBtn = document.getElementById('printGlossaryBtn');
+const toast = document.getElementById('toast');
+
+// Render Alphabet Bar
+function buildAlphabetBar() {
+  const letters = currentLang === 'ru' 
+    ? ['Все', 'А','Б','В','Г','Д','З','И','К','Л','Н','О','П','Р','С','Т','У','Ф','Х','Ц','Ч','Э']
+    : ['All', 'A','B','C','D','E','F','G','I','N','O','P','R','S','T','U','V','W'];
+
+  let html = `<span class="alpha-label" id="alphaLabel">${translations[currentLang].alphaLabel}</span>`;
+  letters.forEach(letter => {
+    const isAll = (letter === 'Все' || letter === 'All');
+    const val = isAll ? 'all' : letter;
+    const isActive = activeLetter === val ? 'active' : '';
+    html += `<button class="alpha-btn ${isActive}" data-letter="${val}">${letter}</button>`;
+  });
+  alphabetBar.innerHTML = html;
+
+  alphabetBar.querySelectorAll('.alpha-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeLetter = btn.dataset.letter;
+      alphabetBar.querySelectorAll('.alpha-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTerms();
+    });
+  });
+}
+
+// Render Terms
+function renderTerms() {
+  const query = searchQuery.trim().toLowerCase();
+  
+  const filtered = glossaryData.filter(item => {
+    // Category match
+    if (activeCategory !== 'all' && item.cat !== activeCategory) return false;
+
+    // Letter match
+    if (activeLetter !== 'all') {
+      const firstChar = (currentLang === 'ru' ? item.title : item.titleEn)[0].toUpperCase();
+      if (firstChar !== activeLetter) return false;
+    }
+
+    // Search query match
+    if (query) {
+      const matchRu = item.title.toLowerCase().includes(query) || item.def.toLowerCase().includes(query) || item.example.toLowerCase().includes(query) || item.law.toLowerCase().includes(query);
+      const matchEn = item.titleEn.toLowerCase().includes(query) || item.defEn.toLowerCase().includes(query);
+      if (!matchRu && !matchEn) return false;
+    }
+
+    return true;
+  });
+
+  statsCountEl.textContent = filtered.length;
+
+  if (filtered.length === 0) {
+    termsGrid.innerHTML = '';
+    noResultsEl.style.display = 'block';
+    return;
+  }
+
+  noResultsEl.style.display = 'none';
+
+  termsGrid.innerHTML = filtered.map((item, idx) => {
+    const catClass = 'cat-' + item.cat;
+    const catName = translations[currentLang].catNames[item.cat] || item.cat;
+    const title = currentLang === 'ru' ? item.title : item.titleEn;
+    const subTitle = currentLang === 'ru' ? item.titleEn : item.title;
+    const def = currentLang === 'ru' ? item.def : item.defEn;
+
+    return `
+      <div class="term-card" id="term-${item.id}">
+        <div class="term-header">
+          <div>
+            <h3 class="term-title">${title}</h3>
+            <div class="term-en-title">${subTitle}</div>
+          </div>
+          <span class="term-cat-badge ${catClass}">${catName}</span>
+        </div>
+        
+        <p class="term-definition">${def}</p>
+
+        <div class="term-meta-box">
+          <div class="term-law-ref"><i class="fas fa-balance-scale"></i> ${item.law}</div>
+          <div class="term-example"><strong>${currentLang === 'ru' ? 'Практика: ' : 'Practice: '}</strong>${item.example}</div>
+        </div>
+
+        <div class="term-footer">
+          <button class="copy-term-btn" onclick="copyTerm('${item.id}')">
+            <i class="fas fa-copy"></i> <span>${currentLang === 'ru' ? 'Копировать' : 'Copy'}</span>
+          </button>
+          <span class="term-num-badge">#${idx + 1}</span>
+        </div>
+      </div>
+    `;
+  }).join('');
+}
+
+// Random Term
+function setRandomTerm() {
+  const rand = glossaryData[Math.floor(Math.random() * glossaryData.length)];
+  document.getElementById('featTitle').textContent = currentLang === 'ru' ? rand.title : rand.titleEn;
+  document.getElementById('featDesc').textContent = currentLang === 'ru' ? rand.def : rand.defEn;
+}
+
+// Copy Term
+window.copyTerm = function(id) {
+  const item = glossaryData.find(t => t.id === id);
+  if (!item) return;
+  const title = currentLang === 'ru' ? item.title : item.titleEn;
+  const def = currentLang === 'ru' ? item.def : item.defEn;
+  const text = `${title} — ${def} (${item.law})`;
+  
+  navigator.clipboard.writeText(text).then(() => {
+    showToast(translations[currentLang].toastCopied);
+  }).catch(() => {
+    showToast('Скопировано!');
+  });
+};
+
+function showToast(msg) {
+  document.getElementById('toastText').textContent = msg;
+  toast.classList.add('show');
+  setTimeout(() => toast.classList.remove('show'), 2600);
+}
+
+// UI Controls setup
+function setupEventListeners() {
+  // Search
+  searchInput.addEventListener('input', (e) => {
+    searchQuery = e.target.value;
+    searchClearBtn.style.display = searchQuery ? 'block' : 'none';
+    renderTerms();
+  });
+
+  searchClearBtn.addEventListener('click', () => {
+    searchInput.value = '';
+    searchQuery = '';
+    searchClearBtn.style.display = 'none';
+    searchInput.focus();
+    renderTerms();
+  });
+
+  // Filter pills
+  filterPills.querySelectorAll('.filter-pill').forEach(btn => {
+    btn.addEventListener('click', () => {
+      activeCategory = btn.dataset.cat;
+      filterPills.querySelectorAll('.filter-pill').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      renderTerms();
+    });
+  });
+
+  // Random button
+  randomTermBtn.addEventListener('click', setRandomTerm);
+
+  // Expand / Collapse
+  expandAllBtn.addEventListener('click', () => {
+    isAllExpanded = !isAllExpanded;
+    document.querySelectorAll('.term-meta-box').forEach(el => {
+      el.style.display = isAllExpanded ? 'block' : 'none';
+    });
+    document.getElementById('expandBtnText').textContent = isAllExpanded 
+      ? translations[currentLang].collapseBtnText 
+      : translations[currentLang].expandBtnText;
+  });
+
+  // Print
+  printGlossaryBtn.addEventListener('click', () => {
+    window.print();
+  });
+
+  // Theme Toggles
+  function updateThemeUI() {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const icon = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+    const title = isDark ? (currentLang === "ru" ? "Светлая тема" : "Light theme") : (currentLang === "ru" ? "Тёмная тема" : "Dark theme");
+    document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+      if (b) {
+        b.innerHTML = icon;
+        b.setAttribute("title", title);
+      }
+    });
+  }
+
+  function toggleTheme() {
+    const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+    const newTheme = isDark ? "light" : "dark";
+    document.documentElement.setAttribute("data-theme", newTheme);
+    localStorage.setItem("theme", newTheme);
+    updateThemeUI();
+  }
+
+  document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+    if (b) b.addEventListener("click", toggleTheme);
+  });
+
+  // Language selectors
+  function updateLanguage(lang) {
+    currentLang = lang;
+    document.documentElement.lang = lang;
+    localStorage.setItem('lang', lang);
+    const t = translations[lang] || translations.ru;
+    document.title = t.pageTitle;
+
+    const ids = ['heroBadge', 'heroSubtitle', 'featTag', 'randomBtnText', 'expandBtnText', 'printBtnText', 'noResTitle', 'noResSub', 'docsBadge', 'docsTitle', 'docsSub', 'footerDesc', 'footerNavTitle', 'footerContactTitle', 'footerCopyright', 'footerDisclaimer1', 'footerDisclaimer2'];
+    ids.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && t[id]) el.textContent = t[id];
+    });
+
+    const ht = document.getElementById('heroTitle');
+    if (ht) ht.innerHTML = t.heroTitle;
+    searchInput.placeholder = t.searchPlaceholder;
+
+    ['Home','Theory','Practice','Glossary','Video','Quiz','Blog','Complaint'].forEach(item => {
+      const el = document.getElementById('nav'+item);
+      if (el) el.innerHTML = `<i class="${el.querySelector('i')?.className}"></i> ${t['nav'+item]}`;
+      const mel = document.getElementById('mobileNav'+item);
+      if (mel) mel.innerHTML = `<i class="${mel.querySelector('i')?.className}"></i> ${t['nav'+item]}`;
+    });
+
+    // Update pill text
+    filterPills.querySelectorAll('.filter-pill').forEach(pill => {
+      const cat = pill.dataset.cat;
+      const span = pill.querySelector('.pill-text');
+      if (span && t.catNames[cat]) span.textContent = t.catNames[cat];
+    });
+
+    if (document.getElementById('languageSelector')) document.getElementById('languageSelector').value = lang;
+    if (document.getElementById('mobileLanguageSelector')) document.getElementById('mobileLanguageSelector').value = lang;
+
+    buildAlphabetBar();
+    renderTerms();
+    setRandomTerm();
+    updateThemeUI();
+  }
+
+  if (document.getElementById('languageSelector')) {
+    document.getElementById('languageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+  }
+  if (document.getElementById('mobileLanguageSelector')) {
+    document.getElementById('mobileLanguageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+  }
+
+  // Drawer
+  const overlay = document.getElementById('drawerOverlay');
+  if (document.getElementById('navToggle')) {
+    document.getElementById('navToggle').addEventListener('click', () => {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  function closeDrawer() {
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (document.getElementById('drawerClose')) document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+  document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
+
+  // Initialize
+  updateLanguage(currentLang);
+  updateThemeUI();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  setupEventListeners();
+});
+</script>
+
+</body>
+</html>

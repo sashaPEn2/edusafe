@@ -1,126 +1,122 @@
 <!DOCTYPE html>
-<html lang="ru" id="htmlRoot">
+<html lang="ru">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title id="pageTitle">Теория — EduSafe</title>
-
-  <!-- Yandex.Metrika counter -->
-  <script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-      m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-      m[i].l=1*new Date();
-      for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-      k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105618727', 'ym');
-    ym(105618727, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-  </script>
-  <noscript><div><img src="https://mc.yandex.ru/watch/105618727" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-
-  <!-- Vercel Web Analytics -->
-  <script>
-    window.va = window.va || function () { (window.vaq = window.vaq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/insights/script.js"></script>
-
-  <!-- Vercel Speed Insights -->
-  <script>
-    window.si = window.si || function () { (window.siq = window.siq || []).push(arguments); };
-  </script>
-  <script defer src="/_vercel/speed-insights/script.js"></script>
-
-  <link rel="icon" href="./favicon.svg" type="image/svg+xml">
+  <link rel="icon" type="image/x-icon" href="favcion.ico">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Unbounded:wght@400;600;700;800&family=Golos+Text:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+
+  <script>
+    (function() {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+        document.documentElement.setAttribute("data-theme", "dark");
+      } else {
+        document.documentElement.setAttribute("data-theme", "light");
+      }
+    })();
+  </script>
 
   <style>
     :root {
-      --ink: #0d1117;
-      --ink-soft: #1e2633;
+      --ink: #0f172a;
+      --ink-soft: #334155;
       --accent: #0057d9;
-      --accent-light: #3b82f6;
-      --accent-pale: #dbeafe;
-      --teal: #0ea5c7;
+      --accent-light: #2563eb;
+      --accent-pale: #eff6ff;
+      --teal: #0284c7;
+      --teal-pale: #f0f9ff;
       --mint: #d1fae5;
+      --green: #059669;
+      --green-pale: #ecfdf5;
+      --purple: #7c3aed;
+      --purple-pale: #f5f3ff;
       --surface: #ffffff;
-      --surface-2: #f5f7fb;
+      --surface-2: #f8fafc;
+      --surface-3: #f1f5f9;
       --border: #e2e8f0;
+      --border-subtle: #f1f5f9;
       --text-muted: #64748b;
       --white: #ffffff;
+      --hero-bg: #090e1a;
+      --banner-bg: #0d1527;
+      --footer-bg: #060a12;
+      --card-bg: #ffffff;
+      --card-border: #e2e8f0;
+      --input-bg: #ffffff;
+      --input-border: #cbd5e1;
+      --shadow-sm: 0 1px 3px rgba(10,15,29,0.06);
+      --shadow: 0 4px 16px rgba(10,15,29,0.08);
+      --shadow-lg: 0 12px 32px rgba(10,15,29,0.12);
       --radius-sm: 8px;
-      --radius: 16px;
-      --radius-lg: 24px;
-      --shadow-sm: 0 1px 4px rgba(0,0,0,0.06);
-      --shadow: 0 4px 20px rgba(0,0,0,0.08);
-      --shadow-lg: 0 16px 48px rgba(0,0,0,0.12);
+      --radius: 14px;
+      --radius-lg: 20px;
+    }
+
+    [data-theme="dark"] {
+      --ink: #f8fafc;
+      --ink-soft: #cbd5e1;
+      --accent: #3b82f6;
+      --accent-light: #60a5fa;
+      --accent-pale: rgba(59, 130, 246, 0.16);
+      --teal: #38bdf8;
+      --teal-pale: rgba(56, 189, 248, 0.16);
+      --mint: rgba(16, 185, 129, 0.2);
+      --green: #34d399;
+      --green-pale: rgba(52, 211, 153, 0.16);
+      --purple: #a78bfa;
+      --purple-pale: rgba(167, 139, 250, 0.16);
+      --surface: #111827;
+      --surface-2: #0b0f19;
+      --surface-3: #1a233a;
+      --border: #232f48;
+      --border-subtle: #1e293b;
+      --text-muted: #94a3b8;
+      --white: #ffffff;
+      --hero-bg: #070b14;
+      --banner-bg: #0f1629;
+      --footer-bg: #05080f;
+      --card-bg: #131d31;
+      --card-border: #23314d;
+      --input-bg: #0f1629;
+      --input-border: #2a3b5c;
+      --shadow-sm: 0 1px 4px rgba(0,0,0,0.4);
+      --shadow: 0 4px 20px rgba(0,0,0,0.5);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,0.65);
     }
 
     *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
     html { scroll-behavior: smooth; }
-
     body {
       font-family: 'Golos Text', sans-serif;
       background: var(--surface-2);
       color: var(--ink);
       line-height: 1.65;
       overflow-x: hidden;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
     }
+    .container { width: 100%; max-width: 1180px; margin: 0 auto; padding: 0 1.5rem; }
 
-    .container {
-      width: 100%;
-      max-width: 1180px;
-      margin: 0 auto;
-      padding: 0 1.5rem;
-    }
-
-    /* ─── HEADER ──────────────────────────────── */
+    /* HEADER */
     header {
       background: var(--surface);
       border-bottom: 1px solid var(--border);
       position: sticky;
       top: 0;
       z-index: 200;
+      transition: background 0.3s, border-color 0.3s;
     }
-
-    .header-inner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      height: 68px;
-      gap: 1rem;
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      flex-shrink: 0;
-    }
-
-    .logo-icon {
-      width: 38px; height: 38px;
-      background: var(--accent);
-      border-radius: 10px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 1rem;
-    }
-
-    .logo-text {
-      font-family: 'Unbounded', sans-serif;
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--ink);
-    }
-
-    .nav-desktop {
-      display: flex;
-      align-items: center;
-      gap: 0.25rem;
-    }
-
+    .header-inner { display: flex; align-items: center; justify-content: space-between; height: 68px; gap: 1rem; }
+    .logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; flex-shrink: 0; }
+    .logo-icon { width: 38px; height: 38px; background: var(--accent); border-radius: 10px; display: flex; align-items: center; justify-content: center; color: white; font-size: 1rem; }
+    .logo-text { font-family: 'Unbounded', sans-serif; font-weight: 700; font-size: 1.2rem; color: var(--ink); }
+    .nav-desktop { display: flex; align-items: center; gap: 0.25rem; }
     .nav-desktop a {
       text-decoration: none;
       color: var(--text-muted);
@@ -134,19 +130,8 @@
       align-items: center;
       gap: 0.4rem;
     }
-
-    .nav-desktop a:hover, .nav-desktop a.active {
-      background: var(--accent-pale);
-      color: var(--accent);
-    }
-
-    .header-right {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      flex-shrink: 0;
-    }
-
+    .nav-desktop a:hover, .nav-desktop a.active { background: var(--accent-pale); color: var(--accent); }
+    .header-right { display: flex; align-items: center; gap: 0.75rem; flex-shrink: 0; }
     .lang-select {
       padding: 0.4rem 0.7rem;
       border: 1px solid var(--border);
@@ -158,755 +143,234 @@
       cursor: pointer;
       outline: none;
     }
-
-    .burger {
-      display: none;
-      background: none;
-      border: none;
-      color: var(--ink);
-      font-size: 1.4rem;
-      cursor: pointer;
-      padding: 0.3rem;
-      border-radius: 8px;
-      transition: background 0.2s;
-    }
-    .burger:hover { background: var(--surface-2); }
-
-    /* ─── MOBILE DRAWER ───────────────────────── */
-    .drawer-overlay {
-      position: fixed; inset: 0;
-      background: rgba(0,0,0,0.45);
-      backdrop-filter: blur(3px);
-      z-index: 300;
-      opacity: 0; visibility: hidden;
-      transition: opacity 0.3s, visibility 0.3s;
-    }
-    .drawer-overlay.open { opacity: 1; visibility: visible; }
-
-    .drawer {
-      position: fixed;
-      top: 0; right: 0;
-      width: min(88%, 340px);
-      height: 100%;
-      background: var(--surface);
-      z-index: 301;
-      transform: translateX(100%);
-      transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1);
-      display: flex;
-      flex-direction: column;
-      padding: 1.5rem;
-    }
-    .drawer-overlay.open .drawer { transform: translateX(0); }
-
-    .drawer-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      padding-bottom: 1.25rem;
-      border-bottom: 1px solid var(--border);
-      margin-bottom: 1.25rem;
-    }
-
-    .drawer-close {
-      background: var(--surface-2); border: none;
-      width: 36px; height: 36px;
-      border-radius: 8px;
-      display: flex; align-items: center; justify-content: center;
-      cursor: pointer; font-size: 1rem; color: var(--text-muted);
-    }
-
-    .drawer-nav {
-      display: flex;
-      flex-direction: column;
-      gap: 0.5rem;
-    }
-
-    .drawer-nav a {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      padding: 0.8rem 1rem;
+    .theme-toggle-btn {
+      width: 38px; height: 38px;
       border-radius: var(--radius-sm);
-      text-decoration: none;
+      border: 1px solid var(--border);
+      background: var(--surface);
       color: var(--ink);
-      font-weight: 500;
-      transition: all 0.2s;
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 0.95rem;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      flex-shrink: 0;
     }
-    .drawer-nav a i { color: var(--accent); width: 18px; text-align: center; }
-    .drawer-nav a:hover, .drawer-nav a.active {
+    .theme-toggle-btn:hover {
       background: var(--accent-pale);
       color: var(--accent);
+      border-color: var(--accent-light);
     }
+    .burger { display: none; background: none; border: none; color: var(--ink); font-size: 1.4rem; cursor: pointer; padding: 0.3rem; border-radius: 8px; }
+    .burger:hover { background: var(--surface-3); }
 
-    .drawer-lang {
-      margin-top: 1.5rem;
-      padding-top: 1.25rem;
-      border-top: 1px solid var(--border);
-    }
+    /* DRAWER */
+    .drawer-overlay { position: fixed; inset: 0; background: rgba(0,0,0,0.45); backdrop-filter: blur(3px); z-index: 300; opacity: 0; visibility: hidden; transition: opacity 0.3s, visibility 0.3s; }
+    .drawer-overlay.open { opacity: 1; visibility: visible; }
+    .drawer { position: fixed; top: 0; right: 0; width: min(88%, 340px); height: 100%; background: var(--surface); z-index: 301; transform: translateX(100%); transition: transform 0.35s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; padding: 1.5rem; }
+    .drawer-overlay.open .drawer { transform: translateX(0); }
+    .drawer-head { display: flex; align-items: center; justify-content: space-between; margin-bottom: 2rem; }
+    .drawer-close { background: var(--surface-3); border: none; width: 36px; height: 36px; border-radius: 8px; display: flex; align-items: center; justify-content: center; cursor: pointer; font-size: 1rem; color: var(--text-muted); }
+    .drawer-nav { display: flex; flex-direction: column; gap: 0.4rem; }
+    .drawer-nav a { text-decoration: none; color: var(--ink); font-weight: 500; font-size: 0.95rem; padding: 0.75rem 1rem; border-radius: var(--radius-sm); transition: all 0.2s; display: flex; align-items: center; gap: 0.75rem; }
+    .drawer-nav a:hover, .drawer-nav a.active { background: var(--accent-pale); color: var(--accent); }
 
-    /* ─── HERO ───────────────────────────────── */
-    .hero {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      padding: 4.5rem 0 3.5rem;
-    }
+    /* HERO */
+    .hero { background: var(--hero-bg); position: relative; overflow: hidden; padding: 4.5rem 0 3.5rem; color: #fff; text-align: center; }
+    .hero-grid { position: absolute; inset: 0; background-image: linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px), linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px); background-size: 48px 48px; }
+    .hero-glow { position: absolute; width: 600px; height: 600px; background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%); top: -200px; right: -100px; pointer-events: none; }
+    .hero-glow-2 { position: absolute; width: 400px; height: 400px; background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%); bottom: -150px; left: -50px; pointer-events: none; }
+    .hero-content { position: relative; z-index: 2; max-width: 820px; margin: 0 auto; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 0.5rem; background: rgba(59,130,246,0.15); border: 1px solid rgba(59,130,246,0.3); color: #93c5fd; font-size: 0.8rem; font-weight: 600; padding: 0.45rem 1rem; border-radius: 999px; margin-bottom: 1.5rem; letter-spacing: 0.02em; }
+    .hero h1 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.75rem, 4vw, 2.75rem); font-weight: 700; color: #ffffff; line-height: 1.25; margin-bottom: 1rem; }
+    .hero h1 span { background: linear-gradient(135deg, #60a5fa, #38bdf8); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+    .hero-sub { font-size: 1.05rem; color: #cbd5e1; max-width: 680px; margin: 0 auto; line-height: 1.7; }
 
-    .hero-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(59,130,246,0.08) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.08) 1px, transparent 1px);
-      background-size: 48px 48px;
-    }
+    /* CONTENT */
+    .content-area { padding: 4rem 0 5rem; flex: 1; }
 
-    .hero-glow {
-      position: absolute;
-      width: 600px; height: 600px;
-      background: radial-gradient(circle, rgba(0,87,217,0.35) 0%, transparent 70%);
-      top: -200px; right: -100px;
-      pointer-events: none;
-    }
-
-    .hero-glow-2 {
-      position: absolute;
-      width: 400px; height: 400px;
-      background: radial-gradient(circle, rgba(14,165,199,0.2) 0%, transparent 70%);
-      bottom: -150px; left: -50px;
-      pointer-events: none;
-    }
-
-    .hero-content {
-      position: relative; z-index: 2;
+    /* ROLE SELECTOR */
+    .role-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius-lg);
+      padding: 2.25rem;
+      margin-bottom: 3.5rem;
+      box-shadow: var(--shadow-sm);
       text-align: center;
-      max-width: 820px;
-      margin: 0 auto;
     }
+    .role-section-header { max-width: 620px; margin: 0 auto 2rem; }
+    .role-tag { display: inline-block; font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; background: var(--accent-pale); color: var(--accent); padding: 0.3rem 0.8rem; border-radius: 999px; margin-bottom: 0.6rem; }
+    .role-title { font-family: 'Unbounded', sans-serif; font-size: 1.4rem; font-weight: 700; color: var(--ink); margin-bottom: 0.4rem; }
+    .role-sub { font-size: 0.92rem; color: var(--text-muted); }
 
-    .hero-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.15);
-      border: 1px solid rgba(59,130,246,0.3);
-      color: #93c5fd;
-      font-size: 0.8rem;
-      font-weight: 600;
-      padding: 0.45rem 1rem;
-      border-radius: 999px;
-      margin-bottom: 1.75rem;
-      letter-spacing: 0.02em;
-    }
-
-    .hero h1 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.6rem, 3.5vw, 2.6rem);
-      font-weight: 700;
-      color: var(--white);
-      line-height: 1.2;
-      margin-bottom: 1.25rem;
-      letter-spacing: -0.02em;
-    }
-
-    .hero h1 span {
-      background: linear-gradient(135deg, #60a5fa, #38bdf8);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      background-clip: text;
-    }
-
-    .hero-sub {
-      font-size: 1.05rem;
-      color: #94a3b8;
-      max-width: 640px;
-      margin: 0 auto 2rem;
-      line-height: 1.7;
-    }
-
-    .hero-note {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.12);
-      color: #cbd5e1;
-      padding: 0.5rem 1.25rem;
-      border-radius: 999px;
-      font-size: 0.85rem;
-    }
-
-    /* ─── ROLE CHOOSER LANDING ──────────────── */
-    .role-chooser {
-      padding: 4rem 0 5rem;
-      background: var(--surface-2);
-    }
-
-    .role-chooser-header {
-      text-align: center;
-      margin-bottom: 3rem;
-    }
-
-    .section-tag {
-      display: inline-block;
-      background: var(--accent-pale);
-      color: var(--accent);
-      font-size: 0.75rem;
-      font-weight: 600;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      padding: 0.35rem 0.9rem;
-      border-radius: 999px;
-      margin-bottom: 1rem;
-    }
-
-    .section-title {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.4rem, 2.8vw, 2.1rem);
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.75rem;
-      letter-spacing: -0.02em;
-      line-height: 1.25;
-    }
-
-    .section-sub {
-      font-size: 1.05rem;
-      color: var(--text-muted);
-      max-width: 560px;
-      line-height: 1.7;
-      margin: 0 auto;
-    }
-
-    .roles-grid {
+    .role-grid {
       display: grid;
-      grid-template-columns: repeat(4, 1fr);
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
       gap: 1.25rem;
     }
-
     .role-card {
-      background: var(--surface);
-      border: 2px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem 1.5rem;
-      cursor: pointer;
-      text-align: center;
-      transition: all 0.3s cubic-bezier(0.22, 1, 0.36, 1);
-      position: relative;
-      overflow: hidden;
-      user-select: none;
-    }
-
-    .role-card::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background: var(--role-grad, linear-gradient(135deg, #eff6ff, #f0fdff));
-      opacity: 0;
-      transition: opacity 0.3s;
-    }
-
-    .role-card:hover {
-      border-color: var(--role-color, var(--accent));
-      transform: translateY(-6px);
-      box-shadow: 0 16px 40px rgba(0,0,0,0.1);
-    }
-
-    .role-card:hover::before { opacity: 1; }
-
-    .role-card.selected {
-      border-color: var(--role-color, var(--accent));
-      background: var(--surface);
-      box-shadow: 0 0 0 4px rgba(var(--role-rgb, 0,87,217), 0.12), 0 12px 32px rgba(0,0,0,0.08);
-    }
-
-    .role-card.selected::before { opacity: 1; }
-
-    .role-card-inner { position: relative; z-index: 1; }
-
-    .role-icon-wrap {
-      width: 72px; height: 72px;
-      border-radius: 20px;
-      display: flex; align-items: center; justify-content: center;
-      margin: 0 auto 1.25rem;
-      font-size: 1.75rem;
-      background: var(--role-icon-bg, #eff6ff);
-      color: var(--role-color, var(--accent));
-      transition: transform 0.3s;
-    }
-
-    .role-card:hover .role-icon-wrap,
-    .role-card.selected .role-icon-wrap {
-      transform: scale(1.08);
-    }
-
-    .role-card h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.5rem;
-      line-height: 1.35;
-    }
-
-    .role-card p {
-      font-size: 0.82rem;
-      color: var(--text-muted);
-      line-height: 1.55;
-    }
-
-    .role-check {
-      position: absolute;
-      top: 1rem; right: 1rem;
-      width: 26px; height: 26px;
-      border-radius: 50%;
-      background: var(--role-color, var(--accent));
-      color: white;
-      display: flex; align-items: center; justify-content: center;
-      font-size: 0.75rem;
-      opacity: 0;
-      transform: scale(0.5);
-      transition: all 0.25s cubic-bezier(0.22, 1, 0.36, 1);
-    }
-
-    .role-card.selected .role-check {
-      opacity: 1;
-      transform: scale(1);
-    }
-
-    /* Role colors */
-    .role-card-teacher {
-      --role-color: #0057d9;
-      --role-rgb: 0,87,217;
-      --role-grad: linear-gradient(135deg, #eff6ff, #f0f9ff);
-      --role-icon-bg: #dbeafe;
-    }
-    .role-card-professor {
-      --role-color: #7c3aed;
-      --role-rgb: 124,58,237;
-      --role-grad: linear-gradient(135deg, #f5f3ff, #fdf4ff);
-      --role-icon-bg: #ede9fe;
-    }
-    .role-card-pupil {
-      --role-color: #059669;
-      --role-rgb: 5,150,105;
-      --role-grad: linear-gradient(135deg, #ecfdf5, #f0fdf4);
-      --role-icon-bg: #d1fae5;
-    }
-    .role-card-student {
-      --role-color: #d97706;
-      --role-rgb: 217,119,6;
-      --role-grad: linear-gradient(135deg, #fffbeb, #fef9ec);
-      --role-icon-bg: #fef3c7;
-    }
-
-    /* ─── CONTENT SECTION ───────────────────── */
-    .content-area {
-      display: none;
-      animation: fadeInContent 0.5s ease both;
-    }
-
-    .content-area.visible { display: block; }
-
-    @keyframes fadeInContent {
-      from { opacity: 0; transform: translateY(16px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    /* ─── ROLE LANDING HERO ──────────────────── */
-    .role-landing {
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-      padding: 4rem 0;
-    }
-
-    .role-landing-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 3rem;
-      align-items: center;
-    }
-
-    .role-landing-text .role-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      padding: 0.4rem 1rem;
-      border-radius: 999px;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 1.25rem;
-    }
-
-    .role-landing-text h2 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.35rem, 2.5vw, 1.9rem);
-      font-weight: 700;
-      color: var(--ink);
-      line-height: 1.25;
-      margin-bottom: 0.9rem;
-      letter-spacing: -0.02em;
-    }
-
-    .role-landing-text p {
-      font-size: 1rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-      margin-bottom: 1.75rem;
-    }
-
-    .role-landing-visual {
-      background: var(--ink);
-      border-radius: var(--radius-lg);
-      padding: 2.25rem;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .role-landing-visual-grid {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(59,130,246,0.07) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.07) 1px, transparent 1px);
-      background-size: 32px 32px;
-    }
-
-    .role-visual-content { position: relative; z-index: 1; }
-
-    .role-visual-tag {
-      display: inline-flex;
-      align-items: center;
-      gap: 0.5rem;
-      background: rgba(59,130,246,0.2);
-      border: 1px solid rgba(59,130,246,0.3);
-      color: #93c5fd;
-      padding: 0.35rem 0.85rem;
-      border-radius: 999px;
-      font-size: 0.78rem;
-      font-weight: 600;
-      margin-bottom: 1.1rem;
-    }
-
-    .role-visual-content h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.2rem;
-      font-weight: 700;
-      color: white;
-      margin-bottom: 0.75rem;
-      line-height: 1.35;
-    }
-
-    .role-visual-content p {
-      color: #94a3b8;
-      font-size: 0.88rem;
-      line-height: 1.7;
-    }
-
-    .role-visual-stats {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.75rem;
-      margin-top: 1.5rem;
-    }
-
-    .role-visual-stat {
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      border-radius: 10px;
-      padding: 0.75rem 1rem;
-    }
-
-    .role-visual-stat span {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.4rem;
-      font-weight: 700;
-      color: #60a5fa;
-      display: block;
-      line-height: 1;
-      margin-bottom: 0.3rem;
-    }
-
-    .role-visual-stat small {
-      font-size: 0.75rem;
-      color: #64748b;
-    }
-
-    /* ─── ARTICLES SECTION ───────────────────── */
-    .articles-section {
-      padding: 4rem 0;
       background: var(--surface-2);
+      border: 2px solid var(--border);
+      border-radius: var(--radius);
+      padding: 1.75rem 1.25rem;
+      text-align: center;
+      cursor: pointer;
+      transition: all 0.25s;
     }
-
-    .articles-header {
-      margin-bottom: 2.5rem;
-    }
-
-    .articles-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 1.5rem;
-      margin-bottom: 2.5rem;
-    }
-
-    .article-card {
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-lg);
-      padding: 2rem;
-      position: relative;
-      overflow: hidden;
-      transition: transform 0.25s, box-shadow 0.25s, border-color 0.25s;
-    }
-
-    .article-card::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 3px;
-      background: var(--art-accent, var(--accent));
-      border-radius: 999px 999px 0 0;
-    }
-
-    .article-card:hover {
-      transform: translateY(-4px);
-      box-shadow: var(--shadow-lg);
-      border-color: transparent;
-    }
-
-    .art-num {
-      width: 36px; height: 36px;
-      border-radius: 10px;
-      background: var(--art-pale, var(--accent-pale));
-      color: var(--art-accent, var(--accent));
-      display: flex; align-items: center; justify-content: center;
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.85rem;
-      font-weight: 700;
-      margin-bottom: 1rem;
-      flex-shrink: 0;
-    }
-
-    .article-card h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 0.95rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.85rem;
-      line-height: 1.35;
-    }
-
-    .article-card-body {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-      line-height: 1.7;
-    }
-
-    .article-card-body p { margin-bottom: 0.75rem; }
-    .article-card-body p:last-child { margin-bottom: 0; }
-    .article-card-body strong { color: var(--ink); font-weight: 600; }
-    .article-card-body ul { padding-left: 1.25rem; margin-bottom: 0.75rem; }
-    .article-card-body li { margin-bottom: 0.3rem; }
-
-    /* ─── RECS BOX ────────────────────────────── */
-    .recs-box {
-      border-radius: var(--radius-lg);
-      padding: 2.25rem;
-      border: 1px solid var(--recs-border, var(--border));
-      background: var(--recs-bg, var(--surface));
-    }
-
-    .recs-box h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.05rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 1.5rem;
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-    }
-
-    .recs-box h3 i {
-      color: var(--recs-accent, var(--accent));
-    }
-
-    .recs-list {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 0.85rem;
-      list-style: none;
-    }
-
-    .recs-list li {
-      background: var(--surface);
-      border: 1px solid var(--recs-border-li, var(--border));
-      border-left: 4px solid var(--recs-accent, var(--accent));
-      border-radius: var(--radius-sm);
-      padding: 0.85rem 1.1rem;
-      font-size: 0.88rem;
-      color: var(--ink);
-      line-height: 1.55;
-    }
-
-    /* ─── DOCS SECTION ────────────────────────── */
-    .docs-section {
-      padding: 4rem 0;
-      background: var(--surface);
-      border-top: 1px solid var(--border);
-    }
-
-    .docs-card {
-      background: linear-gradient(135deg, #eff6ff 0%, #f0fdff 100%);
-      border: 1.5px solid #bfdbfe;
-      border-radius: var(--radius-lg);
-      padding: 2.5rem 3rem;
-    }
-
-    .docs-card-header {
-      display: flex;
-      align-items: center;
-      gap: 1.5rem;
-      margin-bottom: 1.5rem;
-    }
-
-    .docs-icon {
-      width: 64px; height: 64px;
-      background: var(--accent);
-      border-radius: 16px;
-      display: flex; align-items: center; justify-content: center;
-      color: white; font-size: 1.5rem;
-      flex-shrink: 0;
-      box-shadow: 0 8px 24px rgba(0,87,217,0.25);
-    }
-
-    .docs-card-header h3 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: 1.1rem;
-      font-weight: 700;
-      color: var(--ink);
-      margin-bottom: 0.4rem;
-    }
-
-    .docs-card-header p {
-      font-size: 0.88rem;
-      color: var(--text-muted);
-    }
-
-    .doc-links {
-      display: flex;
-      flex-direction: column;
-      gap: 0.75rem;
-      margin-bottom: 1.25rem;
-    }
-
-    .doc-link {
-      display: flex;
-      align-items: center;
-      gap: 0.75rem;
-      background: var(--surface);
-      border: 1px solid var(--border);
-      border-radius: var(--radius-sm);
-      padding: 1rem 1.25rem;
-      text-decoration: none;
-      color: var(--ink);
-      font-size: 0.88rem;
-      font-weight: 500;
-      transition: all 0.2s;
-    }
-
-    .doc-link:hover {
+    .role-card:hover, .role-card.active {
       border-color: var(--accent);
+      background: var(--card-bg);
+      transform: translateY(-4px);
+      box-shadow: var(--shadow);
+    }
+    .role-icon {
+      width: 52px; height: 52px;
+      border-radius: 12px;
       background: var(--accent-pale);
       color: var(--accent);
-      transform: translateX(4px);
+      display: inline-flex;
+      align-items: center; justify-content: center;
+      font-size: 1.4rem;
+      margin-bottom: 1rem;
     }
-
-    .doc-link i { color: #ef4444; font-size: 1.1rem; flex-shrink: 0; }
-    .doc-note { font-size: 0.8rem; color: var(--text-muted); }
-
-    /* ─── CTA SECTION ─────────────────────────── */
-    .cta-theory {
-      background: var(--ink);
-      position: relative;
-      overflow: hidden;
-      padding: 4.5rem 0;
-      text-align: center;
-    }
-
-    .cta-bg {
-      position: absolute; inset: 0;
-      background-image:
-        linear-gradient(rgba(59,130,246,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(59,130,246,0.06) 1px, transparent 1px);
-      background-size: 40px 40px;
-    }
-
-    .cta-content { position: relative; z-index: 1; }
-
-    .cta-theory h2 {
-      font-family: 'Unbounded', sans-serif;
-      font-size: clamp(1.4rem, 2.5vw, 2rem);
+    .role-card.active .role-icon {
+      background: var(--accent);
       color: white;
-      margin-bottom: 0.75rem;
+    }
+    .role-card h4 { font-family: 'Unbounded', sans-serif; font-size: 1.05rem; font-weight: 700; color: var(--ink); margin-bottom: 0.35rem; }
+    .role-card p { font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; }
+
+    /* THEORY SECTIONS */
+    .theory-block { margin-bottom: 3.5rem; }
+    .theory-block-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.5rem;
       font-weight: 700;
-    }
-
-    .cta-theory p {
-      color: #94a3b8;
-      font-size: 1rem;
-      max-width: 500px;
-      margin: 0 auto 2.25rem;
-    }
-
-    .cta-btns {
+      color: var(--ink);
+      margin-bottom: 1.5rem;
+      padding-bottom: 0.75rem;
+      border-bottom: 2px solid var(--border);
       display: flex;
-      justify-content: center;
-      flex-wrap: wrap;
+      align-items: center;
       gap: 0.75rem;
     }
+    .theory-block-title i { color: var(--accent); }
 
+    .article {
+      background: var(--card-bg);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius-lg);
+      padding: 2rem;
+      margin-bottom: 1.5rem;
+      box-shadow: var(--shadow-sm);
+      transition: border-color 0.2s;
+    }
+    .article:hover { border-color: var(--accent-light); }
+    .article-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-bottom: 1.25rem;
+      flex-wrap: wrap;
+    }
+    .article-title {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: var(--ink);
+      line-height: 1.4;
+    }
+    .article-ref {
+      font-size: 0.75rem;
+      font-weight: 700;
+      background: var(--accent-pale);
+      color: var(--accent);
+      padding: 0.3rem 0.75rem;
+      border-radius: 999px;
+      white-space: nowrap;
+    }
+    [data-theme="dark"] .article-ref { background: rgba(59,130,246,0.2); color: #93c5fd; }
+    .article-body p { font-size: 0.95rem; color: var(--ink-soft); line-height: 1.7; margin-bottom: 1rem; }
+    .article-body ul { padding-left: 1.5rem; margin-bottom: 1.25rem; font-size: 0.95rem; color: var(--ink-soft); }
+    .article-body li { margin-bottom: 0.5rem; line-height: 1.6; }
+
+    .definition {
+      background: var(--surface-2);
+      border-left: 4px solid var(--accent);
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0;
+    }
+    .definition h4 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--accent);
+      margin-bottom: 0.35rem;
+    }
+    .definition p { font-size: 0.9rem; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+
+    .edu-note {
+      background: #fffbeb;
+      border-left: 4px solid #f59e0b;
+      border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+      padding: 1.25rem 1.5rem;
+      margin: 1.25rem 0 0.5rem;
+    }
+    [data-theme="dark"] .edu-note { background: #1a1e28; border-color: #f59e0b; }
+    .edu-note h5 {
+      font-family: 'Unbounded', sans-serif;
+      font-size: 0.9rem;
+      font-weight: 700;
+      color: #b45309;
+      margin-bottom: 0.35rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    [data-theme="dark"] .edu-note h5 { color: #fbbf24; }
+    .edu-note p { font-size: 0.88rem; color: var(--ink-soft); margin: 0; line-height: 1.6; }
+
+    /* CTA */
+    .cta-banner {
+      background: var(--banner-bg);
+      border-radius: var(--radius-lg);
+      padding: 3.5rem 2rem;
+      text-align: center;
+      color: white;
+      margin-top: 4rem;
+      position: relative;
+      overflow: hidden;
+    }
+    .cta-banner h2 { font-family: 'Unbounded', sans-serif; font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; margin-bottom: 0.75rem; color: white; }
+    .cta-banner p { font-size: 1rem; color: #cbd5e1; max-width: 580px; margin: 0 auto 2rem; }
+    .cta-btns { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
     .btn {
       display: inline-flex;
       align-items: center;
       gap: 0.5rem;
-      font-family: 'Golos Text', sans-serif;
       font-weight: 600;
       font-size: 0.9rem;
-      padding: 0.85rem 1.75rem;
+      padding: 0.8rem 1.6rem;
       border-radius: var(--radius-sm);
       text-decoration: none;
       transition: all 0.25s;
-      cursor: pointer;
-      border: none;
     }
+    .btn-primary { background: var(--accent); color: white; }
+    .btn-primary:hover { background: #0041a8; transform: translateY(-2px); }
+    .btn-ghost { background: rgba(255,255,255,0.1); color: white; border: 1px solid rgba(255,255,255,0.2); }
+    .btn-ghost:hover { background: rgba(255,255,255,0.18); transform: translateY(-2px); }
 
-    .btn-primary {
-      background: var(--accent);
-      color: white;
-      box-shadow: 0 4px 16px rgba(0,87,217,0.35);
-    }
-    .btn-primary:hover {
-      background: #0041a8;
-      transform: translateY(-2px);
-      box-shadow: 0 8px 20px rgba(0,87,217,0.4);
-    }
-
-    .btn-ghost {
-      background: rgba(255,255,255,0.08);
-      color: white;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-    .btn-ghost:hover {
-      background: rgba(255,255,255,0.14);
-      transform: translateY(-2px);
-    }
-
-    /* ─── FOOTER ─────────────────────────────── */
+    /* FOOTER */
     footer {
-      background: #070b11;
+      background: var(--footer-bg);
       color: #64748b;
-      padding: 3rem 0 2rem;
+      padding: 3.5rem 0 2rem;
+      margin-top: auto;
+      border-top: 1px solid rgba(255,255,255,0.06);
     }
-
     .footer-top {
       display: flex;
       align-items: flex-start;
@@ -917,826 +381,488 @@
       padding-bottom: 2rem;
       border-bottom: 1px solid rgba(255,255,255,0.07);
     }
-
     .footer-brand { max-width: 320px; }
-
-    .footer-logo {
-      display: flex;
-      align-items: center;
-      gap: 0.6rem;
-      text-decoration: none;
-      margin-bottom: 0.75rem;
-    }
+    .footer-logo { display: flex; align-items: center; gap: 0.6rem; text-decoration: none; margin-bottom: 0.75rem; }
     .footer-logo .logo-icon { background: var(--accent); }
     .footer-logo .logo-text { color: white; font-size: 1.1rem; }
-
     .footer-brand p { font-size: 0.85rem; line-height: 1.65; }
-
-    .footer-nav-title {
-      font-size: 0.75rem;
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.08em;
-      color: #94a3b8;
-      margin-bottom: 0.75rem;
-    }
-
-    .footer-links {
-      list-style: none;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    .footer-links a {
-      text-decoration: none;
-      color: #64748b;
-      font-size: 0.88rem;
-      transition: color 0.2s;
-    }
+    .footer-nav-title { font-size: 0.75rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; color: #94a3b8; margin-bottom: 0.75rem; }
+    .footer-links { list-style: none; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-links a { text-decoration: none; color: #64748b; font-size: 0.88rem; transition: color 0.2s; }
     .footer-links a:hover { color: #94a3b8; }
+    .footer-bottom { font-size: 0.78rem; text-align: center; display: flex; flex-direction: column; gap: 0.4rem; }
+    .footer-bottom a { color: #60a5fa; text-decoration: none; }
 
-    .footer-bottom {
-      font-size: 0.78rem;
-      text-align: center;
-      display: flex;
-      flex-direction: column;
-      gap: 0.4rem;
-    }
-
-    /* ─── ANIMATIONS ─────────────────────────── */
-    @keyframes fadeUp {
-      from { opacity: 0; transform: translateY(20px); }
-      to { opacity: 1; transform: translateY(0); }
-    }
-
-    .anim { opacity: 0; }
-    .anim.visible { animation: fadeUp 0.55s ease both; }
-    .anim-d1 { animation-delay: 0.07s; }
-    .anim-d2 { animation-delay: 0.14s; }
-    .anim-d3 { animation-delay: 0.21s; }
-
-    /* ─── RESPONSIVE ─────────────────────────── */
     @media (max-width: 900px) {
-      .roles-grid { grid-template-columns: 1fr 1fr; }
-      .role-landing-inner { grid-template-columns: 1fr; gap: 2rem; }
-      .articles-grid { grid-template-columns: 1fr 1fr; }
       .nav-desktop { display: none; }
       .burger { display: flex; }
-    }
-
-    @media (max-width: 640px) {
-      .roles-grid { grid-template-columns: 1fr 1fr; gap: 0.85rem; }
-      .role-card { padding: 1.5rem 1rem; }
-      .role-icon-wrap { width: 56px; height: 56px; font-size: 1.4rem; margin-bottom: 0.9rem; }
-      .articles-grid { grid-template-columns: 1fr; }
-      .recs-list { grid-template-columns: 1fr; }
-      .docs-card { padding: 1.5rem; }
-      .docs-card-header { flex-direction: column; align-items: flex-start; gap: 1rem; }
-    }
-
-    @media (max-width: 420px) {
-      .roles-grid { grid-template-columns: 1fr; }
+      .role-grid { grid-template-columns: 1fr; }
     }
   </style>
 </head>
 <body>
 
-<!-- ═══ HEADER ═══════════════════════════════════════ -->
+<!-- ─── HEADER ─────────────────────────────── -->
 <header>
   <div class="container">
     <div class="header-inner">
       <a href="index.html" class="logo">
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
-        <span class="logo-text" id="logoText">EduSafe</span>
+        <span class="logo-text">EduSafe</span>
       </a>
-
       <nav class="nav-desktop">
-        <a href="index.html" id="navHome"><i class="fas fa-home"></i><span>Главная</span></a>
-        <a href="theory.html" class="active" id="navTheory"><i class="fas fa-book-open"></i><span>Теория</span></a>
-        <a href="choice-sp.html" id="navPractice"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
-        <a href="videos.html" id="navVideo"><i class="fas fa-play-circle"></i><span>Видео</span></a>
-        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
-        <a href="blog.html" id="navBlog"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
-        <a href="contact.html" id="navComplaint"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+        <a href="index.html" id="navHome"><i class="fas fa-home"></i> Главная</a>
+        <a href="theory.html" class="active" id="navTheory"><i class="fas fa-book-open"></i> Теория</a>
+        <a href="choice-sp.html" id="navPractice"><i class="fas fa-lightbulb"></i> Практика</a>
+        <a href="glossary.html" id="navGlossary"><i class="fas fa-spell-check"></i> Глоссарий</a>
+        <a href="videos.html" id="navVideo"><i class="fas fa-play-circle"></i> Видео</a>
+        <a href="quiz.html" id="navQuiz"><i class="fas fa-graduation-cap"></i> Викторина</a>
+        <a href="blog.html" id="navBlog"><i class="fas fa-newspaper"></i> Блог</a>
+        <a href="contact.html" id="navComplaint"><i class="fas fa-envelope"></i> Контакты</a>
       </nav>
-
       <div class="header-right">
-        <select class="lang-select" id="languageSelector">
-          <option value="ru">🇧🇾 Русский</option>
-          <option value="en">🇬🇧 English</option>
+        <select class="lang-select" id="languageSelector" aria-label="Select language">
+          <option value="ru">Русский</option>
+          <option value="en">English</option>
         </select>
-        <button class="burger" id="navToggle" aria-label="Меню"><i class="fas fa-bars"></i></button>
+        <button class="theme-toggle-btn" id="themeToggle" aria-label="Toggle theme" title="Переключить тему">
+          <i class="fas fa-moon"></i>
+        </button>
+        <button class="burger" id="navToggle" aria-label="Open menu"><i class="fas fa-bars"></i></button>
       </div>
     </div>
   </div>
 </header>
 
-<!-- ═══ DRAWER ════════════════════════════════════════ -->
+<!-- ─── MOBILE DRAWER ─────────────────────── -->
 <div class="drawer-overlay" id="drawerOverlay">
   <div class="drawer">
     <div class="drawer-head">
-      <div class="logo">
+      <a href="index.html" class="logo">
         <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
-        <span class="logo-text" id="mobileLogoText">EduSafe</span>
-      </div>
-      <button class="drawer-close" id="drawerClose"><i class="fas fa-times"></i></button>
+        <span class="logo-text">EduSafe</span>
+      </a>
+      <button class="drawer-close" id="drawerClose" aria-label="Close menu"><i class="fas fa-times"></i></button>
     </div>
     <nav class="drawer-nav">
-      <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i><span>Главная</span></a>
-      <a href="theory.html" class="active" id="mobileNavTheory"><i class="fas fa-book-open"></i><span>Теория</span></a>
-      <a href="choice-sp.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i><span>Практика</span></a>
-      <a href="videos.html" id="mobileNavVideo"><i class="fas fa-play-circle"></i><span>Видео</span></a>
-      <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i><span>Викторина</span></a>
-      <a href="blog.html" id="mobileNavBlog"><i class="fas fa-pen-nib"></i><span>Блог</span></a>
-      <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-exclamation-circle"></i><span>Жалоба</span></a>
+      <a href="index.html" id="mobileNavHome"><i class="fas fa-home"></i> Главная</a>
+      <a href="theory.html" class="active" id="mobileNavTheory"><i class="fas fa-book-open"></i> Теория</a>
+      <a href="choice-sp.html" id="mobileNavPractice"><i class="fas fa-lightbulb"></i> Практика</a>
+      <a href="glossary.html" id="mobileNavGlossary"><i class="fas fa-spell-check"></i> Глоссарий</a>
+      <a href="videos.html" id="mobileNavVideo"><i class="fas fa-play-circle"></i> Видео</a>
+      <a href="quiz.html" id="mobileNavQuiz"><i class="fas fa-graduation-cap"></i> Викторина</a>
+      <a href="blog.html" id="mobileNavBlog"><i class="fas fa-newspaper"></i> Блог</a>
+      <a href="contact.html" id="mobileNavComplaint"><i class="fas fa-envelope"></i> Контакты</a>
     </nav>
-    <div class="drawer-lang">
-      <select class="lang-select" id="mobileLanguageSelector" style="width:100%">
-        <option value="ru">🇧🇾 Русский</option>
-        <option value="en">🇬🇧 English</option>
+    <div style="display:flex; gap:0.5rem; align-items:center; margin-top:auto; padding-top:1.25rem; border-top:1px solid var(--border);">
+      <select class="lang-select" id="mobileLanguageSelector" style="flex:1;" aria-label="Select language">
+        <option value="ru">Русский</option>
+        <option value="en">English</option>
       </select>
+      <button class="theme-toggle-btn" id="mobileThemeToggle" aria-label="Toggle theme" title="Переключить тему">
+        <i class="fas fa-moon"></i>
+      </button>
     </div>
   </div>
 </div>
 
-<!-- ═══ HERO ══════════════════════════════════════════ -->
+<!-- ─── HERO ───────────────────────────────── -->
 <section class="hero">
   <div class="hero-grid"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow-2"></div>
   <div class="container">
     <div class="hero-content">
-      <div class="hero-badge anim">
-        <i class="fas fa-book-open"></i>
-        <span id="heroBadge">Теория</span>
-      </div>
-      <h1 class="anim anim-d1" id="heroTitle">Защита персональных данных в <span>образовании</span></h1>
-      <p class="hero-sub anim anim-d2" id="heroSubtitle">Правовая база, принципы и практические шаги — адаптированный контент для каждой роли в образовательном процессе.</p>
-      
+      <div class="hero-badge" id="heroBadge"><i class="fas fa-shield-alt"></i> Теоретическая база · Законодательство РБ</div>
+      <h1 id="heroTitle">Защита персональных данных в сфере <span>образования</span></h1>
+      <p class="hero-sub" id="heroSubtitle">
+        Систематизированная правовая база, практические рекомендации и разъяснения Национального центра защиты персональных данных для всех участников образовательного процесса.
+      </p>
     </div>
   </div>
 </section>
 
-<!-- ═══ ROLE CHOOSER ════════════════════════════════════ -->
-<section class="role-chooser">
+<!-- ─── MAIN CONTENT ───────────────────────── -->
+<main class="content-area">
   <div class="container">
-    <div class="role-chooser-header">
-      <span class="section-tag" id="roleChooserTag">Выберите вашу роль</span>
-      <h2 class="section-title" id="roleChooserTitle">Кто вы в образовательном процессе?</h2>
-      <p class="section-sub" id="roleChooserSub">Выберите свой статус — и мы покажем материал, написанный именно для вас</p>
-    </div>
 
-    <div class="roles-grid">
-      <!-- Учитель -->
-      <div class="role-card role-card-teacher" onclick="selectRole('teacher')" id="card-teacher">
-        <div class="role-check"><i class="fas fa-check"></i></div>
-        <div class="role-card-inner">
-          <div class="role-icon-wrap"><i class="fas fa-chalkboard-teacher"></i></div>
-          <h3 id="roleCardTitle_teacher">Учитель</h3>
-          <p id="roleCardDesc_teacher">Педагог общеобразовательной школы</p>
-        </div>
+    <!-- ROLE CHOOSER -->
+    <div class="role-section">
+      <div class="role-section-header">
+        <span class="role-tag" id="roleTag">Индивидуальный маршрут</span>
+        <h2 class="role-title" id="roleTitle">Для кого подготовлен материал?</h2>
+        <p class="role-sub" id="roleSub">Выберите вашу категорию, чтобы ознакомиться с адаптированными правовыми нормами и рекомендациями</p>
       </div>
 
-      <!-- Преподаватель -->
-      <div class="role-card role-card-professor" onclick="selectRole('professor')" id="card-professor">
-        <div class="role-check"><i class="fas fa-check"></i></div>
-        <div class="role-card-inner">
-          <div class="role-icon-wrap"><i class="fas fa-university"></i></div>
-          <h3 id="roleCardTitle_professor">Преподаватель вуза</h3>
-          <p id="roleCardDesc_professor">Сотрудник университета или колледжа</p>
+      <div class="role-grid">
+        <div class="role-card active" data-role="all">
+          <div class="role-icon"><i class="fas fa-users"></i></div>
+          <h4 id="roleAll">Все категории</h4>
+          <p id="roleAllSub">Полный свод статей закона и разъяснений регулятора</p>
         </div>
-      </div>
-
-      <!-- Школьник -->
-      <div class="role-card role-card-pupil" onclick="selectRole('pupil')" id="card-pupil">
-        <div class="role-check"><i class="fas fa-check"></i></div>
-        <div class="role-card-inner">
-          <div class="role-icon-wrap"><i class="fas fa-user-graduate"></i></div>
-          <h3 id="roleCardTitle_pupil">Школьник</h3>
-          <p id="roleCardDesc_pupil">Учащийся общеобразовательной школы</p>
+        <div class="role-card" data-role="teacher">
+          <div class="role-icon"><i class="fas fa-chalkboard-teacher"></i></div>
+          <h4 id="roleTeacher">Педагоги УОСО</h4>
+          <p id="roleTeacherSub">Школы, гимназии, лицеи, детские сады</p>
         </div>
-      </div>
-
-      <!-- Студент -->
-      <div class="role-card role-card-student" onclick="selectRole('student')" id="card-student">
-        <div class="role-check"><i class="fas fa-check"></i></div>
-        <div class="role-card-inner">
-          <div class="role-icon-wrap"><i class="fas fa-graduation-cap"></i></div>
-          <h3 id="roleCardTitle_student">Студент</h3>
-          <p id="roleCardDesc_student">Студент вуза или ссуза</p>
+        <div class="role-card" data-role="professor">
+          <div class="role-icon"><i class="fas fa-university"></i></div>
+          <h4 id="roleProf">Преподаватели УВО/УССО</h4>
+          <p id="roleProfSub">Университеты, институты, академии, колледжи</p>
+        </div>
+        <div class="role-card" data-role="student">
+          <div class="role-icon"><i class="fas fa-user-graduate"></i></div>
+          <h4 id="roleStud">Учащиеся и студенты</h4>
+          <p id="roleStudSub">Школьники, студенты и законные представители</p>
         </div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ CONTENT AREAS ═══════════════════════════════════ -->
+    <!-- SECTION 1: BASICS -->
+    <div class="theory-block" data-section="basics">
+      <h2 class="theory-block-title"><i class="fas fa-balance-scale"></i> <span id="sec1Title">1. Основные понятия и принципы обработки данных</span></h2>
 
-<!-- TEACHER -->
-<div class="content-area" id="content-teacher">
-  <section class="role-landing">
-    <div class="container">
-      <div class="role-landing-inner">
-        <div class="role-landing-text">
-          <div class="role-badge" style="background:#dbeafe; color:#0057d9;">
-            <i class="fas fa-chalkboard-teacher"></i>
-            <span id="teacherRoleBadge">Для учителей</span>
+      <div class="article">
+        <div class="article-header">
+          <h3 class="article-title" id="art1Title">Понятие персональных данных и субъекта</h3>
+          <span class="article-ref">Ст. 1 Закона № 99-З</span>
+        </div>
+        <div class="article-body">
+          <p id="art1P1">Персональные данные — это любая информация, относящаяся к идентифицированному физическому лицу или физическому лицу, которое может быть идентифицировано. Субъект персональных данных — физическое лицо, в отношении которого осуществляется обработка данных.</p>
+          <div class="definition">
+            <h4 id="def1Title"><i class="fas fa-info-circle"></i> Определение</h4>
+            <p id="def1P">В образовательном процессе субъектами являются учащиеся, студенты, их родители (законные представители), а также педагогические работники и администрация.</p>
           </div>
-          <h2 id="teacherLandingTitle">Законодательство о персональных данных: системный подход педагога</h2>
-          <p id="teacherLandingDesc">Как учитель, вы ежедневно работаете с персональными данными учащихся и их родителей. Закон № 99-З накладывает на вас как на сотрудника учреждения образования конкретные обязанности. Этот раздел поможет разобраться в них.</p>
-          <div style="display:flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="choice-sp.html" class="btn btn-primary"><i class="fas fa-lightbulb"></i> <span id="teacherBtnPractice">Перейти к практике</span></a>
-            <a href="quiz.html" class="btn" style="background: var(--accent-pale); color: var(--accent);"><i class="fas fa-graduation-cap"></i> <span id="teacherBtnQuiz">Пройти тест</span></a>
+          <div class="edu-note">
+            <h5 id="note1Title"><i class="fas fa-lightbulb"></i> Специфика образования</h5>
+            <p id="note1P">К персональным данным относятся не только паспортные данные, но и успеваемость, посещаемость, фотографии, видеозаписи с уроков, сведения о льготах на питание и внеучебных достижениях.</p>
           </div>
         </div>
-        <div class="role-landing-visual">
-          <div class="role-landing-visual-grid"></div>
-          <div class="role-visual-content">
-            <div class="role-visual-tag"><i class="fas fa-balance-scale"></i> <span>Закон № 99-З</span></div>
-            <h3 id="teacherVisualTitle">УО — Оператор персональных данных</h3>
-            <p id="teacherVisualDesc">Учреждение образования организует обработку ПД и несёт юридическую ответственность. Каждый педагог — звено этой системы.</p>
-            <div class="role-visual-stats">
-              <div class="role-visual-stat">
-                <span>ст.23.7</span>
-                <small>КоАП РБ — ответственность</small>
-              </div>
-              <div class="role-visual-stat">
-                <span>99-З</span>
-                <small>Закон о защите ПД</small>
-              </div>
-            </div>
-          </div>
+      </div>
+
+      <div class="article">
+        <div class="article-header">
+          <h3 class="article-title" id="art2Title">Основные принципы обработки персональных данных</h3>
+          <span class="article-ref">Ст. 4 Закона № 99-З</span>
+        </div>
+        <div class="article-body">
+          <p id="art2P1">Обработка персональных данных должна быть соразмерна заявленным целям обработки и обеспечивать на всех этапах справедливое соотношение интересов всех заинтересованных лиц.</p>
+          <ul id="art2List">
+            <li><strong>Законность и прозрачность:</strong> обработка осуществляется только при наличии правовых оснований.</li>
+            <li><strong>Ограничение целью:</strong> данные не должны обрабатываться для целей, несовместимых с первоначальными.</li>
+            <li><strong>Минимизация данных:</strong> сбор данных строго в объеме, необходимом для достижения образовательных целей.</li>
+            <li><strong>Точность и актуальность:</strong> своевременное обновление и исправление неверных данных.</li>
+            <li><strong>Ограничение хранения:</strong> хранение не дольше, чем этого требуют цели или нормативные сроки архивного хранения.</li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="articles-section">
-    <div class="container">
-      <div class="articles-header">
-        <span class="section-tag">Теория</span>
-        <h2 class="section-title" id="teacherArticlesTitle">Персональные данные в деятельности учреждения образования</h2>
-      </div>
-      <div class="articles-grid">
-        <div class="article-card" style="--art-accent:#0057d9; --art-pale:#dbeafe;">
-          <div class="art-num">01</div>
-          <h3 id="teacherArt1Title">Понятие и с��ера применения Закона</h3>
-          <div class="article-card-body" id="teacherArt1Body">
-            <p><strong>Что такое персональные данные?</strong> Это любая информация, позволяющая прямо или косвенно идентифицировать физическое лицо — ученика, студента, родителя или коллегу.</p>
-            <p>В контексте УО к персональным данным относятся ФИО, адрес, дата рождения, оценки, медицинские справки и, что важно, фото- и видеоизображения.</p>
-            <p><strong>Учреждение образования (УО) является Оператором</strong>, то есть лицом, организующим обработку персональных данных. Это накладывает на каждого сотрудника юридическую ответственность за соблюдение Закона № 99-З.</p>
-          </div>
+    <!-- SECTION 2: CONSENT & GROUNDS -->
+    <div class="theory-block" data-section="consent">
+      <h2 class="theory-block-title"><i class="fas fa-file-signature"></i> <span id="sec2Title">2. Согласие и правовые основания обработки</span></h2>
+
+      <div class="article">
+        <div class="article-header">
+          <h3 class="article-title" id="art3Title">Требования к согласию субъекта</h3>
+          <span class="article-ref">Ст. 5 Закона № 99-З</span>
         </div>
-        <div class="article-card" style="--art-accent:#7c3aed; --art-pale:#ede9fe;">
-          <div class="art-num" style="background:#ede9fe; color:#7c3aed;">02</div>
-          <h3 id="teacherArt2Title">Основы обработки: законность и согласие</h3>
-          <div class="article-card-body" id="teacherArt2Body">
-            <p>Обработка персональных данных всегда должна иметь <strong>законное основание</strong>:</p>
-            <ul>
-              <li><strong>Без согласия:</strong> зачисление, ведение журнала, оценки — предусмотрено Кодексом об образовании.</li>
-              <li><strong>С согласием:</strong> публикация фото в соцсетях, рассылки от сторонних организаций — требует явного добровольного согласия, которое можно отозвать.</li>
-            </ul>
-            <p><strong>Ключевой принцип: целевое ограничение.</strong> Данные используются строго для заявленной цели. Email для расписания нельзя использовать для рекламы.</p>
+        <div class="article-body">
+          <p id="art3P1">Согласие субъекта персональных данных представляет собой свободное, однозначное, информированное выражение его воли, посредством которого он разрешает обработку своих персональных данных.</p>
+          <div class="definition">
+            <h4 id="def2Title"><i class="fas fa-check-circle"></i> Условия действительности согласия</h4>
+            <p id="def2P">Согласие должно быть получено до начала обработки данных, на понятном языке, с разъяснением прав субъекта и последствий дачи либо отказа от дачи согласия. Отдельное согласие требуется для каждой конкретной цели.</p>
           </div>
-        </div>
-        <div class="article-card" style="--art-accent:#059669; --art-pale:#d1fae5;">
-          <div class="art-num" style="background:#d1fae5; color:#059669;">03</div>
-          <h3 id="teacherArt3Title">Практические шаги по защите данных</h3>
-          <div class="article-card-body" id="teacherArt3Body">
-            <p>Педагог — ключевое звено в системе защиты ПД. Действуйте по принципу минимизации:</p>
-            <ul>
-              <li><strong>Хранение:</strong> не используйте личные устройства, Google Drive, Telegram или личную почту для хранения данных учащихся.</li>
-              <li><strong>Доступ:</strong> предоставляйте доступ к ПД только тем, кому это необходимо по служебным обязанностям.</li>
-              <li><strong>Публикации:</strong> всегда проверяйте наличие письменного согласия перед публикацией любых идентифицирующих данных.</li>
-            </ul>
+          <div class="edu-note">
+            <h5 id="note2Title"><i class="fas fa-exclamation-triangle"></i> Важно помнить</h5>
+            <p id="note2P">Принуждение к даче согласия (например, увязка согласия на публикацию фото ребенка в соцсетях с зачислением в школу) делает такое согласие юридически недействительным.</p>
           </div>
         </div>
       </div>
 
-      <div class="recs-box" style="--recs-bg:#f0fdf4; --recs-border:#86efac; --recs-accent:#059669; --recs-border-li:#bbf7d0;">
-        <h3 id="teacherRecsTitle"><i class="fas fa-check-circle"></i> Рекомендации для учителей</h3>
-        <ul class="recs-list" id="teacherRecsList">
-          <li>Не храните персональные данные учащихся на личных и сторонних облачных сервисах (Google Drive, Telegram, личные флешки).</li>
-          <li>Используйте персональные данные только для целей, предусмотренных должностными обязанностями (целевое ограничение).</li>
-          <li>Перед использованием стороннего сервиса для сбора данных убедитесь, что это разрешено регламентами УО.</li>
-          <li>В случае утечки или неправомерного доступа к ПД немедленно сообщите об этом руководству учреждения.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- PROFESSOR -->
-<div class="content-area" id="content-professor">
-  <section class="role-landing">
-    <div class="container">
-      <div class="role-landing-inner">
-        <div class="role-landing-text">
-          <div class="role-badge" style="background:#ede9fe; color:#7c3aed;">
-            <i class="fas fa-university"></i>
-            <span id="professorRoleBadge">Для преподавателей вуза</span>
-          </div>
-          <h2 id="professorLandingTitle">Персональные данные студентов: обязанности преподавателя вуза</h2>
-          <p id="professorLandingDesc">В условиях цифровизации высшей школы — онлайн-порталы, дистанционное обучение, электронные журналы — преподаватель работает с персональными данными ежедневно. Закон № 99-З обязателен к соблюдению в полном объёме.</p>
-          <div style="display:flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="choice-sp.html" class="btn" style="background:#7c3aed; color:white; box-shadow: 0 4px 16px rgba(124,58,237,0.35);"><i class="fas fa-lightbulb"></i> <span id="professorBtnPractice">Перейти к практике</span></a>
-            <a href="quiz.html" class="btn" style="background:#ede9fe; color:#7c3aed;"><i class="fas fa-graduation-cap"></i> <span id="professorBtnQuiz">Пройти тест</span></a>
-          </div>
+      <div class="article">
+        <div class="article-header">
+          <h3 class="article-title" id="art4Title">Случаи обработки без согласия субъекта</h3>
+          <span class="article-ref">Ст. 6, 8 Закона № 99-З</span>
         </div>
-        <div class="role-landing-visual">
-          <div class="role-landing-visual-grid"></div>
-          <div class="role-visual-content">
-            <div class="role-visual-tag" style="background:rgba(124,58,237,0.2); border-color:rgba(124,58,237,0.3); color:#c4b5fd;"><i class="fas fa-database"></i> <span>Цифровой университет</span></div>
-            <h3 id="professorVisualTitle">Высшая школа и цифровые риски</h3>
-            <p id="professorVisualDesc">Обработка данных студентов через LMS, электронные зачётки и дистанционные платформы требует строгого соответствия требованиям Закона № 99-З.</p>
-            <div class="role-visual-stats">
-              <div class="role-visual-stat">
-                <span style="color:#c4b5fd;">99-З</span>
-                <small>Обязателен для вузов</small>
-              </div>
-              <div class="role-visual-stat">
-                <span style="color:#c4b5fd;">LMS</span>
-                <small>Требует договора поручения</small>
-              </div>
-            </div>
-          </div>
+        <div class="article-body">
+          <p id="art4P1">В соответствии с законодательством Республики Беларусь и разъяснениями НЦЗПД, согласие не требуется в следующих образовательных ситуациях:</p>
+          <ul id="art4List">
+            <li><strong>Ведение образовательного процесса:</strong> зачисление, аттестация, выдача документов об образовании на основании Кодекса об образовании.</li>
+            <li><strong>Оформление электронных дневников и журналов:</strong> на основании нормативных актов Министерства образования.</li>
+            <li><strong>Организация обязательного питания и медицинского обслуживания:</strong> в рамках выполнения обязанностей, возложенных законом.</li>
+            <li><strong>Предоставление сведений госорганам:</strong> по официальным мотивированным запросам правоохранительных органов, военкоматов, судов.</li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="articles-section">
-    <div class="container">
-      <div class="articles-header">
-        <span class="section-tag">Теория</span>
-        <h2 class="section-title" id="professorArticlesTitle">Обработка персональных данных в высшей школе</h2>
-      </div>
-      <div class="articles-grid">
-        <div class="article-card" style="--art-accent:#7c3aed; --art-pale:#ede9fe;">
-          <div class="art-num" style="background:#ede9fe; color:#7c3aed;">01</div>
-          <h3 id="professorArt1Title">Вуз как оператор ПД</h3>
-          <div class="article-card-body" id="professorArt1Body">
-            <p><strong>Университет является оператором</strong> персональных данных студентов, преподавателей и абитуриентов. Персональные данные — это ФИО, номер студбилета, оценки, фото, результаты тестирования, медицинские справки, данные о стипендии.</p>
-            <p>Каждый преподаватель, имеющий доступ к этим данным, несёт ответственность за их правомерную обработку в рамках своих должностных обязанностей.</p>
-          </div>
-        </div>
-        <div class="article-card" style="--art-accent:#0057d9; --art-pale:#dbeafe;">
-          <div class="art-num">02</div>
-          <h3 id="professorArt2Title">Цифровые платформы и договор поручения</h3>
-          <div class="article-card-body" id="professorArt2Body">
-            <p>Использование сторонних LMS-платформ (Moodle, Google Classroom, Zoom, Microsoft Teams) для обработки данных студентов требует <strong>договора поручения</strong> между вузом и провайдером.</p>
-            <ul>
-              <li>Без договора — любая передача данных незаконна.</li>
-              <li>Преподаватель не вправе самостоятельно регистрировать студентов на сторонних платформах без санкции УО.</li>
-              <li>Запись лекций и вебинаров с изображение�� студентов требует их согласия.</li>
-            </ul>
-          </div>
-        </div>
-        <div class="article-card" style="--art-accent:#0ea5c7; --art-pale:#ecfeff;">
-          <div class="art-num" style="background:#ecfeff; color:#0ea5c7;">03</div>
-          <h3 id="professorArt3Title">Научная работа и публикация результатов</h3>
-          <div class="article-card-body" id="professorArt3Body">
-            <p>При использовании данных студентов в научных исследованиях необходимо:</p>
-            <ul>
-              <li><strong>Анонимизировать данные</strong> — удалить все идентификаторы перед публикацией.</li>
-              <li>Получить <strong>информированное согласие</strong> участника исследования.</li>
-              <li>Публикация курсовых и дипломных работ с ФИО студента на открытых ресурсах требует его согласия.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <!-- SECTION 3: RIGHTS -->
+    <div class="theory-block" data-section="rights">
+      <h2 class="theory-block-title"><i class="fas fa-user-shield"></i> <span id="sec3Title">3. Права субъектов персональных данных</span></h2>
 
-      <div class="recs-box" style="--recs-bg:#f5f3ff; --recs-border:#c4b5fd; --recs-accent:#7c3aed; --recs-border-li:#ddd6fe;">
-        <h3 id="professorRecsTitle"><i class="fas fa-check-circle"></i> Рекомендации для преподавателей вуза</h3>
-        <ul class="recs-list" id="professorRecsList">
-          <li>Используйте только корпоративные платформы, утверждённые вузом, для работы с данными студентов.</li>
-          <li>Перед записью онлайн-занятий получите явное согласие студентов или включите условие в договор об образовании.</li>
-          <li>При публикации успеваемости (рейтингов) используйте только анонимные идентификаторы без ФИО.</li>
-          <li>В случае инцидента с утечкой данных немедленно уведомите руководство кафедры и службу безопасности вуза.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- PUPIL (Школьник) -->
-<div class="content-area" id="content-pupil">
-  <section class="role-landing">
-    <div class="container">
-      <div class="role-landing-inner">
-        <div class="role-landing-text">
-          <div class="role-badge" style="background:#d1fae5; color:#059669;">
-            <i class="fas fa-user-graduate"></i>
-            <span id="pupilRoleBadge">Для школьников</span>
-          </div>
-          <h2 id="pupilLandingTitle">Твои личные данные в школе: что нужно знать</h2>
-          <p id="pupilLandingDesc">Ты каждый день оставляешь в школе свои данные — оценки в дневнике, фото на стенде, контакты в классном чате. Знаешь ли ты, когда это законно, а когда нет? Разберёмся вместе!</p>
-          <div style="display:flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="choice-sp.html" class="btn" style="background:#059669; color:white; box-shadow: 0 4px 16px rgba(5,150,105,0.35);"><i class="fas fa-lightbulb"></i> <span id="pupilBtnPractice">Перейти к практике</span></a>
-            <a href="quiz.html" class="btn" style="background:#d1fae5; color:#059669;"><i class="fas fa-graduation-cap"></i> <span id="pupilBtnQuiz">Пройти тест</span></a>
-          </div>
+      <div class="article">
+        <div class="article-header">
+          <h3 class="article-title" id="art5Title">Права учащихся, студентов и их родителей</h3>
+          <span class="article-ref">Ст. 10–13 Закона № 99-З</span>
         </div>
-        <div class="role-landing-visual">
-          <div class="role-landing-visual-grid"></div>
-          <div class="role-visual-content">
-            <div class="role-visual-tag" style="background:rgba(5,150,105,0.2); border-color:rgba(5,150,105,0.3); color:#6ee7b7;"><i class="fas fa-shield-alt"></i> <span>Твои права</span></div>
-            <h3 id="pupilVisualTitle">У тебя есть права по закону!</h3>
-            <p id="pupilVisualDesc">Закон № 99-З защищает твои данные так же, как данные взрослых. Ты (или твои родители) можете спрашивать, давать согласие и отзывать его.</p>
-            <div class="role-visual-stats">
-              <div class="role-visual-stat">
-                <span style="color:#6ee7b7;">16+</span>
-                <small>Возраст самостоятельного согласия</small>
-              </div>
-              <div class="role-visual-stat">
-                <span style="color:#6ee7b7;">≠</span>
-                <small>Оценки ≠ публичная информация</small>
-              </div>
-            </div>
-          </div>
+        <div class="article-body">
+          <ul id="art5List">
+            <li><strong>Право на отзыв согласия (ст. 10):</strong> возможность в любой момент без объяснения причин отозвать согласие; оператор обязан прекратить обработку в 15-дневный срок.</li>
+            <li><strong>Право на получение информации (ст. 11):</strong> право знать, какие данные обрабатываются, кем, для каких целей и кому предоставлялись.</li>
+            <li><strong>Право на изменение данных (ст. 11):</strong> право требовать внесения изменений в свои персональные данные в случае их неполноты или неточности.</li>
+            <li><strong>Право на прекращение обработки и удаление (ст. 13):</strong> право требовать бесплатного удаления данных при отсутствии законных оснований для их обработки.</li>
+            <li><strong>Право на обжалование (ст. 15):</strong> право подать жалобу в Национальный центр защиты персональных данных Республики Беларусь или в суд.</li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="articles-section">
-    <div class="container">
-      <div class="articles-header">
-        <span class="section-tag">Теория</span>
-        <h2 class="section-title" id="pupilArticlesTitle">Что нужно знать школьнику о своих данных</h2>
-      </div>
-      <div class="articles-grid">
-        <div class="article-card" style="--art-accent:#059669; --art-pale:#d1fae5;">
-          <div class="art-num" style="background:#d1fae5; color:#059669;">01</div>
-          <h3 id="pupilArt1Title">Что такое мои личные данные?</h3>
-          <div class="article-card-body" id="pupilArt1Body">
-            <p><strong>Персональные данные</strong> — это информация, по которой тебя можно узнать. Это как твой цифровой паспорт!</p>
-            <ul>
-              <li><strong>Очевидные:</strong> ФИО, адрес, телефон, дата рождения.</li>
-              <li><strong>Менее очевидные:</strong> твои оценки, фото, видео, даже IP-адрес!</li>
-            </ul>
-            <p>Школа имеет право использовать только те данные, которые нужны для учёбы. Всё остальное — только с твоего согласия (или родителей, если тебе нет 16 лет).</p>
-          </div>
-        </div>
-        <div class="article-card" style="--art-accent:#0057d9; --art-pale:#dbeafe;">
-          <div class="art-num">02</div>
-          <h3 id="pupilArt2Title">Когда школа может использовать твои данные без спроса?</h3>
-          <div class="article-card-body" id="pupilArt2Body">
-            <p><strong>Без твоего согласия</strong> (это предусмотрено Кодексом об образовании):</p>
-            <ul>
-              <li>Зачисление в школу и ведение журнала</li>
-              <li>Составление расписания</li>
-              <li>Выдача справок об обучении</li>
-            </ul>
-            <p><strong>С твоего согласия</strong> (или родителей до 16 лет):</p>
-            <ul>
-              <li>Публикация твоего фото н�� сайте школы</li>
-              <li>Публикация оценок на общем стенде</li>
-              <li>Съёмка для школьной газеты или соцсетей</li>
-            </ul>
-          </div>
-        </div>
-        <div class="article-card" style="--art-accent:#d97706; --art-pale:#fef3c7;">
-          <div class="art-num" style="background:#fef3c7; color:#d97706;">03</div>
-          <h3 id="pupilArt3Title">Как защитить себя онлайн?</h3>
-          <div class="article-card-body" id="pupilArt3Body">
-            <p>Твоя безопасность в интернете — твоя ответственность:</p>
-            <ul>
-              <li>Не публикуй фото других людей без их разрешения — это нарушение их прав!</li>
-              <li>Не делись личными данными (адрес, телефон) с незнакомцами онлайн.</li>
-              <li>Используй разные пароли для разных сервисов.</li>
-              <li>Не переходи по подозрительным ссылкам — это может быть фишинг.</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+    <!-- SECTION 4: SECURITY -->
+    <div class="theory-block" data-section="security">
+      <h2 class="theory-block-title"><i class="fas fa-lock"></i> <span id="sec4Title">4. Обязанности оператора и техническая защита</span></h2>
 
-      <div class="recs-box" style="--recs-bg:#f0fdf4; --recs-border:#86efac; --recs-accent:#059669; --recs-border-li:#bbf7d0;">
-        <h3 id="pupilRecsTitle"><i class="fas fa-user-shield"></i> Правила цифровой безопасности для школьника</h3>
-        <ul class="recs-list" id="pupilRecsList">
-          <li>Никогда не фотографируй учителей и одноклассников без их разрешения.</li>
-          <li>Помни: всё, что ты публикуешь в интернете, может стать общедоступным навсегда.</li>
-          <li>Если ты не согласен с тем, что школа опубликовала твоё фото — ты имеешь право попросить убрать его.</li>
-          <li>Не открывай подозрительные ссылки в мессенджерах — это может быть кража твоих данных (фишинг).</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- STUDENT -->
-<div class="content-area" id="content-student">
-  <section class="role-landing">
-    <div class="container">
-      <div class="role-landing-inner">
-        <div class="role-landing-text">
-          <div class="role-badge" style="background:#fef3c7; color:#d97706;">
-            <i class="fas fa-graduation-cap"></i>
-            <span id="studentRoleBadge">Для студентов</span>
-          </div>
-          <h2 id="studentLandingTitle">Твои персональные данные в университете: права и защита</h2>
-          <p id="studentLandingDesc">Как студент, ты сам вправе распоряжаться своими данными — от публикации фото на сайте вуза до участия в исследованиях. Узнай, когда вуз действует законно, а когда ты можешь потребовать объяснений.</p>
-          <div style="display:flex; gap: 0.75rem; flex-wrap: wrap;">
-            <a href="choice-sp.html" class="btn" style="background:#d97706; color:white; box-shadow: 0 4px 16px rgba(217,119,6,0.35);"><i class="fas fa-lightbulb"></i> <span id="studentBtnPractice">Перейти к практике</span></a>
-            <a href="quiz.html" class="btn" style="background:#fef3c7; color:#d97706;"><i class="fas fa-graduation-cap"></i> <span id="studentBtnQuiz">Пройти тест</span></a>
-          </div>
+      <div class="article">
+        <div class="article-header">
+          <h3 class="article-title" id="art6Title">Меры по обеспечению защиты персональных данных</h3>
+          <span class="article-ref">Ст. 17 Закона № 99-З</span>
         </div>
-        <div class="role-landing-visual">
-          <div class="role-landing-visual-grid"></div>
-          <div class="role-visual-content">
-            <div class="role-visual-tag" style="background:rgba(217,119,6,0.2); border-color:rgba(217,119,6,0.3); color:#fcd34d;"><i class="fas fa-lock-open"></i> <span>Твои права по Закону</span></div>
-            <h3 id="studentVisualTitle">Ты — субъект персональных данных</h3>
-            <p id="studentVisualDesc">С 16 лет ты самостоятельно даёшь согласие на обработку твоих данных. И ты в любой момент можешь его отозвать — даже если уже согласился.</p>
-            <div class="role-visual-stats">
-              <div class="role-visual-stat">
-                <span style="color:#fcd34d;">16+</span>
-                <small>Возраст самостоятельного согласия</small>
-              </div>
-              <div class="role-visual-stat">
-                <span style="color:#fcd34d;">∞</span>
-                <small>Право отозвать согласие</small>
-              </div>
-            </div>
-          </div>
+        <div class="article-body">
+          <p id="art6P1">Учреждение образования обязано принимать комплекс правовых, организационных и технических мер:</p>
+          <ul id="art6List">
+            <li>Назначение лица или подразделения, ответственного за осуществление внутреннего контроля.</li>
+            <li>Разработка и утверждение Политики в отношении обработки персональных данных и ознакомление с ней сотрудников.</li>
+            <li>Установление порядка доступа к персональным данным, в том числе обрабатываемым в информационных системах.</li>
+            <li>Обучение работников (повышение квалификации) правилам работы с персональными данными.</li>
+            <li>Уведомление НЦЗПД о нарушениях систем защиты (утечках) в срок не позднее 3 рабочих дней.</li>
+          </ul>
         </div>
       </div>
     </div>
-  </section>
 
-  <section class="articles-section">
-    <div class="container">
-      <div class="articles-header">
-        <span class="section-tag">Теория</span>
-        <h2 class="section-title" id="studentArticlesTitle">Что нужно знать студенту о своих персональных данных</h2>
-      </div>
-      <div class="articles-grid">
-        <div class="article-card" style="--art-accent:#d97706; --art-pale:#fef3c7;">
-          <div class="art-num" style="background:#fef3c7; color:#d97706;">01</div>
-          <h3 id="studentArt1Title">Что является твоими персональными данными?</h3>
-          <div class="article-card-body" id="studentArt1Body">
-            <p><strong>Персональные данные</strong> — любая информация, позволяющая тебя идентифицировать. Представь: это твой цифровой паспорт.</p>
-            <ul>
-              <li><strong>Очевидные:</strong> ФИО, адрес, телефон, дата рождения, паспортные данные.</li>
-              <li><strong>Менее очевидные:</strong> оценки, номер студенческого билета, email, фото, видео, IP-адрес.</li>
-            </ul>
-            <p>Вуз (оператор) вправе использовать только данные, необходимые для твоей учёбы — принцип соразмерности.</p>
-          </div>
-        </div>
-        <div class="article-card" style="--art-accent:#0057d9; --art-pale:#dbeafe;">
-          <div class="art-num">02</div>
-          <h3 id="studentArt2Title">Когда нужно твоё разрешение (согласие)?</h3>
-          <div class="article-card-body" id="studentArt2Body">
-            <p><strong>Без согласия</strong> (предусмотрено Кодексом об образовании):</p>
-            <ul>
-              <li>Зачисление, расписание, экзамены, ведение журнала</li>
-              <li>Выдача диплома, справок</li>
-            </ul>
-            <p><strong>С твоего согласия</strong> (с 16 лет — самостоятельно):</p>
-            <ul>
-              <li>Публикация фото в разделе «Лучший студент»</li>
-              <li>Размещение твоих данных в открытых рейтингах</li>
-              <li>Передача данных сторонним организациям-партнёрам</li>
-            </ul>
-            <p><strong>Важно:</strong> согласие можно отозвать в любой момент, потребовав удалить свои данные!</p>
-          </div>
-        </div>
-        <div class="article-card" style="--art-accent:#059669; --art-pale:#d1fae5;">
-          <div class="art-num" style="background:#d1fae5; color:#059669;">03</div>
-          <h3 id="studentArt3Title">Как управлять своими данными?</h3>
-          <div class="article-card-body" id="studentArt3Body">
-            <p>Закон РБ даёт тебе реальные права:</p>
-            <ul>
-              <li><strong>Право на информацию:</strong> узнать, кто, какие данные и зачем обрабатывает.</li>
-              <li><strong>Право на исправление:</strong> если в данных ошибка — потребовать исправить.</li>
-              <li><strong>Право на удаление:</strong> отозвать согласие и потребовать прекратить обработку.</li>
-            </ul>
-            <p><strong>Твоя безопасность онлайн:</strong> используй разные пароли, не открывай подозрительные ссылки, не публикуй чужие данные без разрешения.</p>
-          </div>
-        </div>
-      </div>
-
-      <div class="recs-box" style="--recs-bg:#fffbeb; --recs-border:#fcd34d; --recs-accent:#d97706; --recs-border-li:#fde68a;">
-        <h3 id="studentRecsTitle"><i class="fas fa-user-shield"></i> Правила цифровой безопасности для студентов</h3>
-        <ul class="recs-list" id="studentRecsList">
-          <li>Используй сложные и уникальные пароли. Не сохраняй их на общедоступных компьютерах.</li>
-          <li>Помни: всё, что ты публикуешь онлайн (фото, видео, мнения), может стать общедоступным. Не выкладывай данные однокурсников без их разрешения.</li>
-          <li>Не фотографируй преподавателей и других студентов без их согласия.</li>
-          <li>Не переходи по подозрительным ссылкам в email и мессенджерах — это может быть фишинг.</li>
-        </ul>
-      </div>
-    </div>
-  </section>
-</div>
-
-<!-- ═══ DOCUMENTS ════════════════════════════════════════ -->
-<section class="docs-section">
-  <div class="container">
-    <div class="docs-card">
-      <div class="docs-card-header">
-        <div class="docs-icon"><i class="fas fa-file-alt"></i></div>
-        <div>
-          <h3 id="docsTitle">Официальные документы</h3>
-          <p id="docsIntro">Для углублённого изучения ознакомьтесь с официальными документами Национального центра защиты персональных данных и Законом.</p>
-        </div>
-      </div>
-      <div class="doc-links">
-        <a href="https://etalonline.by/document/?regnum=h12100099&q_id=1913980" class="doc-link" id="doc1"><i class="fas fa-file-pdf"></i> Закон Республики Беларусь № 99-З от 07.05.2021 «О защите персональных данных»</a>
-        <a href="./files/Razjasnenija-o-primenenii-ZPD-v-dejatelnosti-USO-i-UDO-21.11.2025.pdf" class="doc-link" id="doc2"><i class="fas fa-file-pdf"></i> Разъяснения НЦЗПД о применении Закона «О защите персональных данных» в учреждениях общего среднего образования от 21.11.2025 № 5-5/760</a>
-        <a href="./files/Razjasnenija-o-primenenii-ZPD-v-dejatelnosti-USSO-i-UVO (1).pdf" class="doc-link" id="doc3"><i class="fas fa-file-pdf"></i> Разъяснения НЦЗПД о применении Закона «О защите персональных данных» в учреждениях высшего и среднего специального образования от 16.07.2025 № 5-5/395</a>
-        <a href="./files/Razjasnenija-o-primenenii-zakonodatelstva-o-personalnyh-dannyh-v-UVO.pdf" class="doc-link" id="doc3"><i class="fas fa-file-pdf"></i> Разъяснения о применении законодательства о персональных данных при их размещении на интернет-сайтах учреждений высшего образования</a>
-             <a href="https://cpd.by/storage/2026/04/Prilozhenie-k-razjasnenijam.pdf" class="doc-link" id="doc3"><i class="fas fa-file-pdf"></i> Приложение к разъяснениям о применении законодательства о персональных данных при их размещении на интернет-сайтах учреждений высшего образования</a>
-      </div>
-      <p class="doc-note" id="docNote">(Файлы доступны для скачивания в формате PDF)</p>
-    </div>
-  </div>
-</section>
-
-<!-- ═══ CTA ════════════════════════════════════════════════ -->
-<section class="cta-theory">
-  <div class="cta-bg"></div>
-  <div class="container">
-    <div class="cta-content">
-      <h2 id="ctaTitle">Готовы применить знания на практике?</h2>
-      <p id="ctaSubtitle">Переходите к практическим кейсам или проверьте знания в интерактивной викторине.</p>
+    <!-- CTA -->
+    <div class="cta-banner">
+      <h2 id="ctaTitle">Готовы проверить свои знания на практике?</h2>
+      <p id="ctaSubtitle">Переходите к разбору реальных ситуаций в практикуме или проверьте уровень готовности в интерактивной викторине.</p>
       <div class="cta-btns">
-        <a href="choice-sp.html" class="btn btn-primary"><i class="fas fa-lightbulb"></i> <span id="ctaBtn1">Перейти к практике</span></a>
-        <a href="quiz.html" class="btn btn-ghost"><i class="fas fa-graduation-cap"></i> <span id="ctaBtn2">Пройти викторину</span></a>
-        <a href="index.html" class="btn btn-ghost"><i class="fas fa-home"></i> <span id="ctaBtn3">На главную</span></a>
+        <a href="choice-sp.html" class="btn btn-primary" id="ctaBtn1"><i class="fas fa-lightbulb"></i> Перейти к практике</a>
+        <a href="glossary.html" class="btn btn-ghost" id="ctaBtnGlossary"><i class="fas fa-spell-check"></i> Открыть глоссарий</a>
+        <a href="quiz.html" class="btn btn-ghost" id="ctaBtn2"><i class="fas fa-graduation-cap"></i> Пройти викторину</a>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ═══ FOOTER ════════════════════════════════════════════ -->
+  </div>
+</main>
+
+<!-- ─── FOOTER ─────────────────────────────── -->
 <footer>
   <div class="container">
     <div class="footer-top">
       <div class="footer-brand">
         <a href="index.html" class="footer-logo">
           <div class="logo-icon"><i class="fas fa-shield-alt"></i></div>
-          <span class="logo-text" id="footerLogoText">EduSafe</span>
+          <span class="logo-text">EduSafe</span>
         </a>
-        <p id="footerDesc">Республиканский информационно-практический ресурс для педагогов и студентов</p>
+        <p id="footerDesc">Республиканский информационно-практический ресурс по защите персональных данных в сфере образования Республики Беларусь.</p>
       </div>
-      <div>
-        <div class="footer-nav-title">Разделы</div>
+      <div class="footer-col">
+        <div class="footer-nav-title" id="footerNavTitle">Навигация</div>
         <ul class="footer-links">
-          <li><a href="index.html">Главная</a></li>
-          <li><a href="theory.html">Теория</a></li>
-          <li><a href="choice-sp.html">Практика</a></li>
-          <li><a href="quiz.html">Викторина</a></li>
+          <li><a href="theory.html">Теоретическая база</a></li>
+          <li><a href="choice-sp.html">Практикум и кейсы</a></li>
+          <li><a href="glossary.html">Глоссарий понятий</a></li>
+          <li><a href="quiz.html">Интерактивная викторина</a></li>
+          <li><a href="videos.html">Видеоматериалы</a></li>
+          <li><a href="blog.html">Блог и новости</a></li>
+          <li><a href="contact.html">Обратная связь</a></li>
         </ul>
       </div>
-      <div>
-        <div class="footer-nav-title">Информация</div>
+      <div class="footer-col">
+        <div class="footer-nav-title" id="footerContactTitle">Контакты и поддержка</div>
         <ul class="footer-links">
-          <li><a href="videos.html">Видео</a></li>
-          <li><a href="blog.html">Блог</a></li>
-          <li><a href="contact.html">Жалоба</a></li>
-          <li><a href="https://cpd.by" target="_blank">cpd.by</a></li>
+          <li><a href="mailto:nevdahalek@yandex.by"><i class="fas fa-envelope"></i> nevdahalek@yandex.by</a></li>
+          <li><a href="https://cpd.by" target="_blank" rel="noopener"><i class="fas fa-globe"></i> Портал НЦЗПД (cpd.by)</a></li>
+          <li><a href="https://pravo.by" target="_blank" rel="noopener"><i class="fas fa-balance-scale"></i> Портал Pravo.by</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <div id="footerCopyright">© 2026 Edusafe</div>
-      <div id="footerDisclaimer1">Ресурс не использует cookies и не собирает персональные данные пользователей.</div>
-      <div id="footerDisclaimer2">Все материалы носят информационно-просветительский характер и соответствуют действующему законодательству Республики Беларусь.</div>
+      <p id="footerCopyright">© 2026 EduSafe. Все права защищены.</p>
+      <p id="footerDisclaimer1" style="color:#64748b; font-size:0.75rem;">Ресурс не использует cookie-файлы слежения и не собирает персональные данные посетителей.</p>
+      <p id="footerDisclaimer2" style="color:#64748b; font-size:0.75rem;">Материалы подготовлены в соответствии с Законом Республики Беларусь № 99-З «О защите персональных данных».</p>
     </div>
   </div>
 </footer>
 
 <script>
-  // ─── STATE ──────────────────────────────────────────
-  let currentLang = 'ru';
-  let currentRole = null;
+const translations = {
+  ru: {
+    pageTitle: "Теория — EduSafe",
+    heroBadge: "Теоретическая база · Законодательство РБ",
+    heroTitle: "Защита персональных данных в сфере <span>образования</span>",
+    heroSubtitle: "Систематизированная правовая база, практические рекомендации и разъяснения Национального центра защиты персональных данных для всех участников образовательного процесса.",
+    roleTag: "Индивидуальный маршрут",
+    roleTitle: "Для кого подготовлен материал?",
+    roleSub: "Выберите вашу категорию, чтобы ознакомиться с адаптированными правовыми нормами и рекомендациями",
+    roleAll: "Все категории",
+    roleAllSub: "Полный свод статей закона и разъяснений регулятора",
+    roleTeacher: "Педагоги УОСО",
+    roleTeacherSub: "Школы, гимназии, лицеи, детские сады",
+    roleProf: "Преподаватели УВО/УССО",
+    roleProfSub: "Университеты, институты, академии, колледжи",
+    roleStud: "Учащиеся и студенты",
+    roleStudSub: "Школьники, студенты и законные представители",
+    ctaTitle: "Готовы проверить свои знания на практике?",
+    ctaSubtitle: "Переходите к разбору реальных ситуаций в практикуме или проверьте уровень готовности в интерактивной викторине.",
+    ctaBtn1: "Перейти к практике",
+    ctaBtnGlossary: "Открыть глоссарий",
+    ctaBtn2: "Пройти викторину",
+    footerDesc: "Республиканский информационно-практический ресурс по защите персональных данных в сфере образования Республики Беларусь.",
+    footerNavTitle: "Навигация",
+    footerContactTitle: "Контакты и поддержка",
+    footerCopyright: "© 2026 EduSafe. Все права защищены.",
+    footerDisclaimer1: "Ресурс не использует cookie-файлы слежения и не собирает персональные данные посетителей.",
+    footerDisclaimer2: "Материалы подготовлены в соответствии с Законом Республики Беларусь № 99-З «О защите персональных данных».",
+    navHome: "Главная", navTheory: "Теория", navPractice: "Практика",
+    navGlossary: "Глоссарий", navVideo: "Видео", navQuiz: "Викторина",
+    navBlog: "Блог", navComplaint: "Контакты"
+  },
+  en: {
+    pageTitle: "Theory — EduSafe",
+    heroBadge: "Theoretical Foundation · Legislation of Belarus",
+    heroTitle: "Personal Data Protection in <span>Education</span>",
+    heroSubtitle: "Systematized legal framework, practical guidelines, and explanations of the National Center for Personal Data Protection for all educational participants.",
+    roleTag: "Customized Path",
+    roleTitle: "Who is this material for?",
+    roleSub: "Select your category to review customized legal regulations and expert guidelines",
+    roleAll: "All Categories",
+    roleAllSub: "Comprehensive collection of legal articles and rulings",
+    roleTeacher: "School Teachers",
+    roleTeacherSub: "Schools, gymnasiums, lyceums, preschools",
+    roleProf: "University Faculty",
+    roleProfSub: "Universities, colleges, academies, institutes",
+    roleStud: "Students & Pupils",
+    roleStudSub: "Schoolchildren, university students, and parents",
+    ctaTitle: "Ready to test your knowledge in practice?",
+    ctaSubtitle: "Explore real case studies in our workshop or test your readiness in the interactive quiz.",
+    ctaBtn1: "Go to Practice",
+    ctaBtnGlossary: "Open Glossary",
+    ctaBtn2: "Take Quiz",
+    footerDesc: "National practical information resource on personal data protection in education in the Republic of Belarus.",
+    footerNavTitle: "Navigation",
+    footerContactTitle: "Contacts & Support",
+    footerCopyright: "© 2026 EduSafe. All rights reserved.",
+    footerDisclaimer1: "This resource uses no tracking cookies and does not collect personal user data.",
+    footerDisclaimer2: "Materials comply with the Law of the Republic of Belarus No. 99-Z 'On Personal Data Protection'.",
+    navHome: "Home", navTheory: "Theory", navPractice: "Practice",
+    navGlossary: "Glossary", navVideo: "Videos", navQuiz: "Quiz",
+    navBlog: "Blog", navComplaint: "Contacts"
+  }
+};
 
-  // ─── ROLE SELECTION ──────────────────────────────────
-  function selectRole(role) {
-    // Deselect all
-    document.querySelectorAll('.role-card').forEach(c => c.classList.remove('selected'));
-    document.querySelectorAll('.content-area').forEach(a => a.classList.remove('visible'));
+let currentLang = localStorage.getItem('lang') || 'ru';
 
-    // Select
-    document.getElementById('card-' + role).classList.add('selected');
-    const contentEl = document.getElementById('content-' + role);
-    if (contentEl) {
-      contentEl.classList.add('visible');
-      // Smooth scroll to content
-      setTimeout(() => {
-        contentEl.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      }, 80);
-      // Re-trigger animations inside content
-      contentEl.querySelectorAll('.anim').forEach(el => {
-        el.classList.remove('visible');
-        setTimeout(() => observer.observe(el), 50);
-      });
+function updateThemeUI() {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const icon = isDark ? '<i class="fas fa-sun"></i>' : '<i class="fas fa-moon"></i>';
+  const title = isDark ? (currentLang === "ru" ? "Светлая тема" : "Light theme") : (currentLang === "ru" ? "Тёмная тема" : "Dark theme");
+  document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+    if (b) {
+      b.innerHTML = icon;
+      b.setAttribute("title", title);
     }
-
-    currentRole = role;
-    try { localStorage.setItem('theoryRole', role); } catch(e){}
-  }
-
-  
-
-  function setEl(id, val, isHtml) {
-    const el = document.getElementById(id);
-    if (!el || val === undefined) return;
-    if (isHtml) el.innerHTML = val; else el.textContent = val;
-  }
-
-  function updateLanguage(lang) {
-    const tr = t[lang];
-    if (!tr) return;
-    currentLang = lang;
-    document.documentElement.lang = lang;
-    setEl('pageTitle', tr.pageTitle, false);
-    ['logoText','mobileLogoText','footerLogoText'].forEach(id => setEl(id, tr.logoText, false));
-
-    setEl('heroBadge', tr.heroBadge, false);
-    const heroTitleEl = document.getElementById('heroTitle');
-    if (heroTitleEl) heroTitleEl.innerHTML = tr.heroTitle;
-    setEl('heroSubtitle', tr.heroSubtitle, false);
-    setEl('heroNote', tr.heroNote, false);
-    setEl('roleChooserTag', tr.roleChooserTag, false);
-    setEl('roleChooserTitle', tr.roleChooserTitle, false);
-    setEl('roleChooserSub', tr.roleChooserSub, false);
-
-    ['teacher','professor','pupil','student'].forEach(r => {
-      setEl('roleCardTitle_'+r, tr['roleCardTitle_'+r], false);
-      setEl('roleCardDesc_'+r, tr['roleCardDesc_'+r], false);
-    });
-
-    setEl('docsTitle', tr.docsTitle, false);
-    setEl('docsIntro', tr.docsIntro, false);
-    setEl('doc1', '<i class="fas fa-file-pdf"></i> ' + tr.doc1, true);
-    setEl('doc2', '<i class="fas fa-file-pdf"></i> ' + tr.doc2, true);
-    setEl('doc3', '<i class="fas fa-file-pdf"></i> ' + tr.doc3, true);
-    setEl('docNote', tr.docNote, false);
-
-    setEl('ctaTitle', tr.ctaTitle, false);
-    setEl('ctaSubtitle', tr.ctaSubtitle, false);
-    setEl('ctaBtn1', tr.ctaBtn1, false);
-    setEl('ctaBtn2', tr.ctaBtn2, false);
-    setEl('ctaBtn3', tr.ctaBtn3, false);
-
-    setEl('footerDesc', tr.footerDesc, false);
-    setEl('footerCopyright', tr.footerCopyright, false);
-    setEl('footerDisclaimer1', tr.footerDisclaimer1, false);
-    setEl('footerDisclaimer2', tr.footerDisclaimer2, false);
-
-    ['Home','Theory','Practice','Video','Quiz','Blog','Complaint'].forEach(item => {
-      setEl('nav'+item, tr['nav'+item], false);
-      setEl('mobileNav'+item, tr['nav'+item], false);
-    });
-
-    // Sync selectors
-    document.getElementById('languageSelector').value = lang;
-    document.getElementById('mobileLanguageSelector').value = lang;
-  }
-
-  // ─── INTERSECTION OBSERVER ───────────────────────────
-  const observer = new IntersectionObserver(entries => {
-    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-  }, { threshold: 0.1 });
-
-  document.querySelectorAll('.anim').forEach(el => observer.observe(el));
-
-  // ─── MOBILE DRAWER ───────────────────────────────────
-  const overlay = document.getElementById('drawerOverlay');
-  document.getElementById('navToggle').addEventListener('click', () => {
-    overlay.classList.add('open');
-    document.body.style.overflow = 'hidden';
   });
-  function closeDrawer() { overlay.classList.remove('open'); document.body.style.overflow = ''; }
-  document.getElementById('drawerClose').addEventListener('click', closeDrawer);
-  overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
+}
+
+function toggleTheme() {
+  const isDark = document.documentElement.getAttribute("data-theme") === "dark";
+  const newTheme = isDark ? "light" : "dark";
+  document.documentElement.setAttribute("data-theme", newTheme);
+  localStorage.setItem("theme", newTheme);
+  updateThemeUI();
+}
+
+function updateLanguage(lang) {
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  localStorage.setItem('lang', lang);
+  const t = translations[lang] || translations.ru;
+  document.title = t.pageTitle;
+
+  const ids = ['heroBadge', 'heroSubtitle', 'roleTag', 'roleTitle', 'roleSub', 'roleAll', 'roleAllSub', 'roleTeacher', 'roleTeacherSub', 'roleProf', 'roleProfSub', 'roleStud', 'roleStudSub', 'ctaTitle', 'ctaSubtitle', 'ctaBtn1', 'ctaBtnGlossary', 'ctaBtn2', 'footerDesc', 'footerNavTitle', 'footerContactTitle', 'footerCopyright', 'footerDisclaimer1', 'footerDisclaimer2'];
+  ids.forEach(id => {
+    const el = document.getElementById(id);
+    if (el && t[id]) el.textContent = t[id];
+  });
+
+  const ht = document.getElementById('heroTitle');
+  if (ht) ht.innerHTML = t.heroTitle;
+
+  const navMap = {
+    Home: ['fa-home', 'navHome', 'mobileNavHome'],
+    Theory: ['fa-book-open', 'navTheory', 'mobileNavTheory'],
+    Practice: ['fa-lightbulb', 'navPractice', 'mobileNavPractice'],
+    Glossary: ['fa-spell-check', 'navGlossary', 'mobileNavGlossary'],
+    Video: ['fa-play-circle', 'navVideo', 'mobileNavVideo'],
+    Quiz: ['fa-graduation-cap', 'navQuiz', 'mobileNavQuiz'],
+    Blog: ['fa-newspaper', 'navBlog', 'mobileNavBlog'],
+    Complaint: ['fa-envelope', 'navComplaint', 'mobileNavComplaint']
+  };
+
+  for (const key in navMap) {
+    const icon = navMap[key][0];
+    const text = t['nav' + key];
+    const el = document.getElementById(navMap[key][1]);
+    if (el) el.innerHTML = '<i class="fas ' + icon + '"></i> ' + text;
+    const mel = document.getElementById(navMap[key][2]);
+    if (mel) mel.innerHTML = '<i class="fas ' + icon + '"></i> ' + text;
+  }
+
+  if (document.getElementById('languageSelector')) document.getElementById('languageSelector').value = lang;
+  if (document.getElementById('mobileLanguageSelector')) document.getElementById('mobileLanguageSelector').value = lang;
+  updateThemeUI();
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+  document.querySelectorAll("#themeToggle, #mobileThemeToggle").forEach(b => {
+    if (b) b.addEventListener("click", toggleTheme);
+  });
+
+  if (document.getElementById('languageSelector')) {
+    document.getElementById('languageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+  }
+  if (document.getElementById('mobileLanguageSelector')) {
+    document.getElementById('mobileLanguageSelector').addEventListener('change', e => updateLanguage(e.target.value));
+  }
+
+  // Drawer
+  const overlay = document.getElementById('drawerOverlay');
+  if (document.getElementById('navToggle')) {
+    document.getElementById('navToggle').addEventListener('click', () => {
+      overlay.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    });
+  }
+  function closeDrawer() {
+    if (overlay) overlay.classList.remove('open');
+    document.body.style.overflow = '';
+  }
+  if (document.getElementById('drawerClose')) document.getElementById('drawerClose').addEventListener('click', closeDrawer);
+  if (overlay) overlay.addEventListener('click', e => { if (e.target === overlay) closeDrawer(); });
   document.querySelectorAll('.drawer-nav a').forEach(a => a.addEventListener('click', closeDrawer));
 
-  // ─── LANGUAGE SELECTORS ──────────────────────────────
-  document.getElementById('languageSelector').addEventListener('change', e => {
-    try { localStorage.setItem('appLang', e.target.value); } catch(err){}
-    updateLanguage(e.target.value);
-  });
-  document.getElementById('mobileLanguageSelector').addEventListener('change', e => {
-    try { localStorage.setItem('appLang', e.target.value); } catch(err){}
-    updateLanguage(e.target.value);
+  // Role selector
+  document.querySelectorAll('.role-card').forEach(card => {
+    card.addEventListener('click', () => {
+      document.querySelectorAll('.role-card').forEach(c => c.classList.remove('active'));
+      card.classList.add('active');
+    });
   });
 
-  // ─── INIT ────────────────────────────────────────────
-  document.addEventListener('DOMContentLoaded', () => {
-    let savedLang = 'ru';
-    let savedRole = null;
-    try {
-      savedLang = localStorage.getItem('appLang') || 'ru';
-      savedRole = localStorage.getItem('theoryRole');
-    } catch(e){}
-
-    updateLanguage(savedLang);
-
-    if (savedRole && document.getElementById('card-' + savedRole)) {
-      selectRole(savedRole);
-    }
-  });
+  updateLanguage(currentLang);
+  updateThemeUI();
+});
 </script>
+
 </body>
 </html>
