@@ -3,12 +3,52 @@
 <head>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        document.documentElement.setAttribute("data-theme", "light");
-      }
+      // Fix: prevent "Cannot set property fetch of #<Window> which has only a getter"
+      try {
+        var _fetch = window.fetch;
+        if (typeof _fetch === "function") {
+          var currentFetch = _fetch;
+          var defined = false;
+          try {
+            Object.defineProperty(window, "fetch", {
+              get: function() { return currentFetch; },
+              set: function(fn) { currentFetch = fn; },
+              configurable: true,
+              enumerable: true
+            });
+            defined = true;
+          } catch(e1) {}
+          if (!defined) {
+            try {
+              var proto = Object.getPrototypeOf(window) || Window.prototype;
+              if (proto) {
+                Object.defineProperty(proto, "fetch", {
+                  get: function() { return currentFetch; },
+                  set: function(fn) { currentFetch = fn; },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            } catch(e2) {}
+          }
+        }
+      } catch(e) {}
+
+      window.addEventListener("error", function(e) {
+        if (e && e.message && e.message.indexOf("fetch") !== -1 && e.message.indexOf("getter") !== -1) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }, true);
+
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark" || (!savedTheme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch(e) {}
     })();
   </script>
   <meta charset="UTF-8" />
@@ -871,10 +911,151 @@
     [data-theme="dark"] .post-header,
     [data-theme="dark"] .question-card,
     [data-theme="dark"] .review-item,
+    [data-theme="dark"] .abbr-block,
     [data-theme="dark"] .thanks-card {
       background: #151d30;
       border-color: #232f48;
       color: var(--ink);
+    }
+    [data-theme="dark"] .scenario-card {
+      background: #131d31;
+      border-color: #23314d;
+    }
+    [data-theme="dark"] .scenario-card:hover {
+      box-shadow: 0 16px 48px rgba(0,0,0,0.65);
+      border-color: #2e4168;
+    }
+    [data-theme="dark"] .scenario-text {
+      color: #f8fafc;
+    }
+    [data-theme="dark"] .stat-strip {
+      background: #0d1424;
+      border-color: #232f48;
+    }
+    [data-theme="dark"] .abbr-block {
+      background: #131d31;
+      border-color: #23314d;
+      border-left: 4px solid var(--accent);
+    }
+    [data-theme="dark"] .abbr-block-head {
+      color: #f8fafc;
+    }
+    [data-theme="dark"] .abbr-item {
+      border-color: #1e293b;
+      color: #94a3b8;
+    }
+    [data-theme="dark"] .abbr-item strong {
+      color: #60a5fa;
+    }
+    [data-theme="dark"] .ncdp-banner {
+      background: linear-gradient(135deg, #241808 0%, #1a140a 100%) !important;
+      border-color: #78350f !important;
+      border-left: 4px solid #f59e0b !important;
+      color: #fde68a !important;
+    }
+    [data-theme="dark"] .ncdp-banner strong {
+      color: #fbbf24 !important;
+    }
+    [data-theme="dark"] .ncdp-banner a {
+      color: #fcd34d !important;
+    }
+    [data-theme="dark"] .ncdp-banner-icon {
+      background: rgba(245, 158, 11, 0.2) !important;
+      color: #fbbf24 !important;
+    }
+    [data-theme="dark"] .tab-btn {
+      background: #111827;
+      border-color: #232f48;
+      color: #f8fafc;
+    }
+    [data-theme="dark"] .tab-btn:hover {
+      border-color: var(--tab-color, #60a5fa);
+      transform: translateY(-2px);
+    }
+    [data-theme="dark"] .tab-btn.active {
+      border-color: var(--tab-color, #60a5fa);
+      background: #172138;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.4);
+    }
+    [data-theme="dark"] .tab-btn-info h3 {
+      color: #f8fafc;
+    }
+    [data-theme="dark"] .tab-btn-info p {
+      color: #94a3b8;
+    }
+    [data-theme="dark"] .tab-btn-1 .tab-icon { background: rgba(59, 130, 246, 0.2); color: #60a5fa; }
+    [data-theme="dark"] .tab-btn-2 .tab-icon { background: rgba(52, 211, 153, 0.2); color: #34d399; }
+    [data-theme="dark"] .tab-btn-3 .tab-icon { background: rgba(56, 189, 248, 0.2); color: #38bdf8; }
+    [data-theme="dark"] .control-btn,
+    [data-theme="dark"] .filter-btn {
+      background: #0f1629;
+      border-color: #232f48;
+      color: #94a3b8;
+    }
+    [data-theme="dark"] .control-btn:hover,
+    [data-theme="dark"] .filter-btn:hover {
+      background: rgba(59, 130, 246, 0.18);
+      border-color: #60a5fa;
+      color: #93c5fd;
+    }
+    [data-theme="dark"] .control-btn.active,
+    [data-theme="dark"] .filter-btn.active {
+      background: #0057d9;
+      border-color: #0057d9;
+      color: #ffffff;
+    }
+    [data-theme="dark"] .modal-content {
+      background: #131d31;
+      border: 1px solid #23314d;
+      box-shadow: 0 24px 60px rgba(0, 0, 0, 0.7);
+    }
+    [data-theme="dark"] .modal-header {
+      background: #0b111e;
+      border-bottom: 1px solid #23314d;
+    }
+    [data-theme="dark"] .modal-header h2 {
+      color: #f8fafc;
+    }
+    [data-theme="dark"] .modal-close {
+      background: rgba(255, 255, 255, 0.08);
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      color: #ffffff;
+    }
+    [data-theme="dark"] .modal-close:hover {
+      background: rgba(255, 255, 255, 0.18);
+    }
+    [data-theme="dark"] .modal-section-content {
+      color: #e2e8f0;
+    }
+    [data-theme="dark"] .content-green {
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #d1fae5;
+    }
+    [data-theme="dark"] .content-blue {
+      background: rgba(59, 130, 246, 0.12);
+      border: 1px solid rgba(96, 165, 250, 0.35);
+      color: #dbeafe;
+    }
+    [data-theme="dark"] .content-amber {
+      background: rgba(245, 158, 11, 0.12);
+      border: 1px solid rgba(251, 191, 36, 0.35);
+      color: #fef3c7;
+    }
+    [data-theme="dark"] .ncdp-notice {
+      background: rgba(249, 115, 22, 0.1);
+      border: 1px solid rgba(249, 115, 22, 0.3);
+      border-left: 3px solid #f97316;
+      color: #fed7aa;
+    }
+    [data-theme="dark"] .ncdp-notice a {
+      color: #fb923c;
+    }
+    [data-theme="dark"] .law-link {
+      color: #60a5fa;
+    }
+    [data-theme="dark"] .law-link:hover {
+      color: #93c5fd;
     }
     [data-theme="dark"] .law-ref-box,
     [data-theme="dark"] .sol-box,
@@ -883,8 +1064,6 @@
     [data-theme="dark"] .alert-note,
     [data-theme="dark"] .stat-item,
     [data-theme="dark"] .doc-link,
-    [data-theme="dark"] .filter-btn,
-    [data-theme="dark"] .tab-btn,
     [data-theme="dark"] .audience-tab,
     [data-theme="dark"] .sub-btn,
     [data-theme="dark"] .option-item,
@@ -931,6 +1110,73 @@
       border-color: #232f48;
     }
 
+    /* ─── BREADCRUMB BAR ─── */
+    .breadcrumb-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      position: relative;
+      z-index: 50;
+    }
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.6rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb-item a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.15s ease;
+      font-weight: 500;
+    }
+    .breadcrumb-item a:hover {
+      color: var(--accent);
+    }
+    .breadcrumb-item a i {
+      font-size: 0.82rem;
+    }
+    .breadcrumb-separator {
+      color: var(--border);
+      font-size: 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+    }
+    [data-theme="dark"] .breadcrumb-separator {
+      color: #334155;
+    }
+    .breadcrumb-item.active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .breadcrumb-bar {
+      background: #0d1424;
+      border-color: var(--border);
+    }
+    [data-theme="dark"] .breadcrumb-item a {
+      color: #94a3b8;
+    }
+    [data-theme="dark"] .breadcrumb-item a:hover {
+      color: var(--accent-light);
+    }
+    [data-theme="dark"] .breadcrumb-item.active {
+      color: #f8fafc;
+    }
   </style>
 </head>
 <body>
@@ -999,6 +1245,28 @@
   </div>
 </div>
 </div>
+
+<!-- ─── BREADCRUMB BAR ────────────────────── -->
+<nav class="breadcrumb-bar" aria-label="Хлебные крошки">
+  <div class="container">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="index.html" itemprop="item" id="bcHome"><i class="fas fa-home"></i> <span itemprop="name" id="bcHomeText">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li class="breadcrumb-separator" aria-hidden="true"><i class="fas fa-chevron-right"></i></li>
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="choice-sp.html" itemprop="item" id="bcPractice"><i class="fas fa-lightbulb"></i> <span itemprop="name" id="bcPracticeText">Практика</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <li class="breadcrumb-separator" aria-hidden="true"><i class="fas fa-chevron-right"></i></li>
+      <li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name" id="bcCurrent">ВУЗы и ССУЗы (УВО и УССО)</span>
+        <meta itemprop="position" content="3" />
+      </li>
+    </ol>
+  </div>
+</nav>
 
 <!-- ─── HERO ───────────────────────────────── -->
 <section class="hero">
@@ -1385,6 +1653,13 @@
     if (fd1) fd1.textContent = t.footerDisclaimer1;
     const fd2 = document.getElementById('footerDisclaimer2');
     if (fd2) fd2.textContent = t.footerDisclaimer2;
+
+    const bcHome = document.getElementById('bcHomeText');
+    if (bcHome) bcHome.textContent = lang === 'en' ? 'Home' : 'Главная';
+    const bcPractice = document.getElementById('bcPracticeText');
+    if (bcPractice) bcPractice.textContent = lang === 'en' ? 'Practice' : 'Практика';
+    const bcCurrent = document.getElementById('bcCurrent');
+    if (bcCurrent) bcCurrent.textContent = lang === 'en' ? 'Universities & Colleges (UVO & USSO)' : 'ВУЗы и ССУЗы (УВО и УССО)';
 
     if (document.getElementById('languageSelector')) document.getElementById('languageSelector').value = lang;
     if (document.getElementById('mobileLanguageSelector')) document.getElementById('mobileLanguageSelector').value = lang;

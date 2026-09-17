@@ -3,12 +3,52 @@
 <head>
   <script>
     (function() {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        document.documentElement.setAttribute("data-theme", "light");
-      }
+      // Fix: prevent "Cannot set property fetch of #<Window> which has only a getter"
+      try {
+        var _fetch = window.fetch;
+        if (typeof _fetch === "function") {
+          var currentFetch = _fetch;
+          var defined = false;
+          try {
+            Object.defineProperty(window, "fetch", {
+              get: function() { return currentFetch; },
+              set: function(fn) { currentFetch = fn; },
+              configurable: true,
+              enumerable: true
+            });
+            defined = true;
+          } catch(e1) {}
+          if (!defined) {
+            try {
+              var proto = Object.getPrototypeOf(window) || Window.prototype;
+              if (proto) {
+                Object.defineProperty(proto, "fetch", {
+                  get: function() { return currentFetch; },
+                  set: function(fn) { currentFetch = fn; },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            } catch(e2) {}
+          }
+        }
+      } catch(e) {}
+
+      window.addEventListener("error", function(e) {
+        if (e && e.message && e.message.indexOf("fetch") !== -1 && e.message.indexOf("getter") !== -1) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }, true);
+
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark" || (!savedTheme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch(e) {}
     })();
   </script>
   <meta charset="UTF-8" />

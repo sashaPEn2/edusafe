@@ -215,6 +215,55 @@ function buildPostPage(item, slug) {
   return `<!DOCTYPE html>
 <html lang="ru">
 <head>
+  <script>
+    (function() {
+      try {
+        var _fetch = window.fetch;
+        if (typeof _fetch === "function") {
+          var currentFetch = _fetch;
+          var defined = false;
+          try {
+            Object.defineProperty(window, "fetch", {
+              get: function() { return currentFetch; },
+              set: function(fn) { currentFetch = fn; },
+              configurable: true,
+              enumerable: true
+            });
+            defined = true;
+          } catch(e1) {}
+          if (!defined) {
+            try {
+              var proto = Object.getPrototypeOf(window) || Window.prototype;
+              if (proto) {
+                Object.defineProperty(proto, "fetch", {
+                  get: function() { return currentFetch; },
+                  set: function(fn) { currentFetch = fn; },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            } catch(e2) {}
+          }
+        }
+      } catch(e) {}
+
+      window.addEventListener("error", function(e) {
+        if (e && e.message && e.message.indexOf("fetch") !== -1 && e.message.indexOf("getter") !== -1) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }, true);
+
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark" || (!savedTheme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch(e) {}
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 
@@ -278,11 +327,100 @@ function buildPostPage(item, slug) {
     #comments-section{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:2.5rem 3rem;margin-top:2rem}
     #comments-section h3{font-family:'Unbounded',sans-serif;font-size:1.1rem;font-weight:700;color:var(--ink);margin-bottom:1.5rem;letter-spacing:-.01em}
     @media(max-width:600px){.post-header{padding:1.75rem 1.5rem 1.5rem}.post-body{padding:1.5rem}.single-post-wrap{padding:2rem 0 4rem}#comments-section{padding:1.5rem}}
+
+    /* ─── BREADCRUMB BAR ─── */
+    .breadcrumb-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      position: relative;
+      z-index: 50;
+    }
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.6rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb-item a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.15s ease;
+      font-weight: 500;
+    }
+    .breadcrumb-item a:hover {
+      color: var(--accent);
+    }
+    .breadcrumb-item a i {
+      font-size: 0.82rem;
+    }
+    .breadcrumb-separator {
+      color: var(--border);
+      font-size: 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+    }
+    [data-theme="dark"] .breadcrumb-separator {
+      color: #334155;
+    }
+    .breadcrumb-item.active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .breadcrumb-bar {
+      background: #0d1424;
+      border-color: var(--border);
+    }
+    [data-theme="dark"] .breadcrumb-item a {
+      color: #94a3b8;
+    }
+    [data-theme="dark"] .breadcrumb-item a:hover {
+      color: var(--accent-light);
+    }
+    [data-theme="dark"] .breadcrumb-item.active {
+      color: #f8fafc;
+    }
   </style>
 </head>
 <body>
 
 ${headerHtml()}
+
+<nav class="breadcrumb-bar" aria-label="Хлебные крошки">
+  <div class="container">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="../index.html" itemprop="item"><i class="fas fa-home"></i> <span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li class="breadcrumb-separator" aria-hidden="true"><i class="fas fa-chevron-right"></i></li>
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="../blog.html" itemprop="item"><i class="fas fa-newspaper"></i> <span itemprop="name">Блог</span></a>
+        <meta itemprop="position" content="2" />
+      </li>
+      <li class="breadcrumb-separator" aria-hidden="true"><i class="fas fa-chevron-right"></i></li>
+      <li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">${(f.title || 'Статья').replace(/"/g, '&quot;')}</span>
+        <meta itemprop="position" content="3" />
+      </li>
+    </ol>
+  </div>
+</nav>
 
 <main>
   <div class="container">
@@ -376,6 +514,55 @@ function buildIndexPage(posts) {
   return `<!DOCTYPE html>
 <html lang="ru" id="htmlRoot">
 <head>
+  <script>
+    (function() {
+      try {
+        var _fetch = window.fetch;
+        if (typeof _fetch === "function") {
+          var currentFetch = _fetch;
+          var defined = false;
+          try {
+            Object.defineProperty(window, "fetch", {
+              get: function() { return currentFetch; },
+              set: function(fn) { currentFetch = fn; },
+              configurable: true,
+              enumerable: true
+            });
+            defined = true;
+          } catch(e1) {}
+          if (!defined) {
+            try {
+              var proto = Object.getPrototypeOf(window) || Window.prototype;
+              if (proto) {
+                Object.defineProperty(proto, "fetch", {
+                  get: function() { return currentFetch; },
+                  set: function(fn) { currentFetch = fn; },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            } catch(e2) {}
+          }
+        }
+      } catch(e) {}
+
+      window.addEventListener("error", function(e) {
+        if (e && e.message && e.message.indexOf("fetch") !== -1 && e.message.indexOf("getter") !== -1) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }, true);
+
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark" || (!savedTheme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch(e) {}
+    })();
+  </script>
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <meta name="description" content="Блог EduSafe — актуальные новости и советы по защите персональных данных в образовании."/>
@@ -475,6 +662,74 @@ function buildIndexPage(posts) {
     .anim-d3{animation-delay:.19s}
     @media(max-width:900px){.posts-grid{grid-template-columns:1fr 1fr}.nav-desktop{display:none}.burger{display:flex}}
     @media(max-width:600px){.posts-grid{grid-template-columns:1fr}.hero{padding:3rem 0 2.5rem}.section{padding:3rem 0 4rem}.footer-top{flex-direction:column}}
+
+    /* ─── BREADCRUMB BAR ─── */
+    .breadcrumb-bar {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0.65rem 0;
+      font-size: 0.85rem;
+      line-height: 1.4;
+      position: relative;
+      z-index: 50;
+    }
+    .breadcrumbs {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 0.45rem 0.6rem;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+    }
+    .breadcrumb-item {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      color: var(--text-muted);
+    }
+    .breadcrumb-item a {
+      color: var(--text-muted);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      transition: color 0.15s ease;
+      font-weight: 500;
+    }
+    .breadcrumb-item a:hover {
+      color: var(--accent);
+    }
+    .breadcrumb-item a i {
+      font-size: 0.82rem;
+    }
+    .breadcrumb-separator {
+      color: var(--border);
+      font-size: 0.65rem;
+      display: inline-flex;
+      align-items: center;
+      user-select: none;
+    }
+    [data-theme="dark"] .breadcrumb-separator {
+      color: #334155;
+    }
+    .breadcrumb-item.active {
+      color: var(--ink);
+      font-weight: 600;
+    }
+    [data-theme="dark"] .breadcrumb-bar {
+      background: #0d1424;
+      border-color: var(--border);
+    }
+    [data-theme="dark"] .breadcrumb-item a {
+      color: #94a3b8;
+    }
+    [data-theme="dark"] .breadcrumb-item a:hover {
+      color: var(--accent-light);
+    }
+    [data-theme="dark"] .breadcrumb-item.active {
+      color: #f8fafc;
+    }
   </style>
 </head>
 <body>
@@ -532,6 +787,23 @@ function buildIndexPage(posts) {
     </div>
   </div>
 </div>
+
+<!-- ─── BREADCRUMB BAR ────────────────────── -->
+<nav class="breadcrumb-bar" aria-label="Хлебные крошки">
+  <div class="container">
+    <ol class="breadcrumbs" itemscope itemtype="https://schema.org/BreadcrumbList">
+      <li class="breadcrumb-item" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem">
+        <a href="index.html" itemprop="item"><i class="fas fa-home"></i> <span itemprop="name">Главная</span></a>
+        <meta itemprop="position" content="1" />
+      </li>
+      <li class="breadcrumb-separator" aria-hidden="true"><i class="fas fa-chevron-right"></i></li>
+      <li class="breadcrumb-item active" itemprop="itemListElement" itemscope itemtype="https://schema.org/ListItem" aria-current="page">
+        <span itemprop="name">Блог</span>
+        <meta itemprop="position" content="2" />
+      </li>
+    </ol>
+  </div>
+</nav>
 
 <section class="hero">
   <div class="hero-grid"></div>

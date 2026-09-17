@@ -198,17 +198,125 @@ const coreThemeCss = `
   [data-theme="dark"] .mod-card-2 .mod-icon { background: rgba(14,165,199,0.15) !important; color: #38bdf8 !important; }
   [data-theme="dark"] .mod-card-3 .mod-icon { background: rgba(139,92,246,0.15) !important; color: #a78bfa !important; }
   [data-theme="dark"] .mod-card-4 .mod-icon { background: rgba(16,185,129,0.15) !important; color: #34d399 !important; }
+
+  /* ─── BREADCRUMB BAR ─── */
+  .breadcrumb-bar {
+    background: var(--surface);
+    border-bottom: 1px solid var(--border);
+    padding: 0.65rem 0;
+    font-size: 0.85rem;
+    line-height: 1.4;
+    position: relative;
+    z-index: 50;
+  }
+  .breadcrumbs {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.45rem 0.6rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .breadcrumb-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    color: var(--text-muted);
+  }
+  .breadcrumb-item a {
+    color: var(--text-muted);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    transition: color 0.15s ease;
+    font-weight: 500;
+  }
+  .breadcrumb-item a:hover {
+    color: var(--accent);
+  }
+  .breadcrumb-item a i {
+    font-size: 0.82rem;
+  }
+  .breadcrumb-separator {
+    color: var(--border);
+    font-size: 0.65rem;
+    display: inline-flex;
+    align-items: center;
+    user-select: none;
+  }
+  [data-theme="dark"] .breadcrumb-separator {
+    color: #334155;
+  }
+  .breadcrumb-item.active {
+    color: var(--ink);
+    font-weight: 600;
+  }
+  [data-theme="dark"] .breadcrumb-bar {
+    background: #0d1424;
+    border-color: var(--border);
+  }
+  [data-theme="dark"] .breadcrumb-item a {
+    color: #94a3b8;
+  }
+  [data-theme="dark"] .breadcrumb-item a:hover {
+    color: var(--accent-light);
+  }
+  [data-theme="dark"] .breadcrumb-item.active {
+    color: #f8fafc;
+  }
 `;
 
 const themeHeadScript = `
   <script>
     (function() {
-      const savedTheme = localStorage.getItem("theme");
-      if (savedTheme === "dark" || (!savedTheme && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
-        document.documentElement.setAttribute("data-theme", "dark");
-      } else {
-        document.documentElement.setAttribute("data-theme", "light");
-      }
+      // Fix: prevent "Cannot set property fetch of #<Window> which has only a getter"
+      try {
+        var _fetch = window.fetch;
+        if (typeof _fetch === "function") {
+          var currentFetch = _fetch;
+          var defined = false;
+          try {
+            Object.defineProperty(window, "fetch", {
+              get: function() { return currentFetch; },
+              set: function(fn) { currentFetch = fn; },
+              configurable: true,
+              enumerable: true
+            });
+            defined = true;
+          } catch(e1) {}
+          if (!defined) {
+            try {
+              var proto = Object.getPrototypeOf(window) || Window.prototype;
+              if (proto) {
+                Object.defineProperty(proto, "fetch", {
+                  get: function() { return currentFetch; },
+                  set: function(fn) { currentFetch = fn; },
+                  configurable: true,
+                  enumerable: true
+                });
+              }
+            } catch(e2) {}
+          }
+        }
+      } catch(e) {}
+
+      window.addEventListener("error", function(e) {
+        if (e && e.message && e.message.indexOf("fetch") !== -1 && e.message.indexOf("getter") !== -1) {
+          if (e.preventDefault) e.preventDefault();
+          if (e.stopImmediatePropagation) e.stopImmediatePropagation();
+        }
+      }, true);
+
+      try {
+        const savedTheme = localStorage.getItem("theme");
+        if (savedTheme === "dark" || (!savedTheme && window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches)) {
+          document.documentElement.setAttribute("data-theme", "dark");
+        } else {
+          document.documentElement.setAttribute("data-theme", "light");
+        }
+      } catch(e) {}
     })();
   </script>`;
 

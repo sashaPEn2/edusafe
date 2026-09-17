@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "node server.js",
     "start": "node server.js",
+    "lint": "node -c server.js build-site.js generate-blog.js",
     "generate": "node generate-blog.js",
     "build": "node generate-blog.js"
   },
